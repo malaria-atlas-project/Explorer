@@ -5,19 +5,28 @@
     	padding: 10px;
     	background-color: #CCCCCC;
     }
+    
     .overflow {
     	overflow: auto;
     }
+    
+    .tablePanel {
+    	background-color: #ebebeb;
+    }
   </ui:style>
   <g:LayoutPanel styleName="ListLayoutPanel">
-    <g:layer left="0px" width="300px">
-      <g:SimplePanel ui:field="filterPanel" styleName="{style.filterPanel}" />
+    <g:layer left="0px" width="40%">
+      <g:LayoutPanel>
+        <g:layer top="0px" height="300px">
+          <g:SimplePanel ui:field="layerPanel" styleName="{style.filterPanel}" />
+        </g:layer>
+        <g:layer top="300px" bottom="0px">
+          <g:SimplePanel ui:field="tablePanel" styleName="{style.tablePanel}"></g:SimplePanel>
+        </g:layer>
+      </g:LayoutPanel>
     </g:layer>
-    <g:layer left="300px" right="500px">
-      <g:SimplePanel ui:field="tablePanel" styleName="{style.overflow}"></g:SimplePanel>
-    </g:layer>
-    <g:layer width="500px" right="0px">
-      <g:SimplePanel ui:field="detailPanel" styleName="{style.overflow}"/>
+    <g:layer width="60%" right="0px">
+      <g:SimplePanel ui:field="mapPanel" styleName="{style.overflow}" />
     </g:layer>
   </g:LayoutPanel>
 </ui:UiBinder>

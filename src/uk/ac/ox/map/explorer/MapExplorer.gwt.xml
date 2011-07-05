@@ -15,7 +15,9 @@
 	<inherits name="com.google.gwt.resources.Resources" />
 	<inherits name="org.adamtacy.GWTEffects" />  
   
+  <!-- Exernal projects                                      -->
 	<inherits name="com.google.gwt.inject.Inject" />
+  <inherits name='org.gwtopenmaps.openlayers.OpenLayers'/>
 
   <!-- Specify the app entry point class.                         -->
   <entry-point class='uk.ac.ox.map.explorer.client.MapExplorer'/>

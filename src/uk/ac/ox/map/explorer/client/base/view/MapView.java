@@ -18,28 +18,28 @@ public class MapView extends Composite {
   }
   
   @UiField
-  SimplePanel filterPanel;
+  SimplePanel layerPanel;
   
   @UiField
   SimplePanel tablePanel;
   
   @UiField
-  SimplePanel detailPanel;
+  SimplePanel mapPanel;
 
   public MapView() {
     initWidget(uiBinder.createAndBindUi(this));
   }
   
-  public SimplePanel getFilterPanel() {
-    return filterPanel;
+  public SimplePanel getLayerPanel() {
+    return layerPanel;
   }
   
   public AcceptsOneWidget getTablePanel() {
     return tablePanel;
   }
   
-  public AcceptsOneWidget getDetailPanel() {
-    return detailPanel;
+  public AcceptsOneWidget getMapPanel() {
+    return mapPanel;
   }
 
 }

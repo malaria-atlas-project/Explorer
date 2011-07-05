@@ -1,0 +1,22 @@
+.decoratedPanel {
+	padding: 10px;
+	border: 1px solid #CCCCCC;
+	margin-bottom: 10px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	-khtml-border-radius: 6px;
+	border-radius: 6px;
+}
+
+.panelHeader {
+	font-size: 15px;
+}
+
+.largePanelHeader {
+	font-size: 20px;
+	margin-right: 10px;
+}
+
+.scrollable {
+	overflow: auto;
+}

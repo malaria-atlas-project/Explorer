@@ -1,0 +1,119 @@
+
+<!-- Licensed to the Apache Software Foundation (ASF) under one or more contributor 
+	license agreements. See the NOTICE file distributed with this work for additional 
+	information regarding copyright ownership. The ASF licenses this file to 
+	you under the Apache License, Version 2.0 (the "License"); you may not use 
+	this file except in compliance with the License. You may obtain a copy of 
+	the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required 
+	by applicable law or agreed to in writing, software distributed under the 
+	License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS 
+	OF ANY KIND, either express or implied. See the License for the specific 
+	language governing permissions and limitations under the License. -->
+<ivy-module version="2.0">
+	<info organisation="uk.ac.ox.map" module="admin" />
+	<configurations>
+		<conf name="runtime" description="Libraries that need to be included with project war" />
+		<conf name="build" extends="runtime" description="Libraries needed for compilation" />
+	</configurations>
+	
+	<dependencies>
+		<!-- Client side dependencies -->
+    <dependency org="xerces" name="xercesImpl" rev="2.9.1"/>
+    
+    <dependency org="com.google.gwt" name="gwt-user" rev="2.3.0" conf="build->default"/>
+    <dependency org="com.google.gwt" name="gwt-dev" rev="2.3.0" conf="build->default"/>
+    
+		<dependency org="com.google.gwt.google-apis" name="gwt-maps" rev="1.1.1" conf="build->default"/>
+		<dependency org="com.google.gwt.inject" name="gin" rev="1.5" conf="build->default"/>
+		<dependency org="org.gwtopenmaps.openlayers" name="gwt-openlayers-client" rev="0.6-SNAPSHOT" conf="build->default"/>
+    <dependency org="org.adamtacy" name="gwt-fx" rev="0.5.0" conf="build->default">
+        <exclude name='gwt-user' />
+    </dependency>
+    
+    <!-- GWT servlet -->
+    <dependency org="com.google.gwt" name="gwt-servlet" rev="2.3.0" conf="runtime->default"/>
+
+		<!-- Database dependencies -->
+		<dependency org="org.postgis" name="postgis-jdbc" rev="1.3.3" conf="runtime->default">
+			<exclude module="postgis-stubs" />
+		</dependency>
+		<dependency org="postgresql" name="postgresql" rev="8.3-603.jdbc4"  conf="runtime->default"/>
+		<dependency org="javassist" name="javassist" rev="3.8.0.GA"  conf="runtime->default"/>
+		<dependency org="org.hibernate" name="hibernate-entitymanager" rev="3.6.5.Final"  conf="runtime->default"/>
+		<dependency org="org.hibernate" name="hibernate-core" rev="3.6.5.Final"  conf="runtime->default"/>
+		<dependency org="org.hibernate" name="hibernate-c3p0" rev="3.6.5.Final"  conf="runtime->default"/>
+		<dependency org="org.hibernate" name="hibernate-validator" rev="4.1.0.Final"  conf="runtime->default"/>
+		<dependency org="org.slf4j" name="slf4j-log4j12" rev="1.6.1"  conf="runtime->default"/>
+		<dependency org="log4j" name="log4j" rev="1.2.16"  conf="runtime->default"/>
+		
+
+		<!-- File upload deps -->
+		<dependency org="commons-fileupload" name="commons-fileupload" rev="1.2.2"  conf="runtime->default"/>
+		<dependency org="org.apache.poi" name="poi-ooxml" rev="3.7"  conf="runtime->default">
+		  <exclude name="servlet-api"></exclude>
+		</dependency>
+		<dependency org="org.apache.poi" name="poi" rev="3.7"  conf="runtime->default">
+		  <exclude name="servlet-api"></exclude>
+		</dependency>
+
+    <!-- Spatial deps -->
+		<dependency org="com.vividsolutions" name="jts" rev="1.11"  conf="runtime->default"/>
+		<dependency org="org.hibernatespatial" name="hibernate-spatial" rev="1.1"  conf="runtime->default"/>
+		<dependency org="org.hibernatespatial" name="hibernate-spatial-postgis" rev="1.1"  conf="runtime->default"/>
+		
+		<!-- Guice libs -->
+		<dependency org="com.google.inject" name="guice" rev="3.0"  conf="runtime->default">
+		  <exclude name="aopalliance"></exclude>
+    </dependency>
+		<dependency org="com.google.inject.extensions" name="guice-persist" rev="3.0"  conf="runtime->default">
+		  <exclude name="aopalliance"></exclude>
+		  <exclude name="servlet-api"></exclude>
+    </dependency>
+		<dependency org="com.google.inject.extensions" name="guice-assistedinject" rev="3.0"  conf="runtime->default">
+		  <exclude name="aopalliance"></exclude>
+    </dependency>
+		<dependency org="com.google.inject.extensions" name="guice-servlet" rev="3.0"  conf="runtime->default">
+		  <exclude name="aopalliance"></exclude>
+    </dependency>
+		<dependency org="com.google.inject.extensions" name="guice-grapher" rev="3.0"  conf="runtime->default">
+		  <exclude name="aopalliance"></exclude>
+    </dependency>
+    
+		<dependency org="javax.inject" name="javax.inject" rev="1"  conf="runtime->default"/>
+		<dependency org="org.aopalliance" name="aopalliance" rev="1.0"  conf="runtime->default"/>
+
+		<!-- JSON -->
+		<dependency org="org.json" name="json" rev="20090211"  conf="runtime->default"/>
+		<dependency org="com.google.code.gson" name="gson" rev="1.6" conf="runtime->default"/>
+		
+		<!-- Server pages -->
+		<dependency org="org.freemarker" name="freemarker" rev="2.3.14" conf="runtime->default"/>
+    
+    <!-- Validation -->
+		<dependency org="javax.validation" name="validation-api" rev="1.0.0.GA" />
+    
+    <!-- Security -->
+		<dependency org="org.expressme" name="JOpenId" rev="1.08" conf="runtime->default"/>
+    
+    <dependency org="commons-httpclient" name="commons-httpclient" rev="3.1" conf="runtime->default"/>
+    <dependency org="org.apache.shiro" name="shiro-core" rev="1.1.0" conf="runtime->default">
+    </dependency>
+    <dependency org="org.apache.shiro" name="shiro-web" rev="1.1.0" conf="runtime->default">
+		  <exclude name="jsp-api"></exclude>
+    </dependency>
+    <dependency org="org.apache.shiro" name="shiro-ehcache" rev="1.1.0" conf="runtime->default"/>
+    
+    <!--  Email -->
+    <dependency org="commons-email" name="commons-email" rev="1.1" conf="runtime->default"/>
+    
+    <!-- required for stringutils -->
+    <dependency org="commons-lang" name="commons-lang" rev="2.4" conf="runtime->default"/>
+		
+		<!-- Testing -->
+		<dependency org="org.jukito" name="jukito" rev="1.1"  conf="build->default"/>
+		<dependency org="org.mockito" name="mockito-core" rev="1.8.5"  conf="build->default"/>
+		<dependency org="org.powermock" name="powermock-api-mockito" rev="1.4.6"  conf="build->default"/>
+		
+	</dependencies>
+</ivy-module>
+

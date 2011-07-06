@@ -28,7 +28,6 @@ public class GuiceServletModule extends ServletModule {
      */
     Names.bindProperties(binder(), getProperties());
     
-    
     /*
      * Persistence filters
      */

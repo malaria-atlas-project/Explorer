@@ -4,11 +4,20 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import javax.servlet.ServletContext;
+
+import uk.ac.ox.map.request.server.AppRequestFactoryServlet;
+
+import com.google.inject.Provides;
+import com.google.inject.Singleton;
 import com.google.inject.name.Names;
 import com.google.inject.persist.PersistFilter;
 import com.google.inject.persist.jpa.JpaPersistModule;
 import com.google.inject.servlet.ServletModule;
 import com.google.web.bindery.requestfactory.server.RequestFactoryServlet;
+
+import freemarker.template.Configuration;
+import freemarker.template.DefaultObjectWrapper;
 
 /**
  * Think of the ServletModule as an in-code replacement for the web.xml
@@ -33,7 +42,9 @@ public class GuiceServletModule extends ServletModule {
      */
     filter("/*").through(PersistFilter.class);
     
-    serve("/gwtRequest").with(RequestFactoryServlet.class);
+    serve("/app").with(IndexServlet.class);
+    
+    serve("/gwtRequest").with(AppRequestFactoryServlet.class);
   }
   
   private Properties getProperties() {
@@ -45,6 +56,15 @@ public class GuiceServletModule extends ServletModule {
       e.printStackTrace();
     }
     return props;
+  }
+  
+  @Provides
+  @Singleton
+  Configuration templateConfiguration(ServletContext context) {
+    Configuration configInstance = new Configuration();
+    configInstance.setServletContextForTemplateLoading(context, "WEB-INF/templates");
+    configInstance.setObjectWrapper(new DefaultObjectWrapper());
+    return configInstance;
   }
 
 }

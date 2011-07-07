@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project name="MapExplorer" basedir="." default="gwtc" xmlns:ivy="antlib:org.apache.ivy.ant">
+
+  <property name="lib.dir" location="war/WEB-INF/lib/" />
+  <property name="war.file" location="war" />
+  <property name="resources" location="resources/" />
+
+  <taskdef name="deploy" classname="org.apache.catalina.ant.DeployTask" />
+  <taskdef name="undeploy" classname="org.apache.catalina.ant.UndeployTask" />
+
+  <target name="retrieve">
+    <ivy:resolve />
+    <ivy:cachepath pathid="build.path" conf="build" />
+    <ivy:cachepath pathid="runtime.path" conf="runtime" />
+  </target>
+
+  <target name="libs" depends="retrieve" description="Copy libs and other resources to WEB-INF/lib">
+    <delete dir="war/WEB-INF/lib" />
+    <mkdir dir="war/WEB-INF/lib" />
+    <ivy:retrieve pattern="${lib.dir}/[artifact]-[revision]-[type].[ext]" conf="runtime" />
+    <copy todir="war/WEB-INF/classes/META-INF" file="src/META-INF/persistence.xml" />
+    <!-- TODO get this from multi project build -->
+    <copy todir="war/WEB-INF/lib" file="../MapBase/dist/MapBase.jar" />
+    <copy todir="war/WEB-INF/lib" file="../MapRequest/dist/MapRequest.jar" />
+    <copy todir="${war.file}/WEB-INF/templates">
+      <fileset dir="${resources}/templates" />
+    </copy>
+  </target>
+
+  <target name="clean" description="Cleans this project">
+    <delete dir="war/WEB-INF/classes" failonerror="false" />
+  </target>
+
+  <target name="javac" depends="libs" description="Compile java source">
+    <mkdir dir="war/WEB-INF/classes" />
+    <javac srcdir="src" includes="**" encoding="utf-8" destdir="war/WEB-INF/classes" source="1.6" target="1.6" nowarn="true" debug="true" debuglevel="lines,vars,source">
+      <classpath refid="build.path" />
+      <classpath>
+        <pathelement location="../MapBase/dist/MapBase.jar" />
+        <pathelement location="../MapRequest/dist/MapRequest.jar" />
+      </classpath>
+    </javac>
+  </target>
+
+  <target name="gwtc" depends="javac" description="GWT compile to JavaScript">
+    <java failonerror="true" fork="true" classname="com.google.gwt.dev.Compiler">
+      <classpath>
+        <!-- TODO better way of getting MapBase -->
+        <pathelement location="../MapBase/dist/MapBase.jar" />
+        <pathelement location="../MapRequest/dist/MapRequest.jar" />
+        <pathelement location="src" />
+        <pathelement location="war/WEB-INF/classes" />
+        <path refid="build.path" />
+      </classpath>
+      <jvmarg value="-Xmx256M" />
+      <!-- Additional arguments like -style PRETTY or -logLevel DEBUG -->
+      <arg value="uk.ac.ox.map.admin.MapAdmin" />
+      <arg line="-style OBF" />
+      <arg line="-optimize 9" />
+
+    </java>
+  </target>
+
+  <target name="war" description="Create a war file." depends="gwtc">
+    <delete file="${war.file}/WEB-INF/classes/urls.properties">
+    </delete>
+    <delete file="${war.file}/WEB-INF/classes/hibernate.properties">
+    </delete>
+    <copy todir="${war.file}/WEB-INF/classes">
+      <fileset file="${resource.dir}/urls.properties" />
+      <fileset file="${resource.dir}/hibernate.properties" />
+    </copy>
+    <zip destfile="MapAdmin.war" basedir="war" />
+
+    <!-- Hack to undo previous replace of property files -->
+    <delete file="${war.file}/WEB-INF/classes/urls.properties" />
+    <delete file="${war.file}/WEB-INF/classes/hibernate.properties" />
+    <copy todir="${war.file}/WEB-INF/classes">
+      <fileset file="src/urls.properties" />
+      <fileset file="src/hibernate.properties" />
+    </copy>
+  </target>
+
+  <target name="deploy" description="Install web application" depends="war">
+    <deploy url="${deploy.url}" username="${deploy.username}" password="${deploy.password}" path="${deploy.path}" war="${basedir}/MapAdmin.war" />
+  </target>
+
+  <target name="undeploy" description="Uninstall web application">
+    <undeploy url="${deploy.url}" username="${deploy.username}" password="${deploy.password}" path="${deploy.path}" />
+  </target>
+
+  <target name="redeploy" description="Uninstall web application" depends="undeploy,deploy">
+  </target>
+  
+  <target name="dev-undeploy">
+    <property file="dev_build.properties" />
+    <antcall target="undeploy"/>
+  </target>
+
+  <target name="dev-deploy">
+    <property file="dev_build.properties" />
+    <antcall target="deploy"/>
+  </target>
+	
+  <target name="prod-undeploy">
+    <property file="prod.properties" />
+    <antcall target="undeploy"/>
+  </target>
+
+  <target name="prod-deploy">
+    <property file="prod_build.properties" />
+    <antcall target="deploy"/>
+  </target>
+
+</project>

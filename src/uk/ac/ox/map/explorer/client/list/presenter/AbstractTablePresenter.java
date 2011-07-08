@@ -1,7 +1,9 @@
-package uk.ac.ox.map.explorer.list.presenter;
+package uk.ac.ox.map.explorer.client.list.presenter;
 
 import java.util.Map;
 
+import uk.ac.ox.map.request.client.filter.presenter.FilterChangedEvent;
+import uk.ac.ox.map.request.client.filter.presenter.FilterChangedEventHandler;
 import uk.ac.ox.map.request.client.place.EntityPlace;
 import uk.ac.ox.map.request.client.place.Order;
 
@@ -31,7 +33,7 @@ public abstract class AbstractTablePresenter<T> extends AbstractActivity  {
   
   public Activity withPlace(EntityPlace place) {
     this.place = place;
-    dataProvider.start(place.getPayload());
+    dataProvider.start(place);
     /*
      * Set ordering of table according to Place
      */
@@ -53,6 +55,12 @@ public abstract class AbstractTablePresenter<T> extends AbstractActivity  {
     tableView.clearSelection();
     panel.setWidget(tableView);
 
+    eventBus.addHandler(FilterChangedEvent.TYPE, new FilterChangedEventHandler() {
+      @Override
+      public void onFilterChanged(FilterChangedEvent event) {
+        placeController.goTo(new EntityPlace(place.getEntityName(), event.getFilterString(), place.getOrderBy(), false));
+      }
+    });
   }
 
   @Override
@@ -65,7 +73,7 @@ public abstract class AbstractTablePresenter<T> extends AbstractActivity  {
   public void onCancel() {
     onStop();
   }
-  
+
   public abstract void fireObjectSelected(T obj);
 
   /**

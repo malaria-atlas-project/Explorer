@@ -1,5 +1,7 @@
 package uk.ac.ox.map.explorer.client.base.view;
 
+import uk.ac.ox.map.explorer.client.map.view.MapExample;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -7,14 +9,15 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 @Singleton
-public class MapView extends Composite {
+public class CompositeMapView extends Composite {
 
-  private static MapViewUiBinder uiBinder = GWT.create(MapViewUiBinder.class);
+  private static CompositeMapViewUiBinder uiBinder = GWT.create(CompositeMapViewUiBinder.class);
 
-  interface MapViewUiBinder extends UiBinder<Widget, MapView> {
+  interface CompositeMapViewUiBinder extends UiBinder<Widget, CompositeMapView> {
   }
   
   @UiField
@@ -26,8 +29,10 @@ public class MapView extends Composite {
   @UiField
   SimplePanel mapPanel;
 
-  public MapView() {
+  @Inject
+  public CompositeMapView(MapExample mapExample) {
     initWidget(uiBinder.createAndBindUi(this));
+    mapPanel.add(mapExample);
   }
   
   public SimplePanel getLayerPanel() {

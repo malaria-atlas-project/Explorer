@@ -52,6 +52,10 @@ public class MapExample extends Composite {
     map.addLayer(bm);
     map.setBaseLayer(bm);
     
+    WMS pfPr = addWmsLayer2("2010 endemicity", gwcUrl, "Base:pr_mean", true);
+    pfPr.setIsBaseLayer(false);
+    map.addLayer(pfPr);
+    
     WMS pfPoints = addWmsLayer2("Pr points", gwcUrl, "Base:pf_colour_public", true);
     pfPoints.setIsBaseLayer(false);
     map.addLayer(pfPoints);

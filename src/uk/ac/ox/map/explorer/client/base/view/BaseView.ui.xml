@@ -7,16 +7,6 @@
      width: 50px;
    }
    
-   .tools {
-     float: right;
-     margin-right: 40px;
-    }
-    
-    .tools a {
-       color: #ffffff;  
-       cursor: pointer;
-    }
-    
     .inlineHyperlink {
       display:inline;
     }
@@ -26,9 +16,6 @@
    <g:layer top="0px" height="131">
      <g:FlowPanel>
        <g:SimplePanel styleName="{res.baseCss.header}">
-        <g:FlowPanel styleName="{style.tools}">
-          <g:Anchor ui:field="logout">Logout</g:Anchor>
-        </g:FlowPanel>
        </g:SimplePanel>
        <g:FlowPanel styleName="{res.baseCss.nav}">
           <g:HorizontalPanel>

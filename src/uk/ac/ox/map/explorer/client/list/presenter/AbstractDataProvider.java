@@ -1,7 +1,8 @@
-package uk.ac.ox.map.explorer.list.presenter;
+package uk.ac.ox.map.explorer.client.list.presenter;
 
 import java.util.List;
 
+import uk.ac.ox.map.request.client.place.EntityPlace;
 import uk.ac.ox.map.request.client.request.AppRequestFactory;
 
 import com.google.gwt.view.client.AsyncDataProvider;
@@ -13,8 +14,8 @@ import com.google.web.bindery.requestfactory.shared.Request;
 public abstract class AbstractDataProvider<T> extends AsyncDataProvider<T> {
 	
 	protected final AppRequestFactory marq;
+  private EntityPlace entityPlace;
   private TableView<T> view;
-  private String qs;
 	
   protected abstract Request<List<T>> getSearchRequest(Integer i, Integer j, String searchString);
 	protected abstract Request<Long> getSearchCountRequest(String searchString);
@@ -31,13 +32,12 @@ public abstract class AbstractDataProvider<T> extends AsyncDataProvider<T> {
 		this.view = view;
 	}
 	
-	public void start(String qs) {
+	public void start(EntityPlace place) {
 	  
-	  this.qs = qs;
-	  
+		this.entityPlace = place;
     addDataDisplay(view.getCellTable());
 		
-		Request<Long> req = getSearchCountRequest(qs);
+		Request<Long> req = getSearchCountRequest(place.getQueryString());
 		req.fire(new Receiver<Long>() {
 			@Override
 			public void onSuccess(Long response) {
@@ -52,7 +52,7 @@ public abstract class AbstractDataProvider<T> extends AsyncDataProvider<T> {
 		
 		final Range range = display.getVisibleRange();
 		
-		Request<List<T>> req = getSearchRequest(range.getStart(), range.getLength(), qs);
+		Request<List<T>> req = getSearchRequest(range.getStart(), range.getLength(), entityPlace.getPayload());
 		req.fire(new Receiver<List<T>>() {
 			@Override
 			public void onSuccess(List<T> response) {

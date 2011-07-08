@@ -3,13 +3,12 @@ package uk.ac.ox.map.explorer.client.base.view;
 import org.adamtacy.client.ui.effects.impl.Fade;
 
 import uk.ac.ox.map.explorer.client.AppWidget;
+import uk.ac.ox.map.explorer.client.BasePresenter;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.resources.client.CssResource;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.HasWidgets;
@@ -20,8 +19,8 @@ import com.google.gwt.user.client.ui.SimpleLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-
-import uk.ac.ox.map.explorer.client.BasePresenter;
+import com.hellomulti.client.mvp.MainActivityMapper;
+import com.hellomulti.client.mvp.VerticalMasterActivityMapper;
 
 @Singleton
 public class BaseView extends Composite implements BasePresenter.Display {
@@ -35,8 +34,6 @@ public class BaseView extends Composite implements BasePresenter.Display {
     String inlineHyperlink();
 
     String spacer();
-
-    String tools();
   }
 
   @UiField(provided = true)
@@ -52,14 +49,11 @@ public class BaseView extends Composite implements BasePresenter.Display {
   Label successMessage;
 
   @UiField
-  Anchor logout;
-
-  @UiField
   BaseStyle style;
 
   @Inject
-  public BaseView(AppWidget appWidget) {
-    this.centerPanel = appWidget;
+  public BaseView(MainActivityMapper mainActivityMapper, VerticalMasterActivityMapper verticalMasterActivityMapper) {
+    
     initWidget(uiBinder.createAndBindUi(this));
   }
 
@@ -69,11 +63,6 @@ public class BaseView extends Composite implements BasePresenter.Display {
     hl.addStyleName(style.inlineHyperlink());
     breadcrumbs.add(hl);
     breadcrumbs.add(new InlineHTML("&nbsp;>&nbsp;"));
-  }
-
-  @Override
-  public HasClickHandlers getLogout() {
-    return logout;
   }
 
   @Override

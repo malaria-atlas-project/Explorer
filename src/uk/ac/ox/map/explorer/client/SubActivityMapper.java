@@ -13,22 +13,14 @@ import com.google.inject.Provider;
 import com.google.inject.Singleton;
 
 @Singleton
-public class AppActivityMapper implements ActivityMapper {
+public class SubActivityMapper implements ActivityMapper {
 
-  /*
-   * Editors
-   */
-  @Inject
-  Provider<HomePagePresenter> homePageProvider;
-  
   @Inject
   Provider<CountryPresenter> countryProvider;
 
   @Override
   public Activity getActivity(Place place) {
-    if (place instanceof HomePagePlace) {
-	    return homePageProvider.get();
-    } else if (place instanceof EntityPlace) {
+    if (place instanceof EntityPlace) {
 	    return countryProvider.get().withPlace((EntityPlace) place);
     }
     return null;

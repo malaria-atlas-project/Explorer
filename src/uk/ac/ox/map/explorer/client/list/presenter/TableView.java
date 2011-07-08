@@ -1,4 +1,4 @@
-package uk.ac.ox.map.explorer.list.presenter;
+package uk.ac.ox.map.explorer.client.list.presenter;
 
 import java.util.HashMap;
 import java.util.List;

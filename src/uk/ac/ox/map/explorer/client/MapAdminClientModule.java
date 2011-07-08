@@ -1,7 +1,7 @@
 package uk.ac.ox.map.explorer.client;
 
 import uk.ac.ox.map.explorer.client.base.view.BaseView;
-import uk.ac.ox.map.explorer.client.place.HomePagePlace;
+import uk.ac.ox.map.request.client.place.HomePagePlace;
 import uk.ac.ox.map.request.client.request.AppRequestFactory;
 import uk.ac.ox.map.request.client.request.AppRequestTransport;
 
@@ -28,7 +28,7 @@ public class MapAdminClientModule extends AbstractGinModule {
      */
     bind(EventBus.class).to(SimpleEventBus.class).in(Singleton.class);
     
-    bind(ActivityMapper.class).to(AppActivityMapper.class).in(Singleton.class);
+//    bind(ActivityMapper.class).to(AppActivityMapper.class).in(Singleton.class);
     
     bind(PlaceHistoryMapper.class).to(AppPlaceHistoryMapper.class).in(Singleton.class);
     
@@ -61,7 +61,7 @@ public class MapAdminClientModule extends AbstractGinModule {
 
   @Provides
   @Singleton
-  public ActivityManager getActivityManager(ActivityMapper mapper, EventBus eventBus, AppWidget display) {
+  public ActivityManager getActivityManager(AppActivityMapper mapper, EventBus eventBus, AppWidget display) {
     ActivityManager activityManager = new ActivityManager(mapper, eventBus);
     activityManager.setDisplay(display);
     return activityManager;

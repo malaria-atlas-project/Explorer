@@ -1,15 +1,22 @@
 package uk.ac.ox.map.explorer.client.list.view;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import uk.ac.ox.map.request.client.proxy.CountryProxy;
+
+import com.google.gwt.cell.client.CheckboxCell;
+import com.google.gwt.cell.client.FieldUpdater;
+import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.google.inject.name.Named;
 
-import uk.ac.ox.map.explorer.client.list.presenter.TableView;
-import uk.ac.ox.map.request.client.proxy.CountryProxy;
-
 @Singleton
 public class CountryTableView extends TableView<CountryProxy> {
+
+  Set<CountryProxy> selected = new HashSet<CountryProxy>();
 
   @Inject
   public CountryTableView(@Named("TABLE_SIZE") Integer pageSize) {
@@ -45,6 +52,31 @@ public class CountryTableView extends TableView<CountryProxy> {
         return null;
       }
     }, "Region");
+
+    Column<CountryProxy, Boolean> checkColumn = new Column<CountryProxy, Boolean>(new CheckboxCell(true, false)) {
+      @Override
+      public Boolean getValue(CountryProxy object) {
+        return selected.contains(object);
+      }
+    };
+
+    checkColumn.setFieldUpdater(new FieldUpdater<CountryProxy, Boolean>() {
+      @Override
+      public void update(int index, CountryProxy object, Boolean selectForDownload) {
+        if (selectForDownload) {
+          selected.add(object);
+        } else {
+          selected.remove(object);
+        }
+      }
+    });
+
+    addColumn(checkColumn, "Select for download");
+
+  }
+  
+  public Set<CountryProxy> getSelectedCountries() {
+    return selected;
   }
 
 }

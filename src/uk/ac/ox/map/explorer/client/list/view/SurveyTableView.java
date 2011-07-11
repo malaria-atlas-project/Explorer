@@ -1,4 +1,4 @@
-package uk.ac.ox.map.explorer.client.list.presenter;
+package uk.ac.ox.map.explorer.client.list.view;
 
 import uk.ac.ox.map.request.client.place.EditEntityPlace;
 import uk.ac.ox.map.request.client.proxy.SiteProxy;

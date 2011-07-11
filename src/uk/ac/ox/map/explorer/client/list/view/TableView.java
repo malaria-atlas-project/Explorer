@@ -1,9 +1,13 @@
-package uk.ac.ox.map.explorer.client.list.presenter;
+package uk.ac.ox.map.explorer.client.list.view;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import uk.ac.ox.map.explorer.client.list.presenter.AbstractTablePresenter;
+import uk.ac.ox.map.request.client.proxy.CountryProxy;
+
+import com.google.gwt.cell.client.CheckboxCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -11,6 +15,7 @@ import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.ColumnSortEvent;
 import com.google.gwt.user.cellview.client.SimplePager;
+import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.SelectionChangeEvent;
@@ -24,17 +29,6 @@ public class TableView<T> extends Composite {
   interface TableViewUiBinder extends UiBinder<Widget, TableView> {
   }
 
-  public interface RowDataProvider<T> {
-  
-    void fireEditObject(T obj);
-  
-    void fireViewObject(T obj);
-  
-    void fireObjectSelected(T obj);
-  
-    void fireColumnSort(ColumnSortEvent colSortEvent);
-  }
-
   @UiField
   CellTable<T> cellTable;
 
@@ -43,7 +37,7 @@ public class TableView<T> extends Composite {
 
   private AbstractTablePresenter<T> presenter;
 
-  private SingleSelectionModel<T> selectionModel;
+  protected SingleSelectionModel<T> selectionModel;
   
   private Map<Column<?, ?>, String> sortableColumns = new HashMap<Column<?,?>, String>();
 
@@ -78,6 +72,7 @@ public class TableView<T> extends Composite {
   public void addColumn(Column<T, ?> col, String title) {
     cellTable.addColumn(col, title);
   }
+  
   
   public void addSortableColumn(Column<T, ?> col, String title, String fieldName) {
     cellTable.addColumn(col, title);

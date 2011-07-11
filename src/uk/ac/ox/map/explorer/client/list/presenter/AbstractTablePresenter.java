@@ -2,6 +2,7 @@ package uk.ac.ox.map.explorer.client.list.presenter;
 
 import java.util.Map;
 
+import uk.ac.ox.map.explorer.client.list.view.TableView;
 import uk.ac.ox.map.request.client.filter.presenter.FilterChangedEvent;
 import uk.ac.ox.map.request.client.filter.presenter.FilterChangedEventHandler;
 import uk.ac.ox.map.request.client.place.EntityPlace;

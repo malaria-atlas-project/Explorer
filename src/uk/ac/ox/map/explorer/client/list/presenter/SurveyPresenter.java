@@ -2,6 +2,7 @@ package uk.ac.ox.map.explorer.client.list.presenter;
 
 import java.util.List;
 
+import uk.ac.ox.map.explorer.client.list.view.SurveyTableView;
 import uk.ac.ox.map.request.client.proxy.SurveyProxy;
 import uk.ac.ox.map.request.client.request.AppRequestFactory;
 

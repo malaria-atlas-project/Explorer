@@ -54,7 +54,7 @@
       </classpath>
       <jvmarg value="-Xmx256M" />
       <!-- Additional arguments like -style PRETTY or -logLevel DEBUG -->
-      <arg value="uk.ac.ox.map.admin.MapAdmin" />
+      <arg value="uk.ac.ox.map.explorer.MapExplorer" />
       <arg line="-style OBF" />
       <arg line="-optimize 9" />
 

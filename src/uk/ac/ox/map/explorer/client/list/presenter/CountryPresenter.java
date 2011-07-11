@@ -2,10 +2,12 @@ package uk.ac.ox.map.explorer.client.list.presenter;
 
 import java.util.List;
 
+import uk.ac.ox.map.explorer.client.event.ExtentChangeRequestEvent;
 import uk.ac.ox.map.explorer.client.list.view.CountryTableView;
 import uk.ac.ox.map.request.client.filter.presenter.FilterPresenter;
 import uk.ac.ox.map.request.client.filter.view.composite.CountryFilterList;
 import uk.ac.ox.map.request.client.proxy.CountryProxy;
+import uk.ac.ox.map.request.client.proxy.ExtentProxy;
 import uk.ac.ox.map.request.client.request.AppRequestFactory;
 
 import com.google.gwt.event.shared.EventBus;
@@ -27,7 +29,6 @@ public class CountryPresenter extends AbstractTablePresenter<CountryProxy> {
   @Inject
   public CountryPresenter(PlaceController placeController, CountryTableView tableView, CountryFilterList filterList, AppRequestFactory rf) {
     
-    
     super(placeController, tableView);
     
     this.filterList = filterList;
@@ -36,7 +37,7 @@ public class CountryPresenter extends AbstractTablePresenter<CountryProxy> {
 
       @Override
       protected Request<List<CountryProxy>> getSearchRequest(Integer i, Integer j, String searchString) {
-        return marq.countryRequest().search(i, j, searchString).with("region");
+        return marq.countryRequest().search(i, j, searchString).with("region", "extent");
       }
 
       @Override
@@ -60,7 +61,8 @@ public class CountryPresenter extends AbstractTablePresenter<CountryProxy> {
   
   @Override
   public void fireObjectSelected(CountryProxy obj) {
-    
+    ExtentProxy ex = obj.getExtent();
+    eventBus.fireEvent(new ExtentChangeRequestEvent(ex));
   }
 
 }

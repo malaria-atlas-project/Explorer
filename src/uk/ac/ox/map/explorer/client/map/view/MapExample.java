@@ -15,6 +15,7 @@ import org.gwtopenmaps.openlayers.client.layer.Markers;
 import org.gwtopenmaps.openlayers.client.layer.WMS;
 import org.gwtopenmaps.openlayers.client.layer.WMSParams;
 
+import uk.ac.ox.map.request.client.proxy.ExtentProxy;
 import uk.ac.ox.map.request.client.proxy.SiteProxy;
 
 import com.google.gwt.user.client.ui.Composite;
@@ -76,29 +77,6 @@ public class MapExample extends Composite {
     });
   }
 
-  public void addPfPoints() {
-
-    WMSParams params = new WMSParams();
-
-//    params.setLayers("Base:pf_colour_public");
-//    params.setParameter("transparent", "true");
-
-//    prPoints = new WMS("pr_points", wmsUrl, params);
-//    prPoints.setIsBaseLayer(false);
-//    map.addLayer(prPoints);
-    
-
-
-    // params.setParameter("cql_filter", "YEAR_START=2004");
-
-    // WMS wms = new WMS("Pf points", wmsUrl, params);
-    // wms.setSingleTile(true);
-    // wms.setIsBaseLayer(false);
-
-  }
-
-
-  
   public WMS addWmsLayer2(String description, String url, String layer, boolean isTransparent) {
       WMSParams params = new WMSParams();
       params.setLayers(layer);
@@ -147,6 +125,10 @@ public class MapExample extends Composite {
 
     }
 
+  }
+
+  public void zoomToBounds(ExtentProxy extent) {
+    zoomToBounds(extent.getMinx(), extent.getMiny(), extent.getMaxx(), extent.getMaxy());
   }
 
 }

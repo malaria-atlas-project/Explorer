@@ -47,7 +47,7 @@ public class MapAdminClientModule extends AbstractGinModule {
 
   @Provides
   @Singleton
-  public PlaceHistoryHandler getHistoryHandler(PlaceController placeController, PlaceHistoryMapper historyMapper, EventBus eventBus, ActivityManager activityManager) {
+  public PlaceHistoryHandler getHistoryHandler(PlaceController placeController, PlaceHistoryMapper historyMapper, EventBus eventBus) {
     PlaceHistoryHandler historyHandler = new PlaceHistoryHandler(historyMapper);
     historyHandler.register(placeController, eventBus, new HomePagePlace());
     return historyHandler;
@@ -59,6 +59,7 @@ public class MapAdminClientModule extends AbstractGinModule {
     return new PlaceController(eventBus);
   }
 
+  /*
   @Provides
   @Singleton
   public ActivityManager getActivityManager(AppActivityMapper mapper, EventBus eventBus, AppWidget display) {
@@ -66,6 +67,7 @@ public class MapAdminClientModule extends AbstractGinModule {
     activityManager.setDisplay(display);
     return activityManager;
   }
+  */
   
   @Provides
   @Singleton

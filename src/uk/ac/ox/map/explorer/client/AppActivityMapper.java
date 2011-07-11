@@ -1,10 +1,6 @@
 package uk.ac.ox.map.explorer.client;
 
 
-import uk.ac.ox.map.explorer.client.list.presenter.CountryPresenter;
-import uk.ac.ox.map.request.client.place.EntityPlace;
-import uk.ac.ox.map.request.client.place.HomePagePlace;
-
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.place.shared.Place;
@@ -12,26 +8,23 @@ import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
 
+
+/**
+ * 
+ * Currently a placeholder, just returns a map widget. Will be useful in the future if different map widgets are required.
+ * 
+ * @author will
+ *
+ */
 @Singleton
 public class AppActivityMapper implements ActivityMapper {
 
-  /*
-   * Editors
-   */
   @Inject
-  Provider<HomePagePresenter> homePageProvider;
-  
-  @Inject
-  Provider<CountryPresenter> countryProvider;
+  Provider<MapPresenter> homePageProvider;
 
   @Override
   public Activity getActivity(Place place) {
-    if (place instanceof HomePagePlace) {
 	    return homePageProvider.get();
-    } else if (place instanceof EntityPlace) {
-	    return countryProvider.get().withPlace((EntityPlace) place);
-    }
-    return null;
   }
 
 }

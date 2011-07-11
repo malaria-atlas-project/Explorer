@@ -19,8 +19,6 @@ import com.google.gwt.user.client.ui.SimpleLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import com.hellomulti.client.mvp.MainActivityMapper;
-import com.hellomulti.client.mvp.VerticalMasterActivityMapper;
 
 @Singleton
 public class BaseView extends Composite implements BasePresenter.Display {
@@ -52,8 +50,8 @@ public class BaseView extends Composite implements BasePresenter.Display {
   BaseStyle style;
 
   @Inject
-  public BaseView(MainActivityMapper mainActivityMapper, VerticalMasterActivityMapper verticalMasterActivityMapper) {
-    
+  public BaseView(AppWidget appWidget) {
+    centerPanel = appWidget;
     initWidget(uiBinder.createAndBindUi(this));
   }
 

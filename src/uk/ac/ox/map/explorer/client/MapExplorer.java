@@ -6,7 +6,6 @@ import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
-import com.hellomulti.client.mvp.MvpModule;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.

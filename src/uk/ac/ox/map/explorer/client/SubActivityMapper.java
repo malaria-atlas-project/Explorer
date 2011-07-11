@@ -17,10 +17,15 @@ public class SubActivityMapper implements ActivityMapper {
 
   @Inject
   Provider<CountryPresenter> countryProvider;
+  
+  @Inject
+  Provider<MapPresenter> mapProvider;
 
   @Override
   public Activity getActivity(Place place) {
-    if (place instanceof EntityPlace) {
+    if (place instanceof HomePagePlace) {
+	    return countryProvider.get().withPlace(new EntityPlace("Country"));
+    } else if (place instanceof EntityPlace) {
 	    return countryProvider.get().withPlace((EntityPlace) place);
     }
     return null;

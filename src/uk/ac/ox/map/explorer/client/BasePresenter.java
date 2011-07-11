@@ -1,5 +1,8 @@
 package uk.ac.ox.map.explorer.client;
 
+import uk.ac.ox.map.explorer.client.base.view.CompositeMapView;
+
+import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceChangeEvent;
@@ -23,34 +26,24 @@ public class BasePresenter {
   }
 
   private Display display;
-  private PlaceHistoryMapper historyMapper;
 
+  /**
+   * @param appWidget probably pointless as could just have it in base view. //TODO- remove this. 
+   * @param display
+   * @param compositeMapView
+   * @param eventBus
+   * @param appMapper
+   * @param subMapper
+   */
   @Inject
-  public BasePresenter(final Display display, EventBus eventBus, PlaceHistoryMapper historyMapper) {
+  public BasePresenter(AppWidget appWidget, final Display display, final CompositeMapView compositeMapView, EventBus eventBus, AppActivityMapper appMapper, SubActivityMapper subMapper) {
     this.display = display;
-    this.historyMapper = historyMapper;
-
-    eventBus.addHandler(PlaceChangeEvent.TYPE, new PlaceChangeEvent.Handler() {
-      
-      /**
-       * Updates the breadcrumbs using the current place.
-       * 
-       * TODO: consider base Place with a getDisplayName() method
-       * 
-       */
-      @Override
-      public void onPlaceChange(PlaceChangeEvent event) {
-        Place place = event.getNewPlace();
-        String placeName;
-
-      }
-    });
     
+    appWidget.add(compositeMapView);
+    
+    new ActivityManager(appMapper, eventBus).setDisplay(compositeMapView.getMapPanel());
+    new ActivityManager(subMapper, eventBus).setDisplay(compositeMapView.getTablePanel());
     
   }
 
-  private void addHomeBreadCrumb() {
-    display.clearBreadCrumbs();
-    display.addBreadCrumb("Home", "");
-  }
 }

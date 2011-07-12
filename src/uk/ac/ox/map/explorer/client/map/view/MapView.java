@@ -8,6 +8,7 @@ import org.gwtopenmaps.openlayers.client.Map;
 import org.gwtopenmaps.openlayers.client.MapOptions;
 import org.gwtopenmaps.openlayers.client.MapWidget;
 import org.gwtopenmaps.openlayers.client.Marker;
+import org.gwtopenmaps.openlayers.client.Size;
 import org.gwtopenmaps.openlayers.client.control.LayerSwitcher;
 import org.gwtopenmaps.openlayers.client.control.MousePosition;
 import org.gwtopenmaps.openlayers.client.event.MapClickListener;
@@ -29,7 +30,7 @@ public class MapView extends Composite {
 
   private String gwcUrl = "http://map1.zoo.ox.ac.uk/geoserver/gwc/service/wms";
   private String wmsUrl = "http://map1.zoo.ox.ac.uk/geoserver/wms";
-  private String nasaUrl = "http://wms.jpl.nasa.gov/wms.cgi?";
+  private String nasaUrl = "http://neowms.sci.gsfc.nasa.gov/wms/wms";
   private WMS admin;
   private WMS prPoints;
   private Markers markers;
@@ -42,13 +43,10 @@ public class MapView extends Composite {
     map = mapWidget.getMap();
 
     initWidget(mapWidget);
-
     
-    WMS a0 = addWmsLayer2("admin0", gwcUrl, "Base:admin0", false);
-    a0.setIsBaseLayer(true);
-    map.addLayer(a0);
-    
-    WMS bm = addWmsLayer2("Blue marble", "http://disc1.gsfc.nasa.gov/daac-bin/wms_ogc?LAYER=AIRIBRAD_DAY&", "bluemarble", true);
+//    WMS bm = addWmsLayer2("Blue marble", "http://disc1.gsfc.nasa.gov/daac-bin/wms_ogc?LAYER=AIRIBRAD_DAY&", "bluemarble", true);
+    WMS bm = addWmsLayer512("Blue marble", nasaUrl, "BlueMarbleNG-TB", false);
+//    bm.setTitleSize(512);
     bm.setIsBaseLayer(true);
     map.addLayer(bm);
     map.setBaseLayer(bm);
@@ -57,6 +55,10 @@ public class MapView extends Composite {
     pfPr.setIsBaseLayer(false);
     map.addLayer(pfPr);
     
+    WMS a0 = addWmsLayer2("admin0", gwcUrl, "Static:admin0", true);
+    a0.setIsBaseLayer(false);
+    map.addLayer(a0);
+    
     WMS pfPoints = addWmsLayer2("Pr points", gwcUrl, "Base:pf_colour_public", true);
     pfPoints.setIsBaseLayer(false);
     map.addLayer(pfPoints);
@@ -64,8 +66,7 @@ public class MapView extends Composite {
 
     map.addControl(new LayerSwitcher());
 
-    // map.zoomToExtent(new Bounds(-180.021,-89.979,188.479,90.021));
-    map.zoomTo(1);
+    map.zoomTo(2);
 
     map.addMapClickListener(new MapClickListener() {
 
@@ -80,7 +81,20 @@ public class MapView extends Composite {
   public WMS addWmsLayer2(String description, String url, String layer, boolean isTransparent) {
       WMSParams params = new WMSParams();
       params.setLayers(layer);
-      params.setIsTransparent(isTransparent);
+      if (isTransparent) {
+	      params.setParameter("transparent", "true");
+      }
+
+      WMS wms = new WMS(description, url, params);
+      return wms;
+  }
+  
+  public WMS addWmsLayer512(String description, String url, String layer, boolean isTransparent) {
+      WMSParams params = new WMSParams();
+      params.setLayers(layer);
+      if (isTransparent) {
+	      params.setParameter("transparent", "true");
+      }
 
       WMS wms = new WMS(description, url, params);
       return wms;

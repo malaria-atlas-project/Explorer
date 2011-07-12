@@ -1,6 +1,7 @@
-package uk.ac.ox.map.explorer.client;
+package uk.ac.ox.map.explorer.client.activitymapper;
 
 
+import uk.ac.ox.map.explorer.client.MapPresenter;
 import uk.ac.ox.map.explorer.client.list.presenter.CountryPresenter;
 import uk.ac.ox.map.request.client.place.EntityPlace;
 import uk.ac.ox.map.request.client.place.HomePagePlace;
@@ -13,7 +14,7 @@ import com.google.inject.Provider;
 import com.google.inject.Singleton;
 
 @Singleton
-public class SubActivityMapper implements ActivityMapper {
+public class TableActivityMapper implements ActivityMapper {
 
   @Inject
   Provider<CountryPresenter> countryProvider;

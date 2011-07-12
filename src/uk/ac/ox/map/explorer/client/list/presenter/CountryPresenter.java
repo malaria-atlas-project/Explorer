@@ -19,7 +19,6 @@ import com.google.web.bindery.requestfactory.shared.Request;
 
 public class CountryPresenter extends AbstractTablePresenter<CountryProxy> {
   
-  
 //  private final CompositeListView listView;
   private final CountryFilterList filterList;
   

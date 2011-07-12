@@ -1,5 +1,7 @@
-package uk.ac.ox.map.explorer.client;
+package uk.ac.ox.map.explorer.client.activitymapper;
 
+
+import uk.ac.ox.map.explorer.client.MapPresenter;
 
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
@@ -17,7 +19,7 @@ import com.google.inject.Singleton;
  *
  */
 @Singleton
-public class AppActivityMapper implements ActivityMapper {
+public class MapActivityMapper implements ActivityMapper {
 
   @Inject
   Provider<MapPresenter> homePageProvider;

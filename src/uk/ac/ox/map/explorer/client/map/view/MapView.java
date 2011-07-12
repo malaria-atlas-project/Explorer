@@ -22,7 +22,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.inject.Singleton;
 
 @Singleton
-public class MapExample extends Composite {
+public class MapView extends Composite {
 
   private MapWidget mapWidget;
   private Map map;
@@ -35,7 +35,7 @@ public class MapExample extends Composite {
   private Markers markers;
   private Marker marker;
 
-  public MapExample() {
+  public MapView() {
 
     MapOptions defaultMapOptions = new MapOptions();
     mapWidget = new MapWidget("100%", "100%", defaultMapOptions);

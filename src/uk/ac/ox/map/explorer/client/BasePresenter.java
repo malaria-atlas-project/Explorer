@@ -1,5 +1,7 @@
 package uk.ac.ox.map.explorer.client;
 
+import uk.ac.ox.map.explorer.client.activitymapper.MapActivityMapper;
+import uk.ac.ox.map.explorer.client.activitymapper.TableActivityMapper;
 import uk.ac.ox.map.explorer.client.base.view.CompositeMapView;
 
 import com.google.gwt.activity.shared.ActivityManager;
@@ -36,7 +38,7 @@ public class BasePresenter {
    * @param subMapper
    */
   @Inject
-  public BasePresenter(AppWidget appWidget, final Display display, final CompositeMapView compositeMapView, EventBus eventBus, AppActivityMapper appMapper, SubActivityMapper subMapper) {
+  public BasePresenter(AppWidget appWidget, final Display display, final CompositeMapView compositeMapView, EventBus eventBus, MapActivityMapper appMapper, TableActivityMapper subMapper) {
     this.display = display;
     
     appWidget.add(compositeMapView);

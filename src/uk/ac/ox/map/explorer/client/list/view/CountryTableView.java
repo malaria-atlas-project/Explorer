@@ -53,7 +53,7 @@ public class CountryTableView extends TableView<CountryProxy> {
       }
     }, "Region");
 
-    Column<CountryProxy, Boolean> checkColumn = new Column<CountryProxy, Boolean>(new CheckboxCell(true, false)) {
+    Column<CountryProxy, Boolean> checkColumn = new Column<CountryProxy, Boolean>(new CheckboxCell(false, false)) {
       @Override
       public Boolean getValue(CountryProxy object) {
         return selected.contains(object);

@@ -1,6 +1,6 @@
 package uk.ac.ox.map.explorer.client.base.view;
 
-import uk.ac.ox.map.explorer.client.map.view.MapExample;
+import uk.ac.ox.map.explorer.client.map.view.MapView;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -21,7 +21,10 @@ public class CompositeMapView extends Composite {
   }
   
   @UiField
-  SimplePanel layerPanel;
+  SimplePanel selectionPanel;
+  
+  @UiField
+  SimplePanel mapInfoPanel;
   
   @UiField
   SimplePanel tablePanel;
@@ -30,13 +33,17 @@ public class CompositeMapView extends Composite {
   SimplePanel mapPanel;
 
   @Inject
-  public CompositeMapView(MapExample mapExample) {
+  public CompositeMapView(MapView mapExample) {
     initWidget(uiBinder.createAndBindUi(this));
     mapPanel.add(mapExample);
   }
   
-  public SimplePanel getLayerPanel() {
-    return layerPanel;
+  public SimplePanel getSelectionPanel() {
+    return selectionPanel;
+  }
+  
+  public SimplePanel getMapInfoPanel() {
+    return mapInfoPanel;
   }
   
   public AcceptsOneWidget getTablePanel() {

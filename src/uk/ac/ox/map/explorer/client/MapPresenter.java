@@ -2,7 +2,7 @@ package uk.ac.ox.map.explorer.client;
 
 
 import uk.ac.ox.map.explorer.client.event.ExtentChangeRequestEvent;
-import uk.ac.ox.map.explorer.client.map.view.MapExample;
+import uk.ac.ox.map.explorer.client.map.view.MapView;
 import uk.ac.ox.map.request.client.proxy.ExtentProxy;
 
 import com.google.gwt.activity.shared.AbstractActivity;
@@ -19,10 +19,10 @@ import com.google.inject.Inject;
 public class MapPresenter extends AbstractActivity {
   
 
-  private MapExample map;
+  private MapView map;
 
   @Inject
-  public MapPresenter(MapExample map) {
+  public MapPresenter(MapView map) {
     this.map = map;
   }
 

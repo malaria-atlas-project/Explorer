@@ -4,6 +4,9 @@
   <inherits name='com.google.gwt.user.User'/>
 
   <inherits name='com.google.gwt.user.theme.clean.Clean'/>
+  
+  <!-- Inject openlayers -->
+  <script src="http://openlayers.org/api/2.10/OpenLayers.js"/>
 
   <!-- Other module inherits                                      -->
   <inherits name='uk.ac.ox.map.request.MapRequest'/>

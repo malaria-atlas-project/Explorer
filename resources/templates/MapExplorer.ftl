@@ -6,7 +6,6 @@
     
     <title>MAP Data Explorer</title>
     
-    <script src="http://openlayers.org/api/2.10/OpenLayers.js"></script>
     <script type="text/javascript" language="javascript" src="mapexplorer/mapexplorer.nocache.js"></script>
     <script type="text/javascript" language="javascript">
     

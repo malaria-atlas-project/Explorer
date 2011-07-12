@@ -131,4 +131,12 @@ public class MapView extends Composite {
     zoomToBounds(extent.getMinx(), extent.getMiny(), extent.getMaxx(), extent.getMaxy());
   }
 
+  public Bounds getExtent() {
+    return map.getExtent();
+  }
+
+  public Bounds getMaxExtent() {
+    return map.getMaxExtent();
+  }
+
 }

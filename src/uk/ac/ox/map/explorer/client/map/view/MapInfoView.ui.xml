@@ -1,0 +1,33 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:c="urn:import:com.google.gwt.user.cellview.client">
+  <ui:style>
+    .infoPanel {
+    	background-color: #cccccc;
+    }
+  </ui:style>
+  <g:HTMLPanel styleName="{style.infoPanel}">
+    <g:Button ui:field="updateButton">Update</g:Button>
+    <h3>Currently displaying:</h3>
+    <table>
+      <tr>
+        <td>
+          <g:Label ui:field="siteCount" />
+        </td>
+        <td>sites</td>
+      </tr>
+      <tr>
+        <td>
+          <g:Label ui:field="surveyCount" />
+        </td>
+        <td>surveys</td>
+      </tr>
+      <tr>
+        <td>
+          <g:Label ui:field="surveyReplicateCount" />
+        </td>
+        <td>survey replicates</td>
+      </tr>
+    </table>
+    <!-- <c:CellList ui:field=""> </c:CellList> -->
+  </g:HTMLPanel>
+</ui:UiBinder> 

@@ -1,6 +1,7 @@
 package uk.ac.ox.map.explorer.client;
 
 import uk.ac.ox.map.explorer.client.activitymapper.MapActivityMapper;
+import uk.ac.ox.map.explorer.client.activitymapper.MapInfoActivityMapper;
 import uk.ac.ox.map.explorer.client.activitymapper.TableActivityMapper;
 import uk.ac.ox.map.explorer.client.base.view.CompositeMapView;
 
@@ -38,13 +39,14 @@ public class BasePresenter {
    * @param subMapper
    */
   @Inject
-  public BasePresenter(AppWidget appWidget, final Display display, final CompositeMapView compositeMapView, EventBus eventBus, MapActivityMapper appMapper, TableActivityMapper subMapper) {
+  public BasePresenter(AppWidget appWidget, final Display display, final CompositeMapView compositeMapView, EventBus eventBus, MapActivityMapper appMapper, TableActivityMapper subMapper, MapInfoActivityMapper mapInfoMapper) {
     this.display = display;
     
     appWidget.add(compositeMapView);
     
     new ActivityManager(appMapper, eventBus).setDisplay(compositeMapView.getMapPanel());
     new ActivityManager(subMapper, eventBus).setDisplay(compositeMapView.getTablePanel());
+    new ActivityManager(mapInfoMapper, eventBus).setDisplay(compositeMapView.getMapInfoPanel());
     
   }
 

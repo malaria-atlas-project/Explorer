@@ -45,6 +45,8 @@ public class GuiceServletModule extends ServletModule {
     serve("/app").with(IndexServlet.class);
     
     serve("/gwtRequest").with(AppRequestFactoryServlet.class);
+    serve("/mapexplorer/mapInfo").with(MapInfoServiceImpl.class);
+    
   }
   
   private Properties getProperties() {

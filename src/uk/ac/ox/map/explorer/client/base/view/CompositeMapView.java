@@ -21,7 +21,7 @@ public class CompositeMapView extends Composite {
   }
   
   @UiField
-  SimplePanel selectionPanel;
+  SimplePanel keyPanel;
   
   @UiField
   SimplePanel mapInfoPanel;
@@ -38,8 +38,8 @@ public class CompositeMapView extends Composite {
     mapPanel.add(mapExample);
   }
   
-  public SimplePanel getSelectionPanel() {
-    return selectionPanel;
+  public SimplePanel getKeyPanel() {
+    return keyPanel;
   }
   
   public SimplePanel getMapInfoPanel() {
@@ -53,5 +53,6 @@ public class CompositeMapView extends Composite {
   public AcceptsOneWidget getMapPanel() {
     return mapPanel;
   }
+
 
 }

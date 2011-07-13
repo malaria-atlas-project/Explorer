@@ -1,6 +1,7 @@
 package uk.ac.ox.map.explorer.client;
 
 import uk.ac.ox.map.explorer.client.base.view.BaseView;
+import uk.ac.ox.map.explorer.client.resource.ResourceBundle;
 import uk.ac.ox.map.request.client.place.HomePagePlace;
 import uk.ac.ox.map.request.client.request.AppRequestFactory;
 import uk.ac.ox.map.request.client.request.AppRequestTransport;
@@ -37,6 +38,7 @@ public class MapAdminClientModule extends AbstractGinModule {
      */
     bind(BasePresenter.Display.class).to(BaseView.class);
     
+    bind(ResourceBundle.class).in(Singleton.class);
     
     /*
      * Constants

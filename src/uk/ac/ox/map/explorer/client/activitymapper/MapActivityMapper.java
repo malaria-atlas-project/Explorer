@@ -22,11 +22,11 @@ import com.google.inject.Singleton;
 public class MapActivityMapper implements ActivityMapper {
 
   @Inject
-  Provider<MapPresenter> homePageProvider;
+  Provider<MapPresenter> mapProvider;
 
   @Override
   public Activity getActivity(Place place) {
-	    return homePageProvider.get();
+	    return mapProvider.get();
   }
 
 }

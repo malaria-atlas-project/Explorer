@@ -2,49 +2,27 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:g="urn:import:com.google.gwt.user.client.ui">
   <ui:style>
     .filterPanel {
-      padding: 10px;
-      background-color: #CCCCCC;
+    	padding: 10px;
+    	background-color: #CCCCCC;
     }
     
     .overflow {
-      overflow: auto;
-    }
-    
-    .tablePanel {
-      background-color: #ebebeb;
+    	overflow: auto;
     }
   </ui:style>
-  <g:LayoutPanel styleName="ListLayoutPanel">
-    <!-- Data browser --> 
-    <g:layer left="0px" width="40%">
+  <g:LayoutPanel>
+    <g:layer top="0px" height="60%">
+      <g:SimplePanel ui:field="mapPanel" styleName="{style.overflow}" />
+    </g:layer>
+    <g:layer bottom="0px" height="40%">
       <g:LayoutPanel>
-        <g:layer top="0px" height="500px">
-          <g:SimplePanel ui:field="tablePanel" styleName="{style.tablePanel}"/>
+        <g:layer left="0px" width="50%">
+          <g:SimplePanel ui:field="keyPanel" />
         </g:layer>
-        <g:layer top="500px" bottom="0px">
-          <g:SimplePanel styleName="{style.tablePanel}"/>
+        <g:layer right="0px" width="50%">
+          <g:SimplePanel ui:field="mapInfoPanel" />
         </g:layer>
       </g:LayoutPanel>
     </g:layer>
-    
-    <!-- Map controls --> 
-    <g:layer width="60%" right="0px">
-      <g:LayoutPanel>
-        <g:layer top="0px" height="60%">
-          <g:SimplePanel ui:field="mapPanel" styleName="{style.overflow}" />
-        </g:layer>
-        <g:layer bottom="0px" height="40%">
-          <g:LayoutPanel>
-            <g:layer left="0px" width="50%">
-              <g:SimplePanel ui:field="keyPanel"/>
-            </g:layer>
-            <g:layer right="0px" width="50%">
-              <g:SimplePanel ui:field="mapInfoPanel"/>
-            </g:layer>
-          </g:LayoutPanel>
-        </g:layer>
-      </g:LayoutPanel>
-    </g:layer>
-    
   </g:LayoutPanel>
 </ui:UiBinder>

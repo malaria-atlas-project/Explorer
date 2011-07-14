@@ -33,7 +33,7 @@ public class MapInfoPresenter extends AbstractActivity {
     updateMapInfo(mapView.getMaxExtent());
   }
   
-  private void updateMapInfo(Bounds bounds) {
+  public void updateMapInfo(Bounds bounds) {
     
     rpcService.getExtentInfo(bounds.getLowerLeftX(), bounds.getLowerLeftY(), bounds.getUpperRightX(), bounds.getUpperRightY(), new AsyncCallback<String>() {
 

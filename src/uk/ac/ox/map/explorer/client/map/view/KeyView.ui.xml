@@ -3,6 +3,9 @@
   <ui:style>
     
   </ui:style>
-  <g:SimplePanel ui:field="keyContainer">
-  </g:SimplePanel>
+  <ui:with type="uk.ac.ox.map.explorer.client.resource.ResourceBundle" field="res"></ui:with>
+  <g:HTMLPanel styleName="{res.panelCss.decoratedPanel}">
+    <g:Label styleName="{res.panelCss.panelHeader}">Key</g:Label>
+    <g:SimplePanel ui:field="keyContainer"></g:SimplePanel> 
+  </g:HTMLPanel>
 </ui:UiBinder> 

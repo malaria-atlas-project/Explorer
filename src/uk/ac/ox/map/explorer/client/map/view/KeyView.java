@@ -3,6 +3,7 @@ package uk.ac.ox.map.explorer.client.map.view;
 import java.util.ArrayList;
 import java.util.List;
 
+import uk.ac.ox.map.explorer.client.map.presenter.KeyPresenter;
 import uk.ac.ox.map.explorer.client.map.presenter.MapLayer;
 
 import com.google.gwt.core.client.GWT;
@@ -26,14 +27,20 @@ public class KeyView extends Composite {
   private CellList<MapLayer> layers;
   private List<MapLayer> layerList = new ArrayList<MapLayer>();
 
+  private KeyPresenter listener;
+
+  private LayerCell lc;
+
+
   public KeyView() {
     initWidget(uiBinder.createAndBindUi(this));
-    
-    LayerCell lc = new LayerCell();
+    lc = new LayerCell();
     layers = new CellList<MapLayer>(lc);
     keyContainer.add(layers);
-    
-    
+  }
+  
+  public void setListener(KeyPresenter listener) {
+    lc.setListener(listener);
   }
   
   public void addLayer(MapLayer ml) {

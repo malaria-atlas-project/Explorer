@@ -13,7 +13,6 @@
 
 @sprite .header {
   gwt-image: 'mapLogo';
-  background-color: #417690;
   background-position: 5px 5px;
   width: 100%;
   padding: 5px 5px 5px 5px;

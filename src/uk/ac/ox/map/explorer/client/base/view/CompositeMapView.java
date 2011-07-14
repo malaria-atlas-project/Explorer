@@ -27,9 +27,6 @@ public class CompositeMapView extends Composite {
   SimplePanel mapInfoPanel;
   
   @UiField
-  SimplePanel tablePanel;
-  
-  @UiField
   SimplePanel mapPanel;
 
   @Inject
@@ -42,12 +39,8 @@ public class CompositeMapView extends Composite {
     return keyPanel;
   }
   
-  public SimplePanel getMapInfoPanel() {
+  public SimplePanel getInfoPanel() {
     return mapInfoPanel;
-  }
-  
-  public AcceptsOneWidget getTablePanel() {
-    return tablePanel;
   }
   
   public AcceptsOneWidget getMapPanel() {

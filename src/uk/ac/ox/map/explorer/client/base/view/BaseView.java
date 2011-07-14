@@ -1,14 +1,15 @@
 package uk.ac.ox.map.explorer.client.base.view;
 
 import org.adamtacy.client.ui.effects.impl.Fade;
+import org.apache.log4j.SimpleLayout;
 
-import uk.ac.ox.map.explorer.client.AppWidget;
 import uk.ac.ox.map.explorer.client.BasePresenter;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.resources.client.CssResource;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.HasWidgets;
@@ -34,8 +35,6 @@ public class BaseView extends Composite implements BasePresenter.Display {
     String spacer();
   }
 
-  @UiField(provided = true)
-  SimpleLayoutPanel centerPanel;
 
   @UiField
   HasWidgets breadcrumbs;
@@ -48,10 +47,15 @@ public class BaseView extends Composite implements BasePresenter.Display {
 
   @UiField
   BaseStyle style;
+  
+  @UiField
+  SimpleLayoutPanel tablePanel;
+  
+  @UiField
+  SimpleLayoutPanel mapPanel;
 
   @Inject
-  public BaseView(AppWidget appWidget) {
-    centerPanel = appWidget;
+  public BaseView() {
     initWidget(uiBinder.createAndBindUi(this));
   }
 
@@ -78,6 +82,16 @@ public class BaseView extends Composite implements BasePresenter.Display {
     successMessage.setText(message);
     Fade effect = new Fade(successMessage.getElement());
     effect.play(200);
+  }
+
+  @Override
+  public AcceptsOneWidget getMapDisplay() {
+    return mapPanel;
+  }
+
+  @Override
+  public AcceptsOneWidget getTableDisplay() {
+    return tablePanel;
   }
 
 }

@@ -8,10 +8,9 @@ import org.gwtopenmaps.openlayers.client.Map;
 import org.gwtopenmaps.openlayers.client.MapOptions;
 import org.gwtopenmaps.openlayers.client.MapWidget;
 import org.gwtopenmaps.openlayers.client.Marker;
-import org.gwtopenmaps.openlayers.client.Size;
-import org.gwtopenmaps.openlayers.client.control.LayerSwitcher;
-import org.gwtopenmaps.openlayers.client.control.MousePosition;
 import org.gwtopenmaps.openlayers.client.event.MapClickListener;
+import org.gwtopenmaps.openlayers.client.event.MapMoveEndListener;
+import org.gwtopenmaps.openlayers.client.layer.Layer;
 import org.gwtopenmaps.openlayers.client.layer.Markers;
 import org.gwtopenmaps.openlayers.client.layer.WMS;
 import org.gwtopenmaps.openlayers.client.layer.WMSParams;
@@ -63,22 +62,32 @@ public class MapView extends Composite {
         }
       }
     });
+    
+    map.addMapMoveEndListener(new MapMoveEndListener() {
+      @Override
+      public void onMapMoveEnd(MapMoveEndEvent eventObject) {
+        if (listener != null) {
+          listener.fireMapMoveEnd();
+        }
+      }
+    });
   }
   
   public void setListener(MapPresenter listener){
     this.listener = listener;
   }
 
-  public void addWmsLayer(String description, String url, String layer, boolean isTransparent) {
+  public void addWmsLayer(String name, String url, String layer, boolean isTransparent) {
       WMSParams params = new WMSParams();
       params.setLayers(layer);
       if (isTransparent) {
 	      params.setParameter("transparent", "true");
       }
 
-      WMS wms = new WMS(description, url, params);
+      WMS wms = new WMS(name, url, params);
       wms.setIsBaseLayer(false);
       map.addLayer(wms);
+      System.out.println(wms.getId());
   }
   
 
@@ -124,6 +133,21 @@ public class MapView extends Composite {
 
   public Bounds getMaxExtent() {
     return map.getMaxExtent();
+  }
+
+  /**
+   * Toggles a layer based on it's name. No custom layer cache used. 
+   * @param layerName
+   * @param active
+   */
+  public void toggleLayer(String layerName, boolean active) {
+    System.out.println(layerName);
+    System.out.println(active);
+    
+    Layer lyr = map.getLayerByName(layerName);
+    if (lyr != null) {
+      lyr.setIsVisible(active);
+    }
   }
 
 }

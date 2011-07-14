@@ -58,4 +58,10 @@ public interface ResourceBundle extends ClientBundle {
   @Source("endemicity_scale_120.png")
   public ImageResource endemicityScale();
   
+  @Source("country_boundary.png")
+  public ImageResource countryBoundary();
+  
+  @Source("pr_point_key.png")
+  public ImageResource prPoint();
+  
 }

@@ -36,9 +36,6 @@ public class MapInfoView extends Composite {
   
   @UiField
   Label surveyReplicateCount;
-  
-  @UiField
-  Button updateButton;
 
   private MapInfoPresenter listener;
 
@@ -50,13 +47,6 @@ public class MapInfoView extends Composite {
   
   public void setListener(MapInfoPresenter mip) {
     this.listener = mip;
-  }
-  
-  @UiHandler("updateButton")
-  void onClick(ClickEvent e) {
-    if (listener != null) {
-	    listener.onUpdateClicked();
-    }
   }
 
 }

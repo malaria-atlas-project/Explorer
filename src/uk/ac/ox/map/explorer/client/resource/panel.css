@@ -1,11 +1,15 @@
 .decoratedPanel {
 	padding: 10px;
-	border: 1px solid #CCCCCC;
+	border: 1px solid #cccccc;
+	margin-top: 10px;
+	margin-right: 10px;
 	margin-bottom: 10px;
-	-moz-border-radius: 6px;
-	-webkit-border-radius: 6px;
-	-khtml-border-radius: 6px;
-	border-radius: 6px;
+	background-color: #ffffff;
+	height: 220px;
+	
+	-moz-box-shadow: 3px 3px 3px #888;
+	-webkit-box-shadow: 3px 3px 3px #888;
+	box-shadow: 3px 3px 3px #888;
 }
 
 .panelHeader {

@@ -43,16 +43,6 @@ public class CountryTableView extends TableView<CountryProxy> {
       }
     }, "Continent", "continent");
 
-    addColumn(new TextColumn<CountryProxy>() {
-
-      public String getValue(CountryProxy object) {
-        if (object.getRegion() != null) {
-          return getRepr(object.getRegion().getName());
-        }
-        return null;
-      }
-    }, "Region");
-
     Column<CountryProxy, Boolean> checkColumn = new Column<CountryProxy, Boolean>(new CheckboxCell(false, false)) {
       @Override
       public Boolean getValue(CountryProxy object) {

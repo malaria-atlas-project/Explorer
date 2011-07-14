@@ -1,16 +1,11 @@
 package uk.ac.ox.map.explorer.client;
 
-import uk.ac.ox.map.explorer.client.activitymapper.KeyActivityMapper;
 import uk.ac.ox.map.explorer.client.activitymapper.MapActivityMapper;
-import uk.ac.ox.map.explorer.client.activitymapper.MapInfoActivityMapper;
 import uk.ac.ox.map.explorer.client.activitymapper.TableActivityMapper;
-import uk.ac.ox.map.explorer.client.base.view.CompositeMapView;
 
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.place.shared.Place;
-import com.google.gwt.place.shared.PlaceChangeEvent;
-import com.google.gwt.place.shared.PlaceHistoryMapper;
+import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.inject.Inject;
@@ -26,6 +21,10 @@ public class BasePresenter {
     void setSuccessMessage(String string);
 
     void addBreadCrumb(String label, String historyToken);
+
+    AcceptsOneWidget getMapDisplay();
+
+    AcceptsOneWidget getTableDisplay();
     
   }
 
@@ -40,18 +39,12 @@ public class BasePresenter {
    * @param subMapper
    */
   @Inject
-  public BasePresenter(AppWidget appWidget, final Display display, 
-      final CompositeMapView compositeMapView, EventBus eventBus, 
-      MapActivityMapper appMapper, TableActivityMapper subMapper, 
-      MapInfoActivityMapper mapInfoMapper, KeyActivityMapper keyMapper) {
+  public BasePresenter(final Display display, EventBus eventBus, MapActivityMapper appMapper, TableActivityMapper subMapper) {
+    
     this.display = display;
     
-    appWidget.add(compositeMapView);
-    
-    new ActivityManager(appMapper, eventBus).setDisplay(compositeMapView.getMapPanel());
-    new ActivityManager(subMapper, eventBus).setDisplay(compositeMapView.getTablePanel());
-    new ActivityManager(mapInfoMapper, eventBus).setDisplay(compositeMapView.getMapInfoPanel());
-    new ActivityManager(keyMapper, eventBus).setDisplay(compositeMapView.getKeyPanel());
+    new ActivityManager(appMapper, eventBus).setDisplay(display.getMapDisplay());
+    new ActivityManager(subMapper, eventBus).setDisplay(display.getTableDisplay());
     
   }
 

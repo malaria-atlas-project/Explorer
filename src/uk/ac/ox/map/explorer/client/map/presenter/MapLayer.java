@@ -15,11 +15,11 @@ public class MapLayer {
   }
   
   
-  public String getName() {
+  public String getWmsLayerName() {
     return name;
   }
 
-  public String getDescription() {
+  public String getName() {
     return description;
   }
   

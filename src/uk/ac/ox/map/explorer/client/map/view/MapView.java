@@ -16,6 +16,7 @@ import org.gwtopenmaps.openlayers.client.layer.Markers;
 import org.gwtopenmaps.openlayers.client.layer.WMS;
 import org.gwtopenmaps.openlayers.client.layer.WMSParams;
 
+import uk.ac.ox.map.explorer.client.map.presenter.MapPresenter;
 import uk.ac.ox.map.request.client.proxy.ExtentProxy;
 import uk.ac.ox.map.request.client.proxy.SiteProxy;
 
@@ -28,13 +29,10 @@ public class MapView extends Composite {
   private MapWidget mapWidget;
   private Map map;
 
-  private String gwcUrl = "http://map1.zoo.ox.ac.uk/geoserver/gwc/service/wms";
-  private String wmsUrl = "http://map1.zoo.ox.ac.uk/geoserver/wms";
   private String nasaUrl = "http://neowms.sci.gsfc.nasa.gov/wms/wms";
-  private WMS admin;
-  private WMS prPoints;
   private Markers markers;
   private Marker marker;
+  private MapPresenter listener;
 
   public MapView() {
 
@@ -43,29 +41,16 @@ public class MapView extends Composite {
     map = mapWidget.getMap();
 
     initWidget(mapWidget);
+   
+    {
+	    WMSParams params = new WMSParams();
+      params.setLayers("BlueMarbleNG-TB");
+	    WMS bm = new WMS("Blue marble", nasaUrl, params);
+	    bm.setIsBaseLayer(true);
+	    map.addLayer(bm);
+	    map.setBaseLayer(bm);
+    }
     
-//    WMS bm = addWmsLayer2("Blue marble", "http://disc1.gsfc.nasa.gov/daac-bin/wms_ogc?LAYER=AIRIBRAD_DAY&", "bluemarble", true);
-    WMS bm = addWmsLayer512("Blue marble", nasaUrl, "BlueMarbleNG-TB", false);
-//    bm.setTitleSize(512);
-    bm.setIsBaseLayer(true);
-    map.addLayer(bm);
-    map.setBaseLayer(bm);
-    
-    WMS pfPr = addWmsLayer2("2010 endemicity", gwcUrl, "Base:pr_mean", true);
-    pfPr.setIsBaseLayer(false);
-    map.addLayer(pfPr);
-    
-    WMS a0 = addWmsLayer2("admin0", gwcUrl, "Static:admin0", true);
-    a0.setIsBaseLayer(false);
-    map.addLayer(a0);
-    
-    WMS pfPoints = addWmsLayer2("Pr points", gwcUrl, "Base:pf_colour_public", true);
-    pfPoints.setIsBaseLayer(false);
-    map.addLayer(pfPoints);
-    
-
-    map.addControl(new LayerSwitcher());
-
     map.zoomTo(2);
 
     map.addMapClickListener(new MapClickListener() {
@@ -73,12 +58,18 @@ public class MapView extends Composite {
       @Override
       public void onClick(MapClickEvent mapClickEvent) {
         LonLat lonlat = mapClickEvent.getLonLat();
-        System.out.println(lonlat.hashCode());
+        if (listener != null) {
+          listener.fireMapClicked(lonlat.lon(), lonlat.lat());
+        }
       }
     });
   }
+  
+  public void setListener(MapPresenter listener){
+    this.listener = listener;
+  }
 
-  public WMS addWmsLayer2(String description, String url, String layer, boolean isTransparent) {
+  public void addWmsLayer(String description, String url, String layer, boolean isTransparent) {
       WMSParams params = new WMSParams();
       params.setLayers(layer);
       if (isTransparent) {
@@ -86,28 +77,10 @@ public class MapView extends Composite {
       }
 
       WMS wms = new WMS(description, url, params);
-      return wms;
+      wms.setIsBaseLayer(false);
+      map.addLayer(wms);
   }
   
-  public WMS addWmsLayer512(String description, String url, String layer, boolean isTransparent) {
-      WMSParams params = new WMSParams();
-      params.setLayers(layer);
-      if (isTransparent) {
-	      params.setParameter("transparent", "true");
-      }
-
-      WMS wms = new WMS(description, url, params);
-      return wms;
-  }
-  
-  public void addAVHRR() {
-    WMSParams params = new WMSParams();
-    params.setLayers("AVHRR_CLIM_M");
-
-    WMS layer = new WMS("OpenLayers WMS", "http://neowms.sci.gsfc.nasa.gov/wms/wms", params);
-    map.addLayer(layer);
-    
-  }
 
   public void zoomToBounds(Double minx, Double miny, Double maxx, Double maxy) {
     if (minx == null || miny == null || maxx == null || maxy == null) {

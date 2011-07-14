@@ -1,7 +1,7 @@
 package uk.ac.ox.map.explorer.client.activitymapper;
 
 
-import uk.ac.ox.map.explorer.client.MapPresenter;
+import uk.ac.ox.map.explorer.client.map.presenter.MapPresenter;
 
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;

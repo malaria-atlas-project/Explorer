@@ -4,35 +4,27 @@ import com.google.gwt.resources.client.ImageResource;
 
 public class MapLayer {
   
-  private String layerName;
-  
-  public String getLayerName() {
-    return layerName;
-  }
-
-  public void setLayerName(String layerName) {
-    this.layerName = layerName;
-  }
-
-  private String layerType;
-
-  public String getLayerType() {
-    return layerType;
-  }
-
-  public void setLayerType(String layerType) {
-    this.layerType = layerType;
-  }
-  
+  private String name;
+  private String description;
   private ImageResource imageResource;
+  
+  public MapLayer(String name, String description, ImageResource imageResource) {
+    this.name = name;
+    this.description = description;
+    this.imageResource = imageResource;
+  }
+  
+  
+  public String getName() {
+    return name;
+  }
+
+  public String getDescription() {
+    return description;
+  }
   
   public ImageResource getImageResource() {
     return imageResource;
-  }
-
-
-  public void setImageResource(ImageResource imageResource) {
-    this.imageResource = imageResource;
   }
 
 }

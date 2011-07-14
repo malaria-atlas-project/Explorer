@@ -1,8 +1,8 @@
 package uk.ac.ox.map.explorer.client.activitymapper;
 
 
-import uk.ac.ox.map.explorer.client.MapPresenter;
 import uk.ac.ox.map.explorer.client.list.presenter.CountryPresenter;
+import uk.ac.ox.map.explorer.client.map.presenter.MapPresenter;
 import uk.ac.ox.map.request.client.place.EntityPlace;
 import uk.ac.ox.map.request.client.place.HomePagePlace;
 

@@ -34,7 +34,6 @@ public class KeyView extends Composite {
     keyContainer.add(layers);
     
     
-    
   }
   
   public void addLayer(MapLayer ml) {

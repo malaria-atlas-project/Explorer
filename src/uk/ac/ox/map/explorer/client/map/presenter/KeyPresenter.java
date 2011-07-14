@@ -1,5 +1,7 @@
 package uk.ac.ox.map.explorer.client.map.presenter;
 
+import java.util.List;
+
 import uk.ac.ox.map.explorer.client.map.view.KeyView;
 import uk.ac.ox.map.explorer.client.resource.ResourceBundle;
 
@@ -16,21 +18,17 @@ public class KeyPresenter extends AbstractActivity {
   public KeyPresenter(KeyView keyView, EventBus eventBus, ResourceBundle resources) {
     this.display = keyView;
     
-    MapLayer ml = new MapLayer();
-    ml.setLayerName("test");
-    ml.setImageResource(resources.endemicityScale());
-    display.addLayer(ml);
-    
-    MapLayer ml2 = new MapLayer();
-    ml2.setLayerName("test2");
-    ml2.setImageResource(resources.successIcon());
-    
-    display.addLayer(ml2);
   }
 
   @Override
   public void start(AcceptsOneWidget panel, EventBus eventBus) {
     panel.setWidget(display);
+  }
+
+  public void setLayers(List<MapLayer> layers) {
+    for (MapLayer mapLayer : layers) {
+      display.addLayer(mapLayer);
+    }
   }
 
 }

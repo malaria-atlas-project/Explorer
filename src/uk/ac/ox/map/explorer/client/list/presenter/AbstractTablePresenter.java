@@ -76,6 +76,9 @@ public abstract class AbstractTablePresenter<T> extends AbstractActivity  {
   }
 
   public abstract void fireObjectSelected(T obj);
+  
+  public abstract void fireObjectChecked(T obj, boolean isChecked);
+  
 
   /**
    * Column sorting is separate from filtering.

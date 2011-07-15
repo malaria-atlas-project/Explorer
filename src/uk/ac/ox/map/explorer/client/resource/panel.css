@@ -5,7 +5,6 @@
 	margin-right: 10px;
 	margin-bottom: 10px;
 	background-color: #ffffff;
-	height: 220px;
 	
 	-moz-box-shadow: 3px 3px 3px #888;
 	-webkit-box-shadow: 3px 3px 3px #888;
@@ -14,6 +13,7 @@
 
 .panelHeader {
 	font-size: 15px;
+	font-weight: bold;
 }
 
 .largePanelHeader {

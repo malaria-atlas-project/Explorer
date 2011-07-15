@@ -10,17 +10,18 @@
     	overflow: auto;
     }
   </ui:style>
+  <ui:with type="uk.ac.ox.map.explorer.client.resource.ResourceBundle" field="res"></ui:with>
   <g:LayoutPanel>
     <g:layer top="0px" height="60%">
-      <g:SimplePanel ui:field="mapPanel" styleName="{style.overflow}" />
+      <g:SimplePanel ui:field="mapPanel" styleName="{res.panelCss.decoratedPanel}" />
     </g:layer>
     <g:layer bottom="0px" height="40%">
       <g:LayoutPanel>
         <g:layer left="0px" width="50%">
-          <g:SimplePanel ui:field="keyPanel" />
+          <g:SimplePanel ui:field="keyPanel" styleName="{res.panelCss.decoratedPanel}"/>
         </g:layer>
         <g:layer right="0px" width="50%">
-          <g:SimplePanel ui:field="mapInfoPanel" />
+          <g:SimplePanel ui:field="mapInfoPanel" styleName="{res.panelCss.decoratedPanel}"/>
         </g:layer>
       </g:LayoutPanel>
     </g:layer>

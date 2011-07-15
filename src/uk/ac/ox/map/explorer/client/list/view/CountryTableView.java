@@ -3,6 +3,7 @@ package uk.ac.ox.map.explorer.client.list.view;
 import java.util.HashSet;
 import java.util.Set;
 
+import uk.ac.ox.map.explorer.client.list.presenter.CountryPresenter;
 import uk.ac.ox.map.request.client.proxy.CountryProxy;
 
 import com.google.gwt.cell.client.CheckboxCell;
@@ -53,20 +54,12 @@ public class CountryTableView extends TableView<CountryProxy> {
     checkColumn.setFieldUpdater(new FieldUpdater<CountryProxy, Boolean>() {
       @Override
       public void update(int index, CountryProxy object, Boolean selectForDownload) {
-        if (selectForDownload) {
-          selected.add(object);
-        } else {
-          selected.remove(object);
-        }
+        presenter.fireObjectChecked(object, selectForDownload);
       }
     });
-
+    
     addColumn(checkColumn, "Select for download");
 
   }
   
-  public Set<CountryProxy> getSelectedCountries() {
-    return selected;
-  }
-
 }

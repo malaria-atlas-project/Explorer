@@ -7,13 +7,13 @@ import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.place.shared.Place;
 import com.google.inject.Inject;
-import com.google.inject.Provider;
 import com.google.inject.Singleton;
 
 
 /**
+ * Essentially have a singleton pattern for mapPresenter (as the activity mapper is a singleton).
  * 
- * Currently a placeholder, just returns a map widget. Will be useful in the future if different map widgets are required.
+ * May in future 
  * 
  * @author will
  *
@@ -22,11 +22,11 @@ import com.google.inject.Singleton;
 public class MapActivityMapper implements ActivityMapper {
 
   @Inject
-  Provider<MapPresenter> mapProvider;
+  MapPresenter mapPresenter;
 
   @Override
   public Activity getActivity(Place place) {
-	    return mapProvider.get();
+    return mapPresenter;
   }
 
 }

@@ -43,7 +43,7 @@ public class MapAdminClientModule extends AbstractGinModule {
     /*
      * Constants
      */
-    bindConstant().annotatedWith(Names.named("TABLE_SIZE")).to(20);
+    bindConstant().annotatedWith(Names.named("TABLE_SIZE")).to(100);
   }
 
 

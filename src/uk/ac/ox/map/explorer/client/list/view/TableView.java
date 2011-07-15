@@ -35,7 +35,7 @@ public class TableView<T> extends Composite {
   @UiField(provided = true)
   SimplePager pager = new SimplePager();
 
-  private AbstractTablePresenter<T> presenter;
+  protected AbstractTablePresenter<T> presenter;
 
   protected SingleSelectionModel<T> selectionModel;
   

@@ -47,21 +47,15 @@ public class SelectionPresenter {
     selectionView.getDownloadButton().addClickHandler(new ClickHandler() {
       @Override
       public void onClick(ClickEvent event) {
-        
-        System.out.println("hi");
-        
         QueryStringBuilder qsb = new QueryStringBuilder('&');
         
         String[] cids = new String[countries.size()];
         for (int i = 0; i < countries.size(); i++) {
           cids[i] = countries.get(i).getId();
         }
-        System.out.println("hi2");
-        
         qsb.addParam("country", cids);
         
         String s = qsb.finish();
-        System.out.println(s);
         
 		    Window.Location.assign("dataDownload?" + s);
       }

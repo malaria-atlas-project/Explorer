@@ -60,8 +60,8 @@ public class MapPresenter extends AbstractActivity {
     
     mapView.setListener(this);
     
-    String gwcUrl = "http://map1.zoo.ox.ac.uk/geoserver/gwc/service/wms";
-    String wmsUrl = "http://map1.zoo.ox.ac.uk/geoserver/wms";
+    String gwcUrl = "http://map1.zoo.ox.ac.uk/geoserver/wms";
+    
     
     List<MapLayer> layers = new ArrayList<MapLayer>();
     layers.add(new MapLayer("Base:pr_mean", "2010 endemicity", resources.endemicityScale()));

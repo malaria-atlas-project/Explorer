@@ -6,8 +6,6 @@ import uk.ac.ox.map.request.client.place.HomePagePlace;
 import uk.ac.ox.map.request.client.request.AppRequestFactory;
 import uk.ac.ox.map.request.client.request.AppRequestTransport;
 
-import com.google.gwt.activity.shared.ActivityManager;
-import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.SimpleEventBus;

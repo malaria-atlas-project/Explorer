@@ -13,12 +13,19 @@
     <ivy:cachepath pathid="build.path" conf="build" />
     <ivy:cachepath pathid="runtime.path" conf="runtime" />
   </target>
+	
+	<target name="base">
+		<ant dir="../MapBase" />
+	</target>
+
+	<target name="request" depends="base">
+		<ant dir="../MapRequest" />
+	</target>
 
   <target name="libs" depends="retrieve" description="Copy libs and other resources to WEB-INF/lib">
     <delete dir="war/WEB-INF/lib" />
     <mkdir dir="war/WEB-INF/lib" />
     <ivy:retrieve pattern="${lib.dir}/[artifact]-[revision]-[type].[ext]" conf="runtime" />
-    <copy todir="war/WEB-INF/classes/META-INF" file="src/META-INF/persistence.xml" />
     <!-- TODO get this from multi project build -->
     <copy todir="war/WEB-INF/lib" file="../MapBase/dist/MapBase.jar" />
     <copy todir="war/WEB-INF/lib" file="../MapRequest/dist/MapRequest.jar" />
@@ -46,11 +53,11 @@
     <java failonerror="true" fork="true" classname="com.google.gwt.dev.Compiler">
       <classpath>
         <!-- TODO better way of getting MapBase -->
+        <path refid="build.path" />
         <pathelement location="../MapBase/dist/MapBase.jar" />
         <pathelement location="../MapRequest/dist/MapRequest.jar" />
         <pathelement location="src" />
         <pathelement location="war/WEB-INF/classes" />
-        <path refid="build.path" />
       </classpath>
       <jvmarg value="-Xmx256M" />
       <!-- Additional arguments like -style PRETTY or -logLevel DEBUG -->
@@ -97,7 +104,7 @@
     <antcall target="undeploy"/>
   </target>
 
-  <target name="dev-deploy">
+  <target name="dev-deploy" depends="base, request">
     <property file="dev_build.properties" />
     <antcall target="deploy"/>
   </target>

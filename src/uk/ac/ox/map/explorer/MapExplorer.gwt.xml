@@ -16,7 +16,6 @@
 	<inherits name='com.google.web.bindery.requestfactory.RequestFactory' />
 	<inherits name="com.google.gwt.uibinder.UiBinder" />
 	<inherits name="com.google.gwt.resources.Resources" />
-	<inherits name="org.adamtacy.GWTEffects" />  
   
   <!-- Exernal projects                                      -->
 	<inherits name="com.google.gwt.inject.Inject" />

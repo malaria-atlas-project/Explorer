@@ -14,8 +14,6 @@ import com.google.inject.name.Names;
 import com.google.inject.persist.PersistFilter;
 import com.google.inject.persist.jpa.JpaPersistModule;
 import com.google.inject.servlet.ServletModule;
-import com.google.web.bindery.requestfactory.server.RequestFactoryServlet;
-
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapper;
 

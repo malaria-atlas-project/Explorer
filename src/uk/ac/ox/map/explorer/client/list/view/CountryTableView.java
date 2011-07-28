@@ -3,7 +3,6 @@ package uk.ac.ox.map.explorer.client.list.view;
 import java.util.HashSet;
 import java.util.Set;
 
-import uk.ac.ox.map.explorer.client.list.presenter.CountryPresenter;
 import uk.ac.ox.map.request.client.proxy.CountryProxy;
 
 import com.google.gwt.cell.client.CheckboxCell;

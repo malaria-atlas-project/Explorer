@@ -1,8 +1,5 @@
 package uk.ac.ox.map.explorer.client.base.view;
 
-import org.adamtacy.client.ui.effects.impl.Fade;
-import org.apache.log4j.SimpleLayout;
-
 import uk.ac.ox.map.explorer.client.BasePresenter;
 
 import com.google.gwt.core.client.GWT;
@@ -80,8 +77,6 @@ public class BaseView extends Composite implements BasePresenter.Display {
   public void setSuccessMessage(String message) {
     successMessage.setVisible(true);
     successMessage.setText(message);
-    Fade effect = new Fade(successMessage.getElement());
-    effect.play(200);
   }
 
   @Override

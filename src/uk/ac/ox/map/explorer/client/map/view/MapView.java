@@ -8,6 +8,7 @@ import org.gwtopenmaps.openlayers.client.Map;
 import org.gwtopenmaps.openlayers.client.MapOptions;
 import org.gwtopenmaps.openlayers.client.MapWidget;
 import org.gwtopenmaps.openlayers.client.Marker;
+import org.gwtopenmaps.openlayers.client.Size;
 import org.gwtopenmaps.openlayers.client.event.MapClickListener;
 import org.gwtopenmaps.openlayers.client.event.MapMoveEndListener;
 import org.gwtopenmaps.openlayers.client.layer.Layer;
@@ -28,7 +29,6 @@ public class MapView extends Composite {
   private MapWidget mapWidget;
   private Map map;
 
-  private String nasaUrl = "http://neowms.sci.gsfc.nasa.gov/wms/wms";
   private Markers markers;
   private Marker marker;
   private MapPresenter listener;
@@ -36,19 +36,26 @@ public class MapView extends Composite {
   public MapView() {
 
     MapOptions defaultMapOptions = new MapOptions();
+    defaultMapOptions.setTileSize(new Size(512, 512));
     mapWidget = new MapWidget("100%", "100%", defaultMapOptions);
     map = mapWidget.getMap();
 
     initWidget(mapWidget);
    
+    String gwcUrl = "http://map1.zoo.ox.ac.uk/geoserver/wms";
     {
 	    WMSParams params = new WMSParams();
-      params.setLayers("BlueMarbleNG-TB");
-	    WMS bm = new WMS("Blue marble", nasaUrl, params);
+      params.setLayers("Base:bmng");
+      params.setIsTransparent(true);
+	    WMS bm = new WMS("Blue marble", gwcUrl, params);
 	    bm.setIsBaseLayer(true);
 	    map.addLayer(bm);
 	    map.setBaseLayer(bm);
     }
+    /*
+    */
+    
+//    map.addControl(new MousePosition());
     
     map.zoomTo(2);
 
@@ -80,14 +87,12 @@ public class MapView extends Composite {
   public void addWmsLayer(String name, String url, String layer, boolean isTransparent) {
       WMSParams params = new WMSParams();
       params.setLayers(layer);
-      if (isTransparent) {
-	      params.setParameter("transparent", "true");
-      }
-
+      params.setIsTransparent(isTransparent);
+      
+      
       WMS wms = new WMS(name, url, params);
       wms.setIsBaseLayer(false);
       map.addLayer(wms);
-      System.out.println(wms.getId());
   }
   
 

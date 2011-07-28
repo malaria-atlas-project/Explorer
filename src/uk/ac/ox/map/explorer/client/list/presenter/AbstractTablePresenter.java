@@ -17,6 +17,7 @@ import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.ColumnSortEvent;
 import com.google.gwt.user.cellview.client.ColumnSortList;
 import com.google.gwt.user.cellview.client.ColumnSortList.ColumnSortInfo;
+import com.google.gwt.user.cellview.client.DataGrid;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
 public abstract class AbstractTablePresenter<T> extends AbstractActivity  {
@@ -86,7 +87,7 @@ public abstract class AbstractTablePresenter<T> extends AbstractActivity  {
    */
   public void fireColumnSort(ColumnSortEvent event) {
 
-    CellTable<T> cellTable = tableView.getCellTable();
+    DataGrid<T> cellTable = tableView.getCellTable();
 
     /*
      * Field name comes from map of columns stored in view.

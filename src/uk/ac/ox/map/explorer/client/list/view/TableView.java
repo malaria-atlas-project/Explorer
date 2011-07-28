@@ -5,13 +5,13 @@ import java.util.List;
 import java.util.Map;
 
 import uk.ac.ox.map.explorer.client.list.presenter.AbstractTablePresenter;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.ColumnSortEvent;
-import com.google.gwt.user.cellview.client.SimplePager;
+import com.google.gwt.user.cellview.client.DataGrid;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.SelectionChangeEvent;
@@ -26,10 +26,8 @@ public class TableView<T> extends Composite {
   }
 
   @UiField
-  CellTable<T> cellTable;
+  DataGrid<T> dataGrid;
 
-  @UiField(provided = true)
-  SimplePager pager = new SimplePager();
 
   protected AbstractTablePresenter<T> presenter;
 
@@ -53,10 +51,10 @@ public class TableView<T> extends Composite {
       }
     });
 
-    cellTable.setSelectionModel(selectionModel);
-    cellTable.setPageSize(pageSize);
+    dataGrid.setSelectionModel(selectionModel);
+    dataGrid.setPageSize(pageSize);
     
-    cellTable.addColumnSortHandler(new ColumnSortEvent.Handler() {
+    dataGrid.addColumnSortHandler(new ColumnSortEvent.Handler() {
       @Override
       public void onColumnSort(ColumnSortEvent event) {
         presenter.fireColumnSort(event);
@@ -66,12 +64,12 @@ public class TableView<T> extends Composite {
   }
 
   public void addColumn(Column<T, ?> col, String title) {
-    cellTable.addColumn(col, title);
+    dataGrid.addColumn(col, title);
   }
   
   
   public void addSortableColumn(Column<T, ?> col, String title, String fieldName) {
-    cellTable.addColumn(col, title);
+    dataGrid.addColumn(col, title);
     col.setSortable(true);
     sortableColumns.put(col, fieldName);
   }
@@ -81,16 +79,15 @@ public class TableView<T> extends Composite {
   }
 
   public void setRowData(int i, List<T> values) {
-    cellTable.setRowData(i, values);
-    pager.setPageStart(i);
+    dataGrid.setRowData(i, values);
   }
 
   public void setResultCount(Long nResults) {
-    cellTable.setRowCount(nResults.intValue(), true);
+    dataGrid.setRowCount(nResults.intValue(), true);
   }
 
-  public CellTable<T> getCellTable() {
-    return cellTable;
+  public DataGrid<T> getCellTable() {
+    return dataGrid;
   }
   
   public void clearSelection() {

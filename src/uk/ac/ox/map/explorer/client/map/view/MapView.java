@@ -36,13 +36,13 @@ public class MapView extends Composite {
   public MapView() {
 
     MapOptions defaultMapOptions = new MapOptions();
-    defaultMapOptions.setTileSize(new Size(512, 512));
+//    defaultMapOptions.setTileSize(new Size(512, 512));
     mapWidget = new MapWidget("100%", "100%", defaultMapOptions);
     map = mapWidget.getMap();
 
     initWidget(mapWidget);
    
-    String gwcUrl = "http://map1.zoo.ox.ac.uk/geoserver/wms";
+    String gwcUrl = "http://map1.zoo.ox.ac.uk/geoserver/gwc/service/wms";
     {
 	    WMSParams params = new WMSParams();
       params.setLayers("Base:bmng");

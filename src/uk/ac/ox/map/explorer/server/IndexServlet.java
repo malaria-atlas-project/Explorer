@@ -12,19 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import uk.ac.ox.map.domain.type.Continent;
-import uk.ac.ox.map.domain.type.DiagnosticMethod;
-import uk.ac.ox.map.domain.type.JournalType;
-import uk.ac.ox.map.domain.type.LatLongSource;
-import uk.ac.ox.map.domain.type.McmcRegion;
-import uk.ac.ox.map.domain.type.PdfStatus;
-import uk.ac.ox.map.domain.type.PermissionType;
-import uk.ac.ox.map.domain.type.RdtType;
-import uk.ac.ox.map.domain.type.SiteAreaType;
-import uk.ac.ox.map.domain.type.SourceType;
-import uk.ac.ox.map.domain.type.StringType;
-import uk.ac.ox.map.domain.type.SubgenusType;
-import uk.ac.ox.map.domain.type.ThesisType;
+import uk.ac.ox.map.domain.Continent;
+import uk.ac.ox.map.domain.StringType;
 import uk.ac.ox.map.request.server.SimpleDao;
 
 import com.google.gson.Gson;
@@ -50,17 +39,6 @@ public class IndexServlet extends HttpServlet {
 	  this.conf = conf;
     this.stringTypes = new ArrayList<Class<? extends StringType>>();
     stringTypes.add(Continent.class);
-    stringTypes.add(DiagnosticMethod.class);
-    stringTypes.add(LatLongSource.class);
-    stringTypes.add(McmcRegion.class);
-    stringTypes.add(PdfStatus.class);
-    stringTypes.add(RdtType.class);
-    stringTypes.add(SiteAreaType.class);
-    stringTypes.add(SourceType.class);
-    stringTypes.add(SubgenusType.class);
-    stringTypes.add(ThesisType.class);
-    stringTypes.add(JournalType.class);
-    stringTypes.add(PermissionType.class);
   }
 
   @Override

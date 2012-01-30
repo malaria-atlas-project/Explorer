@@ -1,0 +1,15 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:f="urn:import:uk.ac.ox.map.explorer.client.filter.view">
+	<ui:style>
+		
+	</ui:style>
+	<g:HTMLPanel>
+	 <g:VerticalPanel>
+	   <f:TextFilter labelText="Id" propertyName="id" ui:field="id"/>
+	   <f:TextFilter labelText="Title" propertyName="title" ui:field="title"/>
+	   <f:OptionFilter labelText="Source type" propertyName="sourceType" jsVar="SourceType" ui:field="sourceType"/>
+	 </g:VerticalPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 

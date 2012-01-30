@@ -3,8 +3,8 @@ package uk.ac.ox.map.explorer.client.list.presenter;
 import java.util.List;
 
 import uk.ac.ox.map.explorer.client.list.view.TableView;
-import uk.ac.ox.map.request.client.place.EntityPlace;
-import uk.ac.ox.map.request.client.request.AppRequestFactory;
+import uk.ac.ox.map.explorer.client.place.EntityPlace;
+import uk.ac.ox.map.explorer.client.request.AppRequestFactory;
 
 import com.google.gwt.view.client.AsyncDataProvider;
 import com.google.gwt.view.client.HasData;
@@ -14,7 +14,7 @@ import com.google.web.bindery.requestfactory.shared.Request;
 
 public abstract class AbstractDataProvider<T> extends AsyncDataProvider<T> {
 	
-	protected final AppRequestFactory marq;
+	protected final AppRequestFactory requestFactory;
   private EntityPlace entityPlace;
   private TableView<T> view;
 	
@@ -29,7 +29,7 @@ public abstract class AbstractDataProvider<T> extends AsyncDataProvider<T> {
 	 * 
 	 */
 	public AbstractDataProvider(AppRequestFactory marq, final TableView<T> view) {
-		this.marq = marq;
+		this.requestFactory = marq;
 		this.view = view;
 	}
 	

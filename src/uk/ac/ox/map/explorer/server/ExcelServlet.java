@@ -13,8 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import uk.ac.ox.map.request.server.AuthenticatedUserRequired;
-
 import com.google.inject.Singleton;
 
 @Singleton
@@ -25,7 +23,6 @@ public class ExcelServlet extends HttpServlet {
   private static final String MIME_XLS = "application/vnd.ms-excel";
 
   @Override
-  @AuthenticatedUserRequired
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
     String countries = req.getParameter("country");

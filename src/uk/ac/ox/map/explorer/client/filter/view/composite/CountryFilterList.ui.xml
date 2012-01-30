@@ -1,0 +1,16 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:f="urn:import:uk.ac.ox.map.explorer.client.filter.view">
+	
+	<g:HTMLPanel>
+	 <g:VerticalPanel>
+	   
+	   <f:DiscreteOptionFilter labelText="Pf endemic" propertyName="pfEndemic" ui:field="pfEndemic"/>
+	   <f:DiscreteOptionFilter labelText="Pv endemic" propertyName="pvEndemic" ui:field="pvEndemic"/>
+	   <f:TextFilter labelText="Name" propertyName="name" ui:field="name"/>
+	   <f:OptionFilter labelText="Continent" propertyName="continent" jsVar="Continent" ui:field="continent"/>
+	   
+	 </g:VerticalPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 

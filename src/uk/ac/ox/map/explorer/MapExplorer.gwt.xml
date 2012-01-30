@@ -9,7 +9,6 @@
   <script src="http://openlayers.org/api/2.10/OpenLayers.js"/>
 
   <!-- Other module inherits                                      -->
-  <inherits name='uk.ac.ox.map.request.MapRequest'/>
   
 	<inherits name="com.google.gwt.activity.Activity" />
 	<inherits name="com.google.gwt.place.Place" />

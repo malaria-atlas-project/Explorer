@@ -9,8 +9,6 @@ import com.google.inject.Singleton;
  * @author will
  *
  */
-
-@Singleton
 public class SelectionWidget extends SimplePanel {
 
 }

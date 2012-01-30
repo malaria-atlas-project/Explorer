@@ -1,7 +1,7 @@
 package uk.ac.ox.map.explorer.client;
 
-import uk.ac.ox.map.request.client.place.EntityPlace;
-import uk.ac.ox.map.request.client.place.HomePagePlace;
+import uk.ac.ox.map.explorer.client.place.EntityPlace;
+import uk.ac.ox.map.explorer.client.place.HomePagePlace;
 
 import com.google.gwt.place.shared.PlaceHistoryMapper;
 import com.google.gwt.place.shared.WithTokenizers;

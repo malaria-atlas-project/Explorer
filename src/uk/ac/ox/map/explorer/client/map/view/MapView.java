@@ -9,6 +9,7 @@ import org.gwtopenmaps.openlayers.client.MapOptions;
 import org.gwtopenmaps.openlayers.client.MapWidget;
 import org.gwtopenmaps.openlayers.client.Marker;
 import org.gwtopenmaps.openlayers.client.Size;
+import org.gwtopenmaps.openlayers.client.control.LayerSwitcher;
 import org.gwtopenmaps.openlayers.client.event.MapClickListener;
 import org.gwtopenmaps.openlayers.client.event.MapMoveEndListener;
 import org.gwtopenmaps.openlayers.client.layer.Layer;
@@ -16,14 +17,14 @@ import org.gwtopenmaps.openlayers.client.layer.Markers;
 import org.gwtopenmaps.openlayers.client.layer.WMS;
 import org.gwtopenmaps.openlayers.client.layer.WMSParams;
 
-import uk.ac.ox.map.explorer.client.map.presenter.MapPresenter;
-import uk.ac.ox.map.request.client.proxy.ExtentProxy;
-import uk.ac.ox.map.request.client.proxy.SiteProxy;
+import uk.ac.ox.map.explorer.client.map.presenter.BaseMapPresenter;
+import uk.ac.ox.map.explorer.client.map.presenter.CountryMapPresenter;
+import uk.ac.ox.map.explorer.client.proxy.ExtentProxy;
+import uk.ac.ox.map.explorer.client.proxy.SiteProxy;
 
 import com.google.gwt.user.client.ui.Composite;
 import com.google.inject.Singleton;
 
-@Singleton
 public class MapView extends Composite {
 
   private MapWidget mapWidget;
@@ -31,7 +32,7 @@ public class MapView extends Composite {
 
   private Markers markers;
   private Marker marker;
-  private MapPresenter listener;
+  private BaseMapPresenter listener;
 
   public MapView() {
 
@@ -45,7 +46,7 @@ public class MapView extends Composite {
     String gwcUrl = "http://map1.zoo.ox.ac.uk/geoserver/gwc/service/wms";
     {
 	    WMSParams params = new WMSParams();
-      params.setLayers("Base:bmng");
+      params.setLayers("Base:bluemarble");
       params.setIsTransparent(true);
 	    WMS bm = new WMS("Blue marble", gwcUrl, params);
 	    bm.setIsBaseLayer(true);
@@ -56,6 +57,7 @@ public class MapView extends Composite {
     */
     
 //    map.addControl(new MousePosition());
+    map.addControl(new LayerSwitcher());
     
     map.zoomTo(2);
 
@@ -80,8 +82,8 @@ public class MapView extends Composite {
     });
   }
   
-  public void setListener(MapPresenter listener){
-    this.listener = listener;
+  public void setListener(BaseMapPresenter baseMapPresenter){
+    this.listener = baseMapPresenter;
   }
 
   public void addWmsLayer(String name, String url, String layer, boolean isTransparent) {

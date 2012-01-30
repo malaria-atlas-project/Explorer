@@ -12,7 +12,6 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-@Singleton
 public class CompositeMapView extends Composite {
 
   private static CompositeMapViewUiBinder uiBinder = GWT.create(CompositeMapViewUiBinder.class);

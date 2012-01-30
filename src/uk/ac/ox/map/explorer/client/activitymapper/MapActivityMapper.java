@@ -1,7 +1,9 @@
 package uk.ac.ox.map.explorer.client.activitymapper;
 
 
-import uk.ac.ox.map.explorer.client.map.presenter.MapPresenter;
+import uk.ac.ox.map.explorer.client.map.presenter.AnophelesMapPresenter;
+import uk.ac.ox.map.explorer.client.map.presenter.CountryMapPresenter;
+import uk.ac.ox.map.explorer.client.place.EntityPlace;
 
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
@@ -22,11 +24,24 @@ import com.google.inject.Singleton;
 public class MapActivityMapper implements ActivityMapper {
 
   @Inject
-  MapPresenter mapPresenter;
+  CountryMapPresenter countryMapPresenter;
+  
+  @Inject
+  AnophelesMapPresenter anoMapPresenter;
 
   @Override
   public Activity getActivity(Place place) {
-    return mapPresenter;
+    
+    EntityPlace p = (EntityPlace) place;
+    String entityName = p.getEntityName();
+//    System.out.println(p.getEntityName());
+    
+    if (entityName.equals("Country")) {
+      return countryMapPresenter;
+    } else if (entityName.equals("Anopheline")) {
+      return anoMapPresenter;
+    }
+    return countryMapPresenter;
   }
 
 }

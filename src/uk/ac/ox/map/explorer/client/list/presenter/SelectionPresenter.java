@@ -6,8 +6,8 @@ import java.util.List;
 import uk.ac.ox.map.explorer.client.base.view.SelectionWidget;
 import uk.ac.ox.map.explorer.client.event.CountryCheckedEvent;
 import uk.ac.ox.map.explorer.client.list.view.SelectionView;
-import uk.ac.ox.map.request.client.place.QueryStringBuilder;
-import uk.ac.ox.map.request.client.proxy.CountryProxy;
+import uk.ac.ox.map.explorer.client.place.QueryStringBuilder;
+import uk.ac.ox.map.explorer.client.proxy.CountryProxy;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;

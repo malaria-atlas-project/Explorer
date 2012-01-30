@@ -37,8 +37,8 @@ public class MapInfoServiceImpl extends RemoteServiceServlet implements MapInfoS
     Query q = em.createNativeQuery(
         "select count(distinct(site_id)) as siteCount, count(distinct(su.id)) as surveyCount, count(distinct(sr.id)) as surveyReplicateCount " +
         "from site s " +
-        "join survey su on s.id = su.site_id " +
-        "join survey_replicate sr on su.id = sr.survey_id " +
+        "join pr2010.survey su on s.id = su.site_id " +
+        "join pr2010.survey_replicate sr on su.id = sr.survey_id " +
     		"where s.geom && setsrid(st_makebox2d(st_makepoint(?,?), st_makepoint(?,?)), 4326);");
     q.setParameter(1, minX);
     q.setParameter(2, minY);

@@ -2,7 +2,7 @@ package uk.ac.ox.map.explorer.client.list.view;
 
 import java.util.List;
 
-import uk.ac.ox.map.request.client.proxy.CountryProxy;
+import uk.ac.ox.map.explorer.client.proxy.CountryProxy;
 
 import com.google.gwt.cell.client.AbstractCell;
 import com.google.gwt.cell.client.Cell;

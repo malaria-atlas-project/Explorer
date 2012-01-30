@@ -1,7 +1,7 @@
 package uk.ac.ox.map.explorer.client.list.view;
 
-import uk.ac.ox.map.request.client.filter.presenter.Filter;
-import uk.ac.ox.map.request.client.filter.view.composite.BaseCompositeFilter;
+import uk.ac.ox.map.explorer.client.filter.presenter.Filter;
+import uk.ac.ox.map.explorer.client.filter.view.composite.BaseCompositeFilter;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;

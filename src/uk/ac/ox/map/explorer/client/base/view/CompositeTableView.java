@@ -10,7 +10,6 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-@Singleton
 public class CompositeTableView extends Composite {
 
   private static CompositeTableViewUiBinder uiBinder = GWT.create(CompositeTableViewUiBinder.class);

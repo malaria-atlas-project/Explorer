@@ -27,8 +27,6 @@
     <mkdir dir="war/WEB-INF/lib" />
     <ivy:retrieve pattern="${lib.dir}/[artifact]-[revision]-[type].[ext]" conf="runtime" />
     <!-- TODO get this from multi project build -->
-    <copy todir="war/WEB-INF/lib" file="../MapBase/dist/MapBase.jar" />
-    <copy todir="war/WEB-INF/lib" file="../MapRequest/dist/MapRequest.jar" />
     <copy todir="${war.file}/WEB-INF/templates">
       <fileset dir="${resources}/templates" />
     </copy>
@@ -42,10 +40,6 @@
     <mkdir dir="war/WEB-INF/classes" />
     <javac srcdir="src" includes="**" encoding="utf-8" destdir="war/WEB-INF/classes" source="1.6" target="1.6" nowarn="true" debug="true" debuglevel="lines,vars,source">
       <classpath refid="build.path" />
-      <classpath>
-        <pathelement location="../MapBase/dist/MapBase.jar" />
-        <pathelement location="../MapRequest/dist/MapRequest.jar" />
-      </classpath>
     </javac>
   </target>
 
@@ -54,8 +48,6 @@
       <classpath>
         <!-- TODO better way of getting MapBase -->
         <path refid="build.path" />
-        <pathelement location="../MapBase/dist/MapBase.jar" />
-        <pathelement location="../MapRequest/dist/MapRequest.jar" />
         <pathelement location="src" />
         <pathelement location="war/WEB-INF/classes" />
       </classpath>

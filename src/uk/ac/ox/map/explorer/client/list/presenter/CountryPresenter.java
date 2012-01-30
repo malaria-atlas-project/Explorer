@@ -5,13 +5,13 @@ import java.util.List;
 import uk.ac.ox.map.explorer.client.base.view.CompositeTableView;
 import uk.ac.ox.map.explorer.client.event.CountryCheckedEvent;
 import uk.ac.ox.map.explorer.client.event.ExtentChangeRequestEvent;
+import uk.ac.ox.map.explorer.client.filter.presenter.FilterPresenter;
 import uk.ac.ox.map.explorer.client.list.view.CountryFilterList;
 import uk.ac.ox.map.explorer.client.list.view.CountryTableView;
 import uk.ac.ox.map.explorer.client.list.view.SelectionView;
-import uk.ac.ox.map.request.client.filter.presenter.FilterPresenter;
-import uk.ac.ox.map.request.client.proxy.CountryProxy;
-import uk.ac.ox.map.request.client.proxy.ExtentProxy;
-import uk.ac.ox.map.request.client.request.AppRequestFactory;
+import uk.ac.ox.map.explorer.client.proxy.CountryProxy;
+import uk.ac.ox.map.explorer.client.proxy.ExtentProxy;
+import uk.ac.ox.map.explorer.client.request.AppRequestFactory;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.PlaceController;
@@ -43,12 +43,12 @@ public class CountryPresenter extends AbstractTablePresenter<CountryProxy> {
 
       @Override
       protected Request<List<CountryProxy>> getSearchRequest(Integer i, Integer j, String searchString) {
-        return marq.countryRequest().search(i, j, searchString).with("region", "extent");
+        return requestFactory.countryRequest().search(i, j, searchString).with("region", "extent");
       }
 
       @Override
       protected Request<Long> getSearchCountRequest(String searchString) {
-        return marq.countryRequest().searchCount(searchString);
+        return requestFactory.countryRequest().searchCount(searchString);
       }
       
     };

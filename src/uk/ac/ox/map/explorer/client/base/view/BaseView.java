@@ -1,6 +1,7 @@
 package uk.ac.ox.map.explorer.client.base.view;
 
 import uk.ac.ox.map.explorer.client.BasePresenter;
+import uk.ac.ox.map.explorer.client.map.view.MapView;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.resources.client.CssResource;
@@ -54,6 +55,10 @@ public class BaseView extends Composite implements BasePresenter.Display {
   @Inject
   public BaseView() {
     initWidget(uiBinder.createAndBindUi(this));
+//    mapView = new MapView();
+//    mapPanel.add(new CompositeMapView(mv));
+    
+    
   }
 
   @Override

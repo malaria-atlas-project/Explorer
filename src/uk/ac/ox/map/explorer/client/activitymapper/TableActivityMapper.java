@@ -2,9 +2,9 @@ package uk.ac.ox.map.explorer.client.activitymapper;
 
 
 import uk.ac.ox.map.explorer.client.list.presenter.CountryPresenter;
-import uk.ac.ox.map.explorer.client.map.presenter.MapPresenter;
-import uk.ac.ox.map.request.client.place.EntityPlace;
-import uk.ac.ox.map.request.client.place.HomePagePlace;
+import uk.ac.ox.map.explorer.client.map.presenter.CountryMapPresenter;
+import uk.ac.ox.map.explorer.client.place.EntityPlace;
+import uk.ac.ox.map.explorer.client.place.HomePagePlace;
 
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
@@ -20,7 +20,7 @@ public class TableActivityMapper implements ActivityMapper {
   Provider<CountryPresenter> countryProvider;
   
   @Inject
-  Provider<MapPresenter> mapProvider;
+  Provider<CountryMapPresenter> mapProvider;
 
   @Override
   public Activity getActivity(Place place) {

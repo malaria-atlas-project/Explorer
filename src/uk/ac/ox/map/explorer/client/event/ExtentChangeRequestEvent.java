@@ -1,6 +1,6 @@
 package uk.ac.ox.map.explorer.client.event;
 
-import uk.ac.ox.map.request.client.proxy.ExtentProxy;
+import uk.ac.ox.map.explorer.client.proxy.ExtentProxy;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.EventHandler;

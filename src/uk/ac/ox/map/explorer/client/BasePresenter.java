@@ -19,8 +19,6 @@ public class BasePresenter {
 
     void clearBreadCrumbs();
 
-    void setSuccessMessage(String string);
-
     void addBreadCrumb(String label, String historyToken);
 
     AcceptsOneWidget getMapDisplay();

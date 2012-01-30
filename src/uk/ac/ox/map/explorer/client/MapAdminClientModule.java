@@ -1,10 +1,10 @@
 package uk.ac.ox.map.explorer.client;
 
 import uk.ac.ox.map.explorer.client.base.view.BaseView;
+import uk.ac.ox.map.explorer.client.place.EntityPlace;
+import uk.ac.ox.map.explorer.client.place.HomePagePlace;
+import uk.ac.ox.map.explorer.client.request.AppRequestFactory;
 import uk.ac.ox.map.explorer.client.resource.ResourceBundle;
-import uk.ac.ox.map.request.client.place.HomePagePlace;
-import uk.ac.ox.map.request.client.request.AppRequestFactory;
-import uk.ac.ox.map.request.client.request.AppRequestTransport;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.EventBus;
@@ -49,7 +49,7 @@ public class MapAdminClientModule extends AbstractGinModule {
   @Singleton
   public PlaceHistoryHandler getHistoryHandler(PlaceController placeController, PlaceHistoryMapper historyMapper, EventBus eventBus) {
     PlaceHistoryHandler historyHandler = new PlaceHistoryHandler(historyMapper);
-    historyHandler.register(placeController, eventBus, new HomePagePlace());
+    historyHandler.register(placeController, eventBus, new EntityPlace("Country"));
     return historyHandler;
   }
 
@@ -71,9 +71,9 @@ public class MapAdminClientModule extends AbstractGinModule {
   
   @Provides
   @Singleton
-  public AppRequestFactory getRequestFactory(EventBus eventBus, AppRequestTransport transport) {
+  public AppRequestFactory getRequestFactory(EventBus eventBus) {
     AppRequestFactory rf = GWT.create(AppRequestFactory.class);
-    rf.initialize(eventBus, transport);
+    rf.initialize(eventBus);
     return rf;
   }
   

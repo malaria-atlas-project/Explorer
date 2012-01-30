@@ -2,17 +2,16 @@ package uk.ac.ox.map.explorer.client.list.presenter;
 
 import java.util.Map;
 
+import uk.ac.ox.map.explorer.client.filter.presenter.FilterChangedEvent;
+import uk.ac.ox.map.explorer.client.filter.presenter.FilterChangedEventHandler;
 import uk.ac.ox.map.explorer.client.list.view.TableView;
-import uk.ac.ox.map.request.client.filter.presenter.FilterChangedEvent;
-import uk.ac.ox.map.request.client.filter.presenter.FilterChangedEventHandler;
-import uk.ac.ox.map.request.client.place.EntityPlace;
-import uk.ac.ox.map.request.client.place.Order;
+import uk.ac.ox.map.explorer.client.place.EntityPlace;
+import uk.ac.ox.map.explorer.client.place.Order;
 
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.PlaceController;
-import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.ColumnSortEvent;
 import com.google.gwt.user.cellview.client.ColumnSortList;

@@ -13,7 +13,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
-import uk.ac.ox.map.shared.EMF;
+import uk.ac.ox.map.domain.EMF;
 
 public class PrQuery  {
 

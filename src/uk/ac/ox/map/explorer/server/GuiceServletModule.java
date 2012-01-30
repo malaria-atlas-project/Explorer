@@ -6,14 +6,14 @@ import java.util.Properties;
 
 import javax.servlet.ServletContext;
 
-import uk.ac.ox.map.request.server.AppRequestFactoryServlet;
-
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import com.google.inject.name.Names;
 import com.google.inject.persist.PersistFilter;
 import com.google.inject.persist.jpa.JpaPersistModule;
 import com.google.inject.servlet.ServletModule;
+import com.google.web.bindery.requestfactory.server.RequestFactoryServlet;
+
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapper;
 
@@ -30,6 +30,8 @@ public class GuiceServletModule extends ServletModule {
     
     install(new JpaPersistModule("p1"));
     
+    bind(RequestFactoryServlet.class).in(Singleton.class);
+    
     /*
      * Bind constants
      */
@@ -42,7 +44,7 @@ public class GuiceServletModule extends ServletModule {
     
     serve("/app").with(IndexServlet.class);
     
-    serve("/gwtRequest").with(AppRequestFactoryServlet.class);
+    serve("/gwtRequest").with(RequestFactoryServlet.class);
     serve("/mapexplorer/mapInfo").with(MapInfoServiceImpl.class);
     serve("/dataDownload").with(ExcelServlet.class);
     

@@ -2,17 +2,15 @@ package uk.ac.ox.map.explorer.client.list.presenter;
 
 import java.util.List;
 
-import uk.ac.ox.map.explorer.client.base.view.BaseView;
 import uk.ac.ox.map.explorer.client.base.view.CompositeTableView;
 import uk.ac.ox.map.explorer.client.base.view.SelectionWidget;
-import uk.ac.ox.map.explorer.client.event.CountryCheckedEvent;
-import uk.ac.ox.map.explorer.client.event.ExtentChangeRequestEvent;
+import uk.ac.ox.map.explorer.client.event.AnophelineCheckedEvent;
+import uk.ac.ox.map.explorer.client.event.AnophelineSelectedEvent;
 import uk.ac.ox.map.explorer.client.filter.presenter.FilterPresenter;
+import uk.ac.ox.map.explorer.client.list.view.AnophelineTableView;
 import uk.ac.ox.map.explorer.client.list.view.CountryFilterList;
-import uk.ac.ox.map.explorer.client.list.view.CountryTableView;
 import uk.ac.ox.map.explorer.client.list.view.SelectionView;
-import uk.ac.ox.map.explorer.client.proxy.CountryProxy;
-import uk.ac.ox.map.explorer.client.proxy.ExtentProxy;
+import uk.ac.ox.map.explorer.client.proxy.AnophelineProxy;
 import uk.ac.ox.map.explorer.client.request.AppRequestFactory;
 
 import com.google.gwt.event.shared.EventBus;
@@ -21,7 +19,7 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 import com.google.web.bindery.requestfactory.shared.Request;
 
-public class CountryPresenter extends AbstractTablePresenter<CountryProxy> {
+public class AnophelesTablePresenter extends AbstractTablePresenter<AnophelineProxy> {
   
   private final CountryFilterList filterList;
   
@@ -33,7 +31,7 @@ public class CountryPresenter extends AbstractTablePresenter<CountryProxy> {
   private final CompositeTableView compositeTableView;
   
   @Inject
-  public CountryPresenter(PlaceController placeController, CountryTableView tableView, CountryFilterList filterList, SelectionView selectionView, AppRequestFactory rf) {
+  public AnophelesTablePresenter(PlaceController placeController, AnophelineTableView tableView, CountryFilterList filterList, SelectionView selectionView, AppRequestFactory rf) {
     
     super(placeController, tableView);
     
@@ -42,11 +40,11 @@ public class CountryPresenter extends AbstractTablePresenter<CountryProxy> {
     this.filterList = filterList;
     this.selectionView = selectionView;
     
-    this.dataProvider = new AbstractDataProvider<CountryProxy>(rf, tableView){
+    this.dataProvider = new AbstractDataProvider<AnophelineProxy>(rf, tableView){
 
       @Override
-      protected Request<List<CountryProxy>> getSearchRequest(Integer i, Integer j, String searchString) {
-        return requestFactory.countryRequest().search(i, j, searchString).with("region", "extent");
+      protected Request<List<AnophelineProxy>> getSearchRequest(Integer i, Integer j, String searchString) {
+        return requestFactory.anoRequest().search(i, j, searchString).with("region", "extent");
       }
 
       @Override
@@ -60,7 +58,6 @@ public class CountryPresenter extends AbstractTablePresenter<CountryProxy> {
   @Override
   public void start(AcceptsOneWidget panel, EventBus eventBus) {
     
-    
     panel.setWidget(compositeTableView);
     super.start(compositeTableView.getTablePanel(), eventBus);
     
@@ -70,18 +67,16 @@ public class CountryPresenter extends AbstractTablePresenter<CountryProxy> {
     compositeTableView.getSelectionPanel().setWidget(selectionView);
     
     this.eventBus = eventBus;
-    
   };
   
   @Override
-  public void fireObjectSelected(CountryProxy obj) {
-    ExtentProxy ex = obj.getExtent();
-    eventBus.fireEvent(new ExtentChangeRequestEvent(ex));
+  public void fireObjectSelected(AnophelineProxy obj) {
+    eventBus.fireEvent(new AnophelineSelectedEvent(obj));
   }
 
   @Override
-  public void fireObjectChecked(CountryProxy obj, boolean isChecked) {
-    eventBus.fireEvent(new CountryCheckedEvent(obj, isChecked));
+  public void fireObjectChecked(AnophelineProxy obj, boolean isChecked) {
+    eventBus.fireEvent(new AnophelineCheckedEvent(obj, isChecked));
   }
 
 }

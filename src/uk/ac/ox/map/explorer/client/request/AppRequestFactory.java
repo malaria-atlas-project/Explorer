@@ -8,5 +8,7 @@ public interface AppRequestFactory extends RequestFactory {
 	CountryRequest countryRequest();
 	
 	SiteRequest siteRequest();
+
+  AnophelineRequest anoRequest();
   
 }

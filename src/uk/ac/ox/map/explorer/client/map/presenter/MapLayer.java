@@ -3,18 +3,19 @@ package uk.ac.ox.map.explorer.client.map.presenter;
 import com.google.gwt.resources.client.ImageResource;
 
 public class MapLayer {
-  
+
   private String name;
   private String description;
   private ImageResource imageResource;
-  
-  public MapLayer(String name, String description, ImageResource imageResource) {
+  private boolean useWebCache;
+
+  public MapLayer(String name, String description, ImageResource imageResource, boolean useWebCache) {
     this.name = name;
     this.description = description;
     this.imageResource = imageResource;
+    this.useWebCache = useWebCache;
   }
-  
-  
+
   public String getWmsLayerName() {
     return name;
   }
@@ -22,9 +23,13 @@ public class MapLayer {
   public String getName() {
     return description;
   }
-  
+
   public ImageResource getImageResource() {
     return imageResource;
+  }
+
+  public boolean getUseWebCache() {
+    return useWebCache;
   }
 
 }

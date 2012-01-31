@@ -1,6 +1,8 @@
 package uk.ac.ox.map.explorer.client.map.view;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.gwtopenmaps.openlayers.client.Bounds;
 import org.gwtopenmaps.openlayers.client.LonLat;
@@ -13,12 +15,14 @@ import org.gwtopenmaps.openlayers.client.control.LayerSwitcher;
 import org.gwtopenmaps.openlayers.client.event.MapClickListener;
 import org.gwtopenmaps.openlayers.client.event.MapMoveEndListener;
 import org.gwtopenmaps.openlayers.client.layer.Layer;
+import org.gwtopenmaps.openlayers.client.layer.LayerOptions;
 import org.gwtopenmaps.openlayers.client.layer.Markers;
 import org.gwtopenmaps.openlayers.client.layer.WMS;
 import org.gwtopenmaps.openlayers.client.layer.WMSParams;
 
 import uk.ac.ox.map.explorer.client.map.presenter.BaseMapPresenter;
 import uk.ac.ox.map.explorer.client.map.presenter.CountryMapPresenter;
+import uk.ac.ox.map.explorer.client.map.presenter.MapLayer;
 import uk.ac.ox.map.explorer.client.proxy.ExtentProxy;
 import uk.ac.ox.map.explorer.client.proxy.SiteProxy;
 
@@ -33,6 +37,11 @@ public class MapView extends Composite {
   private Markers markers;
   private Marker marker;
   private BaseMapPresenter listener;
+  
+  private String gwcUrl = "http://map1.zoo.ox.ac.uk/geoserver/gwc/service/wms";
+  private String wmsUrl = "http://map1.zoo.ox.ac.uk/geoserver/wms";
+  
+  private List<WMS> wmsLayers = new ArrayList<WMS>();
 
   public MapView() {
 
@@ -43,7 +52,6 @@ public class MapView extends Composite {
 
     initWidget(mapWidget);
    
-    String gwcUrl = "http://map1.zoo.ox.ac.uk/geoserver/gwc/service/wms";
     {
 	    WMSParams params = new WMSParams();
       params.setLayers("Base:bluemarble");
@@ -53,8 +61,6 @@ public class MapView extends Composite {
 	    map.addLayer(bm);
 	    map.setBaseLayer(bm);
     }
-    /*
-    */
     
 //    map.addControl(new MousePosition());
     map.addControl(new LayerSwitcher());
@@ -86,15 +92,18 @@ public class MapView extends Composite {
     this.listener = baseMapPresenter;
   }
 
-  public void addWmsLayer(String name, String url, String layer, boolean isTransparent) {
+  public void addWmsLayer(MapLayer wmsLayer, boolean isTransparent) {
+    
+      String url = wmsLayer.getUseWebCache() ? gwcUrl : wmsUrl;
+    
       WMSParams params = new WMSParams();
-      params.setLayers(layer);
+      params.setLayers(wmsLayer.getWmsLayerName());
       params.setIsTransparent(isTransparent);
       
-      
-      WMS wms = new WMS(name, url, params);
+      WMS wms = new WMS(wmsLayer.getName(), url, params);
       wms.setIsBaseLayer(false);
       map.addLayer(wms);
+      wmsLayers.add(wms);
   }
   
 
@@ -148,13 +157,23 @@ public class MapView extends Composite {
    * @param active
    */
   public void toggleLayer(String layerName, boolean active) {
-    System.out.println(layerName);
-    System.out.println(active);
     
     Layer lyr = map.getLayerByName(layerName);
     if (lyr != null) {
       lyr.setIsVisible(active);
     }
+  }
+  
+  public void setCql(String layerName, String cql) {
+    
+    for (WMS wms : wmsLayers) {
+	    if (wms.getName().equals(layerName)) {
+	      WMSParams params = new WMSParams();
+	      params.setParameter("cql_filter", cql);
+	      wms.mergeNewParams(params);
+	    }
+    }
+    
   }
 
 }

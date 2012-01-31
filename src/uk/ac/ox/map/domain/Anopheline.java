@@ -2,15 +2,12 @@ package uk.ac.ox.map.domain;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(schema="explorer", name="anopheline_dvs")
@@ -24,7 +21,7 @@ public class Anopheline {
     return DaoFactory.get().searchCount(searchParams, Anopheline.class);
   }
 
-  public static Anopheline findAnopheline(String id) {
+  public static Anopheline findAnopheline(Long id) {
     return DaoFactory.get().find(Anopheline.class, id);
   }
   
@@ -144,18 +141,6 @@ public class Anopheline {
     this.author = author;
   }
   
-  private Anopheline parent;
-
-  @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-  @JoinColumn(name = "parent_id")
-  public Anopheline getParent() {
-    return parent;
-  }
-
-  public void setParent(Anopheline parent) {
-    this.parent = parent;
-  }
-  
   private String taxonomicLevel;
 
   @Column(name="taxonomic_level")
@@ -167,15 +152,25 @@ public class Anopheline {
     this.taxonomicLevel = taxonomicLevel;
   }
   
-  private MapExtent mapExtent;
+  private Extent extent;
 
-  @OneToOne(mappedBy = "anopheline")
-  public MapExtent getMapExtent() {
-    return mapExtent;
+  @Embedded
+  public Extent getExtent() {
+    return extent;
   }
 
-  public void setMapExtent(MapExtent mapExtent) {
-    this.mapExtent = mapExtent;
+  public void setExtent(Extent extent) {
+    this.extent = extent;
+  }
+  
+  @Transient
+  public Integer getVersion() {
+    return 0;
+  }
+  
+  @Transient
+  public String getRepr() {
+    return name;
   }
   
 }

@@ -5,7 +5,6 @@ import java.util.List;
 import uk.ac.ox.map.domain.Site;
 import uk.ac.ox.map.explorer.client.proxy.SiteProxy;
 
-import com.google.web.bindery.requestfactory.shared.InstanceRequest;
 import com.google.web.bindery.requestfactory.shared.Request;
 import com.google.web.bindery.requestfactory.shared.RequestContext;
 import com.google.web.bindery.requestfactory.shared.Service;

@@ -26,11 +26,6 @@ public class Anopheline_ {
   
   public static volatile SingularAttribute<Anopheline, String> author;
   
-  public static volatile SingularAttribute<Anopheline, Anopheline> parent;
-  
   public static volatile SingularAttribute<Anopheline, String> taxonomicLevel;
-  
-  public static volatile SingularAttribute<Anopheline, MapExtent> mapExtent;
-  
   
 }

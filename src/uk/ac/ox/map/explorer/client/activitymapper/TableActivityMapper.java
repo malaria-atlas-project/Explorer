@@ -1,7 +1,8 @@
 package uk.ac.ox.map.explorer.client.activitymapper;
 
 
-import uk.ac.ox.map.explorer.client.list.presenter.CountryPresenter;
+import uk.ac.ox.map.explorer.client.list.presenter.AnophelesTablePresenter;
+import uk.ac.ox.map.explorer.client.list.presenter.CountryTablePresenter;
 import uk.ac.ox.map.explorer.client.map.presenter.CountryMapPresenter;
 import uk.ac.ox.map.explorer.client.place.EntityPlace;
 import uk.ac.ox.map.explorer.client.place.HomePagePlace;
@@ -17,17 +18,22 @@ import com.google.inject.Singleton;
 public class TableActivityMapper implements ActivityMapper {
 
   @Inject
-  Provider<CountryPresenter> countryProvider;
+  Provider<CountryTablePresenter> countryTableProvider;
   
   @Inject
-  Provider<CountryMapPresenter> mapProvider;
+  Provider<AnophelesTablePresenter> anophelineTableProvider;
+  
 
   @Override
   public Activity getActivity(Place place) {
-    if (place instanceof HomePagePlace) {
-	    return countryProvider.get().withPlace(new EntityPlace("Country"));
-    } else if (place instanceof EntityPlace) {
-	    return countryProvider.get().withPlace((EntityPlace) place);
+    
+    EntityPlace p = (EntityPlace) place;
+    String entityName = p.getEntityName();
+    
+    if (entityName.equals("Country")) {
+	    return countryTableProvider.get().withPlace(p);
+    } else if (entityName.equals("Anopheline")) {
+	    return anophelineTableProvider.get().withPlace(p);
     }
     return null;
   }

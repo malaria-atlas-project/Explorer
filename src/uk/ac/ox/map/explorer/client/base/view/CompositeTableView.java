@@ -7,8 +7,6 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
-import com.google.inject.Inject;
-import com.google.inject.Singleton;
 
 public class CompositeTableView extends Composite {
 
@@ -26,7 +24,6 @@ public class CompositeTableView extends Composite {
   @UiField(provided = true)
   SimplePanel selectionPanel;
 
-  @Inject
   public CompositeTableView(SelectionWidget selectionWidget) {
     this.selectionPanel = selectionWidget;
     initWidget(uiBinder.createAndBindUi(this));

@@ -2,6 +2,8 @@ package uk.ac.ox.map.explorer.client;
 
 import uk.ac.ox.map.explorer.client.activitymapper.MapActivityMapper;
 import uk.ac.ox.map.explorer.client.activitymapper.TableActivityMapper;
+import uk.ac.ox.map.explorer.client.base.view.CompositeMapView;
+import uk.ac.ox.map.explorer.client.base.view.CompositeTableView;
 import uk.ac.ox.map.explorer.client.list.presenter.SelectionPresenter;
 
 import com.google.gwt.activity.shared.ActivityManager;
@@ -9,6 +11,8 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.IsWidget;
+import com.google.gwt.user.client.ui.RootLayoutPanel;
+import com.google.gwt.user.client.ui.SimpleLayoutPanel;
 import com.google.inject.Inject;
 
 public class BasePresenter {
@@ -21,9 +25,9 @@ public class BasePresenter {
 
     void addBreadCrumb(String label, String historyToken);
 
-    AcceptsOneWidget getMapDisplay();
+    SimpleLayoutPanel getMapDisplay();
 
-    AcceptsOneWidget getTableDisplay();
+    SimpleLayoutPanel getTableDisplay();
 
   }
 
@@ -39,15 +43,18 @@ public class BasePresenter {
    * @param display
    * @param eventBus
    * @param appMapper
-   * @param subMapper
+   * @param mapMapper
    */
   @Inject
-  public BasePresenter(final Display display, EventBus eventBus, MapActivityMapper appMapper, TableActivityMapper subMapper, SelectionPresenter selectionPresenter) {
+  public BasePresenter(final Display display, EventBus eventBus, MapActivityMapper appMapper, TableActivityMapper tableMapper, SelectionPresenter selectionPresenter) {
 
     this.display = display;
-
+//    RootLayoutPanel rlp = RootLayoutPanel.get();
+//    SimpleLayoutPanel slp = new SimpleLayoutPanel();
+//    rlp.add(slp);
+    
     new ActivityManager(appMapper, eventBus).setDisplay(display.getMapDisplay());
-    new ActivityManager(subMapper, eventBus).setDisplay(display.getTableDisplay());
+    new ActivityManager(tableMapper, eventBus).setDisplay(display.getTableDisplay());
 
   }
 

@@ -2,7 +2,9 @@ package uk.ac.ox.map.explorer.client.list.presenter;
 
 import java.util.List;
 
+import uk.ac.ox.map.explorer.client.base.view.BaseView;
 import uk.ac.ox.map.explorer.client.base.view.CompositeTableView;
+import uk.ac.ox.map.explorer.client.base.view.SelectionWidget;
 import uk.ac.ox.map.explorer.client.event.CountryCheckedEvent;
 import uk.ac.ox.map.explorer.client.event.ExtentChangeRequestEvent;
 import uk.ac.ox.map.explorer.client.filter.presenter.FilterPresenter;
@@ -26,17 +28,18 @@ public class CountryPresenter extends AbstractTablePresenter<CountryProxy> {
   @Inject
   private EventBus eventBus;
 
-  private CompositeTableView compositeTableView;
-
   private SelectionView selectionView;
+
+  private final CompositeTableView compositeTableView;
   
   @Inject
-  public CountryPresenter(PlaceController placeController, CompositeTableView compositeTableView, CountryTableView tableView, CountryFilterList filterList, SelectionView selectionView, AppRequestFactory rf) {
+  public CountryPresenter(PlaceController placeController, CountryTableView tableView, CountryFilterList filterList, SelectionView selectionView, AppRequestFactory rf) {
     
     super(placeController, tableView);
     
+    this.compositeTableView = new CompositeTableView(new SelectionWidget());
+    
     this.filterList = filterList;
-    this.compositeTableView = compositeTableView;
     this.selectionView = selectionView;
     
     this.dataProvider = new AbstractDataProvider<CountryProxy>(rf, tableView){
@@ -56,8 +59,11 @@ public class CountryPresenter extends AbstractTablePresenter<CountryProxy> {
   
   @Override
   public void start(AcceptsOneWidget panel, EventBus eventBus) {
+    
+    
     panel.setWidget(compositeTableView);
     super.start(compositeTableView.getTablePanel(), eventBus);
+    
     FilterPresenter filterPresenter = new FilterPresenter(place, filterList);
     filterPresenter.start(compositeTableView.getFilterPanel(), eventBus);
     

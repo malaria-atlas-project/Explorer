@@ -52,12 +52,23 @@ public class BaseView extends Composite implements BasePresenter.Display {
   @UiField
   SimpleLayoutPanel mapPanel;
 
+//  private MapView mapView;
+//
+//  private CompositeTableView ctv;
+//
+//  private CompositeMapView cmv;
+
   @Inject
   public BaseView() {
     initWidget(uiBinder.createAndBindUi(this));
-//    mapView = new MapView();
-//    mapPanel.add(new CompositeMapView(mv));
     
+    
+//    mapView = new MapView();
+//    cmv = new CompositeMapView(mapView);
+//    mapPanel.add(cmv);
+//    
+//    ctv = new CompositeTableView(new SelectionWidget());
+//    tablePanel.add(ctv);
     
   }
 
@@ -85,12 +96,12 @@ public class BaseView extends Composite implements BasePresenter.Display {
   }
 
   @Override
-  public AcceptsOneWidget getMapDisplay() {
+  public SimpleLayoutPanel getMapDisplay() {
     return mapPanel;
   }
 
   @Override
-  public AcceptsOneWidget getTableDisplay() {
+  public SimpleLayoutPanel getTableDisplay() {
     return tablePanel;
   }
 

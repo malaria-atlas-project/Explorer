@@ -4,18 +4,9 @@ package uk.ac.ox.map.explorer.client.map.presenter;
 import java.util.ArrayList;
 import java.util.List;
 
-import uk.ac.ox.map.explorer.client.base.view.CompositeMapView;
-import uk.ac.ox.map.explorer.client.event.ExtentChangeRequestEvent;
-import uk.ac.ox.map.explorer.client.event.LayerChangeRequestEvent;
-import uk.ac.ox.map.explorer.client.map.view.MapView;
-import uk.ac.ox.map.explorer.client.proxy.ExtentProxy;
 import uk.ac.ox.map.explorer.client.resource.ResourceBundle;
 
-import com.google.gwt.activity.shared.AbstractActivity;
-import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
-import com.google.inject.Provider;
 
 /**
  * 
@@ -26,9 +17,9 @@ import com.google.inject.Provider;
 public class AnophelesMapPresenter extends BaseMapPresenter {
   
   @Inject
-  public AnophelesMapPresenter(CompositeMapView compositeMapView, MapView mapView, ResourceBundle resources) {
+  public AnophelesMapPresenter(ResourceBundle resources) {
     
-    super(compositeMapView, mapView, resources);
+    super(resources);
     
   }
 

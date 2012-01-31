@@ -21,12 +21,11 @@ public class MapExplorer implements EntryPoint {
     
     MapAdminGinjector maj = GWT.create(MapAdminGinjector.class);
     
-    // TODO Auto-generated method stub
     RootLayoutPanel.get().add(maj.getBaseView());
 
     //Not really a base presenter - more an app controller?
     BasePresenter bp = maj.getBasePresenter();
-
+    
     // Goes to place represented on URL or default place
     PlaceHistoryHandler historyHandler = maj.getPlaceHistoryHandler();
     historyHandler.handleCurrentHistory();

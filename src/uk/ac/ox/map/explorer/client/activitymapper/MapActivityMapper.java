@@ -34,7 +34,6 @@ public class MapActivityMapper implements ActivityMapper {
     
     EntityPlace p = (EntityPlace) place;
     String entityName = p.getEntityName();
-//    System.out.println(p.getEntityName());
     
     if (entityName.equals("Country")) {
       return countryMapPresenter;

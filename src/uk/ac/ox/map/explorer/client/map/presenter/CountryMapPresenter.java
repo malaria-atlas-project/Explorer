@@ -4,6 +4,7 @@ package uk.ac.ox.map.explorer.client.map.presenter;
 import java.util.ArrayList;
 import java.util.List;
 
+import uk.ac.ox.map.explorer.client.base.view.BaseView;
 import uk.ac.ox.map.explorer.client.base.view.CompositeMapView;
 import uk.ac.ox.map.explorer.client.event.ExtentChangeRequestEvent;
 import uk.ac.ox.map.explorer.client.event.LayerChangeRequestEvent;
@@ -26,9 +27,9 @@ import com.google.inject.Provider;
 public class CountryMapPresenter extends BaseMapPresenter {
   
   @Inject
-  public CountryMapPresenter(CompositeMapView compositeMapView, MapView mapView, ResourceBundle resources) {
+  public CountryMapPresenter(ResourceBundle resources) {
     
-    super(compositeMapView, mapView, resources);
+    super(resources);
     
   }
 

@@ -34,6 +34,7 @@
         <g:FlowPanel styleName="{res.baseCss.nav}">
           <g:HorizontalPanel>
             <g:FlowPanel ui:field="breadcrumbs">
+              <g:ListBox ui:field="perspectiveSelect"></g:ListBox>
             </g:FlowPanel>
             <g:Label ui:field="currentPlace"></g:Label>
             <g:Label styleName="{style.spacer}">&nbsp;</g:Label>

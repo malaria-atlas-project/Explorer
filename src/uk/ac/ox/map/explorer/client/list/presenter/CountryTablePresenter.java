@@ -5,6 +5,7 @@ import java.util.List;
 import uk.ac.ox.map.explorer.client.base.view.CompositeTableView;
 import uk.ac.ox.map.explorer.client.base.view.SelectionWidget;
 import uk.ac.ox.map.explorer.client.event.CountryCheckedEvent;
+import uk.ac.ox.map.explorer.client.event.CountrySelectedEvent;
 import uk.ac.ox.map.explorer.client.event.ExtentChangeRequestEvent;
 import uk.ac.ox.map.explorer.client.filter.presenter.FilterPresenter;
 import uk.ac.ox.map.explorer.client.list.view.CountryFilterList;
@@ -74,8 +75,7 @@ public class CountryTablePresenter extends AbstractTablePresenter<CountryProxy> 
   
   @Override
   public void fireObjectSelected(CountryProxy obj) {
-    ExtentProxy ex = obj.getExtent();
-    eventBus.fireEvent(new ExtentChangeRequestEvent(ex));
+    eventBus.fireEvent(new CountrySelectedEvent(obj));
   }
 
   @Override

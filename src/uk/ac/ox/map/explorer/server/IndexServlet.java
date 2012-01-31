@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import uk.ac.ox.map.domain.AnoRegion;
 import uk.ac.ox.map.domain.Continent;
 import uk.ac.ox.map.domain.StringType;
+import uk.ac.ox.map.explorer.client.request.AnophelineRequest;
 import uk.ac.ox.map.request.server.SimpleDao;
 
 import com.google.gson.Gson;
@@ -39,6 +41,7 @@ public class IndexServlet extends HttpServlet {
 	  this.conf = conf;
     this.stringTypes = new ArrayList<Class<? extends StringType>>();
     stringTypes.add(Continent.class);
+    stringTypes.add(AnoRegion.class);
   }
 
   @Override

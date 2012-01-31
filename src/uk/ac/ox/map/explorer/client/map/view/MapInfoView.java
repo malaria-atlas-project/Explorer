@@ -1,6 +1,5 @@
 package uk.ac.ox.map.explorer.client.map.view;
 
-import uk.ac.ox.map.explorer.client.map.presenter.MapInfoPresenter;
 import uk.ac.ox.map.explorer.client.rpc.MapInfo;
 
 import com.google.gwt.core.client.GWT;
@@ -26,22 +25,14 @@ public class MapInfoView extends Composite {
   @UiField
   Label siteCount;
   
-  @UiField
-  Label surveyCount;
   
   @UiField
   Label surveyReplicateCount;
 
-  private MapInfoPresenter listener;
 
   public void showMapInfo(MapInfo mi) {
     siteCount.setText("" + mi.getSiteCount());
-    surveyCount.setText("" + mi.getSurveyCount());
     surveyReplicateCount.setText("" + mi.getSurveyReplicateCount());
-  }
-  
-  public void setListener(MapInfoPresenter mip) {
-    this.listener = mip;
   }
 
 }

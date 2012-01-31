@@ -10,6 +10,7 @@
     <class>uk.ac.ox.map.domain.Region</class>
     <class>uk.ac.ox.map.domain.Site</class>
     <class>uk.ac.ox.map.domain.Continent</class>
+    <class>uk.ac.ox.map.domain.AnoRegion</class>
     
     <properties>
     

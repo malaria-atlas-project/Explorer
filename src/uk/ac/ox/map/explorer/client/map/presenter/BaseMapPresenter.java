@@ -30,14 +30,13 @@ public abstract class BaseMapPresenter extends AbstractActivity {
   @Inject
   private KeyPresenter keyPresenter;
 
-  @Inject
-  private MapInfoPresenter mapInfoPresenter;
-
   private boolean isIntialized = false;
 
   private final CompositeMapView compositeMapView;
 
-  public BaseMapPresenter(ResourceBundle resources) {
+  private final BaseMapInfoPresenter mapInfoPresenter;
+
+  public BaseMapPresenter(ResourceBundle resources, BaseMapInfoPresenter mapInfoPresenter) {
 
     this.mapView = new MapView();
 
@@ -45,6 +44,7 @@ public abstract class BaseMapPresenter extends AbstractActivity {
 
     this.compositeMapView = new CompositeMapView(mapView);
 
+    this.mapInfoPresenter = mapInfoPresenter;
   }
 
   @Override

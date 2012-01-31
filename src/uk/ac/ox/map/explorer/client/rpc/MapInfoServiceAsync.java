@@ -7,6 +7,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
  */
 public interface MapInfoServiceAsync {
 
-  void getExtentInfo(Double minX, Double minY, Double maxX, Double maxY, AsyncCallback<String> callback);
+  void getPrExtentInfo(Double minX, Double minY, Double maxX, Double maxY, AsyncCallback<String> callback);
+  void getAnophelineExtentInfo(Long anoId, Double minX, Double minY, Double maxX, Double maxY, AsyncCallback<String> callback);
   
 }

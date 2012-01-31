@@ -21,9 +21,9 @@ import com.google.inject.Inject;
 public class AnophelesMapPresenter extends BaseMapPresenter {
   
   @Inject
-  public AnophelesMapPresenter(ResourceBundle resources) {
+  public AnophelesMapPresenter(ResourceBundle resources, AnophelesMapInfoPresenter mapInfoPresenter) {
     
-    super(resources);
+    super(resources, mapInfoPresenter);
     
   }
   

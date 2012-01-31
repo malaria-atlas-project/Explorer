@@ -1,13 +1,10 @@
 package uk.ac.ox.map.explorer.client;
 
-import uk.ac.ox.map.explorer.client.activitymapper.MapActivityMapper;
 import uk.ac.ox.map.explorer.client.base.view.BaseView;
 import uk.ac.ox.map.explorer.client.place.EntityPlace;
-import uk.ac.ox.map.explorer.client.place.HomePagePlace;
 import uk.ac.ox.map.explorer.client.request.AppRequestFactory;
 import uk.ac.ox.map.explorer.client.resource.ResourceBundle;
 
-import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.SimpleEventBus;
@@ -15,8 +12,6 @@ import com.google.gwt.inject.client.AbstractGinModule;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.gwt.place.shared.PlaceHistoryMapper;
-import com.google.gwt.user.client.ui.RootLayoutPanel;
-import com.google.gwt.user.client.ui.SimpleLayoutPanel;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import com.google.inject.name.Names;

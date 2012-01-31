@@ -9,9 +9,7 @@ public class MapInfo extends JavaScriptObject {
   
   public final native int getSiteCount() /*-{ return this.siteCount; }-*/;
   
-  public final native int getSurveyCount() /*-{ return this.surveyCount; }-*/;
-  
-  public final native int getSurveyReplicateCount() /*-{ return this.surveyReplicateCount; }-*/;
+  public final native int getSurveyReplicateCount() /*-{ return this.uniqueSiteDateCount; }-*/;
     
   public static final native MapInfo fromJson(String input) /*-{ 
 	  return eval('(' + input + ')') 

@@ -4,6 +4,8 @@ import uk.ac.ox.map.explorer.client.BasePresenter;
 import uk.ac.ox.map.explorer.client.map.view.MapView;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ChangeEvent;
+import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.resources.client.CssResource;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -14,6 +16,7 @@ import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.InlineHTML;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.SimpleLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
@@ -51,24 +54,13 @@ public class BaseView extends Composite implements BasePresenter.Display {
   
   @UiField
   SimpleLayoutPanel mapPanel;
-
-//  private MapView mapView;
-//
-//  private CompositeTableView ctv;
-//
-//  private CompositeMapView cmv;
+  
+  @UiField
+  ListBox perspectiveSelect;
 
   @Inject
   public BaseView() {
     initWidget(uiBinder.createAndBindUi(this));
-    
-    
-//    mapView = new MapView();
-//    cmv = new CompositeMapView(mapView);
-//    mapPanel.add(cmv);
-//    
-//    ctv = new CompositeTableView(new SelectionWidget());
-//    tablePanel.add(ctv);
     
   }
 
@@ -103,6 +95,10 @@ public class BaseView extends Composite implements BasePresenter.Display {
   @Override
   public SimpleLayoutPanel getTableDisplay() {
     return tablePanel;
+  }
+
+  public ListBox getPerspectiveSelect() {
+    return perspectiveSelect;
   }
 
 }

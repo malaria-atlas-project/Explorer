@@ -30,6 +30,7 @@ public class MapExplorer implements EntryPoint {
     PlaceHistoryHandler historyHandler = maj.getPlaceHistoryHandler();
     historyHandler.handleCurrentHistory();
     
+    
   }
   
 }

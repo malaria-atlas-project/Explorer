@@ -18,15 +18,9 @@
       </tr>
       <tr>
         <td>
-          <g:Label ui:field="surveyCount" />
-        </td>
-        <td>surveys</td>
-      </tr>
-      <tr>
-        <td>
           <g:Label ui:field="surveyReplicateCount" />
         </td>
-        <td>survey replicates</td>
+        <td>unique site-date combinations</td>
       </tr>
     </table>
     <!-- <c:CellList ui:field=""> </c:CellList> -->

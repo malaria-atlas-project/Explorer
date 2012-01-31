@@ -1,0 +1,13 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:f="urn:import:uk.ac.ox.map.explorer.client.filter.view">
+	
+	<g:HTMLPanel>
+	 <g:VerticalPanel>
+	   
+	   <f:OptionFilter labelText="Region" propertyName="Region" jsVar="AnoRegion" ui:field="region"/>
+	   
+	 </g:VerticalPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 

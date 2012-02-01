@@ -16,7 +16,7 @@ import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import com.google.inject.name.Names;
 
-public class MapAdminClientModule extends AbstractGinModule {
+public class ExplorerClientModule extends AbstractGinModule {
 
   @Override
   protected void configure() {
@@ -25,8 +25,6 @@ public class MapAdminClientModule extends AbstractGinModule {
      * Activity mappers
      */
     bind(EventBus.class).to(SimpleEventBus.class).in(Singleton.class);
-    
-//    bind(ActivityMapper.class).to(AppActivityMapper.class).in(Singleton.class);
     
     bind(PlaceHistoryMapper.class).to(AppPlaceHistoryMapper.class).in(Singleton.class);
     
@@ -44,6 +42,7 @@ public class MapAdminClientModule extends AbstractGinModule {
   }
 
 
+  @SuppressWarnings("deprecation")
   @Provides
   @Singleton
   public PlaceHistoryHandler getHistoryHandler(PlaceController placeController, PlaceHistoryMapper historyMapper, EventBus eventBus) {
@@ -52,24 +51,14 @@ public class MapAdminClientModule extends AbstractGinModule {
     return historyHandler;
   }
 
+  @SuppressWarnings("deprecation")
   @Provides
   @Singleton
   public PlaceController getPlaceController(EventBus eventBus) {
+    
     return new PlaceController(eventBus);
   }
 
-//  @Provides
-//  @Singleton
-//  public ActivityManager getActivityManager(MapActivityMapper mapper, EventBus eventBus) {
-//    RootLayoutPanel rlp = RootLayoutPanel.get();
-//    SimpleLayoutPanel slp = new SimpleLayoutPanel();
-//    rlp.add(slp);
-//    
-//    ActivityManager activityManager = new ActivityManager(mapper, eventBus);
-//    activityManager.setDisplay(slp);
-//    return activityManager;
-//  }
-  
   @Provides
   @Singleton
   public AppRequestFactory getRequestFactory(EventBus eventBus) {

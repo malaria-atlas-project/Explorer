@@ -3,10 +3,12 @@
 	xmlns:g="urn:import:com.google.gwt.user.client.ui"
 	xmlns:f="urn:import:uk.ac.ox.map.explorer.client.filter.view">
 	
+  <ui:with type="uk.ac.ox.map.explorer.client.resource.ResourceBundle" field="res"></ui:with>
 	<g:HTMLPanel>
 	 <g:VerticalPanel>
 	   
-	   <f:OptionFilter labelText="Region" propertyName="Region" jsVar="AnoRegion" ui:field="region"/>
+     <g:Label styleName="{res.panelCss.panelHeader}">Filter species</g:Label>
+	   <f:OptionFilter labelText="Region" propertyName="region" jsVar="AnoRegion" ui:field="region"/>
 	   
 	 </g:VerticalPanel>
 	</g:HTMLPanel>

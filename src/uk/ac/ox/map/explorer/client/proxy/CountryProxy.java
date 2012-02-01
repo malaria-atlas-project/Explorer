@@ -5,7 +5,7 @@ import uk.ac.ox.map.domain.Country;
 import com.google.web.bindery.requestfactory.shared.ProxyFor;
 
 @ProxyFor(Country.class)
-public interface CountryProxy extends EntityProxyRepr {
+public interface CountryProxy extends NamedProxy {
 
   String getId();
 

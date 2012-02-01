@@ -2,7 +2,7 @@ package uk.ac.ox.map.explorer.client.list.view;
 
 import java.util.List;
 
-import uk.ac.ox.map.explorer.client.proxy.CountryProxy;
+import uk.ac.ox.map.explorer.client.proxy.NamedProxy;
 
 import com.google.gwt.cell.client.AbstractCell;
 import com.google.gwt.cell.client.Cell;
@@ -16,9 +16,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
-import com.google.inject.Singleton;
 
-@Singleton
 public class SelectionView extends Composite {
 
   private static SelectionViewUiBinder uiBinder = GWT.create(SelectionViewUiBinder.class);
@@ -33,24 +31,24 @@ public class SelectionView extends Composite {
   Button downloadButton;
   
   
-  private CellList<CountryProxy> cellList;
+  private CellList<NamedProxy> cellList;
 
   public SelectionView() {
     initWidget(uiBinder.createAndBindUi(this));
     
-    Cell<CountryProxy> cell = new AbstractCell<CountryProxy>() {
+    Cell<NamedProxy> cell = new AbstractCell<NamedProxy>() {
       @Override
-      public void render(Context context, CountryProxy value, SafeHtmlBuilder sb) {
+      public void render(Context context, NamedProxy value, SafeHtmlBuilder sb) {
         sb.appendEscaped(value.getName());
       }
     };
     
-    cellList = new CellList<CountryProxy>(cell);
+    cellList = new CellList<NamedProxy>(cell);
     cellListContainer.add(cellList); 
     
   }
   
-  public void setRowData(List<CountryProxy> values) {
+  public void setRowData(List<? extends NamedProxy> values) {
     cellList.setRowData(values);
   }
   

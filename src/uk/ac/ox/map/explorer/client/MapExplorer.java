@@ -15,21 +15,27 @@ public class MapExplorer implements EntryPoint {
   @Override
   public void onModuleLoad() {
     
+    /*
+     * 
+     */
     ResourceBundle.INSTANCE.formCss().ensureInjected();
     ResourceBundle.INSTANCE.baseCss().ensureInjected();
     ResourceBundle.INSTANCE.panelCss().ensureInjected();
     
-    MapAdminGinjector maj = GWT.create(MapAdminGinjector.class);
+    ExplorerGinjector injector = GWT.create(ExplorerGinjector.class);
     
-    RootLayoutPanel.get().add(maj.getBaseView());
+    RootLayoutPanel.get().add(injector.getBaseView());
 
-    //Not really a base presenter - more an app controller?
-    BasePresenter bp = maj.getBasePresenter();
+    /*
+     * Asking injector to create base presenter bootstraps app.
+     */
+    injector.getBasePresenter();
     
-    // Goes to place represented on URL or default place
-    PlaceHistoryHandler historyHandler = maj.getPlaceHistoryHandler();
+    /* 
+     * Go to place represented on URL or default place
+     */
+    PlaceHistoryHandler historyHandler = injector.getPlaceHistoryHandler();
     historyHandler.handleCurrentHistory();
-    
     
   }
   

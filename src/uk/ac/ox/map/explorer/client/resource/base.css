@@ -14,10 +14,15 @@
 @sprite .header {
   gwt-image: 'mapLogo';
   background-position: 5px 5px;
-  width: 100%;
+  width: 314px;
   padding: 5px 5px 5px 5px;
 }
 
 @sprite .nav {
   gwt-image: 'navBackground';
+}
+
+.perspective {
+	padding-top: 20px;
+	padding-left: 20px;
 }

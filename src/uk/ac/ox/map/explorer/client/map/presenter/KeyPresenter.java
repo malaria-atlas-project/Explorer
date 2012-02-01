@@ -35,6 +35,7 @@ public class KeyPresenter extends AbstractActivity {
   }
 
   public void toggleLayerVisibility(String name, boolean checked) {
+    
     eventBus.fireEvent(new LayerChangeRequestEvent(name, checked));
   }
 

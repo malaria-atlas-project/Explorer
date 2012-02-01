@@ -27,8 +27,6 @@ public class KeyView extends Composite {
   private CellList<MapLayer> layers;
   private List<MapLayer> layerList = new ArrayList<MapLayer>();
 
-  private KeyPresenter listener;
-
   private LayerCell lc;
 
 
@@ -39,13 +37,15 @@ public class KeyView extends Composite {
     keyContainer.add(layers);
   }
   
-  public void setListener(KeyPresenter listener) {
-    lc.setListener(listener);
-  }
   
   public void addLayer(MapLayer ml) {
     layerList.add(ml);
     layers.setRowData(layerList);
+  }
+
+
+  public void setListener(KeyPresenter keyPresenter) {
+    lc.setListener(keyPresenter);
   }
 
 }

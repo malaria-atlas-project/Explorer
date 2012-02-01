@@ -3,13 +3,11 @@ package uk.ac.ox.map.explorer.client.list.presenter;
 import java.util.List;
 
 import uk.ac.ox.map.explorer.client.base.view.CompositeTableView;
-import uk.ac.ox.map.explorer.client.base.view.SelectionWidget;
 import uk.ac.ox.map.explorer.client.event.AnophelineCheckedEvent;
 import uk.ac.ox.map.explorer.client.event.AnophelineSelectedEvent;
 import uk.ac.ox.map.explorer.client.filter.presenter.FilterPresenter;
+import uk.ac.ox.map.explorer.client.list.view.AnophelineFilterList;
 import uk.ac.ox.map.explorer.client.list.view.AnophelineTableView;
-import uk.ac.ox.map.explorer.client.list.view.CountryFilterList;
-import uk.ac.ox.map.explorer.client.list.view.SelectionView;
 import uk.ac.ox.map.explorer.client.proxy.AnophelineProxy;
 import uk.ac.ox.map.explorer.client.request.AppRequestFactory;
 
@@ -21,24 +19,24 @@ import com.google.web.bindery.requestfactory.shared.Request;
 
 public class AnophelesTablePresenter extends AbstractTablePresenter<AnophelineProxy> {
   
-  private final CountryFilterList filterList;
+  private final AnophelineFilterList filterList;
   
   @Inject
   private EventBus eventBus;
 
-  private SelectionView selectionView;
-
   private final CompositeTableView compositeTableView;
   
   @Inject
-  public AnophelesTablePresenter(PlaceController placeController, AnophelineTableView tableView, CountryFilterList filterList, SelectionView selectionView, AppRequestFactory rf) {
+  private AnophelesSelectionPresenter selectionPresenter;
+  
+  @Inject
+  public AnophelesTablePresenter(PlaceController placeController, AnophelineTableView tableView, AnophelineFilterList filterList, AppRequestFactory rf) {
     
     super(placeController, tableView);
     
-    this.compositeTableView = new CompositeTableView(new SelectionWidget());
+    this.compositeTableView = new CompositeTableView();
     
     this.filterList = filterList;
-    this.selectionView = selectionView;
     
     this.dataProvider = new AbstractDataProvider<AnophelineProxy>(rf, tableView){
 
@@ -49,7 +47,7 @@ public class AnophelesTablePresenter extends AbstractTablePresenter<AnophelinePr
 
       @Override
       protected Request<Long> getSearchCountRequest(String searchString) {
-        return requestFactory.countryRequest().searchCount(searchString);
+        return requestFactory.anoRequest().searchCount(searchString);
       }
       
     };
@@ -64,7 +62,9 @@ public class AnophelesTablePresenter extends AbstractTablePresenter<AnophelinePr
     FilterPresenter filterPresenter = new FilterPresenter(place, filterList);
     filterPresenter.start(compositeTableView.getFilterPanel(), eventBus);
     
-    compositeTableView.getSelectionPanel().setWidget(selectionView);
+//    compositeTableView.getSelectionPanel().setWidget(selectionView);
+    
+    selectionPresenter.start(compositeTableView.getSelectionPanel(), eventBus);
     
     this.eventBus = eventBus;
   };

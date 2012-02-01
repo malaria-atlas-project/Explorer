@@ -3,16 +3,12 @@ package uk.ac.ox.map.explorer.client.list.presenter;
 import java.util.List;
 
 import uk.ac.ox.map.explorer.client.base.view.CompositeTableView;
-import uk.ac.ox.map.explorer.client.base.view.SelectionWidget;
 import uk.ac.ox.map.explorer.client.event.CountryCheckedEvent;
 import uk.ac.ox.map.explorer.client.event.CountrySelectedEvent;
-import uk.ac.ox.map.explorer.client.event.ExtentChangeRequestEvent;
 import uk.ac.ox.map.explorer.client.filter.presenter.FilterPresenter;
 import uk.ac.ox.map.explorer.client.list.view.CountryFilterList;
 import uk.ac.ox.map.explorer.client.list.view.CountryTableView;
-import uk.ac.ox.map.explorer.client.list.view.SelectionView;
 import uk.ac.ox.map.explorer.client.proxy.CountryProxy;
-import uk.ac.ox.map.explorer.client.proxy.ExtentProxy;
 import uk.ac.ox.map.explorer.client.request.AppRequestFactory;
 
 import com.google.gwt.event.shared.EventBus;
@@ -27,20 +23,20 @@ public class CountryTablePresenter extends AbstractTablePresenter<CountryProxy> 
   
   @Inject
   private EventBus eventBus;
-
-  private SelectionView selectionView;
+  
+  @Inject
+  private CountrySelectionPresenter selectionPresenter;
 
   private final CompositeTableView compositeTableView;
   
   @Inject
-  public CountryTablePresenter(PlaceController placeController, CountryTableView tableView, CountryFilterList filterList, SelectionView selectionView, AppRequestFactory rf) {
+  public CountryTablePresenter(PlaceController placeController, CountryTableView tableView, CountryFilterList filterList, AppRequestFactory rf) {
     
     super(placeController, tableView);
     
-    this.compositeTableView = new CompositeTableView(new SelectionWidget());
+    this.compositeTableView = new CompositeTableView();
     
     this.filterList = filterList;
-    this.selectionView = selectionView;
     
     this.dataProvider = new AbstractDataProvider<CountryProxy>(rf, tableView){
 
@@ -60,17 +56,15 @@ public class CountryTablePresenter extends AbstractTablePresenter<CountryProxy> 
   @Override
   public void start(AcceptsOneWidget panel, EventBus eventBus) {
     
-    
     panel.setWidget(compositeTableView);
     super.start(compositeTableView.getTablePanel(), eventBus);
     
     FilterPresenter filterPresenter = new FilterPresenter(place, filterList);
     filterPresenter.start(compositeTableView.getFilterPanel(), eventBus);
     
-    compositeTableView.getSelectionPanel().setWidget(selectionView);
+    selectionPresenter.start(compositeTableView.getSelectionPanel(), eventBus);
     
     this.eventBus = eventBus;
-    
   };
   
   @Override

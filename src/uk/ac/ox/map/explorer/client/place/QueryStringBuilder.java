@@ -46,8 +46,11 @@ public class QueryStringBuilder {
     return this;
   }
 
-  public QueryStringBuilder addParam(String paramIdentifier, String[] param) {
+  public QueryStringBuilder addParam(String paramIdentifier, String ... param) {
 
+    if (sb.length() > 1) {
+      sb.append(delimiter);
+    }
     sb.append(paramIdentifier);
     sb.append('=');
     for (int i = 0; i < param.length; i++) {

@@ -13,7 +13,7 @@ import com.google.gwt.event.shared.HandlerRegistration;
 public class AnophelineCheckedEvent extends GwtEvent<AnophelineCheckedEvent.Handler> {
   
   public interface Handler extends EventHandler {
-    void onCountryChecked(AnophelineCheckedEvent requestEvent);
+    void onObjectChecked(AnophelineCheckedEvent requestEvent);
   }
 
   public static final Type<Handler> TYPE = new Type<Handler>();
@@ -54,7 +54,7 @@ public class AnophelineCheckedEvent extends GwtEvent<AnophelineCheckedEvent.Hand
 
   @Override
   protected void dispatch(Handler handler) {
-    handler.onCountryChecked(this);
+    handler.onObjectChecked(this);
   }
 
 }

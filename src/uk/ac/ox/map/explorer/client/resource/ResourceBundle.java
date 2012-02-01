@@ -19,7 +19,7 @@ public interface ResourceBundle extends ClientBundle {
     String successMessage();
     String header();
     String nav();
-    
+    String perspective();
   }
   
   public interface PanelCss extends CssResource {

@@ -9,10 +9,17 @@ public class QueryStringBuilderTest {
   
   @Test
   public void testQsMulti() {
-    String[] ids = {"BEL", "BRA", "BEN"};
     QueryStringBuilder qsb = new QueryStringBuilder('&');
-    qsb.addParam("country", ids);
+    qsb.addParam("country", "BEL", "BRA", "BEN");
     Assert.assertEquals("country=BEL,BRA,BEN", qsb.finish());
+  }
+  
+  @Test
+  public void testQsMulti2() {
+    QueryStringBuilder qsb = new QueryStringBuilder('&');
+    qsb.addParam("country", "BEL", "BRA", "BEN");
+    qsb.addParam("ids", "BEL", "BRA", "BEN");
+    Assert.assertEquals("country=BEL,BRA,BEN&ids=BEL,BRA,BEN", qsb.finish());
   }
   
   @Test

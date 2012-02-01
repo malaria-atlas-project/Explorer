@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import uk.ac.ox.map.explorer.client.event.CountrySelectedEvent;
-import uk.ac.ox.map.explorer.client.event.ExtentChangeRequestEvent;
 import uk.ac.ox.map.explorer.client.proxy.ExtentProxy;
 import uk.ac.ox.map.explorer.client.resource.ResourceBundle;
 

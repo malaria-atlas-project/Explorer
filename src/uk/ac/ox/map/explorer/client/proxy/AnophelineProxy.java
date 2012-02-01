@@ -5,7 +5,7 @@ import uk.ac.ox.map.domain.Anopheline;
 import com.google.web.bindery.requestfactory.shared.ProxyFor;
 
 @ProxyFor(Anopheline.class)
-public interface AnophelineProxy extends EntityProxyRepr {
+public interface AnophelineProxy extends NamedProxy {
 
   Long getId();
 

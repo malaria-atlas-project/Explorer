@@ -11,7 +11,7 @@ import com.google.gwt.event.shared.HandlerRegistration;
 public class LayerChangeRequestEvent extends GwtEvent<LayerChangeRequestEvent.Handler> {
   
   public interface Handler extends EventHandler {
-    void onExtentChangeRequest(LayerChangeRequestEvent requestEvent);
+    void onLayerChangeRequest(LayerChangeRequestEvent requestEvent);
   }
 
   public static final Type<Handler> TYPE = new Type<Handler>();
@@ -54,7 +54,7 @@ public class LayerChangeRequestEvent extends GwtEvent<LayerChangeRequestEvent.Ha
 
   @Override
   protected void dispatch(Handler handler) {
-    handler.onExtentChangeRequest(this);
+    handler.onLayerChangeRequest(this);
   }
 
 }

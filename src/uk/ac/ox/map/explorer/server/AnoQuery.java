@@ -15,28 +15,24 @@ import org.apache.poi.ss.usermodel.Workbook;
 
 import uk.ac.ox.map.domain.EMF;
 
-public class PrQuery  {
+public class AnoQuery  {
 
-  private final Sheet sheet;
-  private final CellStyle boldCellStyle;
+  private Sheet sheet;
+  private CellStyle boldCellStyle;
   
   private int currRow = 0;
 
   private enum Cols {
-    Permission_to_release,
-    Source_id1, Citation1, 
-    Source_id2, Citation2, 
-    Source_id3, Citation3, 
-    Country, Admin1_paper, Admin2_paper, 
-    Site_name, Area_type, Rural_Urban, Latitude, Longitude, LatLong_source, Site_notes, 
-    Method, RDT_type, XS, Survey_notes, 
-    Month_start, Month_end, Year_start, Year_end, Lower_age, Upper_age, Examined, Pf_pos, Pv_pos, Pf_PR,
-    surveyReplicateId
+    Month_start, Month_end, Year_start, Year_end, ASSI, Control_Type, Notes, AnoID, SiteID, SourceID
   }
   
-  public PrQuery(Workbook wb, List<String> countryIds) {
+  public AnoQuery(Workbook wb, List<Long> itemIds) {
     
     this.sheet = wb.createSheet();
+    
+    if (itemIds == null || itemIds.size() < 1) {
+      return;
+    }
     
     this.boldCellStyle = wb.createCellStyle();
     Font f = wb.createFont();
@@ -54,30 +50,12 @@ public class PrQuery  {
     EntityManager em = EMF.get().createEntityManager();
     Query q = em.createNativeQuery(
     "select " +
-    "not exists (select * from source sou join pr2010.source_survey ssu on sou.id = ssu.source_id where (permission_type_id = 'Confidential' or permission_type_id = 'Neither') and su.id = ssu.survey_id), " +
-    "so1.id as source_id1, so1.citation as citation1, " +
-    "so2.id as source_id2, so2.citation as citation2, " +
-    "so3.id as source_id3, so3.citation as citation3, " +
-    "c.name, " +
-    "su.admin1_paper, su.admin2_paper, si.name, si.area_type_id, si.rural_urban, si.latitude, si.longitude, si.latlong_source_id, si.notes, " +
-    "su.method, su.rdt_type, su.nxs, su.notes, " +
-    "sr.month_start, sr.year_start, sr.month_end, sr.year_end, sr.lower_age, sr.upper_age, sr.examined, sr.pf_pos, sr.pv_pos, sr.pf_pr, " +
-    "sr.id " +
-    "from pr2010.survey_replicate sr " +
-    "join pr2010.survey su on su.id = sr.survey_id " +
-    "join site si on si.id = su.site_id " +
-    "join country c on c.id = si.country_id " +
-    "join pr2010.source_survey ss1 on ss1.survey_id = su.id and ss1.ordinal = 0 " +
-    "join source so1 on ss1.source_id = so1.id " +
-    "left join pr2010.source_survey ss2 on ss2.survey_id = su.id and ss2.ordinal = 1 " +
-    "left join source so2 on so2.id = ss2.source_id " +
-    "left join pr2010.source_survey ss3 on ss3.survey_id = su.id and ss3.ordinal = 2 " +
-    "left join source so3 on so3.id = ss3.source_id " +
-    "where c.id in :countryList " +
-    "order by so1.id, si.name"
+    "start_month, end_month, start_year, end_year, \"ASSI\", control_type_id, " + 
+    "notes, anopheline_id, site_id, source_id " +
+    "from vector.sampleperiod_to_map where anopheline_id in (:ano)"
     );
     
-    q.setParameter("countryList", countryIds);
+    q.setParameter("ano", itemIds);
     
     @SuppressWarnings("unchecked")
     List<Object[]> l = q.getResultList();
@@ -89,7 +67,7 @@ public class PrQuery  {
     /*
      * Hide id columns
      */
-    sheet.setColumnHidden(Cols.surveyReplicateId.ordinal(), true);
+//    sheet.setColumnHidden(Cols.surveyReplicateId.ordinal(), true);
   }
   
   private void addHeaderRow() {

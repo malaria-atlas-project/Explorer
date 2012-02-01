@@ -21,11 +21,10 @@ public class CompositeTableView extends Composite {
   @UiField
   SimplePanel filterPanel;
   
-  @UiField(provided = true)
+  @UiField
   SimplePanel selectionPanel;
 
-  public CompositeTableView(SelectionWidget selectionWidget) {
-    this.selectionPanel = selectionWidget;
+  public CompositeTableView() {
     initWidget(uiBinder.createAndBindUi(this));
   }
 

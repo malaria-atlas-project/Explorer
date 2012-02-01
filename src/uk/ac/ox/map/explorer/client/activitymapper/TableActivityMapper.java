@@ -3,10 +3,7 @@ package uk.ac.ox.map.explorer.client.activitymapper;
 
 import uk.ac.ox.map.explorer.client.list.presenter.AnophelesTablePresenter;
 import uk.ac.ox.map.explorer.client.list.presenter.CountryTablePresenter;
-import uk.ac.ox.map.explorer.client.map.presenter.CountryMapPresenter;
 import uk.ac.ox.map.explorer.client.place.EntityPlace;
-import uk.ac.ox.map.explorer.client.place.HomePagePlace;
-
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.place.shared.Place;

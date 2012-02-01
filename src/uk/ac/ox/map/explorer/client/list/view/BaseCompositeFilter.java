@@ -1,4 +1,4 @@
-package uk.ac.ox.map.explorer.client.filter.view.composite;
+package uk.ac.ox.map.explorer.client.list.view;
 
 import java.util.ArrayList;
 import java.util.List;

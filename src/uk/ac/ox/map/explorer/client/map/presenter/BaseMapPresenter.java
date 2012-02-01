@@ -2,7 +2,6 @@ package uk.ac.ox.map.explorer.client.map.presenter;
 
 import java.util.List;
 
-import uk.ac.ox.map.explorer.client.base.view.BaseView;
 import uk.ac.ox.map.explorer.client.base.view.CompositeMapView;
 import uk.ac.ox.map.explorer.client.event.ExtentChangeRequestEvent;
 import uk.ac.ox.map.explorer.client.event.LayerChangeRequestEvent;
@@ -76,7 +75,7 @@ public abstract class BaseMapPresenter extends AbstractActivity {
     });
 
     eventBus.addHandler(LayerChangeRequestEvent.TYPE, new LayerChangeRequestEvent.Handler() {
-      public void onExtentChangeRequest(LayerChangeRequestEvent layerChangeEvent) {
+      public void onLayerChangeRequest(LayerChangeRequestEvent layerChangeEvent) {
         mapView.toggleLayer(layerChangeEvent.getLayerName(), layerChangeEvent.isActive());
       }
     });

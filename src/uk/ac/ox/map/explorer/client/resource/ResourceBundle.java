@@ -54,7 +54,7 @@ public interface ResourceBundle extends ClientBundle {
   @Source("alert_icon.gif")
   public ImageResource alertIcon();
   
-  @Source("endemicity_scale_120.png")
+  @Source("pf_endemicity.png")
   public ImageResource endemicityScale();
   
   @Source("country_boundary.png")

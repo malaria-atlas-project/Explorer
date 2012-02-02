@@ -20,6 +20,8 @@ import com.google.inject.Inject;
 
 public class AnophelesMapPresenter extends BaseMapPresenter {
   
+  private static final String ANOPHELES_ANOPHELINE_DISPLAY = "Anopheles:anopheline_display";
+
   @Inject
   public AnophelesMapPresenter(ResourceBundle resources, AnophelesMapInfoPresenter mapInfoPresenter) {
     
@@ -38,7 +40,7 @@ public class AnophelesMapPresenter extends BaseMapPresenter {
         ExtentProxy extent = requestEvent.getAnopheline().getExtent();
         mapView.zoomToBounds(extent);
         
-        mapView.setCql("Presence points", "anopheline_id=" + requestEvent.getAnopheline().getId());
+        mapView.setCql(ANOPHELES_ANOPHELINE_DISPLAY, "anopheline_id=" + requestEvent.getAnopheline().getId());
       }
     });
     
@@ -49,7 +51,7 @@ public class AnophelesMapPresenter extends BaseMapPresenter {
     
     List<MapLayer> layers = new ArrayList<MapLayer>();
     layers.add(new MapLayer("Static:admin0", "Country boundaries", resources.countryBoundary(), true));
-    layers.add(new MapLayer("Anopheles:anopheline_display", "Presence points", resources.prPoint(), false));
+    layers.add(new MapLayer(ANOPHELES_ANOPHELINE_DISPLAY, "Presence points", resources.prPoint(), false));
     
     for (MapLayer mapLayer : layers) {
       mapView.addWmsLayer(mapLayer, true);

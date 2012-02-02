@@ -44,7 +44,7 @@ public class CountryMapPresenter extends BaseMapPresenter {
   public List<MapLayer> addLayers() {
     
     List<MapLayer> layers = new ArrayList<MapLayer>();
-    layers.add(new MapLayer("Base:pr_mean", "2010 endemicity", resources.endemicityScale(), true));
+    layers.add(new MapLayer("Base:pr_mean", "2010 endemicity (<i>Pf</i>PR2-10)", resources.endemicityScale(), true));
     layers.add(new MapLayer("Static:admin0", "Country boundaries", resources.countryBoundary(), true));
     layers.add(new MapLayer("PR:pf_points_available", "Pf points", resources.prPoint(), true));
     

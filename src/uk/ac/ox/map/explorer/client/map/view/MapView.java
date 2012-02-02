@@ -2,6 +2,7 @@ package uk.ac.ox.map.explorer.client.map.view;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 
 import org.gwtopenmaps.openlayers.client.Bounds;
@@ -10,10 +11,10 @@ import org.gwtopenmaps.openlayers.client.Map;
 import org.gwtopenmaps.openlayers.client.MapOptions;
 import org.gwtopenmaps.openlayers.client.MapWidget;
 import org.gwtopenmaps.openlayers.client.Marker;
+import org.gwtopenmaps.openlayers.client.Size;
 import org.gwtopenmaps.openlayers.client.control.LayerSwitcher;
 import org.gwtopenmaps.openlayers.client.event.MapClickListener;
 import org.gwtopenmaps.openlayers.client.event.MapMoveEndListener;
-import org.gwtopenmaps.openlayers.client.layer.Layer;
 import org.gwtopenmaps.openlayers.client.layer.Markers;
 import org.gwtopenmaps.openlayers.client.layer.WMS;
 import org.gwtopenmaps.openlayers.client.layer.WMSParams;
@@ -25,6 +26,11 @@ import uk.ac.ox.map.explorer.client.proxy.SiteProxy;
 
 import com.google.gwt.user.client.ui.Composite;
 
+/**
+ * 
+ * 
+ * @author will
+ */
 public class MapView extends Composite {
 
   private MapWidget mapWidget;
@@ -37,12 +43,11 @@ public class MapView extends Composite {
   private String gwcUrl = "http://map1.zoo.ox.ac.uk/geoserver/gwc/service/wms";
   private String wmsUrl = "http://map1.zoo.ox.ac.uk/geoserver/wms";
   
-  private List<WMS> wmsLayers = new ArrayList<WMS>();
+  private java.util.Map<String, WMS> wmsLayerMap = new HashMap<String, WMS>();
 
   public MapView() {
 
     MapOptions defaultMapOptions = new MapOptions();
-//    defaultMapOptions.setTileSize(new Size(512, 512));
     mapWidget = new MapWidget("100%", "100%", defaultMapOptions);
     map = mapWidget.getMap();
 
@@ -99,10 +104,19 @@ public class MapView extends Composite {
       WMS wms = new WMS(wmsLayer.getName(), url, params);
       wms.setIsBaseLayer(false);
       map.addLayer(wms);
-      wmsLayers.add(wms);
+      
+      wmsLayerMap.put(wmsLayer.getWmsLayerName(), wms);
+      
   }
   
-
+  /**
+   * Zoom to smallest extent that will enclose this bounding box
+   * 
+   * @param minx
+   * @param miny
+   * @param maxx
+   * @param maxy
+   */
   public void zoomToBounds(Double minx, Double miny, Double maxx, Double maxy) {
     if (minx == null || miny == null || maxx == null || maxy == null) {
       return;
@@ -119,7 +133,6 @@ public class MapView extends Composite {
     }
 
     for (SiteProxy site : sites) {
-      // System.out.println("site");
 
       LonLat ll = new LonLat(site.getLongitude().doubleValue(), site.getLatitude().doubleValue());
       if (marker == null) {
@@ -152,22 +165,27 @@ public class MapView extends Composite {
    * @param layerName
    * @param active
    */
-  public void toggleLayer(String layerName, boolean active) {
+  public void toggleLayer(String wmslayerName, boolean active) {
     
-    Layer lyr = map.getLayerByName(layerName);
+    WMS lyr = wmsLayerMap.get(wmslayerName);
     if (lyr != null) {
       lyr.setIsVisible(active);
     }
   }
   
-  public void setCql(String layerName, String cql) {
+  /**
+   * Updates the CQL filter for layer.
+   * 
+   * @param wmsLayerName
+   * @param cql
+   */
+  public void setCql(String wmsLayerName, String cql) {
     
-    for (WMS wms : wmsLayers) {
-	    if (wms.getName().equals(layerName)) {
+    WMS lyr = wmsLayerMap.get(wmsLayerName);
+    if (lyr != null) {
 	      WMSParams params = new WMSParams();
 	      params.setParameter("cql_filter", cql);
-	      wms.mergeNewParams(params);
-	    }
+	      lyr.mergeNewParams(params);
     }
     
   }

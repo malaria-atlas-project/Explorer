@@ -25,7 +25,8 @@
     
 		<dependency org="com.google.gwt.google-apis" name="gwt-maps" rev="1.1.1" conf="build->default"/>
 		<dependency org="com.google.gwt.inject" name="gin" rev="1.5" conf="build->default"/>
-		<dependency org="org.gwtopenmaps" name="gwt-openlayers-client" rev="0.62-SNAPSHOT" conf="build->default"/>
+    <dependency org="org.gwtopenmaps.openlayers" name="gwt-openlayers-client" rev="0.7" conf="build->default"/>
+    
     <dependency org="org.adamtacy" name="gwt-fx" rev="0.5.0" conf="build->default">
         <exclude name='gwt-user' />
     </dependency>

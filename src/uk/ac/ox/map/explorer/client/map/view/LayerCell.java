@@ -77,7 +77,7 @@ public class LayerCell extends AbstractCell<MapLayer> {
         Window.alert("null input");
       }
       if (listener != null && el != null) {
-        listener.toggleLayerVisibility(value.getName(), el.isChecked());
+        listener.toggleLayerVisibility(value.getWmsLayerName(), el.isChecked());
       }
     }
   }

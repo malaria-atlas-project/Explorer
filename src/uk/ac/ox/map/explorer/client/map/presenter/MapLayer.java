@@ -9,8 +9,8 @@ public class MapLayer {
   private ImageResource imageResource;
   private boolean useWebCache;
 
-  public MapLayer(String name, String description, ImageResource imageResource, boolean useWebCache) {
-    this.name = name;
+  public MapLayer(String wmsName, String description, ImageResource imageResource, boolean useWebCache) {
+    this.name = wmsName;
     this.description = description;
     this.imageResource = imageResource;
     this.useWebCache = useWebCache;

@@ -7,6 +7,7 @@ import uk.ac.ox.map.explorer.client.event.ExtentChangeRequestEvent;
 import uk.ac.ox.map.explorer.client.event.LayerChangeRequestEvent;
 import uk.ac.ox.map.explorer.client.map.view.MapView;
 import uk.ac.ox.map.explorer.client.proxy.ExtentProxy;
+import uk.ac.ox.map.explorer.client.proxy.seed.MapLayer;
 import uk.ac.ox.map.explorer.client.resource.ResourceBundle;
 
 import com.google.gwt.activity.shared.AbstractActivity;
@@ -57,7 +58,13 @@ public abstract class BaseMapPresenter extends AbstractActivity {
 
       mapView.setListener(this);
 
-      List<MapLayer> layers = addLayers();
+      /*
+       * Get layers (from subclass) and add to map and key
+       */
+      List<MapLayer> layers = getLayers();
+      for (MapLayer mapLayer : layers) {
+        mapView.addWmsLayer(mapLayer, true);
+      }
 
       keyPresenter.setLayers(layers);
     }
@@ -85,13 +92,12 @@ public abstract class BaseMapPresenter extends AbstractActivity {
   }
 
   public void fireMapClicked(double lon, double lat) {
-    System.out.println(lon);
-    System.out.println(lat);
+    
   }
 
   public void fireMapMoveEnd() {
     mapInfoPresenter.updateMapInfo(mapView.getExtent());
   }
 
-  public abstract List<MapLayer> addLayers();
+  public abstract List<MapLayer> getLayers();
 }

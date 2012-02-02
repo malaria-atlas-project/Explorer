@@ -4,12 +4,14 @@ import uk.ac.ox.map.explorer.client.activitymapper.MapActivityMapper;
 import uk.ac.ox.map.explorer.client.activitymapper.TableActivityMapper;
 import uk.ac.ox.map.explorer.client.base.view.BaseView;
 import uk.ac.ox.map.explorer.client.place.EntityPlace;
+import uk.ac.ox.map.explorer.client.proxy.seed.RetrieveVars;
 
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.History;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.SimpleLayoutPanel;

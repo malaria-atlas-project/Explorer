@@ -10,6 +10,8 @@
     <script type="text/javascript" language="javascript">
     
       var seedJson = ${seedJson};
+      var layers = ${layers};
+      var perspectives = '${perspectives}';
    		
     </script>
     

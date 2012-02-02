@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import uk.ac.ox.map.explorer.client.list.presenter.AbstractTablePresenter;
+import uk.ac.ox.map.explorer.client.resource.DataGridResource;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -25,7 +26,7 @@ public class TableView<T> extends Composite {
   interface TableViewUiBinder extends UiBinder<Widget, TableView> {
   }
 
-  @UiField
+  @UiField(provided = true)
   DataGrid<T> dataGrid;
 
 
@@ -36,6 +37,8 @@ public class TableView<T> extends Composite {
   private Map<Column<?, ?>, String> sortableColumns = new HashMap<Column<?,?>, String>();
 
   public TableView(int pageSize) {
+    DataGridResource resource = GWT.create(DataGridResource.class);
+    dataGrid = new DataGrid<T>(pageSize, resource);
 
     initWidget(uiBinder.createAndBindUi(this));
     

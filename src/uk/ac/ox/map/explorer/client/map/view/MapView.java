@@ -1,9 +1,7 @@
 package uk.ac.ox.map.explorer.client.map.view;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 
 import org.gwtopenmaps.openlayers.client.Bounds;
 import org.gwtopenmaps.openlayers.client.LonLat;
@@ -11,7 +9,6 @@ import org.gwtopenmaps.openlayers.client.Map;
 import org.gwtopenmaps.openlayers.client.MapOptions;
 import org.gwtopenmaps.openlayers.client.MapWidget;
 import org.gwtopenmaps.openlayers.client.Marker;
-import org.gwtopenmaps.openlayers.client.Size;
 import org.gwtopenmaps.openlayers.client.control.LayerSwitcher;
 import org.gwtopenmaps.openlayers.client.event.MapClickListener;
 import org.gwtopenmaps.openlayers.client.event.MapMoveEndListener;
@@ -20,9 +17,9 @@ import org.gwtopenmaps.openlayers.client.layer.WMS;
 import org.gwtopenmaps.openlayers.client.layer.WMSParams;
 
 import uk.ac.ox.map.explorer.client.map.presenter.BaseMapPresenter;
-import uk.ac.ox.map.explorer.client.map.presenter.MapLayer;
 import uk.ac.ox.map.explorer.client.proxy.ExtentProxy;
 import uk.ac.ox.map.explorer.client.proxy.SiteProxy;
+import uk.ac.ox.map.explorer.client.proxy.seed.MapLayer;
 
 import com.google.gwt.user.client.ui.Composite;
 
@@ -93,19 +90,19 @@ public class MapView extends Composite {
     this.listener = baseMapPresenter;
   }
 
-  public void addWmsLayer(MapLayer wmsLayer, boolean isTransparent) {
+  public void addWmsLayer(MapLayer mapLayer, boolean isTransparent) {
     
-      String url = wmsLayer.getUseWebCache() ? gwcUrl : wmsUrl;
+      String url = mapLayer.getUseWebCache() ? gwcUrl : wmsUrl;
     
       WMSParams params = new WMSParams();
-      params.setLayers(wmsLayer.getWmsLayerName());
+      params.setLayers(mapLayer.getWmsLayerName());
       params.setIsTransparent(isTransparent);
       
-      WMS wms = new WMS(wmsLayer.getName(), url, params);
+      WMS wms = new WMS(mapLayer.getWmsLayerName(), url, params);
       wms.setIsBaseLayer(false);
       map.addLayer(wms);
       
-      wmsLayerMap.put(wmsLayer.getWmsLayerName(), wms);
+      wmsLayerMap.put(mapLayer.getWmsLayerName(), wms);
       
   }
   

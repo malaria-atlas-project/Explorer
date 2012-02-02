@@ -1,0 +1,49 @@
+
+/*
+http://www.color-hex.com/gradient/7aab2f
+*/
+
+/*
+* Unselected rows
+*/
+.dataGridOddRow {
+  /*
+  background: #f8f5fb;
+  */
+  background: #edf3e3;
+}
+
+.dataGridOddRowCell {
+	/*
+  border: selectionBorderWidth solid #f8f5fb;
+  */
+  border: selectionBorderWidth solid #edf3e3;
+}
+
+/*
+* Selected rows
+*/
+.dataGridSelectedRow {
+  /*
+  background: #c2acd3;
+  */
+  background: #8db74e;
+  color: white;
+  height: auto;
+  overflow: auto;
+}
+
+.dataGridSelectedRowCell {
+  /*
+  border: selectionBorderWidth solid #c2acd3;
+  */
+  border: selectionBorderWidth solid #8db74e;
+}
+
+.dataGridHoveredRow {
+  background: #eee;
+}
+
+.dataGridHoveredRowCell {
+  border: selectionBorderWidth solid #eee;
+}

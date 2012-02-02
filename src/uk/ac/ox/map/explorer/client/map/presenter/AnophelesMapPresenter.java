@@ -6,6 +6,8 @@ import java.util.List;
 
 import uk.ac.ox.map.explorer.client.event.AnophelineSelectedEvent;
 import uk.ac.ox.map.explorer.client.proxy.ExtentProxy;
+import uk.ac.ox.map.explorer.client.proxy.seed.MapLayer;
+import uk.ac.ox.map.explorer.client.proxy.seed.RetrieveVars;
 import uk.ac.ox.map.explorer.client.resource.ResourceBundle;
 
 import com.google.gwt.event.shared.EventBus;
@@ -47,16 +49,19 @@ public class AnophelesMapPresenter extends BaseMapPresenter {
   }
 
   @Override
-  public List<MapLayer> addLayers() {
+  public List<MapLayer> getLayers() {
     
-    List<MapLayer> layers = new ArrayList<MapLayer>();
-    layers.add(new MapLayer("Static:admin0", "Country boundaries", resources.countryBoundary(), true));
-    layers.add(new MapLayer(ANOPHELES_ANOPHELINE_DISPLAY, "Presence points", resources.prPoint(), false));
+//    List<MapLayer> layers = new ArrayList<MapLayer>();
+//    layers.add(new MapLayer("Static:admin0", "Country boundaries", resources.countryBoundary(), true, "Country boundaries"));
+//    layers.add(new MapLayer(ANOPHELES_ANOPHELINE_DISPLAY, "Presence points", resources.prPoint(), false, "Ano points"));
     
-    for (MapLayer mapLayer : layers) {
-      mapView.addWmsLayer(mapLayer, true);
-    }
+//    for (MapLayer mapLayer : layers) {
+//      mapView.addWmsLayer(mapLayer, true);
+//    }
+//    
+//    return layers;
     
-    return layers;
+    return new RetrieveVars().getLayers("Anopheles");
+    
   }
 }

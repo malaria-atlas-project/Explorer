@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import uk.ac.ox.map.domain.AnoRegion;
 import uk.ac.ox.map.domain.Continent;
+import uk.ac.ox.map.domain.ExplorerPerspective;
 import uk.ac.ox.map.domain.StringType;
 import uk.ac.ox.map.request.server.SimpleDao;
 
@@ -33,6 +34,7 @@ public class IndexServlet extends HttpServlet {
   private final Provider<SimpleDao> daoProvider;
   private List<Class<? extends StringType>> stringTypes;
   private Configuration conf;
+  private LayerAutoBeanEncoder layerEncoder = new LayerAutoBeanEncoder();
   
 	@Inject
 	public IndexServlet(Provider<SimpleDao> daoProvider, Configuration conf) {
@@ -52,6 +54,11 @@ public class IndexServlet extends HttpServlet {
     
     Map<String, String> root = new HashMap<String, String>();
     root.put("seedJson", getJson(dao));
+    
+    List<ExplorerPerspective> perspectives = dao.all(ExplorerPerspective.class);
+    for (ExplorerPerspective explorerPerspective : perspectives) {
+      root.put(explorerPerspective.getId(), layerEncoder.getLayerPayload(explorerPerspective.getLayers()));
+    }
     
     /*
      * Output template

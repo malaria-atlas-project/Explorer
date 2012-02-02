@@ -4,6 +4,7 @@ import java.util.List;
 
 import uk.ac.ox.map.explorer.client.event.LayerChangeRequestEvent;
 import uk.ac.ox.map.explorer.client.map.view.KeyView;
+import uk.ac.ox.map.explorer.client.proxy.seed.MapLayer;
 import uk.ac.ox.map.explorer.client.resource.ResourceBundle;
 
 import com.google.gwt.activity.shared.AbstractActivity;
@@ -29,9 +30,10 @@ public class KeyPresenter extends AbstractActivity {
   }
 
   public void setLayers(List<MapLayer> layers) {
-    for (MapLayer mapLayer : layers) {
-      display.addLayer(mapLayer);
-    }
+    display.setLayers(layers);
+//    for (MapLayer mapLayer : layers) {
+//      display.addLayer(mapLayer);
+//    }
   }
 
   public void toggleLayerVisibility(String name, boolean checked) {

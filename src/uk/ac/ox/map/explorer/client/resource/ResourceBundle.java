@@ -63,4 +63,10 @@ public interface ResourceBundle extends ClientBundle {
   @Source("pr_point_key.png")
   public ImageResource prPoint();
   
+  @Source("info-button-down.png")
+  public ImageResource infoButtonDown();
+  
+  @Source("info-button-up.png")
+  public ImageResource infoButtonUp();
+  
 }

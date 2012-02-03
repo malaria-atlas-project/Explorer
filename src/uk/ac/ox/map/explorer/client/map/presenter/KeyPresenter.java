@@ -4,7 +4,7 @@ import java.util.List;
 
 import uk.ac.ox.map.explorer.client.event.LayerChangeRequestEvent;
 import uk.ac.ox.map.explorer.client.map.view.KeyView;
-import uk.ac.ox.map.explorer.client.proxy.seed.MapLayer;
+import uk.ac.ox.map.explorer.client.proxy.MapLayer;
 import uk.ac.ox.map.explorer.client.resource.ResourceBundle;
 
 import com.google.gwt.activity.shared.AbstractActivity;

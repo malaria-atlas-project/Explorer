@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import uk.ac.ox.map.explorer.client.list.view.AnophelineTableView;
 import uk.ac.ox.map.explorer.client.place.EntityPlace;
-import uk.ac.ox.map.explorer.client.proxy.seed.AnophelineProxy;
+import uk.ac.ox.map.explorer.client.proxy.AnophelineProxy;
 import uk.ac.ox.map.explorer.client.rpc.AnoServiceAsync;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -48,7 +48,7 @@ public class AnophelesDataProvider extends AbstractDataProvider<AnophelineProxy>
     
 		final Range range = display.getVisibleRange();
     
-    service.search(range.getStart(), range.getLength(), entityPlace.getQueryString(), new AsyncCallback<ArrayList<AnophelineProxy>>() {
+    service.search(range.getStart(), range.getLength(), entityPlace.getPayload(), new AsyncCallback<ArrayList<AnophelineProxy>>() {
       
       @Override
       public void onSuccess(ArrayList<AnophelineProxy> result) {

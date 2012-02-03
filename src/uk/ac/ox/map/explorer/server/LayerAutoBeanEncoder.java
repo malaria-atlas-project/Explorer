@@ -7,9 +7,9 @@ import java.util.Map;
 import uk.ac.ox.map.domain.EMF;
 import uk.ac.ox.map.domain.ExplorerLayer;
 import uk.ac.ox.map.domain.ExplorerPerspective;
-import uk.ac.ox.map.explorer.client.proxy.seed.CommFactory;
-import uk.ac.ox.map.explorer.client.proxy.seed.MapLayer;
-import uk.ac.ox.map.explorer.client.proxy.seed.MapLayerList;
+import uk.ac.ox.map.explorer.client.proxy.CommFactory;
+import uk.ac.ox.map.explorer.client.proxy.MapLayer;
+import uk.ac.ox.map.explorer.client.proxy.MapLayerList;
 import uk.ac.ox.map.request.server.SimpleDao;
 
 

@@ -6,8 +6,8 @@ import uk.ac.ox.map.explorer.client.base.view.CompositeMapView;
 import uk.ac.ox.map.explorer.client.event.ExtentChangeRequestEvent;
 import uk.ac.ox.map.explorer.client.event.LayerChangeRequestEvent;
 import uk.ac.ox.map.explorer.client.map.view.MapView;
-import uk.ac.ox.map.explorer.client.proxy.seed.EntityProxy;
-import uk.ac.ox.map.explorer.client.proxy.seed.MapLayer;
+import uk.ac.ox.map.explorer.client.proxy.EntityProxy;
+import uk.ac.ox.map.explorer.client.proxy.MapLayer;
 import uk.ac.ox.map.explorer.client.resource.ResourceBundle;
 
 import com.google.gwt.activity.shared.AbstractActivity;

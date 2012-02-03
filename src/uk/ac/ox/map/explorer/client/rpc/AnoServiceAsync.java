@@ -1,7 +1,8 @@
 package uk.ac.ox.map.explorer.client.rpc;
 
 import java.util.ArrayList;
-import uk.ac.ox.map.explorer.client.proxy.seed.AnophelineProxy;
+
+import uk.ac.ox.map.explorer.client.proxy.AnophelineProxy;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 

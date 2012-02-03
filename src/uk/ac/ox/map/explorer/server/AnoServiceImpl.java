@@ -6,7 +6,7 @@ import java.util.List;
 import javax.inject.Singleton;
 
 import uk.ac.ox.map.domain.Anopheline;
-import uk.ac.ox.map.explorer.client.proxy.seed.AnophelineProxy;
+import uk.ac.ox.map.explorer.client.proxy.AnophelineProxy;
 import uk.ac.ox.map.explorer.client.rpc.AnoService;
 import uk.ac.ox.map.request.server.SimpleDao;
 

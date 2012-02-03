@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import uk.ac.ox.map.explorer.client.list.view.CountryTableView;
 import uk.ac.ox.map.explorer.client.place.EntityPlace;
-import uk.ac.ox.map.explorer.client.proxy.seed.CountryProxy;
+import uk.ac.ox.map.explorer.client.proxy.CountryProxy;
 import uk.ac.ox.map.explorer.client.rpc.EntityServiceAsync;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -48,7 +48,7 @@ public class CountryDataProvider extends AbstractDataProvider<CountryProxy>{
     
 		final Range range = display.getVisibleRange();
     
-    service.search(range.getStart(), range.getLength(), entityPlace.getQueryString(), new AsyncCallback<ArrayList<CountryProxy>>() {
+    service.search(range.getStart(), range.getLength(), entityPlace.getPayload(), new AsyncCallback<ArrayList<CountryProxy>>() {
       
       @Override
       public void onSuccess(ArrayList<CountryProxy> result) {

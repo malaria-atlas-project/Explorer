@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import javax.inject.Singleton;
 
-import uk.ac.ox.map.explorer.client.proxy.seed.CountryProxy;
+import uk.ac.ox.map.explorer.client.proxy.CountryProxy;
 
 
 import com.google.gwt.user.client.rpc.RemoteService;

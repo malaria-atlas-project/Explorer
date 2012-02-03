@@ -3,7 +3,7 @@ package uk.ac.ox.map.explorer.client.list.view;
 import java.util.HashSet;
 import java.util.Set;
 
-import uk.ac.ox.map.explorer.client.proxy.seed.AnophelineProxy;
+import uk.ac.ox.map.explorer.client.proxy.AnophelineProxy;
 
 import com.google.gwt.cell.client.CheckboxCell;
 import com.google.gwt.cell.client.FieldUpdater;

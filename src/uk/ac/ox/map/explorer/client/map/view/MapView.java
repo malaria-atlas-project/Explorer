@@ -15,8 +15,8 @@ import org.gwtopenmaps.openlayers.client.layer.WMS;
 import org.gwtopenmaps.openlayers.client.layer.WMSParams;
 
 import uk.ac.ox.map.explorer.client.map.presenter.BaseMapPresenter;
-import uk.ac.ox.map.explorer.client.proxy.seed.EntityProxy;
-import uk.ac.ox.map.explorer.client.proxy.seed.MapLayer;
+import uk.ac.ox.map.explorer.client.proxy.EntityProxy;
+import uk.ac.ox.map.explorer.client.proxy.MapLayer;
 
 import com.google.gwt.user.client.ui.Composite;
 

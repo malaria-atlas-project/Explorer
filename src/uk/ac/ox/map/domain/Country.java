@@ -1,7 +1,5 @@
 package uk.ac.ox.map.domain;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -15,22 +13,6 @@ import javax.persistence.Transient;
 @Table(schema="explorer", name="country")
 public class Country  {
   
-  public static List<Country> search(Integer firstResult, Integer maxResults, String searchParams) {
-    return DaoFactory.get().search(firstResult, maxResults, searchParams, Country.class);
-  }
-
-  public static Long searchCount(String searchParams) {
-    return DaoFactory.get().searchCount(searchParams, Country.class);
-  }
-
-  public static Country findCountry(String id) {
-    return DaoFactory.get().find(Country.class, id);
-  }
-  
-  public static List<Country> all() {
-    return DaoFactory.get().all(Country.class);
-  }
-
   private String id;
 
   @Id

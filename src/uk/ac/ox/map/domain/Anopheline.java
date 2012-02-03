@@ -1,7 +1,5 @@
 package uk.ac.ox.map.domain;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -12,22 +10,6 @@ import javax.persistence.Transient;
 @Entity
 @Table(schema="explorer", name="anopheline_dvs")
 public class Anopheline {
-  
-  public static List<Anopheline> search(Integer firstResult, Integer maxResults, String searchParams) {
-    return DaoFactory.get().search(firstResult, maxResults, searchParams, Anopheline.class);
-  }
-
-  public static Long searchCount(String searchParams) {
-    return DaoFactory.get().searchCount(searchParams, Anopheline.class);
-  }
-
-  public static Anopheline findAnopheline(Long id) {
-    return DaoFactory.get().find(Anopheline.class, id);
-  }
-  
-  public static List<Anopheline> all() {
-    return DaoFactory.get().all(Anopheline.class);
-  }
   
   private Long id;
   

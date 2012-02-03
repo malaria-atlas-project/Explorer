@@ -1,4 +1,4 @@
-package uk.ac.ox.map.explorer.client.proxy.seed;
+package uk.ac.ox.map.explorer.client.proxy;
 
 public interface EntityProxy {
 

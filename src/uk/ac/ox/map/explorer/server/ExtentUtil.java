@@ -1,7 +1,7 @@
 package uk.ac.ox.map.explorer.server;
 
 import uk.ac.ox.map.domain.Extent;
-import uk.ac.ox.map.explorer.client.proxy.seed.EntityProxy;
+import uk.ac.ox.map.explorer.client.proxy.EntityProxy;
 
 public class ExtentUtil {
   

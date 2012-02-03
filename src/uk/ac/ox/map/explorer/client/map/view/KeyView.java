@@ -3,7 +3,7 @@ package uk.ac.ox.map.explorer.client.map.view;
 import java.util.List;
 
 import uk.ac.ox.map.explorer.client.map.presenter.KeyPresenter;
-import uk.ac.ox.map.explorer.client.proxy.seed.MapLayer;
+import uk.ac.ox.map.explorer.client.proxy.MapLayer;
 import uk.ac.ox.map.explorer.client.resource.ResourceBundle;
 
 import com.google.gwt.core.client.GWT;

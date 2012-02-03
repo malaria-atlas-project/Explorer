@@ -3,7 +3,7 @@ package uk.ac.ox.map.explorer.client.list.presenter;
 import uk.ac.ox.map.explorer.client.event.CountryCheckedEvent;
 import uk.ac.ox.map.explorer.client.list.view.SelectionView;
 import uk.ac.ox.map.explorer.client.place.QueryStringBuilder;
-import uk.ac.ox.map.explorer.client.proxy.seed.CountryProxy;
+import uk.ac.ox.map.explorer.client.proxy.CountryProxy;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.Window;

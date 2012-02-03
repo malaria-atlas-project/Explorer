@@ -6,7 +6,7 @@ import uk.ac.ox.map.explorer.client.event.AnophelineSelectedEvent;
 import uk.ac.ox.map.explorer.client.filter.presenter.FilterPresenter;
 import uk.ac.ox.map.explorer.client.list.view.AnophelineFilterList;
 import uk.ac.ox.map.explorer.client.list.view.AnophelineTableView;
-import uk.ac.ox.map.explorer.client.proxy.seed.AnophelineProxy;
+import uk.ac.ox.map.explorer.client.proxy.AnophelineProxy;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.PlaceController;

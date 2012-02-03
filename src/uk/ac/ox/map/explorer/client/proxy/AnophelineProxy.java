@@ -1,18 +1,18 @@
-package uk.ac.ox.map.explorer.client.proxy.seed;
+package uk.ac.ox.map.explorer.client.proxy;
 
 import java.io.Serializable;
 
-import uk.ac.ox.map.explorer.client.proxy.NamedProxy;
 
-public class CountryProxy implements EntityProxy, NamedProxy, Serializable {
 
-  private String id;
+public class AnophelineProxy  implements EntityProxy, NamedProxy, Serializable{
 
-  public String getId() {
+  private Long id;
+  
+  public Long getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
@@ -25,9 +25,9 @@ public class CountryProxy implements EntityProxy, NamedProxy, Serializable {
   public void setName(String name) {
     this.name = name;
   }
-
+  
   private Double minX;
-
+  
   public Double getMinX() {
     return minX;
   }
@@ -65,5 +65,6 @@ public class CountryProxy implements EntityProxy, NamedProxy, Serializable {
   public void setMaxY(Double maxY) {
     this.maxY = maxY;
   }
+  
 
 }

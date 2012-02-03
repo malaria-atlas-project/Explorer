@@ -1,7 +1,6 @@
 package uk.ac.ox.map.request.server;
 
 import java.util.List;
-import javax.persistence.EntityManagerFactory;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -24,8 +23,8 @@ public class SimpleDao {
   private final EntityManager em;
 
   @Inject
-  public SimpleDao(EntityManagerFactory entityManagerFactory) {
-    this.em = entityManagerFactory.createEntityManager();
+  public SimpleDao(EntityManager em) {
+    this.em = em;
   }
   
   public EntityManager getEntityManager() {

@@ -6,7 +6,7 @@ import java.util.List;
 import javax.inject.Singleton;
 
 import uk.ac.ox.map.domain.Country;
-import uk.ac.ox.map.explorer.client.proxy.seed.CountryProxy;
+import uk.ac.ox.map.explorer.client.proxy.CountryProxy;
 import uk.ac.ox.map.explorer.client.rpc.EntityService;
 import uk.ac.ox.map.request.server.SimpleDao;
 

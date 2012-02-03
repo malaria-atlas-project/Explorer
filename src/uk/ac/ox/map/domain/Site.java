@@ -51,22 +51,6 @@ public class Site {
     return q.getResultList();
   }
   
-  public static List<Site> search(Integer firstResult, Integer maxResults, String searchParams) {
-    return DaoFactory.get().search(firstResult, maxResults, searchParams, Site.class);
-  }
-
-  public static Long searchCount(String searchParams) {
-    return DaoFactory.get().searchCount(searchParams, Country.class);
-  }
-
-  public static Site findSite(Long id) {
-    return DaoFactory.get().find(Site.class, id);
-  }
-  
-  public static List<Site> all() {
-    return DaoFactory.get().all(Site.class);
-  }
-
   private Long id;
 
   @Id

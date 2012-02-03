@@ -6,7 +6,7 @@ import uk.ac.ox.map.explorer.client.event.CountrySelectedEvent;
 import uk.ac.ox.map.explorer.client.filter.presenter.FilterPresenter;
 import uk.ac.ox.map.explorer.client.list.view.CountryFilterList;
 import uk.ac.ox.map.explorer.client.list.view.CountryTableView;
-import uk.ac.ox.map.explorer.client.proxy.seed.CountryProxy;
+import uk.ac.ox.map.explorer.client.proxy.CountryProxy;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.PlaceController;

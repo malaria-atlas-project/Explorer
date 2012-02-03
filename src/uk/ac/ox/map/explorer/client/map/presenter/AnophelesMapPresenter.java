@@ -4,9 +4,9 @@ package uk.ac.ox.map.explorer.client.map.presenter;
 import java.util.List;
 
 import uk.ac.ox.map.explorer.client.event.AnophelineSelectedEvent;
-import uk.ac.ox.map.explorer.client.proxy.seed.EntityProxy;
-import uk.ac.ox.map.explorer.client.proxy.seed.MapLayer;
-import uk.ac.ox.map.explorer.client.proxy.seed.RetrieveVars;
+import uk.ac.ox.map.explorer.client.proxy.EntityProxy;
+import uk.ac.ox.map.explorer.client.proxy.MapLayer;
+import uk.ac.ox.map.explorer.client.proxy.RetrieveVars;
 import uk.ac.ox.map.explorer.client.resource.ResourceBundle;
 
 import com.google.gwt.event.shared.EventBus;

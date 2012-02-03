@@ -6,6 +6,8 @@ import java.util.Properties;
 
 import javax.servlet.ServletContext;
 
+import uk.ac.ox.map.request.server.AppRequestFactoryServlet;
+
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import com.google.inject.name.Names;

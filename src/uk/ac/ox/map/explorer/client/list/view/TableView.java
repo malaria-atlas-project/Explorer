@@ -15,6 +15,7 @@ import com.google.gwt.user.cellview.client.ColumnSortEvent;
 import com.google.gwt.user.cellview.client.DataGrid;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.view.client.DefaultSelectionEventManager;
 import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.gwt.view.client.SingleSelectionModel;
 
@@ -54,7 +55,8 @@ public class TableView<T> extends Composite {
       }
     });
 
-    dataGrid.setSelectionModel(selectionModel);
+    DefaultSelectionEventManager<T> a = DefaultSelectionEventManager.createBlacklistManager(1);
+    dataGrid.setSelectionModel(selectionModel, a);
     dataGrid.setPageSize(pageSize);
     
     dataGrid.addColumnSortHandler(new ColumnSortEvent.Handler() {

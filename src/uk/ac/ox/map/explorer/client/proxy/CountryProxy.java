@@ -1,10 +1,11 @@
 package uk.ac.ox.map.explorer.client.proxy;
 
 import uk.ac.ox.map.domain.Country;
+import uk.ac.ox.map.request.server.CountryLocator;
 
 import com.google.web.bindery.requestfactory.shared.ProxyFor;
 
-@ProxyFor(Country.class)
+@ProxyFor(value = Country.class, locator = CountryLocator.class)
 public interface CountryProxy extends NamedProxy {
 
   String getId();

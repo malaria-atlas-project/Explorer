@@ -29,6 +29,13 @@ public interface ResourceBundle extends ClientBundle {
     String scrollable();
   }
   
+  public interface PopupCss extends CssResource {
+    String panel();
+  }
+  
+  @Source("popup.css")
+  public PopupCss popupCss();
+  
   @Source("form.css")
   public FormCss formCss();
 

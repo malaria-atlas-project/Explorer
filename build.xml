@@ -13,14 +13,6 @@
     <ivy:cachepath pathid="build.path" conf="build" />
     <ivy:cachepath pathid="runtime.path" conf="runtime" />
   </target>
-	
-	<target name="base">
-		<ant dir="../MapBase" />
-	</target>
-
-	<target name="request" depends="base">
-		<ant dir="../MapRequest" />
-	</target>
 
   <target name="libs" depends="retrieve" description="Copy libs and other resources to WEB-INF/lib">
     <delete dir="war/WEB-INF/lib" />
@@ -69,7 +61,7 @@
       <fileset file="${resource.dir}/urls.properties" />
       <fileset file="${resource.dir}/hibernate.properties" />
     </copy>
-    <zip destfile="MapAdmin.war" basedir="war" />
+    <zip destfile="Explorer.war" basedir="war" />
 
     <!-- Hack to undo previous replace of property files -->
     <delete file="${war.file}/WEB-INF/classes/urls.properties" />
@@ -81,7 +73,7 @@
   </target>
 
   <target name="deploy" description="Install web application" depends="war">
-    <deploy url="${deploy.url}" username="${deploy.username}" password="${deploy.password}" path="${deploy.path}" war="${basedir}/MapAdmin.war" />
+    <deploy url="${deploy.url}" username="${deploy.username}" password="${deploy.password}" path="${deploy.path}" war="${basedir}/Explorer.war" />
   </target>
 
   <target name="undeploy" description="Uninstall web application">
@@ -95,8 +87,8 @@
     <property file="dev_build.properties" />
     <antcall target="undeploy"/>
   </target>
-
-  <target name="dev-deploy" depends="base, request">
+	
+  <target name="dev-deploy">
     <property file="dev_build.properties" />
     <antcall target="deploy"/>
   </target>

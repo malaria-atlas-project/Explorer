@@ -22,6 +22,7 @@ import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 
@@ -37,36 +38,15 @@ public class KeyView extends Composite {
   
   private KeyPresenter listener;
 
-  private ResourceBundle resources;
+  private final ResourceBundle resources;
   
-  private LayerInfoPopup popup = new LayerInfoPopup();
-
-  
-  /**
-   * Simple popup panel to display information to user about layers.
-   * @author will
-   */
-  private class LayerInfoPopup extends PopupPanel {
-    
-    private final Label label = new Label();
-
-    public LayerInfoPopup() {
-      super(true);
-      setWidget(label);
-    }
-    
-    public void setMessage(String message) {
-      label.setText(message);
-    }
-    
-  }
+  private final LayerInfoPopup popup;
 
   @Inject
-  public KeyView(ResourceBundle resources) {
+  public KeyView(ResourceBundle resources, LayerInfoPopup popup) {
     initWidget(uiBinder.createAndBindUi(this));
-    
     this.resources = resources;
-    
+    this.popup = popup;
   }
   
   public void setLayers(List<MapLayer> mls) {

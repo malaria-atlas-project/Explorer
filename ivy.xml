@@ -8,7 +8,7 @@
 	
 	<dependencies>
     <!-- Validation -->
-		<dependency org="javax.validation" name="validation-api" rev="1.0.0.GA"/>
+		<dependency org="javax.validation" name="validation-api" rev="1.0.0.GA" conf="build->default"/>
     <!-- GWT -->
     <dependency org="com.google.gwt" name="gwt-user" rev="2.4.0-rc1" conf="build->default">  
       <exclude org="javax.validation"></exclude>

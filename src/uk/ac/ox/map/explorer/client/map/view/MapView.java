@@ -53,7 +53,7 @@ public class MapView extends Composite {
     {
 	    WMSParams params = new WMSParams();
       params.setLayers("Base:bluemarble");
-      params.setIsTransparent(true);
+      params.setTransparent(true);
 	    WMS bm = new WMS("Blue marble", gwcUrl, params);
 	    bm.setIsBaseLayer(true);
 	    map.addLayer(bm);
@@ -61,7 +61,7 @@ public class MapView extends Composite {
     }
     
 //    map.addControl(new MousePosition());
-    map.addControl(new LayerSwitcher());
+//    map.addControl(new LayerSwitcher());
     
     map.zoomTo(2);
 
@@ -96,7 +96,7 @@ public class MapView extends Composite {
     
       WMSParams params = new WMSParams();
       params.setLayers(mapLayer.getWmsLayerName());
-      params.setIsTransparent(isTransparent);
+      params.setTransparent(isTransparent);
       
       WMS wms = new WMS(mapLayer.getWmsLayerName(), url, params);
       wms.setIsBaseLayer(false);

@@ -18,6 +18,7 @@ import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
@@ -91,7 +92,7 @@ public class KeyView extends Composite {
       /*
        * Add image
        */
-//      grid.setWidget(i, 1, new Image(lyr.getImageResource()));
+      grid.setWidget(i, 1, new Image(lyr.getImageUrl()));
       
       /*
        * Add key text

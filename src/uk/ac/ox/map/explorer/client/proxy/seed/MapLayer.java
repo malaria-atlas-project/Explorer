@@ -1,5 +1,7 @@
 package uk.ac.ox.map.explorer.client.proxy.seed;
 
+import com.google.gwt.resources.client.ImageResource;
+
 public interface MapLayer {
 
   String getName();
@@ -13,5 +15,8 @@ public interface MapLayer {
   
   String getInfoText();
   void setInfoText(String infoText);
+  
+  String getImageUrl();
+  void setImageUrl(String url);
   
 }

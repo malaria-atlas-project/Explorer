@@ -56,6 +56,7 @@ public class LayerAutoBeanEncoder {
     mapLayer.setName(explorerLayer.getName());
     mapLayer.setWmsLayerName(explorerLayer.getLayers());
     mapLayer.setInfoText(explorerLayer.getInfoText());
+    mapLayer.setImageUrl(explorerLayer.getImage());
 //    mapLayer.setIsVisible(explorerLayer.getIsVisible());
     
     return mapLayer;

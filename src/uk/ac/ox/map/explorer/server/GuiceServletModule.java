@@ -46,6 +46,7 @@ public class GuiceServletModule extends ServletModule {
     
     serve("/gwtRequest").with(RequestFactoryServlet.class);
     serve("/mapexplorer/mapInfo").with(MapInfoServiceImpl.class);
+    serve("/dataDownload").with(ExcelServlet.class);
     serve("/mapexplorer/dataDownload").with(ExcelServlet.class);
     
   }

@@ -1,7 +1,6 @@
 package uk.ac.ox.map.explorer.client.map.presenter;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 import uk.ac.ox.map.explorer.client.event.AnophelineSelectedEvent;

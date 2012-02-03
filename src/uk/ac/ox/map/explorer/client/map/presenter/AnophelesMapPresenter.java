@@ -38,8 +38,8 @@ public class AnophelesMapPresenter extends BaseMapPresenter {
     eventBus.addHandler(AnophelineSelectedEvent.TYPE, new AnophelineSelectedEvent.Handler() {
       @Override
       public void onAnophelineSelected(AnophelineSelectedEvent requestEvent) {
-        ExtentProxy extent = requestEvent.getAnopheline().getExtent();
-        mapView.zoomToBounds(extent);
+//        ExtentProxy extent = requestEvent.getAnopheline().getExtent();
+//        mapView.zoomToBounds(extent);
         
         mapView.setCql(ANOPHELES_ANOPHELINE_DISPLAY, "anopheline_id=" + requestEvent.getAnopheline().getId());
       }

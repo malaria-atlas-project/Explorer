@@ -1,21 +1,18 @@
 package uk.ac.ox.map.explorer.client.list.presenter;
 
-import java.util.List;
-
 import uk.ac.ox.map.explorer.client.base.view.CompositeTableView;
 import uk.ac.ox.map.explorer.client.event.AnophelineCheckedEvent;
 import uk.ac.ox.map.explorer.client.event.AnophelineSelectedEvent;
 import uk.ac.ox.map.explorer.client.filter.presenter.FilterPresenter;
 import uk.ac.ox.map.explorer.client.list.view.AnophelineFilterList;
 import uk.ac.ox.map.explorer.client.list.view.AnophelineTableView;
-import uk.ac.ox.map.explorer.client.proxy.AnophelineProxy;
-import uk.ac.ox.map.explorer.client.request.AppRequestFactory;
+import uk.ac.ox.map.explorer.client.proxy.seed.AnophelineProxy;
+import uk.ac.ox.map.explorer.client.rpc.AnoServiceAsync;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
-import com.google.web.bindery.requestfactory.shared.Request;
 
 public class AnophelesTablePresenter extends AbstractTablePresenter<AnophelineProxy> {
   
@@ -30,7 +27,7 @@ public class AnophelesTablePresenter extends AbstractTablePresenter<AnophelinePr
   private AnophelesSelectionPresenter selectionPresenter;
   
   @Inject
-  public AnophelesTablePresenter(PlaceController placeController, AnophelineTableView tableView, AnophelineFilterList filterList, AppRequestFactory rf) {
+  public AnophelesTablePresenter(PlaceController placeController, AnophelineTableView tableView, AnophelineFilterList filterList, AnophelesDataProvider dp) {
     
     super(placeController, tableView);
     
@@ -38,19 +35,7 @@ public class AnophelesTablePresenter extends AbstractTablePresenter<AnophelinePr
     
     this.filterList = filterList;
     
-    this.dataProvider = new AbstractDataProvider<AnophelineProxy>(rf, tableView){
-
-      @Override
-      protected Request<List<AnophelineProxy>> getSearchRequest(Integer i, Integer j, String searchString) {
-        return requestFactory.anoRequest().search(i, j, searchString).with("region", "extent");
-      }
-
-      @Override
-      protected Request<Long> getSearchCountRequest(String searchString) {
-        return requestFactory.anoRequest().searchCount(searchString);
-      }
-      
-    };
+    this.dataProvider = dp;
   }
   
   @Override

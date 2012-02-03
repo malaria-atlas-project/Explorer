@@ -51,6 +51,10 @@ public class GuiceServletModule extends ServletModule {
     serve("/dataDownload").with(ExcelServlet.class);
     serve("/mapexplorer/dataDownload").with(ExcelServlet.class);
     
+    serve("/mapexplorer/entity").with(EntityServiceImpl.class);
+    
+    serve("/mapexplorer/ano").with(AnoServiceImpl.class);
+    
   }
   
   private Properties getProperties() {

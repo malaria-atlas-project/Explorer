@@ -15,7 +15,9 @@ import uk.ac.ox.map.explorer.client.place.PlaceUtils;
 
 import com.google.inject.Inject;
 import com.google.inject.persist.Transactional;
+import com.google.inject.servlet.RequestScoped;
 
+@RequestScoped
 public class SimpleDao {
 
   private static final int MAXRESULTS = 1000;
@@ -89,7 +91,6 @@ public class SimpleDao {
   }
 
   public Long searchCount(String searchParams, Class<?> clazz) {
-    System.out.println(searchParams);
 
     CriteriaBuilder cb = em.getCriteriaBuilder();
     CriteriaQuery<Long> cq = CriteriaQueryBuilder.getCountQuery(clazz, PlaceUtils.getMapFromParams(searchParams), cb);

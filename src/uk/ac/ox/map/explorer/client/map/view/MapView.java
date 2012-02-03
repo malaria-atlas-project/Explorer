@@ -1,6 +1,5 @@
 package uk.ac.ox.map.explorer.client.map.view;
 
-import java.util.Collection;
 import java.util.HashMap;
 
 import org.gwtopenmaps.openlayers.client.Bounds;
@@ -9,7 +8,6 @@ import org.gwtopenmaps.openlayers.client.Map;
 import org.gwtopenmaps.openlayers.client.MapOptions;
 import org.gwtopenmaps.openlayers.client.MapWidget;
 import org.gwtopenmaps.openlayers.client.Marker;
-import org.gwtopenmaps.openlayers.client.control.LayerSwitcher;
 import org.gwtopenmaps.openlayers.client.event.MapClickListener;
 import org.gwtopenmaps.openlayers.client.event.MapMoveEndListener;
 import org.gwtopenmaps.openlayers.client.layer.Markers;
@@ -18,7 +16,6 @@ import org.gwtopenmaps.openlayers.client.layer.WMSParams;
 
 import uk.ac.ox.map.explorer.client.map.presenter.BaseMapPresenter;
 import uk.ac.ox.map.explorer.client.proxy.ExtentProxy;
-import uk.ac.ox.map.explorer.client.proxy.SiteProxy;
 import uk.ac.ox.map.explorer.client.proxy.seed.MapLayer;
 
 import com.google.gwt.user.client.ui.Composite;
@@ -122,28 +119,28 @@ public class MapView extends Composite {
     map.zoomToExtent(bounds);
   }
 
-  public void setSites(Collection<SiteProxy> sites) {
-
-    if (markers == null) {
-      markers = new Markers("Sites");
-      map.addLayer(markers);
-    }
-
-    for (SiteProxy site : sites) {
-
-      LonLat ll = new LonLat(site.getLongitude().doubleValue(), site.getLatitude().doubleValue());
-      if (marker == null) {
-        marker = new Marker(ll);
-        markers.addMarker(marker);
-      } else {
-        markers.removeMarker(marker);
-        marker.setLonLat(ll);
-        markers.addMarker(marker);
-      }
-
-    }
-
-  }
+//  public void setSites(Collection<SiteProxy> sites) {
+//
+//    if (markers == null) {
+//      markers = new Markers("Sites");
+//      map.addLayer(markers);
+//    }
+//
+//    for (SiteProxy site : sites) {
+//
+//      LonLat ll = new LonLat(site.getLongitude().doubleValue(), site.getLatitude().doubleValue());
+//      if (marker == null) {
+//        marker = new Marker(ll);
+//        markers.addMarker(marker);
+//      } else {
+//        markers.removeMarker(marker);
+//        marker.setLonLat(ll);
+//        markers.addMarker(marker);
+//      }
+//
+//    }
+//
+//  }
 
   public void zoomToBounds(ExtentProxy extent) {
     zoomToBounds(extent.getMinx(), extent.getMiny(), extent.getMaxx(), extent.getMaxy());

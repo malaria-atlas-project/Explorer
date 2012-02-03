@@ -18,12 +18,13 @@ import com.google.gwt.user.cellview.client.ColumnSortList;
 import com.google.gwt.user.cellview.client.ColumnSortList.ColumnSortInfo;
 import com.google.gwt.user.cellview.client.DataGrid;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
+import com.google.gwt.view.client.AsyncDataProvider;
 
 public abstract class AbstractTablePresenter<T> extends AbstractActivity  {
 
   protected final TableView<T> tableView;
   private final PlaceController placeController;
-  protected AbstractDataProvider<T> dataProvider;
+  protected AbstractDataProvider2<T> dataProvider;
   protected EntityPlace place;
 
   public AbstractTablePresenter(PlaceController placeController, TableView<T> view) {

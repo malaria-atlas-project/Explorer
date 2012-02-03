@@ -1,6 +1,6 @@
 package uk.ac.ox.map.explorer.client.event;
 
-import uk.ac.ox.map.explorer.client.proxy.AnophelineProxy;
+import uk.ac.ox.map.explorer.client.proxy.seed.AnophelineProxy;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.EventHandler;

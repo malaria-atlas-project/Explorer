@@ -34,8 +34,8 @@ public class CountryMapPresenter extends BaseMapPresenter {
     eventBus.addHandler(CountrySelectedEvent.TYPE, new CountrySelectedEvent.Handler() {
       @Override
       public void onCountrySelected(CountrySelectedEvent requestEvent) {
-        ExtentProxy extent = requestEvent.getCountry().getExtent();
-        mapView.zoomToBounds(extent);
+//        ExtentProxy extent = requestEvent.getCountry().getExtent();
+//        mapView.zoomToBounds(extent);
       }
     });
   }

@@ -2,7 +2,6 @@ package uk.ac.ox.map.explorer.client;
 
 import uk.ac.ox.map.explorer.client.base.view.BaseView;
 import uk.ac.ox.map.explorer.client.place.EntityPlace;
-import uk.ac.ox.map.explorer.client.request.AppRequestFactory;
 import uk.ac.ox.map.explorer.client.resource.ResourceBundle;
 
 import com.google.gwt.core.client.GWT;
@@ -59,13 +58,5 @@ public class ExplorerClientModule extends AbstractGinModule {
     return new PlaceController(eventBus);
   }
 
-  @Provides
-  @Singleton
-  public AppRequestFactory getRequestFactory(EventBus eventBus) {
-    AppRequestFactory rf = GWT.create(AppRequestFactory.class);
-    rf.initialize(eventBus);
-    return rf;
-  }
-  
 
 }

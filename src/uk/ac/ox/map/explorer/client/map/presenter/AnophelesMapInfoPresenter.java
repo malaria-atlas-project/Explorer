@@ -4,7 +4,7 @@ import org.gwtopenmaps.openlayers.client.Bounds;
 
 import uk.ac.ox.map.explorer.client.event.AnophelineSelectedEvent;
 import uk.ac.ox.map.explorer.client.map.view.MapInfoView;
-import uk.ac.ox.map.explorer.client.proxy.AnophelineProxy;
+import uk.ac.ox.map.explorer.client.proxy.seed.AnophelineProxy;
 import uk.ac.ox.map.explorer.client.rpc.MapInfo;
 import uk.ac.ox.map.explorer.client.rpc.MapInfoServiceAsync;
 

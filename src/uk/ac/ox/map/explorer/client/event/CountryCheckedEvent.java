@@ -1,6 +1,6 @@
 package uk.ac.ox.map.explorer.client.event;
 
-import uk.ac.ox.map.explorer.client.proxy.CountryProxy;
+import uk.ac.ox.map.explorer.client.proxy.seed.CountryProxy;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.EventHandler;

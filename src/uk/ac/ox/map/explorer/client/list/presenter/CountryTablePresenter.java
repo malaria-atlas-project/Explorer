@@ -8,8 +8,7 @@ import uk.ac.ox.map.explorer.client.event.CountrySelectedEvent;
 import uk.ac.ox.map.explorer.client.filter.presenter.FilterPresenter;
 import uk.ac.ox.map.explorer.client.list.view.CountryFilterList;
 import uk.ac.ox.map.explorer.client.list.view.CountryTableView;
-import uk.ac.ox.map.explorer.client.proxy.CountryProxy;
-import uk.ac.ox.map.explorer.client.request.AppRequestFactory;
+import uk.ac.ox.map.explorer.client.proxy.seed.CountryProxy;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.PlaceController;
@@ -30,7 +29,7 @@ public class CountryTablePresenter extends AbstractTablePresenter<CountryProxy> 
   private final CompositeTableView compositeTableView;
   
   @Inject
-  public CountryTablePresenter(PlaceController placeController, CountryTableView tableView, CountryFilterList filterList, AppRequestFactory rf) {
+  public CountryTablePresenter(PlaceController placeController, CountryTableView tableView, CountryFilterList filterList, CountryDataProvider dp) {
     
     super(placeController, tableView);
     
@@ -38,19 +37,21 @@ public class CountryTablePresenter extends AbstractTablePresenter<CountryProxy> 
     
     this.filterList = filterList;
     
-    this.dataProvider = new AbstractDataProvider<CountryProxy>(rf, tableView){
-
-      @Override
-      protected Request<List<CountryProxy>> getSearchRequest(Integer i, Integer j, String searchString) {
-        return requestFactory.countryRequest().search(i, j, searchString).with("region", "extent");
-      }
-
-      @Override
-      protected Request<Long> getSearchCountRequest(String searchString) {
-        return requestFactory.countryRequest().searchCount(searchString);
-      }
-      
-    };
+    this.dataProvider = dp;
+    
+//    this.dataProvider = new AbstractDataProvider<CountryProxy>(rf, tableView){
+//
+//      @Override
+//      protected Request<List<CountryProxy>> getSearchRequest(Integer i, Integer j, String searchString) {
+//        return requestFactory.countryRequest().search(i, j, searchString).with("region", "extent");
+//      }
+//
+//      @Override
+//      protected Request<Long> getSearchCountRequest(String searchString) {
+//        return requestFactory.countryRequest().searchCount(searchString);
+//      }
+//      
+//    };
   }
   
   @Override

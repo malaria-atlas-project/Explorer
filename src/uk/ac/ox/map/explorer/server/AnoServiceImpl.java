@@ -34,10 +34,11 @@ public class AnoServiceImpl extends RemoteServiceServlet implements AnoService{
     List<Anopheline> countries = daoProvider.get().search(firstResult, maxResults, searchParams, Anopheline.class);
     ArrayList<AnophelineProxy> dtos = new ArrayList<AnophelineProxy>();
     
-    for (Anopheline Anopheline : countries) {
+    for (Anopheline anopheline : countries) {
       AnophelineProxy p = new AnophelineProxy();
-      p.setId(Anopheline.getId());
-      p.setName(Anopheline.getName());
+      p.setId(anopheline.getId());
+      p.setName(anopheline.getName());
+      dtos.add(p);
     }
     return dtos;
   }

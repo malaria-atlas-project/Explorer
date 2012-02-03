@@ -37,6 +37,7 @@ public class EntityServiceImpl extends RemoteServiceServlet implements EntitySer
       CountryProxy p = new CountryProxy();
       p.setId(country.getId());
       p.setName(country.getName());
+      dtos.add(p);
     }
     return dtos;
   }

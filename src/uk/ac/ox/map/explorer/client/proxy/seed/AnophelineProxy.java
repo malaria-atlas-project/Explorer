@@ -1,9 +1,11 @@
 package uk.ac.ox.map.explorer.client.proxy.seed;
 
+import java.io.Serializable;
+
 import uk.ac.ox.map.explorer.client.proxy.NamedProxy;
 
 
-public class AnophelineProxy implements NamedProxy{
+public class AnophelineProxy implements NamedProxy, Serializable{
 
   private Long id;
   

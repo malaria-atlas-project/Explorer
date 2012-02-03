@@ -1,9 +1,11 @@
 package uk.ac.ox.map.explorer.client.proxy.seed;
 
+import java.io.Serializable;
+
 import uk.ac.ox.map.explorer.client.proxy.NamedProxy;
 
 
-public class CountryProxy implements NamedProxy {
+public class CountryProxy implements NamedProxy, Serializable{
 
   public String getId() {
     return id;

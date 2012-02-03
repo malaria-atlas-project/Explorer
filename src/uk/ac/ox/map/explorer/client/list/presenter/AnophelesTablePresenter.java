@@ -7,7 +7,6 @@ import uk.ac.ox.map.explorer.client.filter.presenter.FilterPresenter;
 import uk.ac.ox.map.explorer.client.list.view.AnophelineFilterList;
 import uk.ac.ox.map.explorer.client.list.view.AnophelineTableView;
 import uk.ac.ox.map.explorer.client.proxy.seed.AnophelineProxy;
-import uk.ac.ox.map.explorer.client.rpc.AnoServiceAsync;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.PlaceController;
@@ -46,8 +45,6 @@ public class AnophelesTablePresenter extends AbstractTablePresenter<AnophelinePr
     
     FilterPresenter filterPresenter = new FilterPresenter(place, filterList);
     filterPresenter.start(compositeTableView.getFilterPanel(), eventBus);
-    
-//    compositeTableView.getSelectionPanel().setWidget(selectionView);
     
     selectionPresenter.start(compositeTableView.getSelectionPanel(), eventBus);
     

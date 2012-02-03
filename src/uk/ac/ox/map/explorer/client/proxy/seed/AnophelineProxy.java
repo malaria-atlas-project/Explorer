@@ -5,7 +5,7 @@ import java.io.Serializable;
 import uk.ac.ox.map.explorer.client.proxy.NamedProxy;
 
 
-public class AnophelineProxy implements NamedProxy, Serializable{
+public class AnophelineProxy  implements EntityProxy, NamedProxy, Serializable{
 
   private Long id;
   
@@ -25,6 +25,46 @@ public class AnophelineProxy implements NamedProxy, Serializable{
 
   public void setName(String name) {
     this.name = name;
+  }
+  
+  private Double minX;
+  
+  public Double getMinX() {
+    return minX;
+  }
+
+  public void setMinX(Double minX) {
+    this.minX = minX;
+  }
+
+  private Double minY;
+
+  public Double getMinY() {
+    return minY;
+  }
+
+  public void setMinY(Double minY) {
+    this.minY = minY;
+  }
+
+  private Double maxX;
+
+  public Double getMaxX() {
+    return maxX;
+  }
+
+  public void setMaxX(Double maxX) {
+    this.maxX = maxX;
+  }
+
+  private Double maxY;
+
+  public Double getMaxY() {
+    return maxY;
+  }
+
+  public void setMaxY(Double maxY) {
+    this.maxY = maxY;
   }
   
 

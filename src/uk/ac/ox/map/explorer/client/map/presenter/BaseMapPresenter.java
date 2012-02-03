@@ -6,7 +6,7 @@ import uk.ac.ox.map.explorer.client.base.view.CompositeMapView;
 import uk.ac.ox.map.explorer.client.event.ExtentChangeRequestEvent;
 import uk.ac.ox.map.explorer.client.event.LayerChangeRequestEvent;
 import uk.ac.ox.map.explorer.client.map.view.MapView;
-import uk.ac.ox.map.explorer.client.proxy.ExtentProxy;
+import uk.ac.ox.map.explorer.client.proxy.seed.EntityProxy;
 import uk.ac.ox.map.explorer.client.proxy.seed.MapLayer;
 import uk.ac.ox.map.explorer.client.resource.ResourceBundle;
 
@@ -76,7 +76,7 @@ public abstract class BaseMapPresenter extends AbstractActivity {
     eventBus.addHandler(ExtentChangeRequestEvent.TYPE, new ExtentChangeRequestEvent.Handler() {
       @Override
       public void onExtentChangeRequest(ExtentChangeRequestEvent requestEvent) {
-        ExtentProxy extent = requestEvent.getExtent();
+        EntityProxy extent = requestEvent.getExtent();
         mapView.zoomToBounds(extent);
       }
     });

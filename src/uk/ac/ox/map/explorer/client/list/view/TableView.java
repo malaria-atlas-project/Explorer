@@ -30,7 +30,6 @@ public class TableView<T> extends Composite {
   @UiField(provided = true)
   DataGrid<T> dataGrid;
 
-
   protected AbstractTablePresenter<T> presenter;
 
   protected SingleSelectionModel<T> selectionModel;
@@ -55,8 +54,9 @@ public class TableView<T> extends Composite {
       }
     });
 
-    DefaultSelectionEventManager<T> a = DefaultSelectionEventManager.createBlacklistManager(1);
-    dataGrid.setSelectionModel(selectionModel, a);
+//    DefaultSelectionEventManager<T> a = DefaultSelectionEventManager.createBlacklistManager(1);
+//    dataGrid.setSelectionModel(selectionModel, a);
+    dataGrid.setSelectionModel(selectionModel);
     dataGrid.setPageSize(pageSize);
     
     dataGrid.addColumnSortHandler(new ColumnSortEvent.Handler() {

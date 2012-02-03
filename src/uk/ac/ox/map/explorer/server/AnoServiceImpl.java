@@ -8,7 +8,6 @@ import javax.inject.Singleton;
 import uk.ac.ox.map.domain.Anopheline;
 import uk.ac.ox.map.explorer.client.proxy.seed.AnophelineProxy;
 import uk.ac.ox.map.explorer.client.rpc.AnoService;
-import uk.ac.ox.map.explorer.client.rpc.EntityService;
 import uk.ac.ox.map.request.server.SimpleDao;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
@@ -39,6 +38,7 @@ public class AnoServiceImpl extends RemoteServiceServlet implements AnoService{
       p.setId(anopheline.getId());
       p.setName(anopheline.getName());
       dtos.add(p);
+      ExtentUtil.copyExtent(p, anopheline.getExtent());
     }
     return dtos;
   }

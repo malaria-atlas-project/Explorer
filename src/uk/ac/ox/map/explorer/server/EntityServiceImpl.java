@@ -38,6 +38,7 @@ public class EntityServiceImpl extends RemoteServiceServlet implements EntitySer
       p.setId(country.getId());
       p.setName(country.getName());
       dtos.add(p);
+      ExtentUtil.copyExtent(p, country.getExtent());
     }
     return dtos;
   }

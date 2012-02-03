@@ -15,5 +15,5 @@ gen/*
 www-test/**
 war/**
 gwt-unitCache/**
-MapAdmin.war
+Explorer.war
 !war/web.xml

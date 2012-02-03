@@ -15,7 +15,7 @@ import org.gwtopenmaps.openlayers.client.layer.WMS;
 import org.gwtopenmaps.openlayers.client.layer.WMSParams;
 
 import uk.ac.ox.map.explorer.client.map.presenter.BaseMapPresenter;
-import uk.ac.ox.map.explorer.client.proxy.ExtentProxy;
+import uk.ac.ox.map.explorer.client.proxy.seed.EntityProxy;
 import uk.ac.ox.map.explorer.client.proxy.seed.MapLayer;
 
 import com.google.gwt.user.client.ui.Composite;
@@ -142,8 +142,9 @@ public class MapView extends Composite {
 //
 //  }
 
-  public void zoomToBounds(ExtentProxy extent) {
-    zoomToBounds(extent.getMinx(), extent.getMiny(), extent.getMaxx(), extent.getMaxy());
+  public void zoomToBounds(EntityProxy extent) {
+    System.out.println(extent.getMinX());
+    zoomToBounds(extent.getMinX(), extent.getMinY(), extent.getMaxX(), extent.getMaxY());
   }
 
   public Bounds getExtent() {

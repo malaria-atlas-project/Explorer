@@ -12,7 +12,7 @@ import com.google.gwt.view.client.HasData;
 import com.google.gwt.view.client.Range;
 import com.google.inject.Inject;
 
-public class CountryDataProvider extends AbstractDataProvider2<CountryProxy>{
+public class CountryDataProvider extends AbstractDataProvider<CountryProxy>{
   
   private EntityServiceAsync service;
   private EntityPlace entityPlace;

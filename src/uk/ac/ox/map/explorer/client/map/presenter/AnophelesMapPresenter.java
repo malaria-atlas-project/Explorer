@@ -4,7 +4,7 @@ package uk.ac.ox.map.explorer.client.map.presenter;
 import java.util.List;
 
 import uk.ac.ox.map.explorer.client.event.AnophelineSelectedEvent;
-import uk.ac.ox.map.explorer.client.proxy.ExtentProxy;
+import uk.ac.ox.map.explorer.client.proxy.seed.EntityProxy;
 import uk.ac.ox.map.explorer.client.proxy.seed.MapLayer;
 import uk.ac.ox.map.explorer.client.proxy.seed.RetrieveVars;
 import uk.ac.ox.map.explorer.client.resource.ResourceBundle;
@@ -38,8 +38,8 @@ public class AnophelesMapPresenter extends BaseMapPresenter {
     eventBus.addHandler(AnophelineSelectedEvent.TYPE, new AnophelineSelectedEvent.Handler() {
       @Override
       public void onAnophelineSelected(AnophelineSelectedEvent requestEvent) {
-//        ExtentProxy extent = requestEvent.getAnopheline().getExtent();
-//        mapView.zoomToBounds(extent);
+        EntityProxy extent = requestEvent.getAnopheline();
+        mapView.zoomToBounds(extent);
         
         mapView.setCql(ANOPHELES_ANOPHELINE_DISPLAY, "anopheline_id=" + requestEvent.getAnopheline().getId());
       }

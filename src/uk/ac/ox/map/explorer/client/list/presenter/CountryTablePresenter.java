@@ -1,7 +1,5 @@
 package uk.ac.ox.map.explorer.client.list.presenter;
 
-import java.util.List;
-
 import uk.ac.ox.map.explorer.client.base.view.CompositeTableView;
 import uk.ac.ox.map.explorer.client.event.CountryCheckedEvent;
 import uk.ac.ox.map.explorer.client.event.CountrySelectedEvent;
@@ -14,7 +12,6 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
-import com.google.web.bindery.requestfactory.shared.Request;
 
 public class CountryTablePresenter extends AbstractTablePresenter<CountryProxy> {
   
@@ -39,19 +36,6 @@ public class CountryTablePresenter extends AbstractTablePresenter<CountryProxy> 
     
     this.dataProvider = dp;
     
-//    this.dataProvider = new AbstractDataProvider<CountryProxy>(rf, tableView){
-//
-//      @Override
-//      protected Request<List<CountryProxy>> getSearchRequest(Integer i, Integer j, String searchString) {
-//        return requestFactory.countryRequest().search(i, j, searchString).with("region", "extent");
-//      }
-//
-//      @Override
-//      protected Request<Long> getSearchCountRequest(String searchString) {
-//        return requestFactory.countryRequest().searchCount(searchString);
-//      }
-//      
-//    };
   }
   
   @Override

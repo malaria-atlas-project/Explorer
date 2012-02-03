@@ -4,7 +4,7 @@ package uk.ac.ox.map.explorer.client.map.presenter;
 import java.util.List;
 
 import uk.ac.ox.map.explorer.client.event.CountrySelectedEvent;
-import uk.ac.ox.map.explorer.client.proxy.ExtentProxy;
+import uk.ac.ox.map.explorer.client.proxy.seed.EntityProxy;
 import uk.ac.ox.map.explorer.client.proxy.seed.MapLayer;
 import uk.ac.ox.map.explorer.client.proxy.seed.RetrieveVars;
 import uk.ac.ox.map.explorer.client.resource.ResourceBundle;
@@ -34,8 +34,8 @@ public class CountryMapPresenter extends BaseMapPresenter {
     eventBus.addHandler(CountrySelectedEvent.TYPE, new CountrySelectedEvent.Handler() {
       @Override
       public void onCountrySelected(CountrySelectedEvent requestEvent) {
-//        ExtentProxy extent = requestEvent.getCountry().getExtent();
-//        mapView.zoomToBounds(extent);
+        EntityProxy extent = requestEvent.getCountry();
+        mapView.zoomToBounds(extent);
       }
     });
   }

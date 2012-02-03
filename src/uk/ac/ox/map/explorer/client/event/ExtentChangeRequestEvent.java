@@ -1,6 +1,6 @@
 package uk.ac.ox.map.explorer.client.event;
 
-import uk.ac.ox.map.explorer.client.proxy.ExtentProxy;
+import uk.ac.ox.map.explorer.client.proxy.seed.EntityProxy;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.EventHandler;
@@ -30,10 +30,10 @@ public class ExtentChangeRequestEvent extends GwtEvent<ExtentChangeRequestEvent.
     return eventBus.addHandler(TYPE, handler);
   }
 
-  private ExtentProxy extent;
+  private EntityProxy extent;
 
 
-  public ExtentChangeRequestEvent(ExtentProxy extent) {
+  public ExtentChangeRequestEvent(EntityProxy extent) {
     this.extent = extent;
   }
 
@@ -42,7 +42,7 @@ public class ExtentChangeRequestEvent extends GwtEvent<ExtentChangeRequestEvent.
     return TYPE;
   }
 
-  public ExtentProxy getExtent() {
+  public EntityProxy getExtent() {
     return extent;
   }
 

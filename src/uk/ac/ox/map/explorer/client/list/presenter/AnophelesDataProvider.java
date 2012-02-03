@@ -3,18 +3,16 @@ package uk.ac.ox.map.explorer.client.list.presenter;
 import java.util.ArrayList;
 
 import uk.ac.ox.map.explorer.client.list.view.AnophelineTableView;
-import uk.ac.ox.map.explorer.client.list.view.TableView;
 import uk.ac.ox.map.explorer.client.place.EntityPlace;
 import uk.ac.ox.map.explorer.client.proxy.seed.AnophelineProxy;
 import uk.ac.ox.map.explorer.client.rpc.AnoServiceAsync;
-import uk.ac.ox.map.explorer.client.rpc.EntityServiceAsync;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.view.client.HasData;
 import com.google.gwt.view.client.Range;
 import com.google.inject.Inject;
 
-public class AnophelesDataProvider extends AbstractDataProvider2<AnophelineProxy>{
+public class AnophelesDataProvider extends AbstractDataProvider<AnophelineProxy>{
   
   private AnoServiceAsync service;
   private EntityPlace entityPlace;

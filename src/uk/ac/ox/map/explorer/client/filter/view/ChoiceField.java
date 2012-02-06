@@ -11,6 +11,14 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.ListBox;
 
+/**
+ * Wrapper for a {@link ListBox} providing getters and setters (hiding ugly
+ * standard code for setting values based on list index)
+ * 
+ * @author will
+ * 
+ * @param <T>
+ */
 public class ChoiceField<T> extends Composite implements HasValueChangeHandlers<T> {
 
   private ListBox lb = new ListBox();
@@ -55,10 +63,10 @@ public class ChoiceField<T> extends Composite implements HasValueChangeHandlers<
       return null;
     }
     // -1 as have one extra value in lb
-    T val = values.get(selectedIdx-1);
+    T val = values.get(selectedIdx - 1);
     return val;
   }
-  
+
   public void setValue(T value) {
     setValue(value, false);
   }

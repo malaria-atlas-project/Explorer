@@ -11,19 +11,24 @@ import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 
+/**
+ * Simple view for holding the key map interface components
+ * 
+ * @author will
+ */
 public class CompositeMapView extends Composite {
 
   private static CompositeMapViewUiBinder uiBinder = GWT.create(CompositeMapViewUiBinder.class);
 
   interface CompositeMapViewUiBinder extends UiBinder<Widget, CompositeMapView> {
   }
-  
+
   @UiField
   SimplePanel keyPanel;
-  
+
   @UiField
   SimplePanel mapInfoPanel;
-  
+
   @UiField
   SimplePanel mapPanel;
 
@@ -32,18 +37,17 @@ public class CompositeMapView extends Composite {
     initWidget(uiBinder.createAndBindUi(this));
     mapPanel.add(mapExample);
   }
-  
+
   public SimplePanel getKeyPanel() {
     return keyPanel;
   }
-  
+
   public SimplePanel getInfoPanel() {
     return mapInfoPanel;
   }
-  
+
   public AcceptsOneWidget getMapPanel() {
     return mapPanel;
   }
-
 
 }

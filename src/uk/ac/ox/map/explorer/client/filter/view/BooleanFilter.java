@@ -3,7 +3,6 @@ package uk.ac.ox.map.explorer.client.filter.view;
 import java.util.ArrayList;
 import java.util.List;
 
-import uk.ac.ox.map.explorer.client.filter.presenter.Filter;
 import uk.ac.ox.map.explorer.client.filter.presenter.Operator;
 
 import com.google.gwt.core.client.GWT;
@@ -17,30 +16,39 @@ import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.RadioButton;
 import com.google.gwt.user.client.ui.Widget;
 
-public class DiscreteOptionFilter extends AbstractFilter implements Filter {
+/**
+ * Provides true, false and all radio buttons.
+ * 
+ * @author will
+ */
+public class BooleanFilter extends AbstractFilter {
 
-  private static DiscreteOptionFilterUiBinder uiBinder = GWT.create(DiscreteOptionFilterUiBinder.class);
+  private static BooleanFilterUiBinder uiBinder = GWT.create(BooleanFilterUiBinder.class);
 
-  interface DiscreteOptionFilterUiBinder extends UiBinder<Widget, DiscreteOptionFilter> {
+  interface BooleanFilterUiBinder extends UiBinder<Widget, BooleanFilter> {
   }
 
+  /*
+   * Using a random but guaranteed unique group name for radio buttons is a
+   * quick way of ensuring they're grouped properly.
+   */
   private final String rbGroupName = DOM.createUniqueId();
-  
+
   private final String[] opts = { "all", "true", "false" };
-  
+
   private List<RadioButton> radioButtons = new ArrayList<RadioButton>();
-  
+
   private String currVal;
-  
+
   @UiField
   FlowPanel base;
 
   @UiConstructor
-  public DiscreteOptionFilter(String labelText, String propertyName) {
+  public BooleanFilter(String labelText, String propertyName) {
     super(propertyName);
-    
+
     initWidget(uiBinder.createAndBindUi(this));
-    //FIXME: hack as can't put HTML in uibinder
+    // FIXME: hack as can't put HTML in uibinder
     labelText = labelText.replace("Pf", "<i>Pf</i>");
     labelText = labelText.replace("Pv", "<i>Pv</i>");
     filterLabel.setHTML(labelText);
@@ -60,7 +68,7 @@ public class DiscreteOptionFilter extends AbstractFilter implements Filter {
         public void onClick(ClickEvent event) {
           String val = ((RadioButton) event.getSource()).getText();
           currVal = val;
-          filterList.onFilterChange();
+          filterListener.onFilterChange();
         }
       });
     }
@@ -68,11 +76,10 @@ public class DiscreteOptionFilter extends AbstractFilter implements Filter {
 
   @Override
   public String getFilterString() {
-    if(currVal.equals("all")) {
+    if (currVal.equals("all")) {
       return "";
     }
     return FilterBuilder.getFilterString(filterProperty, Operator.eq, currVal);
-//    return filterProperty + "_" + Operator.eq + "=" + currVal;
   }
 
   @Override

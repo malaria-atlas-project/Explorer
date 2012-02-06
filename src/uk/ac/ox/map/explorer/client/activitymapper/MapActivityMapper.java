@@ -13,7 +13,7 @@ import com.google.inject.Singleton;
 
 
 /**
- * Essentially have a singleton pattern for mapPresenter (as the activity mapper is a singleton).
+ * A singleton {@link ActivityMapper} means singleton map 
  * 
  * May in future 
  * 

@@ -13,7 +13,13 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
-public class TextFilter extends AbstractFilter implements Filter {
+/**
+ * Encapsulates a {@link TextBox} for use as a {@link Filter}
+ * 
+ * @author will
+ *
+ */
+public class TextFilter extends AbstractFilter {
 
   private static DiscreteOptionFilterUiBinder uiBinder = GWT.create(DiscreteOptionFilterUiBinder.class);
 
@@ -30,7 +36,7 @@ public class TextFilter extends AbstractFilter implements Filter {
   
   @UiHandler("goButton")
   void onClick(ClickEvent e) {
-    filterList.onFilterChange();
+    filterListener.onFilterChange();
   }
 
   @UiConstructor
@@ -57,7 +63,5 @@ public class TextFilter extends AbstractFilter implements Filter {
   public void setValue(String value) {
     textBox.setValue(value);
   }
-
-
 
 }

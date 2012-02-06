@@ -15,6 +15,15 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.SimpleLayoutPanel;
 import com.google.inject.Inject;
 
+/**
+ * Bootstraps application by starting up two activity mappers and populating the
+ * perpective switcher.
+ * 
+ * @param display
+ * @param eventBus
+ * @param appMapper
+ * @param mapMapper
+ */
 public class BasePresenter {
 
   private static final String ANOPHELES_DVS = "Anopheles DVS";
@@ -34,15 +43,6 @@ public class BasePresenter {
 
   }
 
-  /**
-   * Bootstraps application by starting up two activity mappers and populating
-   * the perpective switcher.
-   * 
-   * @param display
-   * @param eventBus
-   * @param appMapper
-   * @param mapMapper
-   */
   @Inject
   public BasePresenter(final BaseView display, EventBus eventBus, MapActivityMapper appMapper, TableActivityMapper tableMapper) {
 

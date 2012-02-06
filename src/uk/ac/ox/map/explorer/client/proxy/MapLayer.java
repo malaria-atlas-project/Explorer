@@ -1,7 +1,5 @@
 package uk.ac.ox.map.explorer.client.proxy;
 
-import com.google.gwt.resources.client.ImageResource;
-
 public interface MapLayer {
 
   String getName();

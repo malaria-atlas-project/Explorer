@@ -25,5 +25,4 @@ public class AnophelineFilterList extends BaseCompositeFilter {
     filters.add(region);
   }
 
-
 }

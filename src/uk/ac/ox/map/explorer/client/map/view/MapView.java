@@ -7,10 +7,8 @@ import org.gwtopenmaps.openlayers.client.LonLat;
 import org.gwtopenmaps.openlayers.client.Map;
 import org.gwtopenmaps.openlayers.client.MapOptions;
 import org.gwtopenmaps.openlayers.client.MapWidget;
-import org.gwtopenmaps.openlayers.client.Marker;
 import org.gwtopenmaps.openlayers.client.event.MapClickListener;
 import org.gwtopenmaps.openlayers.client.event.MapMoveEndListener;
-import org.gwtopenmaps.openlayers.client.layer.Markers;
 import org.gwtopenmaps.openlayers.client.layer.WMS;
 import org.gwtopenmaps.openlayers.client.layer.WMSParams;
 
@@ -30,8 +28,6 @@ public class MapView extends Composite {
   private MapWidget mapWidget;
   private Map map;
 
-  private Markers markers;
-  private Marker marker;
   private BaseMapPresenter listener;
   
   private String gwcUrl = "http://map1.zoo.ox.ac.uk/geoserver/gwc/service/wms";

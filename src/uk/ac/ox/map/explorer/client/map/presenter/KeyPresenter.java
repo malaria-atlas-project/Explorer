@@ -2,7 +2,7 @@ package uk.ac.ox.map.explorer.client.map.presenter;
 
 import java.util.List;
 
-import uk.ac.ox.map.explorer.client.event.LayerChangeRequestEvent;
+import uk.ac.ox.map.explorer.client.event.ToggleLayerRequestEvent;
 import uk.ac.ox.map.explorer.client.map.view.KeyView;
 import uk.ac.ox.map.explorer.client.proxy.MapLayer;
 import uk.ac.ox.map.explorer.client.resource.ResourceBundle;
@@ -12,6 +12,12 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 
+/**
+ * Manages display of layer information and toggles layers.
+ * 
+ * @author will
+ *
+ */
 public class KeyPresenter extends AbstractActivity {
   
   private KeyView display;
@@ -31,14 +37,10 @@ public class KeyPresenter extends AbstractActivity {
 
   public void setLayers(List<MapLayer> layers) {
     display.setLayers(layers);
-//    for (MapLayer mapLayer : layers) {
-//      display.addLayer(mapLayer);
-//    }
   }
 
   public void toggleLayerVisibility(String name, boolean checked) {
-    
-    eventBus.fireEvent(new LayerChangeRequestEvent(name, checked));
+    eventBus.fireEvent(new ToggleLayerRequestEvent(name, checked));
   }
 
 }

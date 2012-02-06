@@ -2,11 +2,14 @@ package uk.ac.ox.map.explorer.client.list.presenter;
 
 import java.util.Map;
 
+import uk.ac.ox.map.explorer.client.base.view.CompositeTableView;
 import uk.ac.ox.map.explorer.client.filter.presenter.FilterChangedEvent;
-import uk.ac.ox.map.explorer.client.filter.presenter.FilterChangedEventHandler;
+import uk.ac.ox.map.explorer.client.filter.presenter.FilterPresenter;
+import uk.ac.ox.map.explorer.client.list.view.BaseCompositeFilter;
 import uk.ac.ox.map.explorer.client.list.view.TableView;
 import uk.ac.ox.map.explorer.client.place.EntityPlace;
 import uk.ac.ox.map.explorer.client.place.Order;
+import uk.ac.ox.map.explorer.client.proxy.NamedProxy;
 
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.activity.shared.Activity;
@@ -18,20 +21,47 @@ import com.google.gwt.user.cellview.client.ColumnSortList;
 import com.google.gwt.user.cellview.client.ColumnSortList.ColumnSortInfo;
 import com.google.gwt.user.cellview.client.DataGrid;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
+import com.google.inject.Inject;
 
-public abstract class AbstractTablePresenter<T> extends AbstractActivity  {
+/**
+ * Manages overall wiring of the table-based UI, including filtering, display and selection.
+ * 
+ * @author will
+ */
+public abstract class BaseTablePresenter<T extends NamedProxy> extends AbstractActivity {
 
   protected final TableView<T> tableView;
   private final PlaceController placeController;
-  protected AbstractDataProvider<T> dataProvider;
+  protected final AbstractDataProvider<T> dataProvider;
   protected EntityPlace place;
+  protected final BaseCompositeFilter filterList;
 
-  public AbstractTablePresenter(PlaceController placeController, TableView<T> view) {
+  @Inject
+  protected EventBus eventBus;
+
+  protected BaseSelectionPresenter<T> selectionPresenter;
+
+  protected final CompositeTableView compositeTableView;
+
+  public BaseTablePresenter(PlaceController placeController, TableView<T> view, BaseCompositeFilter filterList, BaseSelectionPresenter<T> baseSelectionPresenter, AbstractDataProvider<T> dp) {
     this.placeController = placeController;
     this.tableView = view;
+    this.compositeTableView = new CompositeTableView();
+    this.selectionPresenter = baseSelectionPresenter;
+    this.dataProvider = dp;
+
+    this.filterList = filterList;
     view.setPresenter(this);
+
   }
-  
+
+  /**
+   * Convenience method for providing the place as well as the view when calling
+   * start on an {@link AbstractActivity}. This just makes it a one-liner.
+   * 
+   * @param place
+   * @return
+   */
   public Activity withPlace(EntityPlace place) {
     this.place = place;
     dataProvider.start(place);
@@ -53,21 +83,30 @@ public abstract class AbstractTablePresenter<T> extends AbstractActivity  {
 
   @Override
   public void start(AcceptsOneWidget panel, EventBus eventBus) {
-    tableView.clearSelection();
-    panel.setWidget(tableView);
 
-    eventBus.addHandler(FilterChangedEvent.TYPE, new FilterChangedEventHandler() {
+    panel.setWidget(compositeTableView);
+    tableView.clearSelection();
+    compositeTableView.getTablePanel().setWidget(tableView);
+
+    eventBus.addHandler(FilterChangedEvent.TYPE, new FilterChangedEvent.Handler() {
       @Override
       public void onFilterChanged(FilterChangedEvent event) {
         placeController.goTo(new EntityPlace(place.getEntityName(), event.getFilterString(), place.getOrderBy(), false));
       }
     });
+
+    FilterPresenter filterPresenter = new FilterPresenter(place, filterList);
+    filterPresenter.start(compositeTableView.getFilterPanel(), eventBus);
+
+    selectionPresenter.start(compositeTableView.getSelectionPanel(), eventBus);
+
+    this.eventBus = eventBus;
   }
 
   @Override
   public void onStop() {
     dataProvider.removeDataDisplay(tableView.getCellTable());
-//    handlerRegistration.removeHandler();
+    // handlerRegistration.removeHandler();
   }
 
   @Override
@@ -76,13 +115,12 @@ public abstract class AbstractTablePresenter<T> extends AbstractActivity  {
   }
 
   public abstract void fireObjectSelected(T obj);
-  
+
   public abstract void fireObjectChecked(T obj, boolean isChecked);
-  
 
   /**
-   * Column sorting is separate from filtering.
-   * Therefore the new place can use the previous query string.
+   * Column sorting is separate from filtering. Therefore the new place can use
+   * the previous query string.
    */
   public void fireColumnSort(ColumnSortEvent event) {
 

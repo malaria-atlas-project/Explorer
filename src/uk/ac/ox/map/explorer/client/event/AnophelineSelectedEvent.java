@@ -8,7 +8,7 @@ import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HandlerRegistration;
 
 /**
- * An event posted when an authentication failure is detected.
+ * Fired when an {@link AnophelineProxy} is selected.
  */
 public class AnophelineSelectedEvent extends GwtEvent<AnophelineSelectedEvent.Handler> {
   

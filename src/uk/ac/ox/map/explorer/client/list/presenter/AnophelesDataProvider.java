@@ -12,6 +12,11 @@ import com.google.gwt.view.client.HasData;
 import com.google.gwt.view.client.Range;
 import com.google.inject.Inject;
 
+/**
+ * Queries server for {@link AnophelineProxy} objects
+ * 
+ * @author will
+ */
 public class AnophelesDataProvider extends AbstractDataProvider<AnophelineProxy>{
   
   private AnoServiceAsync service;
@@ -33,6 +38,7 @@ public class AnophelesDataProvider extends AbstractDataProvider<AnophelineProxy>
 
       @Override
       public void onFailure(Throwable caught) {
+        AnophelesDataProvider.this.onFailure(caught);
       }
 
       @Override
@@ -57,7 +63,7 @@ public class AnophelesDataProvider extends AbstractDataProvider<AnophelineProxy>
       
       @Override
       public void onFailure(Throwable caught) {
-        
+        AnophelesDataProvider.this.onFailure(caught);
       }
     });
     

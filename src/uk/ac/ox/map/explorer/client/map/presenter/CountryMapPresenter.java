@@ -14,9 +14,9 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 
 /**
+ * The presenter for the PR perspective
  * 
  * @author will
- *
  */
 public class CountryMapPresenter extends BaseMapPresenter {
   

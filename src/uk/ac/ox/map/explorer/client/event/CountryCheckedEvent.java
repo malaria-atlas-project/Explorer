@@ -8,7 +8,7 @@ import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HandlerRegistration;
 
 /**
- * An event posted when an authentication failure is detected.
+ * Fired when a {@link CountryProxy} is checked
  */
 public class CountryCheckedEvent extends GwtEvent<CountryCheckedEvent.Handler> {
   

@@ -8,6 +8,10 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 
+/**
+ * Simple view for holding table components.
+ * 
+ */
 public class CompositeTableView extends Composite {
 
   private static CompositeTableViewUiBinder uiBinder = GWT.create(CompositeTableViewUiBinder.class);

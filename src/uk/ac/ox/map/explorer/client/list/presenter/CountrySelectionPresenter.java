@@ -11,6 +11,11 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
+/**
+ * Manages selection of {@link CountryProxy} objects
+ * 
+ * @author will
+ */
 @Singleton
 public class CountrySelectionPresenter extends BaseSelectionPresenter<CountryProxy> {
   
@@ -33,7 +38,6 @@ public class CountrySelectionPresenter extends BaseSelectionPresenter<CountryPro
         addObject(requestEvent.getCountry(), requestEvent.isChecked());
       }
     });
-    
     
   }
 

@@ -1,7 +1,6 @@
 package uk.ac.ox.map.explorer.client;
 
 import uk.ac.ox.map.explorer.client.place.EntityPlace;
-import uk.ac.ox.map.explorer.client.place.HomePagePlace;
 
 import com.google.gwt.place.shared.PlaceHistoryMapper;
 import com.google.gwt.place.shared.WithTokenizers;
@@ -13,7 +12,6 @@ import com.google.gwt.place.shared.WithTokenizers;
  * separate TokenizerFactory.
  */
 @WithTokenizers({ 
-	HomePagePlace.Tokenizer.class,
 	EntityPlace.Tokenizer.class
 })
 public interface AppPlaceHistoryMapper extends PlaceHistoryMapper {

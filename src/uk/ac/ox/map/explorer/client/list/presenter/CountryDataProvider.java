@@ -12,6 +12,11 @@ import com.google.gwt.view.client.HasData;
 import com.google.gwt.view.client.Range;
 import com.google.inject.Inject;
 
+/**
+ * Provides querying for {@link CountryProxy} objects
+ * 
+ * @author will
+ */
 public class CountryDataProvider extends AbstractDataProvider<CountryProxy>{
   
   private EntityServiceAsync service;
@@ -33,6 +38,7 @@ public class CountryDataProvider extends AbstractDataProvider<CountryProxy>{
 
       @Override
       public void onFailure(Throwable caught) {
+        CountryDataProvider.this.onFailure(caught);
       }
 
       @Override
@@ -57,7 +63,7 @@ public class CountryDataProvider extends AbstractDataProvider<CountryProxy>{
       
       @Override
       public void onFailure(Throwable caught) {
-        
+        CountryDataProvider.this.onFailure(caught);
       }
     });
     

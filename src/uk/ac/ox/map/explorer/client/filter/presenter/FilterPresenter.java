@@ -12,6 +12,13 @@ import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
+/**
+ * Listens for filter changes (via {@link FilterListener} interface.
+ * 
+ * May be many instances of a {@link Filter} to one {@link FilterListener}.
+ * 
+ * @author will
+ */
 public class FilterPresenter extends AbstractActivity implements FilterListener {
   
   private final List<Filter> filters;

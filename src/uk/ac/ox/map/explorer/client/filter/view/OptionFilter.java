@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import uk.ac.ox.map.explorer.client.filter.presenter.Filter;
-import uk.ac.ox.map.explorer.client.filter.presenter.FilterListener;
 import uk.ac.ox.map.explorer.client.filter.presenter.Operator;
 
 import com.google.gwt.core.client.GWT;
@@ -17,7 +16,12 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-public class OptionFilter extends AbstractFilter implements Filter {
+/**
+ * Encapsulates a {@link ChoiceField} for use as a {@link Filter}
+ * 
+ * @author will
+ */
+public class OptionFilter extends AbstractFilter {
 
   private static OptionFilterUiBinder uiBinder = GWT.create(OptionFilterUiBinder.class);
 
@@ -29,8 +33,6 @@ public class OptionFilter extends AbstractFilter implements Filter {
 
   private ChoiceField<String> cf;
 
-  private FilterListener filterListener;
-  
   @UiConstructor
   public OptionFilter(String labelText, String propertyName, String jsVar) {
     super(propertyName);
@@ -75,13 +77,7 @@ public class OptionFilter extends AbstractFilter implements Filter {
 
   @Override
   public void setValue(String value) {
-    
+    cf.setValue(value, false);
   }
   
-  @Override
-  public void setListener(FilterListener filterListener) {
-    this.filterListener = filterListener;
-  }
-
-
 }

@@ -11,14 +11,17 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
+/**
+ * Manages selection of {@link AnophelineProxy} objects
+ * 
+ * @author will
+ */
 @Singleton
 public class AnophelesSelectionPresenter extends BaseSelectionPresenter<AnophelineProxy> {
   
   @Inject
   public AnophelesSelectionPresenter(SelectionView selectionView, EventBus eventBus) {
-    
     this.selectionView = selectionView;
-    
   }
 
   @Override
@@ -33,8 +36,6 @@ public class AnophelesSelectionPresenter extends BaseSelectionPresenter<Anopheli
         addObject(requestEvent.getAnopheline(), requestEvent.isChecked());
       }
     });
-    
-    
   }
 
   @Override

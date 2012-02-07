@@ -9,6 +9,7 @@ import com.google.gwt.cell.client.Cell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
+import com.google.gwt.safehtml.shared.SafeHtmlUtils;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.cellview.client.CellList;
@@ -30,7 +31,6 @@ public class SelectionView extends Composite {
   @UiField
   Button downloadButton;
   
-  
   private CellList<NamedProxy> cellList;
 
   public SelectionView() {
@@ -39,13 +39,12 @@ public class SelectionView extends Composite {
     Cell<NamedProxy> cell = new AbstractCell<NamedProxy>() {
       @Override
       public void render(Context context, NamedProxy value, SafeHtmlBuilder sb) {
-        sb.appendEscaped(value.getName());
+        sb.append(SafeHtmlUtils.fromTrustedString(value.getName()));
       }
     };
     
     cellList = new CellList<NamedProxy>(cell);
     cellListContainer.add(cellList); 
-    
   }
   
   public void setRowData(List<? extends NamedProxy> values) {

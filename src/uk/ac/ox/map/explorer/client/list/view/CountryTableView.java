@@ -16,7 +16,7 @@ import com.google.inject.name.Named;
 @Singleton
 public class CountryTableView extends TableView<CountryProxy> {
 
-  Set<CountryProxy> selected = new HashSet<CountryProxy>();
+  Set<String> selected = new HashSet<String>();
 
   @Inject
   public CountryTableView(@Named("TABLE_SIZE") Integer pageSize) {
@@ -46,7 +46,7 @@ public class CountryTableView extends TableView<CountryProxy> {
     Column<CountryProxy, Boolean> checkColumn = new Column<CountryProxy, Boolean>(new CheckboxCell(false, false)) {
       @Override
       public Boolean getValue(CountryProxy object) {
-        return selected.contains(object);
+        return selected.contains(object.getId());
       }
     };
 
@@ -54,11 +54,15 @@ public class CountryTableView extends TableView<CountryProxy> {
       @Override
       public void update(int index, CountryProxy object, Boolean selectForDownload) {
         presenter.fireObjectChecked(object, selectForDownload);
+        if (selectForDownload) {
+          selected.add(object.getId());
+        } else {
+          selected.remove(object.getId());
+        }
       }
     });
     
     addColumn(checkColumn, "Select for download");
 
   }
-  
 }

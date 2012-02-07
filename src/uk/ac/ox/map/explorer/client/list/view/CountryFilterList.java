@@ -32,6 +32,4 @@ public class CountryFilterList extends BaseCompositeFilter {
     filters.add(pvEndemic);
     filters.add(continent);
   }
-
-
 }

@@ -23,7 +23,23 @@ public class AnoQuery  {
   private int currRow = 0;
 
   private enum Cols {
-    Month_start, Month_end, Year_start, Year_end, ASSI, Control_Type, Notes, AnoID, SiteID, SourceID
+    id,
+    latitude,
+    longitude,
+    country_id,
+    species,
+    year_start,
+    year_end,
+    month_start,
+    month_end,
+    id_method1,
+    id_method2,
+    sample_method1,
+    sample_method2,
+    sample_method3,
+    sample_method4,
+    ASSI,
+    citation
   }
   
   public AnoQuery(Workbook wb, List<Long> itemIds) {
@@ -49,10 +65,8 @@ public class AnoQuery  {
      */
     EntityManager em = EMF.get().createEntityManager();
     Query q = em.createNativeQuery(
-    "select " +
-    "start_month, end_month, start_year, end_year, \"ASSI\", control_type_id, " + 
-    "notes, anopheline_id, site_id, source_id " +
-    "from vector.sampleperiod_to_map where anopheline_id in (:ano)"
+    "select sample_period_id as id, latitude, longitude, country_id, species, year_start, year_end, month_start, month_end, id_method1, id_method2, sample_method1, sample_method2, sample_method3, sample_method4, \"ASSI\", citation " + 
+    "from explorer.anopheline_export where anopheline_id in (:ano)"
     );
     
     q.setParameter("ano", itemIds);

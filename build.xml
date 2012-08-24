@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <project name="MapExplorer" basedir="." default="gwtc" xmlns:ivy="antlib:org.apache.ivy.ant">
-
+  <!-- Configure or override this property to match your enviroment --> 
+  <property name="mapcommon.dir" location="../MapCommon/" />
   <property name="lib.dir" location="war/WEB-INF/lib/" />
   <property name="war.file" location="war" />
   <property name="resources" location="resources/" />
+
+  <ivy:settings file="${mapcommon.dir}/ivy/ivysettings.xml"/>
 
   <taskdef name="deploy" classname="org.apache.catalina.ant.DeployTask" />
   <taskdef name="undeploy" classname="org.apache.catalina.ant.UndeployTask" />
@@ -36,6 +39,9 @@
   </target>
 
   <target name="gwtc" depends="javac" description="GWT compile to JavaScript">
+	<property name="myclasspath" refid="build.path"/>
+	<!-- Emit the property to the ant console -->
+	<echo message="Classpath = ${myclasspath}"/>
     <java failonerror="true" fork="true" classname="com.google.gwt.dev.Compiler">
       <classpath>
         <!-- TODO better way of getting MapBase -->
@@ -43,6 +49,7 @@
         <pathelement location="src" />
         <pathelement location="war/WEB-INF/classes" />
       </classpath>
+    	
       <jvmarg value="-Xmx256M" />
       <!-- Additional arguments like -style PRETTY or -logLevel DEBUG -->
       <arg value="uk.ac.ox.map.explorer.MapExplorer" />

@@ -34,8 +34,10 @@ public class MapInfoServiceImpl extends RemoteServiceServlet implements MapInfoS
   public String getPrExtentInfo(Double minX, Double minY, Double maxX, Double maxY) {
 
     EntityManager em = emProvider.get();
-    Query q = em.createNativeQuery("select count(distinct(site_id)) as siteCount, count(distinct(sr.id)) as surveyReplicateCount " + "from site s " + "join pr2010.survey su on s.id = su.site_id "
-        + "join pr2010.survey_replicate sr on su.id = sr.survey_id " + "where s.geom && setsrid(st_makebox2d(st_makepoint(?,?), st_makepoint(?,?)), 4326);");
+    //Query q = em.createNativeQuery("select count(distinct(site_id)) as siteCount, count(distinct(sr.id)) as surveyReplicateCount " + "from explorer.site s " + "join pr2010.survey su on s.id = su.site_id "
+    //    + "join pr2010.survey_replicate sr on su.id = sr.survey_id " + "where s.geom && setsrid(st_makebox2d(st_makepoint(?,?), st_makepoint(?,?)), 4326);");
+    //Explorer shouldnt hit tables outside of the explorer schema
+    Query q = em.createNativeQuery("select count(distinct(geom)) as siteCount, count(distinct(id)) as surveyReplicateCount from explorer.pf_points_available where pf_points_available.geom && ST_SetSRID(st_makebox2d(st_makepoint(?,?), st_makepoint(?,?)), 4326)");
     q.setParameter(1, minX);
     q.setParameter(2, minY);
     q.setParameter(3, maxX);
@@ -59,7 +61,7 @@ public class MapInfoServiceImpl extends RemoteServiceServlet implements MapInfoS
     String sqlString = "select count(distinct(site_id)) as siteCount, count(distinct(id)) as samplePeriodCount " 
       + "from explorer.anopheline_display " 
       + "where "
-      + "geom && setsrid(st_makebox2d(st_makepoint(:minX,:minY), st_makepoint(:maxX,:maxY)), 4326) ";
+      + "geom && ST_SetSRID(st_makebox2d(st_makepoint(:minX,:minY), st_makepoint(:maxX,:maxY)), 4326) ";
 
     if (anoId != null) {
       sqlString += "and (anopheline_id = :anoId);";

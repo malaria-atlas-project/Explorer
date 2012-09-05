@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(schema = "public", name = "map_region")
+@Table(schema = "explorer", name = "map_region")
 public class Region {
   
   public static List<Region> search(Integer firstResult, Integer maxResults, String searchParams) {

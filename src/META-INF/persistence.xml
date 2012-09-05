@@ -1,0 +1,34 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd" version="2.0">
+
+  <persistence-unit name="p1" transaction-type="RESOURCE_LOCAL">
+
+    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    
+    <class>uk.ac.ox.map.domain.Country</class>
+    <class>uk.ac.ox.map.domain.Region</class>
+    <class>uk.ac.ox.map.domain.Site</class>
+    <class>uk.ac.ox.map.domain.Continent</class>
+    <class>uk.ac.ox.map.domain.AnoRegion</class>
+    
+    <properties>
+    
+      <property name="hibernate.id.new_generator_mappings" value="true"/>
+
+      <property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />
+      <property name="hibernate.dialect" value="org.hibernatespatial.postgis.PostgisDialect" />
+
+      <property name="connection.provider_class" value="org.hibernate.connection.C3P0ConnectionProvider" />
+      <property name="hibernate.c3p0.acquire_increment" value="1" />
+      <property name="hibernate.c3p0.idle_test_period" value="100" />
+      <property name="hibernate.c3p0.max_size" value="100" />
+      <property name="hibernate.c3p0.max_statements" value="0" />
+      <property name="hibernate.c3p0.min_size" value="10" />
+      <property name="hibernate.c3p0.timeout" value="100" />
+
+      <!-- Enable Hibernate's automatic session context management -->
+      <property name="hibernate.current_session_context_class" value="thread" />
+
+    </properties>
+  </persistence-unit>
+
+</persistence>

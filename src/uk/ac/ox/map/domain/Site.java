@@ -30,7 +30,7 @@ import com.vividsolutions.jts.geom.Point;
 @NamedNativeQueries ({
 		@NamedNativeQuery(
 		    name="findSitesByCoordinate", 
-		    query="select * from site s where st_distance(s.geom, setsrid(st_makepoint(?,?), 4326)) < ? order by st_distance(s.geom, setsrid(st_makepoint(?,?), 4326))",
+		    query="select * from explorer.site s where st_distance(s.geom, ST_SetSRID(st_makepoint(?,?), 4326)) < ? order by st_distance(s.geom, ST_SetSRID(st_makepoint(?,?), 4326))",
 		    resultClass = Site.class
 		)
 })

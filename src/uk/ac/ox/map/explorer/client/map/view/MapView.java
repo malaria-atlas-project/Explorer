@@ -30,8 +30,8 @@ public class MapView extends Composite {
 
   private BaseMapPresenter listener;
   
-  private String gwcUrl = "http://map1.zoo.ox.ac.uk/geoserver/gwc/service/wms";
-  private String wmsUrl = "http://map1.zoo.ox.ac.uk/geoserver/wms";
+  private String gwcUrl = "http://localhost:8080/geoserver/gwc/service/wms";
+  private String wmsUrl = "http://localhost:8080/geoserver/wms";
   
   private java.util.Map<String, WMS> wmsLayerMap = new HashMap<String, WMS>();
 
@@ -45,7 +45,7 @@ public class MapView extends Composite {
    
     {
 	    WMSParams params = new WMSParams();
-      params.setLayers("Base:bluemarble");
+      params.setLayers("Explorer:bluemarble");
       params.setTransparent(true);
 	    WMS bm = new WMS("Blue marble", gwcUrl, params);
 	    bm.setIsBaseLayer(true);

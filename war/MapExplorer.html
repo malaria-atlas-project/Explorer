@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <title>MAP Data Explorer</title>
+    
+    <script type="text/javascript" language="javascript" src="mapexplorer/mapexplorer.nocache.js"></script>
+    <script type="text/javascript" language="javascript">
+    
+      var seedJson = {"AnoRegion":["Africa","Americas","Europe-Middle East","Asia-Pacific"],"Continent":["Africa","Americas","Antarctica","Asia","Europe","Oceania"]};
+      var PR = '{"layerList":[{"infoText":"2010 endemicity \u2013 Estimated proportion of 2-10 year olds in the general population that are infected with <i>P. falciparum<\/i> at any one time, averaged over the 12 months of 2010","imageUrl":"pf_endemicity.png","name":"2010 endemicity","wmsLayerName":"Explorer:pf_points_available"},{"infoText":"Country boundaries - should be updated","imageUrl":"country_boundary.png","name":"Country boundaries","wmsLayerName":"Explorer:countryborders"},{"infoText":"The surveys available for release","imageUrl":"pr_point_key.png","name":"Available surveys","wmsLayerName":"Explorer:pf_points_available"}]}';
+      var Anopheles = '{"layerList":[{"infoText":"Country boundaries","imageUrl":"country_boundary.png","name":"Country boundaries","wmsLayerName":"Explorer:countryborders"},{"infoText":"The presence points of the dominant vector species of malaria","imageUrl":"ano_point_key.png","name":"Points","wmsLayerName":"Explorer:anopheline_display"}]}';
+   		
+    </script>
+    
+  </head>
+
+  <body>
+
+    <!-- OPTIONAL: include this if you want history support -->
+    <iframe src="javascript:''" id="__gwt_historyFrame" tabIndex='-1' style="position:absolute;width:0;height:0;border:0"></iframe>
+    
+    <!-- RECOMMENDED if your web app will not function without JavaScript enabled -->
+    <noscript>
+      <div style="width: 22em; position: absolute; left: 50%; margin-left: -11em; color: red; background-color: white; border: 1px solid red; padding: 4px; font-family: sans-serif">
+        Your web browser must have JavaScript enabled
+        in order for this application to display correctly.
+      </div>
+    </noscript>
+
+  </body>
+
+</html>

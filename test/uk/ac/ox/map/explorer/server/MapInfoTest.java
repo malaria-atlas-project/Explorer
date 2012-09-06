@@ -24,11 +24,11 @@ public class MapInfoTest {
   
   @Test
   public void mapInfo() {
-    String x = serv.getPrExtentInfo(-40d, -40d, 40d, 40d);
+    String x = serv.getPrExtentInfo(true, true, -40d, -40d, 40d, 40d);
     System.out.println(x);
-    String y = serv.getAnophelineExtentInfo(null, -40d, -40d, 40d, 40d);
+    String y = serv.getAnophelineExtentInfo(true, true, null, -40d, -40d, 40d, 40d);
     System.out.println(y);
-    String z = serv.getAnophelineExtentInfo(7l, -40d, -40d, 40d, 40d);
+    String z = serv.getAnophelineExtentInfo(true, true, 7l, -40d, -40d, 40d, 40d);
     System.out.println(z);
   }
   

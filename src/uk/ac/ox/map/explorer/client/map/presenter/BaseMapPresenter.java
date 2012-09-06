@@ -75,6 +75,7 @@ public abstract class BaseMapPresenter extends AbstractActivity {
     eventBus.addHandler(ToggleLayerRequestEvent.TYPE, new ToggleLayerRequestEvent.Handler() {
       public void onLayerChangeRequest(ToggleLayerRequestEvent layerChangeEvent) {
         mapView.toggleLayer(layerChangeEvent.getLayerName(), layerChangeEvent.isActive());
+        mapInfoPresenter.updateMapInfo(layerChangeEvent.getLayerName(), mapView.getExtent());
       }
     });
 

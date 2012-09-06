@@ -3,6 +3,7 @@ package uk.ac.ox.map.explorer.client.map.presenter;
 import org.gwtopenmaps.openlayers.client.Bounds;
 
 import uk.ac.ox.map.explorer.client.event.AnophelineSelectedEvent;
+import uk.ac.ox.map.explorer.client.event.ToggleLayerRequestEvent;
 import uk.ac.ox.map.explorer.client.map.view.MapInfoView;
 import uk.ac.ox.map.explorer.client.proxy.AnophelineProxy;
 import uk.ac.ox.map.explorer.client.rpc.MapInfo;
@@ -16,7 +17,11 @@ import com.google.inject.Inject;
 public class AnophelesMapInfoPresenter extends BaseMapInfoPresenter {
   
   private AnophelineProxy anoProxy = null;
-
+  private Boolean presenceProxy = true;
+  private Boolean absenceProxy = true;
+  private final String PRESENCE_LAYER = "Explorer:anopheline_display_presence";
+  private final String ABSENCE_LAYER = "Explorer:anopheline_display_absence";
+  
   @Inject
   public AnophelesMapInfoPresenter(MapInfoView mapInfoView, MapInfoServiceAsync rpcService, EventBus eventBus) {
     super(mapInfoView, rpcService, eventBus);
@@ -36,6 +41,7 @@ public class AnophelesMapInfoPresenter extends BaseMapInfoPresenter {
     });
   }
   
+
   public void updateMapInfo(Bounds bounds) {
     
     Long anoId = null;
@@ -43,7 +49,7 @@ public class AnophelesMapInfoPresenter extends BaseMapInfoPresenter {
       anoId = anoProxy.getId();
     }
     
-    rpcService.getAnophelineExtentInfo(anoId, bounds.getLowerLeftX(), bounds.getLowerLeftY(), bounds.getUpperRightX(), bounds.getUpperRightY(), new AsyncCallback<String>() {
+    rpcService.getAnophelineExtentInfo(presenceProxy, absenceProxy, anoId, bounds.getLowerLeftX(), bounds.getLowerLeftY(), bounds.getUpperRightX(), bounds.getUpperRightY(), new AsyncCallback<String>() {
 
       @Override
       public void onFailure(Throwable caught) {
@@ -57,5 +63,17 @@ public class AnophelesMapInfoPresenter extends BaseMapInfoPresenter {
       }
     });
   }
+  
+  @Override
+  public void updateMapInfo(String toggledLayerName, Bounds extent) {
+      if (toggledLayerName.equals(PRESENCE_LAYER))
+      {
+    	  presenceProxy = !presenceProxy;
+      } else if (toggledLayerName.equals(ABSENCE_LAYER)) {
+    	  absenceProxy = !absenceProxy;
+      }
+      updateMapInfo(extent);
+  }
+
 
 }

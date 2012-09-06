@@ -11,6 +11,6 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 @Singleton
 @RemoteServiceRelativePath("mapInfo")
 public interface MapInfoService extends RemoteService {
-  String getPrExtentInfo(Double minX, Double minY, Double maxX, Double maxY);
-  String getAnophelineExtentInfo(Long anoId, Double minX, Double minY, Double maxX, Double maxY);
+  String getPrExtentInfo(Boolean availablePointsEnabled, Boolean unavailablePointsEnabled, Double minX, Double minY, Double maxX, Double maxY);
+  String getAnophelineExtentInfo(Boolean presencePointsEnabled, Boolean absencePointsEnabled, Long anoId, Double minX, Double minY, Double maxX, Double maxY);
 }

@@ -21,7 +21,8 @@ import com.google.inject.Inject;
 
 public class AnophelesMapPresenter extends BaseMapPresenter {
   
-  private static final String ANOPHELES_ANOPHELINE_DISPLAY = "Anopheles:anopheline_display";
+  private static final String ANOPHELES_ANOPHELINE_PRESENCE_DISPLAY = "Explorer:anopheline_display_presence";
+  private static final String ANOPHELES_ANOPHELINE_ABSENCE_DISPLAY = "Explorer:anopheline_display_absence";
 
   @Inject
   public AnophelesMapPresenter(ResourceBundle resources, AnophelesMapInfoPresenter mapInfoPresenter) {
@@ -41,7 +42,8 @@ public class AnophelesMapPresenter extends BaseMapPresenter {
         EntityProxy extent = requestEvent.getAnopheline();
         mapView.zoomToBounds(extent);
         
-        mapView.setCql(ANOPHELES_ANOPHELINE_DISPLAY, "anopheline_id=" + requestEvent.getAnopheline().getId());
+        mapView.setCql(ANOPHELES_ANOPHELINE_PRESENCE_DISPLAY, "anopheline_id=" + requestEvent.getAnopheline().getId());
+        mapView.setCql(ANOPHELES_ANOPHELINE_ABSENCE_DISPLAY, "anopheline_id=" + requestEvent.getAnopheline().getId());
       }
     });
     

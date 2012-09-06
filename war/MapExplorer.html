@@ -9,10 +9,64 @@
     <script type="text/javascript" language="javascript" src="mapexplorer/mapexplorer.nocache.js"></script>
     <script type="text/javascript" language="javascript">
     
-      var seedJson = {"AnoRegion":["Africa","Americas","Europe-Middle East","Asia-Pacific"],"Continent":["Africa","Americas","Antarctica","Asia","Europe","Oceania"]};
-      var PR = '{"layerList":[{"infoText":"2010 endemicity \u2013 Estimated proportion of 2-10 year olds in the general population that are infected with <i>P. falciparum<\/i> at any one time, averaged over the 12 months of 2010","imageUrl":"pf_endemicity.png","name":"2010 endemicity","wmsLayerName":"Explorer:pf_points_available"},{"infoText":"Country boundaries - should be updated","imageUrl":"country_boundary.png","name":"Country boundaries","wmsLayerName":"Explorer:countryborders"},{"infoText":"The surveys available for release","imageUrl":"pr_point_key.png","name":"Available surveys","wmsLayerName":"Explorer:pf_points_available"}]}';
-      var Anopheles = '{"layerList":[{"infoText":"Country boundaries","imageUrl":"country_boundary.png","name":"Country boundaries","wmsLayerName":"Explorer:countryborders"},{"infoText":"The presence points of the dominant vector species of malaria","imageUrl":"ano_point_key.png","name":"Points","wmsLayerName":"Explorer:anopheline_display"}]}';
-   		
+      var seedJson = { 
+        "AnoRegion" : [ 
+          "Africa",
+          "Americas",
+          "Europe-Middle East",
+          "Asia-Pacific"
+        ],
+        "Continent" : [ 
+          "Africa",
+          "Americas",
+          "Antarctica",
+          "Asia",
+          "Europe",
+          "Oceania"
+        ]
+      };
+      
+      var PR = '{ "layerList" : [ ' +
+      '  { "imageUrl" : "pf_endemicity.png", ' +
+      '    "infoText" : "2010 endemicity – Estimated proportion of 2-10 year olds in the general population that are infected with <i>P. falciparum</i> at any one time, averaged over the 12 months of 2010", ' +
+      '    "name" : "2010 endemicity", ' +
+      '    "wmsLayerName" : "Explorer:pr_mean" ' +
+      '  }, ' +
+      '  { "imageUrl" : "country_boundary.png", ' +
+      '    "infoText" : "Country boundaries - should be updated", ' +
+      '    "name" : "Country boundaries", ' +
+      '    "wmsLayerName" : "Explorer:countryborders" ' +
+      '  }, ' +
+      '  { "imageUrl" : "pr_unavailable_point_key.png", ' +
+      '    "infoText" : "The surveys that are not available for release", ' +
+      '    "name" : "Unavailable surveys", ' +
+      '    "wmsLayerName" : "Explorer:pf_points_available_unavailable" ' +
+      '  }, ' +
+      '  { "imageUrl" : "pr_available_point_key.png", ' +
+      '    "infoText" : "The surveys that are available for release", ' +
+      '    "name" : "Available surveys", ' +
+      '    "wmsLayerName" : "Explorer:pf_points_available_available" ' +
+      '  } ' +
+      '] }';
+      
+      var Anopheles = '{ "layerList" : [ ' +
+      '  { "imageUrl" : "country_boundary.png", ' +
+      '    "infoText" : "Country boundaries", ' +
+      '    "name" : "Country boundaries", ' +
+      '    "wmsLayerName" : "Explorer:countryborders" ' +
+      '  }, ' +
+      '  { "imageUrl" : "ano_absence_point_key.png", ' +
+      '    "infoText" : "The points indicating absence of the dominant vector species of malaria", ' +
+      '    "name" : "Absence Points", ' +
+      '    "wmsLayerName" : "Explorer:anopheline_display_absence" ' +
+      '  }, ' +
+      '  { "imageUrl" : "ano_presence_point_key.png", ' +
+      '    "infoText" : "The points indicating presence of the dominant vector species of malaria", ' +
+      '    "name" : "Presence Points", ' +
+      '    "wmsLayerName" : "Explorer:anopheline_display_presence" ' +
+      '  } ' +
+      '] }';
+   
     </script>
     
   </head>

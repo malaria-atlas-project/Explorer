@@ -7,7 +7,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
  */
 public interface MapInfoServiceAsync {
 
-  void getPrExtentInfo(Double minX, Double minY, Double maxX, Double maxY, AsyncCallback<String> callback);
-  void getAnophelineExtentInfo(Long anoId, Double minX, Double minY, Double maxX, Double maxY, AsyncCallback<String> callback);
+  void getPrExtentInfo(Boolean availablePointsEnabled, Boolean unavailablePointsEnabled, Double minX, Double minY, Double maxX, Double maxY, AsyncCallback<String> callback);
+  void getAnophelineExtentInfo(Boolean presencePointsEnabled, Boolean absencePointsEnabled, Long anoId, Double minX, Double minY, Double maxX, Double maxY, AsyncCallback<String> callback);
   
 }

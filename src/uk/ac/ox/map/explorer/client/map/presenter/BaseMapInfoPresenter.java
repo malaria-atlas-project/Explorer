@@ -2,6 +2,8 @@ package uk.ac.ox.map.explorer.client.map.presenter;
 
 import org.gwtopenmaps.openlayers.client.Bounds;
 
+import uk.ac.ox.map.explorer.client.event.AnophelineSelectedEvent;
+import uk.ac.ox.map.explorer.client.event.ToggleLayerRequestEvent;
 import uk.ac.ox.map.explorer.client.map.view.MapInfoView;
 import uk.ac.ox.map.explorer.client.rpc.MapInfoServiceAsync;
 
@@ -26,5 +28,7 @@ public abstract class BaseMapInfoPresenter extends AbstractActivity {
   }
   
   public abstract void updateMapInfo(Bounds bounds);
+
+  public abstract void updateMapInfo(String toggledLayerName, Bounds extent);
 
 }

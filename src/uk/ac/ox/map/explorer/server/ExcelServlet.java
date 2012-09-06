@@ -39,16 +39,19 @@ public class ExcelServlet extends HttpServlet {
     if (resource.equals(BaseSelectionPresenter.COUNTRY_RESOURCE)) {
       
       fileName = String.format("pr_%s.xlsx", getDateStamp());
-      PrQuery prq = new PrQuery(outputWb, Arrays.asList(cIds));
+      new PrQuery(outputWb, Arrays.asList(cIds)); //perform query
       
     } else if (resource.equals(BaseSelectionPresenter.ANO_RESOURCE)) {
       
       fileName = String.format("ano_%s.xlsx", getDateStamp());
       List<Long> anoIds = new ArrayList<Long>();
       for (int i = 0; i < cIds.length; i++) {
-        anoIds.add(Long.parseLong(cIds[i]));
+    	if (!cIds[i].isEmpty())
+    	{
+    		anoIds.add(Long.parseLong(cIds[i]));
+    	}
       }
-      AnoQuery prq = new AnoQuery(outputWb, anoIds);
+      new AnoQuery(outputWb, anoIds); //perform query
       
     } else {
       throw new ServletException();

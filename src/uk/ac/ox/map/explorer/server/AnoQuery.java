@@ -39,17 +39,14 @@ public class AnoQuery  {
     sample_method3,
     sample_method4,
     ASSI,
-    citation
+    citation,
+    is_present
   }
   
   public AnoQuery(Workbook wb, List<Long> itemIds) {
     
     this.sheet = wb.createSheet();
-    
-    if (itemIds == null || itemIds.size() < 1) {
-      return;
-    }
-    
+      
     this.boldCellStyle = wb.createCellStyle();
     Font f = wb.createFont();
     f.setBoldweight(Font.BOLDWEIGHT_BOLD);
@@ -60,13 +57,16 @@ public class AnoQuery  {
      */
     addHeaderRow();
     
+    if (itemIds == null || itemIds.size() < 1) {
+      return;
+    }
+    
     /*
      * Retrieve data
      */
     EntityManager em = EMF.get().createEntityManager();
     Query q = em.createNativeQuery(
-    "select sample_period_id as id, latitude, longitude, country_id, species, year_start, year_end, month_start, month_end, id_method1, id_method2, sample_method1, sample_method2, sample_method3, sample_method4, \"ASSI\", citation " + 
-    "from explorer.anopheline_export where anopheline_id in (:ano)"
+      "select id, latitude, longitude, country_id, species, year_start, year_end, month_start, month_end, id_method1, id_method2, sample_method1, sample_method2, sample_method3, sample_method4, \"ASSI\", citation, is_present from explorer.anopheline_export where anopheline_id in :ano order by anopheline_id, id"
     );
     
     q.setParameter("ano", itemIds);

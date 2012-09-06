@@ -23,15 +23,7 @@ public class PrQuery  {
   private int currRow = 0;
 
   private enum Cols {
-    Permission_to_release,
-    Source_id1, Citation1, 
-    Source_id2, Citation2, 
-    Source_id3, Citation3, 
-    Country, Admin1_paper, Admin2_paper, 
-    Site_name, Area_type, Rural_Urban, Latitude, Longitude, LatLong_source, Site_notes, 
-    Method, RDT_type, XS, Survey_notes, 
-    Month_start, Month_end, Year_start, Year_end, Lower_age, Upper_age, Examined, Pf_pos, Pv_pos, Pf_PR,
-    surveyReplicateId
+	id, missing_data, citation1, citation2, citation3, country, country_id, latitude, longitude, method, rdt_type, month_start, year_start, month_end, year_end, lower_age, upper_age, pf_pos, examined
   }
   
   public PrQuery(Workbook wb, List<String> countryIds) {
@@ -48,33 +40,16 @@ public class PrQuery  {
      */
     addHeaderRow();
     
+    if (countryIds == null || countryIds.size() < 1) {
+      return;
+    }
+    
     /*
      * Retrieve data
      */
     EntityManager em = EMF.get().createEntityManager();
     Query q = em.createNativeQuery(
-    "select " +
-    "not exists (select * from source sou join pr2010.source_survey ssu on sou.id = ssu.source_id where (permission_type_id = 'Confidential' or permission_type_id = 'Neither') and su.id = ssu.survey_id), " +
-    "so1.id as source_id1, so1.citation as citation1, " +
-    "so2.id as source_id2, so2.citation as citation2, " +
-    "so3.id as source_id3, so3.citation as citation3, " +
-    "c.name, " +
-    "su.admin1_paper, su.admin2_paper, si.name, si.area_type_id, si.rural_urban, si.latitude, si.longitude, si.latlong_source_id, si.notes, " +
-    "su.method, su.rdt_type, su.nxs, su.notes, " +
-    "sr.month_start, sr.year_start, sr.month_end, sr.year_end, sr.lower_age, sr.upper_age, sr.examined, sr.pf_pos, sr.pv_pos, sr.pf_pr, " +
-    "sr.id " +
-    "from pr2010.survey_replicate sr " +
-    "join pr2010.survey su on su.id = sr.survey_id " +
-    "join site si on si.id = su.site_id " +
-    "join country c on c.id = si.country_id " +
-    "join pr2010.source_survey ss1 on ss1.survey_id = su.id and ss1.ordinal = 0 " +
-    "join source so1 on ss1.source_id = so1.id " +
-    "left join pr2010.source_survey ss2 on ss2.survey_id = su.id and ss2.ordinal = 1 " +
-    "left join source so2 on so2.id = ss2.source_id " +
-    "left join pr2010.source_survey ss3 on ss3.survey_id = su.id and ss3.ordinal = 2 " +
-    "left join source so3 on so3.id = ss3.source_id " +
-    "where c.id in :countryList " +
-    "order by so1.id, si.name"
+    "select * from explorer.pr_export where country_id in :countryList order by country_id, CASE missing_data WHEN 'Confidential location' THEN 3 WHEN 'No permission to release data' THEN 2 ELSE 1 END, id"
     );
     
     q.setParameter("countryList", countryIds);
@@ -89,7 +64,7 @@ public class PrQuery  {
     /*
      * Hide id columns
      */
-    sheet.setColumnHidden(Cols.surveyReplicateId.ordinal(), true);
+    //sheet.setColumnHidden(Cols.surveyReplicateId.ordinal(), true);
   }
   
   private void addHeaderRow() {

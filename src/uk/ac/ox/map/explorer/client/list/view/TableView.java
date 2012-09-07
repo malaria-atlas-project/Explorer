@@ -13,6 +13,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.ColumnSortEvent;
+import com.google.gwt.user.cellview.client.ColumnSortList.ColumnSortInfo;
 import com.google.gwt.user.cellview.client.DataGrid;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
@@ -86,6 +87,11 @@ public class TableView<T extends NamedProxy> extends Composite {
     dataGrid.addColumn(col, title);
     col.setSortable(true);
     sortableColumns.put(col, fieldName);
+  }
+  
+  public void setSortedColumn(int i) {
+	dataGrid.getColumnSortList().clear();
+	dataGrid.getColumnSortList().push(dataGrid.getColumn(i));
   }
 
   public void setPresenter(BaseTablePresenter<T> presenter) {

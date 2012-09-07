@@ -7,7 +7,7 @@
 	<g:HTMLPanel>
 	 <g:VerticalPanel>
 	   
-     <g:Label styleName="{res.panelCss.panelHeader}">Filter species</g:Label>
+     <g:Label styleName="{res.panelCss.panelHeader}">Filter species list</g:Label>
 	   <f:OptionFilter labelText="Region" propertyName="region" jsVar="AnoRegion" ui:field="region"/>
 	   
 	 </g:VerticalPanel>

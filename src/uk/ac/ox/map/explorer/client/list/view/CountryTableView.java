@@ -35,7 +35,8 @@ public class CountryTableView extends TableView<CountryProxy> {
         return getRepr(object.getName());
       }
     }, "Name", "name");
-
+    
+    setSortedColumn(1);
 //    addSortableColumn(new TextColumn<CountryProxy>() {
 //
 //      public String getValue(CountryProxy object) {
@@ -63,6 +64,6 @@ public class CountryTableView extends TableView<CountryProxy> {
     });
     
     addColumn(checkColumn, "Select for download");
-
+ 
   }
 }

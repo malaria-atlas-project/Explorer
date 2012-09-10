@@ -3,6 +3,7 @@
   <!-- Configure or override this property to match your enviroment --> 
   <property name="mapcommon.dir" location="../MapCommon/" />
   <property name="lib.dir" location="war/WEB-INF/lib/" />
+  <property name="buildlib.dir" location="lib/" />
   <property name="war.file" location="war" />
   <property name="resources" location="resources/" />
 
@@ -17,16 +18,62 @@
     <ivy:cachepath pathid="runtime.path" conf="runtime" />
   </target>
 
-  <target name="libs" depends="retrieve" description="Copy libs and other resources to WEB-INF/lib">
-    <delete dir="war/WEB-INF/lib" />
-    <mkdir dir="war/WEB-INF/lib" />
-    <ivy:retrieve pattern="${lib.dir}/[artifact]-[revision]-[type].[ext]" conf="runtime" />
-    <!-- TODO get this from multi project build -->
-    <copy todir="${war.file}/WEB-INF/templates">
-      <fileset dir="${resources}/templates" />
-    </copy>
+  <target name="libs" depends="retrieve,clean-libdir,make-libdir" description="Copy libs and other resources to WEB-INF/lib">
+  	<ivy:retrieve pattern="${lib.dir}/[artifact]-[revision]-[type].[ext]" conf="runtime" />
+  	<copy todir="${war.file}/WEB-INF/templates">
+  	  <fileset dir="${resources}/templates" />
+  	</copy>
   </target>
 
+  <target name="lib-check">	
+  	<condition property="libdir-exists">
+  	  <available file="${lib.dir}"/>
+  	</condition>
+  	
+  	<condition property="buildlibdir-exists">
+      <available file="${buildlib.dir}"/>
+  	</condition>
+
+  	<condition property="gwtservlet-exists">
+      <available file="${lib.dir}/gwt-servlet.jar"/>
+  	</condition>
+  </target>
+  
+  <target name="copy-servlet" depends="lib-check" if="gwtservlet-exists">
+  	<copy file="${lib.dir}/gwt-servlet.jar" todir="${lib.dir}/.." />
+  </target>
+	
+  <target name="make-libdir" depends="lib-check" unless="libdir-exists">
+    <mkdir dir="${lib.dir}" />
+  </target>
+	
+  <target name="clean-libdir" depends="lib-check" if="libdir-exists">
+    <delete dir="${lib.dir}" />
+    <mkdir dir="${lib.dir}" />
+  </target>
+  
+  <target name="make-buildlibdir" depends="lib-check" unless="buildlibdir-exists">
+    <mkdir dir="${buildlib.dir}" />
+  </target>
+	
+  <target name="clean-buildlibdir" depends="lib-check" if="buildlibdir-exists">
+    <delete dir="${buildlib.dir}" />
+	<mkdir dir="${buildlib.dir}" />
+  </target>
+  
+  <target name="replace-servlet" depends="lib-check" if="gwtservlet-exists">
+    <copy file="${lib.dir}/../gwt-servlet.jar" todir="${lib.dir}" />
+  	<delete file="${lib.dir}/../gwt-servlet.jar" />
+  </target>
+	
+  <target name="eclipse-libs" depends="retrieve,copy-servlet,clean-libdir,make-libdir,clean-buildlibdir,make-buildlibdir,replace-servlet" description="Copy libs and other resources to WEB-INF/lib">
+	<ivy:retrieve pattern="${lib.dir}/[artifact]-[revision]-[type].[ext]" conf="eclipseruntime" />
+  	<ivy:retrieve pattern="${buildlib.dir}/[artifact]-[revision]-[type].[ext]" conf="eclipsebuild" />
+	<copy todir="${war.file}/WEB-INF/templates">
+	  <fileset dir="${resources}/templates" />
+	</copy>
+  </target>
+	
   <target name="clean" description="Cleans this project">
     <delete dir="war/WEB-INF/classes" failonerror="false" />
   </target>

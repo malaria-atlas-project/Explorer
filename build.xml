@@ -20,9 +20,6 @@
 
   <target name="libs" depends="-retrieve,-clean-libdir,-make-libdir" description="Copy libs and other resources to WEB-INF/lib">
   	<ivy:retrieve pattern="${lib.dir}/[artifact]-[revision]-[type].[ext]" conf="runtime" />
-  	<copy todir="${war.file}/WEB-INF/templates">
-  	  <fileset dir="${resources}/templates" />
-  	</copy>
   </target>
 
   <target name="-lib-check">	
@@ -69,9 +66,6 @@
   <target name="eclipse-libs" depends="-retrieve,-copy-servlet,-clean-libdir,-make-libdir,-clean-buildlibdir,-make-buildlibdir,-replace-servlet" description="Copy libs and other resources to WEB-INF/lib">
 	<ivy:retrieve pattern="${lib.dir}/[artifact]-[revision]-[type].[ext]" conf="eclipseruntime" />
   	<ivy:retrieve pattern="${buildlib.dir}/[artifact]-[revision]-[type].[ext]" conf="eclipsebuild" />
-	<copy todir="${war.file}/WEB-INF/templates">
-	  <fileset dir="${resources}/templates" />
-	</copy>
   </target>
 	
   <target name="clean" description="Cleans this project">
@@ -115,7 +109,7 @@
       <fileset file="${resource.dir}/urls.properties" />
       <fileset file="${resource.dir}/hibernate.properties" />
     </copy>
-    <zip destfile="Explorer.war" basedir="war" />
+    <zip destfile="explorer.war" basedir="war" />
 
     <!-- Hack to undo previous replace of property files -->
     <delete file="${war.file}/WEB-INF/classes/urls.properties" />

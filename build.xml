@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<project name="MapExplorer" basedir="." default="gwtc" xmlns:ivy="antlib:org.apache.ivy.ant">
+<project name="MapExplorer" basedir="." default="dev-war" xmlns:ivy="antlib:org.apache.ivy.ant">
   <!-- Configure or override this property to match your enviroment --> 
   <property name="mapcommon.dir" location="../MapCommon/" />
   <property name="lib.dir" location="war/WEB-INF/lib/" />
@@ -12,20 +12,20 @@
   <taskdef name="deploy" classname="org.apache.catalina.ant.DeployTask" />
   <taskdef name="undeploy" classname="org.apache.catalina.ant.UndeployTask" />
 
-  <target name="retrieve">
+  <target name="-retrieve">
     <ivy:resolve />
     <ivy:cachepath pathid="build.path" conf="build" />
     <ivy:cachepath pathid="runtime.path" conf="runtime" />
   </target>
 
-  <target name="libs" depends="retrieve,clean-libdir,make-libdir" description="Copy libs and other resources to WEB-INF/lib">
+  <target name="libs" depends="-retrieve,-clean-libdir,-make-libdir" description="Copy libs and other resources to WEB-INF/lib">
   	<ivy:retrieve pattern="${lib.dir}/[artifact]-[revision]-[type].[ext]" conf="runtime" />
   	<copy todir="${war.file}/WEB-INF/templates">
   	  <fileset dir="${resources}/templates" />
   	</copy>
   </target>
 
-  <target name="lib-check">	
+  <target name="-lib-check">	
   	<condition property="libdir-exists">
   	  <available file="${lib.dir}"/>
   	</condition>
@@ -39,34 +39,34 @@
   	</condition>
   </target>
   
-  <target name="copy-servlet" depends="lib-check" if="gwtservlet-exists">
+  <target name="-copy-servlet" depends="-lib-check" if="gwtservlet-exists">
   	<copy file="${lib.dir}/gwt-servlet.jar" todir="${lib.dir}/.." />
   </target>
 	
-  <target name="make-libdir" depends="lib-check" unless="libdir-exists">
+  <target name="-make-libdir" depends="-lib-check" unless="libdir-exists">
     <mkdir dir="${lib.dir}" />
   </target>
 	
-  <target name="clean-libdir" depends="lib-check" if="libdir-exists">
+  <target name="-clean-libdir" depends="-lib-check" if="libdir-exists">
     <delete dir="${lib.dir}" />
     <mkdir dir="${lib.dir}" />
   </target>
   
-  <target name="make-buildlibdir" depends="lib-check" unless="buildlibdir-exists">
+  <target name="-make-buildlibdir" depends="-lib-check" unless="buildlibdir-exists">
     <mkdir dir="${buildlib.dir}" />
   </target>
 	
-  <target name="clean-buildlibdir" depends="lib-check" if="buildlibdir-exists">
+  <target name="-clean-buildlibdir" depends="-lib-check" if="buildlibdir-exists">
     <delete dir="${buildlib.dir}" />
 	<mkdir dir="${buildlib.dir}" />
   </target>
   
-  <target name="replace-servlet" depends="lib-check" if="gwtservlet-exists">
+  <target name="-replace-servlet" depends="-lib-check" if="gwtservlet-exists">
     <copy file="${lib.dir}/../gwt-servlet.jar" todir="${lib.dir}" />
   	<delete file="${lib.dir}/../gwt-servlet.jar" />
   </target>
 	
-  <target name="eclipse-libs" depends="retrieve,copy-servlet,clean-libdir,make-libdir,clean-buildlibdir,make-buildlibdir,replace-servlet" description="Copy libs and other resources to WEB-INF/lib">
+  <target name="eclipse-libs" depends="-retrieve,-copy-servlet,-clean-libdir,-make-libdir,-clean-buildlibdir,-make-buildlibdir,-replace-servlet" description="Copy libs and other resources to WEB-INF/lib">
 	<ivy:retrieve pattern="${lib.dir}/[artifact]-[revision]-[type].[ext]" conf="eclipseruntime" />
   	<ivy:retrieve pattern="${buildlib.dir}/[artifact]-[revision]-[type].[ext]" conf="eclipsebuild" />
 	<copy todir="${war.file}/WEB-INF/templates">
@@ -78,14 +78,14 @@
     <delete dir="war/WEB-INF/classes" failonerror="false" />
   </target>
 
-  <target name="javac" depends="libs" description="Compile java source">
+  <target name="-javac" depends="libs" description="Compile java source">
     <mkdir dir="war/WEB-INF/classes" />
     <javac srcdir="src" includes="**" encoding="utf-8" destdir="war/WEB-INF/classes" source="1.6" target="1.6" nowarn="true" debug="true" debuglevel="lines,vars,source">
       <classpath refid="build.path" />
     </javac>
   </target>
 
-  <target name="gwtc" depends="javac" description="GWT compile to JavaScript">
+  <target name="-gwtc" depends="-javac" description="GWT compile to JavaScript">
 	<property name="myclasspath" refid="build.path"/>
 	<!-- Emit the property to the ant console -->
 	<echo message="Classpath = ${myclasspath}"/>
@@ -106,7 +106,7 @@
     </java>
   </target>
 
-  <target name="war" description="Create a war file." depends="gwtc">
+  <target name="-war" description="Create a war file." depends="-gwtc">
     <delete file="${war.file}/WEB-INF/classes/urls.properties">
     </delete>
     <delete file="${war.file}/WEB-INF/classes/hibernate.properties">
@@ -126,35 +126,35 @@
     </copy>
   </target>
 
-  <target name="deploy" description="Install web application" depends="war">
+  <target name="-deploy" description="Install web application" depends="-war">
     <deploy url="${deploy.url}" username="${deploy.username}" password="${deploy.password}" path="${deploy.path}" war="${basedir}/Explorer.war" />
   </target>
 
-  <target name="undeploy" description="Uninstall web application">
+  <target name="-undeploy" description="-Uninstall web application">
     <undeploy url="${deploy.url}" username="${deploy.username}" password="${deploy.password}" path="${deploy.path}" />
   </target>
+ 
+  <target name="-dev-config"> 
+	<property file="resources/dev/build.properties" />
+  </target>
+  <target name="dev-war" depends="-dev-config,-war" />
+  <target name="dev-deploy" depends="-dev-config,-deploy" />
+  <target name="dev-undeploy" depends="-dev-config,-undeploy" />
+  <target name="dev-redeploy" depends="-dev-config,-undeploy,-deploy" />
 
-  <target name="redeploy" description="Uninstall web application" depends="undeploy,deploy">
+  <target name="-qa-config">
+    <property file="resources/qa/build.properties" />
   </target>
-  
-  <target name="dev-undeploy">
-    <property file="dev_build.properties" />
-    <antcall target="undeploy"/>
+  <target name="qa-war" depends="-qa-config,-war" />			
+  <target name="qa-deploy" depends="-qa-config,-deploy" />
+  <target name="qa-undeploy" depends="-qa-config,-undeploy" />
+  <target name="qa-redeploy" depends="-qa-config,-undeploy,-deploy" />
+  	
+  <target name="-prod-config">
+    <property file="resources/prod/build.properties" />
   </target>
-	
-  <target name="dev-deploy">
-    <property file="dev_build.properties" />
-    <antcall target="deploy"/>
-  </target>
-	
-  <target name="prod-undeploy">
-    <property file="prod.properties" />
-    <antcall target="undeploy"/>
-  </target>
-
-  <target name="prod-deploy">
-    <property file="prod_build.properties" />
-    <antcall target="deploy"/>
-  </target>
-
+  <target name="prod-war" depends="-prod-config,-war" />			
+  <target name="prod-deploy" depends="-prod-config,-deploy" />
+  <target name="prod-undeploy" depends="-prod-config,-undeploy" />
+  <target name="prod-redeploy" depends="-prod-config,-undeploy,-deploy" />		
 </project>

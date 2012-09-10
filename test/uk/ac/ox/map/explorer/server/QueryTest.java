@@ -19,7 +19,7 @@ public class QueryTest {
     
     List<String> cids = Arrays.asList(new String[] {"KEN", "BRA"});
     
-    PrQuery bq = new PrQuery(wb, cids);
+    new PrQuery(wb, cids);
     
     wb.write(new FileOutputStream(new File("c:/Temp/test.xlsx")));
     

@@ -2,6 +2,7 @@ package uk.ac.ox.map.explorer.server;
 
 import javax.persistence.EntityManager;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -30,6 +31,7 @@ public class MapInfoTest {
     System.out.println(y);
     String z = serv.getAnophelineExtentInfo(true, true, 7l, -40d, -40d, 40d, 40d);
     System.out.println(z);
+    Assert.assertNotNull(em);
   }
   
 }

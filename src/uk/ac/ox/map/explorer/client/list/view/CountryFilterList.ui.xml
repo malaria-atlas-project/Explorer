@@ -7,8 +7,8 @@
 	<g:HTMLPanel>
 	 <g:VerticalPanel>
      <g:Label styleName="{res.panelCss.panelHeader}">Filter countries list</g:Label>
-	   <f:BooleanFilter labelText="Pf endemic" propertyName="pfEndemic" ui:field="pfEndemic"/>
-	   <f:BooleanFilter labelText="Pv endemic" propertyName="pvEndemic" ui:field="pvEndemic"/>
+	   <f:BooleanFilter propertyName="pfEndemic" ui:field="pfEndemic" labelText="Pf endemic" />
+	   <f:BooleanFilter propertyName="pvEndemic" ui:field="pvEndemic" labelText="Pv endemic" />
 	   <f:OptionFilter labelText="Continent" propertyName="continent" jsVar="Continent" ui:field="continent"/>
 	 </g:VerticalPanel>
 	</g:HTMLPanel>

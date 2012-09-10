@@ -40,10 +40,18 @@ public class AnophelesMapPresenter extends BaseMapPresenter {
       @Override
       public void onAnophelineSelected(AnophelineSelectedEvent requestEvent) {
         EntityProxy extent = requestEvent.getAnopheline();
-        mapView.zoomToBounds(extent);
+        if (extent == null)
+        {
+        	mapView.setCql(ANOPHELES_ANOPHELINE_PRESENCE_DISPLAY, "");
+            mapView.setCql(ANOPHELES_ANOPHELINE_ABSENCE_DISPLAY, "");
+        }
+        else
+        {
+          mapView.zoomToBounds(extent);
         
-        mapView.setCql(ANOPHELES_ANOPHELINE_PRESENCE_DISPLAY, "anopheline_id=" + requestEvent.getAnopheline().getId());
-        mapView.setCql(ANOPHELES_ANOPHELINE_ABSENCE_DISPLAY, "anopheline_id=" + requestEvent.getAnopheline().getId());
+          mapView.setCql(ANOPHELES_ANOPHELINE_PRESENCE_DISPLAY, "anopheline_id=" + requestEvent.getAnopheline().getId());
+          mapView.setCql(ANOPHELES_ANOPHELINE_ABSENCE_DISPLAY, "anopheline_id=" + requestEvent.getAnopheline().getId());
+        }
       }
     });
     
@@ -51,17 +59,7 @@ public class AnophelesMapPresenter extends BaseMapPresenter {
 
   @Override
   public List<MapLayer> getLayers() {
-    
-//    List<MapLayer> layers = new ArrayList<MapLayer>();
-//    layers.add(new MapLayer("Static:admin0", "Country boundaries", resources.countryBoundary(), true, "Country boundaries"));
-//    layers.add(new MapLayer(ANOPHELES_ANOPHELINE_DISPLAY, "Presence points", resources.prPoint(), false, "Ano points"));
-    
-//    for (MapLayer mapLayer : layers) {
-//      mapView.addWmsLayer(mapLayer, true);
-//    }
-//    
-//    return layers;
-    
+       
     return new RetrieveVars().getLayers("Anopheles");
     
   }

@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 
 public class AnophelineProxy  implements EntityProxy, NamedProxy, Serializable{
-
+  private static final long serialVersionUID = -6308673010475937442L; //auto generated
   private Long id;
   
   public Long getId() {

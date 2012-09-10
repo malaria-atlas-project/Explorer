@@ -9,6 +9,8 @@ import org.gwtopenmaps.openlayers.client.MapOptions;
 import org.gwtopenmaps.openlayers.client.MapWidget;
 import org.gwtopenmaps.openlayers.client.event.MapClickListener;
 import org.gwtopenmaps.openlayers.client.event.MapMoveEndListener;
+import org.gwtopenmaps.openlayers.client.layer.LayerOptions;
+import org.gwtopenmaps.openlayers.client.layer.TransitionEffect;
 import org.gwtopenmaps.openlayers.client.layer.WMS;
 import org.gwtopenmaps.openlayers.client.layer.WMSParams;
 
@@ -48,6 +50,9 @@ public class MapView extends Composite {
       params.setLayers("Explorer:bluemarble");
       params.setTransparent(true);
 	    WMS bm = new WMS("Blue marble", gwcUrl, params);
+	    LayerOptions options = new LayerOptions();
+	    options.setTransitionEffect(TransitionEffect.RESIZE);
+	    bm.addOptions(options);
 	    bm.setIsBaseLayer(true);
 	    map.addLayer(bm);
 	    map.setBaseLayer(bm);
@@ -93,6 +98,11 @@ public class MapView extends Composite {
       
       WMS wms = new WMS(mapLayer.getWmsLayerName(), url, params);
       wms.setIsBaseLayer(false);
+      if (mapLayer.getWmsLayerName().equals("Explorer:countryborders") || mapLayer.getWmsLayerName().equals("Explorer:pr_mean")) {
+    	LayerOptions options = new LayerOptions();
+    	options.setTransitionEffect(TransitionEffect.RESIZE);
+    	wms.addOptions(options);
+      }
       map.addLayer(wms);
       
       wmsLayerMap.put(mapLayer.getWmsLayerName(), wms);

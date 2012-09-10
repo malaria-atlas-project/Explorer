@@ -17,10 +17,10 @@
     </g:layer>
     <g:layer bottom="0px" height="40%">
       <g:LayoutPanel>
-        <g:layer left="0px" width="50%">
+        <g:layer left="0px" width="62%">
           <g:SimplePanel ui:field="keyPanel" styleName="{res.panelCss.decoratedPanel}"/>
         </g:layer>
-        <g:layer right="0px" width="50%">
+        <g:layer right="0px" width="38%">
           <g:SimplePanel ui:field="mapInfoPanel" styleName="{res.panelCss.decoratedPanel}"/>
         </g:layer>
       </g:LayoutPanel>

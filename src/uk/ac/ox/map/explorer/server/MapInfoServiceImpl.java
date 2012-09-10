@@ -34,7 +34,7 @@ public class MapInfoServiceImpl extends RemoteServiceServlet implements MapInfoS
   public String getPrExtentInfo(Boolean availablePointsEnabled, Boolean unavailablePointsEnabled, Double minX, Double minY, Double maxX, Double maxY) {
 
     EntityManager em = emProvider.get();
-    String query_string = "select count(distinct(geom)) as siteCount, count(distinct(id)) as surveyReplicateCount from explorer.pf_points_available where pf_points_available.geom && ST_SetSRID(st_makebox2d(st_makepoint(?,?), st_makepoint(?,?)), 4326) ";
+    String query_string = "select count(distinct(geom)) as siteCount, count(distinct(id)) as surveyReplicateCount from explorer.pr_display where pr_display.geom && ST_SetSRID(st_makebox2d(st_makepoint(?,?), st_makepoint(?,?)), 4326) ";
     if (!availablePointsEnabled)
     {
     	query_string += "and NOT ( is_available = True ) ";

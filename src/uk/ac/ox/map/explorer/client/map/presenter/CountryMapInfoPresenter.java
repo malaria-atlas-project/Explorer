@@ -14,8 +14,8 @@ public class CountryMapInfoPresenter extends BaseMapInfoPresenter {
 	
   private Boolean availableProxy = true;
   private Boolean unavailableProxy = true;
-  private final String AVAILABLE_LAYER = "Explorer:pf_points_available_available";
-  private final String UNAVAILABLE_LAYER = "Explorer:pf_points_available_unavailable";
+  private final String AVAILABLE_LAYER = "Explorer:pr_display_available";
+  private final String UNAVAILABLE_LAYER = "Explorer:pr_display_unavailable";
 	  
   @Inject
   public CountryMapInfoPresenter(MapInfoView mapInfoView, MapInfoServiceAsync rpcService, EventBus eventBus) {

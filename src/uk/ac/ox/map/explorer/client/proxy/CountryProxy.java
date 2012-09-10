@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 
 public class CountryProxy implements EntityProxy, NamedProxy, Serializable {
-
+  private static final long serialVersionUID = -4573926447852459528L; //auto generated
   private String id;
 
   public String getId() {

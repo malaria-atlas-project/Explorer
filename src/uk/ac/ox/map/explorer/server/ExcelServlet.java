@@ -21,9 +21,10 @@ import com.google.inject.Singleton;
 
 @Singleton
 public class ExcelServlet extends HttpServlet {
-
+  private static final long serialVersionUID = -4658523092720318133L; //auto generated
+  
   private static final String MIME_XLSX = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-//  private static final String MIME_XLS = "application/vnd.ms-excel";
+  //private static final String MIME_XLS = "application/vnd.ms-excel";
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

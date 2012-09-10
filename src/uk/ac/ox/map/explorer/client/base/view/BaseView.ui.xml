@@ -26,20 +26,29 @@
     }
   </ui:style>
   <ui:with field='res' type='uk.ac.ox.map.explorer.client.resource.ResourceBundle' />
-  <g:LayoutPanel styleName="{style.fadeIn}">
-    <g:layer top="0px" height="102">
-      <g:FlowPanel>
-        <g:HorizontalPanel>
-          <g:SimplePanel styleName="{res.baseCss.header}">
+  
+  <g:DockLayoutPanel styleName="{style.fadeIn}">
+    <g:north size='102'>
+      <g:DockLayoutPanel>
+        <g:west size='320'>
+          <g:SimplePanel styleName="{res.baseCss.header}"> 
           </g:SimplePanel>
-            <g:FlowPanel styleName="{res.baseCss.perspective}">
-              <g:Label>Change perspective</g:Label>
-	            <g:ListBox ui:field="perspectiveSelect"></g:ListBox>
-            </g:FlowPanel>
-        </g:HorizontalPanel>
-      </g:FlowPanel>
-    </g:layer>
-    <g:layer top="102" bottom="0px">
+        </g:west>
+        <g:center>
+          <g:FlowPanel styleName="{res.baseCss.perspective}">
+            <g:Label>Change perspective</g:Label>
+            <g:ListBox ui:field="perspectiveSelect"></g:ListBox>
+          </g:FlowPanel>
+        </g:center>
+        <g:east size='200'>
+          <g:FlowPanel styleName="{res.baseCss.help}"> 
+            <g:Anchor>How to use</g:Anchor>
+            <g:Anchor>About the data</g:Anchor>
+          </g:FlowPanel>
+        </g:east>
+      </g:DockLayoutPanel>
+    </g:north>
+    <g:center>
       <g:LayoutPanel>
         <g:layer left="0px" width="40%">
           <g:SimpleLayoutPanel ui:field="tablePanel" />
@@ -48,7 +57,6 @@
           <g:SimpleLayoutPanel ui:field="mapPanel" />
         </g:layer>
       </g:LayoutPanel>
-
-    </g:layer>
-  </g:LayoutPanel>
+    </g:center>
+  </g:DockLayoutPanel>
 </ui:UiBinder> 

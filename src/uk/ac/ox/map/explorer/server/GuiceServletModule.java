@@ -42,17 +42,18 @@ public class GuiceServletModule extends ServletModule {
      */
     filter("/*").through(PersistFilter.class);
     
-    serve("/app").with(IndexServlet.class);
-    
+    //Index
+    serve("/").with(IndexServlet.class);
+   
+    //Servlets
     serve("/gwtRequest").with(RequestFactoryServlet.class);
-    serve("/mapexplorer/mapInfo").with(MapInfoServiceImpl.class);
     serve("/dataDownload").with(ExcelServlet.class);
-    serve("/mapexplorer/dataDownload").with(ExcelServlet.class);
     
+    //Services
+    serve("/mapexplorer/mapInfo").with(MapInfoServiceImpl.class);  
     serve("/mapexplorer/entity").with(EntityServiceImpl.class);
-    
     serve("/mapexplorer/ano").with(AnoServiceImpl.class);
-    
+
   }
   
   private Properties getProperties() {

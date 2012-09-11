@@ -8,7 +8,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(schema = "types", name = "continent")
+@Table(schema = "explorer", name = "continent")
 public class Continent implements StringType {
   
   public static List<Continent> search(Integer firstResult, Integer maxResults, String searchParams) {

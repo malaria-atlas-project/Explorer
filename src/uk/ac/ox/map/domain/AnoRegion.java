@@ -5,7 +5,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(schema = "types", name = "vector_region")
+@Table(schema = "explorer", name = "vector_region")
 public class AnoRegion implements StringType {
   
   private String id;

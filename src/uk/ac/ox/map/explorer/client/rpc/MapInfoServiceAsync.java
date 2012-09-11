@@ -3,7 +3,7 @@ package uk.ac.ox.map.explorer.client.rpc;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 /**
- * The async counterpart of <code>GreetingService</code>.
+ * The async counterpart of <code>MapInfoService</code>.
  */
 public interface MapInfoServiceAsync {
 

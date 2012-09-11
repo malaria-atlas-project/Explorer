@@ -98,7 +98,7 @@ public class MapView extends Composite {
       
       WMS wms = new WMS(mapLayer.getWmsLayerName(), url, params);
       wms.setIsBaseLayer(false);
-      if (mapLayer.getWmsLayerName().equals("Explorer:countryborders") || mapLayer.getWmsLayerName().equals("Explorer:pr_mean")) {
+      if ( mapLayer.getUseResizeTransition()) {
     	LayerOptions options = new LayerOptions();
     	options.setTransitionEffect(TransitionEffect.RESIZE);
     	wms.addOptions(options);

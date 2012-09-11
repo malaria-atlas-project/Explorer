@@ -13,6 +13,9 @@ public interface MapLayer {
   
   String getInfoText();
   void setInfoText(String infoText);
+
+  boolean getUseResizeTransition();
+  void setUseResizeTransition(boolean useResizeTransition);
   
   String getImageUrl();
   void setImageUrl(String url);

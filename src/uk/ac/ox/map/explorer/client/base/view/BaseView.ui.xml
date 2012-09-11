@@ -42,8 +42,8 @@
         </g:center>
         <g:east size='200'>
           <g:FlowPanel styleName="{res.baseCss.help}"> 
-            <g:Anchor>How to use</g:Anchor>
-            <g:Anchor>About the data</g:Anchor>
+            <g:Anchor href="http://map.ox.ac.uk/client_media/medialibrary/2012/02/How_To_Use_the_Explorer.pdf" >How to use</g:Anchor>
+            <g:Anchor href="http://map.ox.ac.uk/client_media/medialibrary/2012/02/About_the_Data.pdf">About the data</g:Anchor>
           </g:FlowPanel>
         </g:east>
       </g:DockLayoutPanel>

@@ -21,7 +21,7 @@ public class QueryTest {
     
     new PrQuery(wb, cids);
     
-    wb.write(new FileOutputStream(new File("c:/Temp/test.xlsx")));
+    wb.write(new FileOutputStream(new File("test.xlsx")));
     
   }
 

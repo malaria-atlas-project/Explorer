@@ -4,6 +4,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.resources.client.ClientBundle;
 import com.google.gwt.resources.client.CssResource;
 import com.google.gwt.resources.client.ImageResource;
+import com.google.gwt.resources.client.ImageResource.ImageOptions;
 
 public interface ResourceBundle extends ClientBundle {
   
@@ -15,7 +16,6 @@ public interface ResourceBundle extends ClientBundle {
 
   public interface BaseCss extends CssResource {
     String header();
-    String nav();
     String perspective();
     String help();
   }
@@ -42,10 +42,7 @@ public interface ResourceBundle extends ClientBundle {
 
   @Source("map_logo.png")
   public ImageResource mapLogo();
-  
-  @Source("loading_icon.gif")
-  public ImageResource loadingIcon();
-  
+   
   @Source("info-button-down.png")
   public ImageResource infoButtonDown();
   

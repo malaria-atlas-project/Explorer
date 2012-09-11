@@ -18,7 +18,6 @@ public class MapExplorer implements EntryPoint {
     /*
      * 
      */
-    ResourceBundle.INSTANCE.formCss().ensureInjected();
     ResourceBundle.INSTANCE.baseCss().ensureInjected();
     ResourceBundle.INSTANCE.panelCss().ensureInjected();
     ResourceBundle.INSTANCE.popupCss().ensureInjected();

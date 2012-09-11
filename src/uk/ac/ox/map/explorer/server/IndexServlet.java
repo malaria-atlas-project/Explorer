@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringEscapeUtils;
+
 import uk.ac.ox.map.domain.AnoRegion;
 import uk.ac.ox.map.domain.Continent;
 import uk.ac.ox.map.domain.ExplorerPerspective;
@@ -57,7 +59,7 @@ public class IndexServlet extends HttpServlet {
     
     List<ExplorerPerspective> perspectives = dao.all(ExplorerPerspective.class);
     for (ExplorerPerspective explorerPerspective : perspectives) {
-      root.put(explorerPerspective.getId(), layerEncoder.getLayerPayload(explorerPerspective.getLayers()));
+      root.put(explorerPerspective.getId(), StringEscapeUtils.escapeJavaScript(layerEncoder.getLayerPayload(explorerPerspective.getLayers())));
     }
     
     /*

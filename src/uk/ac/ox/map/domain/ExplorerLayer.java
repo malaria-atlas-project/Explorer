@@ -92,4 +92,14 @@ public class ExplorerLayer implements HasOrdinal {
     this.infoText = infoText;
   }
 
+  private boolean useResizeTransition;
+  
+  @Column(name = "use_resize_transition")
+  public boolean getUseResizeTransition() {
+    return useResizeTransition;
+  }
+  
+  public void setUseResizeTransition(boolean useResizeTransition) {
+    this.useResizeTransition = useResizeTransition;
+  }
 }

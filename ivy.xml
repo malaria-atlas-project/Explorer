@@ -26,15 +26,15 @@
 		</dependency>
 		
 		<!-- Guice libs -->
+	    <dependency org="com.google.inject.extensions" name="guice-assistedinject" rev="3.0"  conf="eclipseruntime->default">
+			<exclude name="aopalliance"></exclude>
+		</dependency>
 		<dependency org="com.google.inject" name="guice" rev="3.0"  conf="eclipseruntime->default">
 			<exclude name="aopalliance"></exclude>
 		</dependency>
 		<dependency org="com.google.inject.extensions" name="guice-persist" rev="3.0"  conf="eclipseruntime->default">
 			<exclude name="aopalliance"></exclude>
 			<exclude name="servlet-api"></exclude>
-		</dependency>
-		<dependency org="com.google.inject.extensions" name="guice-assistedinject" rev="3.0"  conf="eclipseruntime->default">
-			<exclude name="aopalliance"></exclude>
 		</dependency>
 		<dependency org="com.google.inject.extensions" name="guice-servlet" rev="3.0"  conf="eclipseruntime->default">
 			<exclude name="aopalliance"></exclude>
@@ -86,6 +86,9 @@
 		<dependency org="xerces" name="xercesImpl" rev="2.9.1" conf="eclipsebuild->default"/>
 		<dependency org="com.google.gwt.inject" name="gin" rev="1.5" conf="eclipsebuild->default" />
 		<dependency org="org.gwtopenmaps.openlayers" name="gwt-openlayers-client" rev="0.7" conf="eclipsebuild->default"/>
+		
+		<!-- Tests -->
+		<dependency org="junit" name="junit" rev="4.5" conf="eclipsebuild->default" />
 	</dependencies>
 </ivy-module>
 

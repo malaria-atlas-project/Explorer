@@ -42,7 +42,7 @@ public class AnophelesMapInfoPresenter extends BaseMapInfoPresenter {
   
 
   public void updateMapInfo(Bounds bounds) {
-    
+	
     Long anoId = null;
     if (anoProxy != null) {
       anoId = anoProxy.getId();

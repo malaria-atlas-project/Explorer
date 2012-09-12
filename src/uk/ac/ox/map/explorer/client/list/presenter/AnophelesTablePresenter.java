@@ -6,7 +6,9 @@ import uk.ac.ox.map.explorer.client.list.view.AnophelineFilterList;
 import uk.ac.ox.map.explorer.client.list.view.AnophelineTableView;
 import uk.ac.ox.map.explorer.client.proxy.AnophelineProxy;
 
+import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.PlaceController;
+import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 
 /**
@@ -23,6 +25,21 @@ public class AnophelesTablePresenter extends BaseTablePresenter<AnophelineProxy>
     
   }
   
+  @Override
+  public void start(AcceptsOneWidget panel, EventBus eventBus) {
+    super.start(panel, eventBus);
+    
+    eventBus.addHandler(AnophelineSelectedEvent.TYPE, new AnophelineSelectedEvent.Handler() {
+      
+      @Override
+      public void onAnophelineSelected(AnophelineSelectedEvent requestEvent) {
+        if (requestEvent.getAnopheline() == null) {
+        	//An AnophelineSelectedEvent with a null payload indicated the reset button has been pressed
+        	tableView.clearSelection();
+        }
+      }
+    });
+  }
   
   @Override
   public void fireObjectSelected(AnophelineProxy obj) {

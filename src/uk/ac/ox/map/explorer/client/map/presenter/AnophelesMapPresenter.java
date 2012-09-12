@@ -42,8 +42,10 @@ public class AnophelesMapPresenter extends BaseMapPresenter {
         EntityProxy extent = requestEvent.getAnopheline();
         if (extent == null)
         {
-        	mapView.setCql(ANOPHELES_ANOPHELINE_PRESENCE_DISPLAY, "");
-            mapView.setCql(ANOPHELES_ANOPHELINE_ABSENCE_DISPLAY, "");
+            mapView.zoomToBounds(new Double(-180), new Double(-90), new Double(180), new Double(90));
+            
+        	mapView.setCql(ANOPHELES_ANOPHELINE_PRESENCE_DISPLAY, null);
+            mapView.setCql(ANOPHELES_ANOPHELINE_ABSENCE_DISPLAY, null);
         }
         else
         {
@@ -54,7 +56,7 @@ public class AnophelesMapPresenter extends BaseMapPresenter {
         }
       }
     });
-    
+          
   }
 
   @Override

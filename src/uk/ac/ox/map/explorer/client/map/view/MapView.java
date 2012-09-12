@@ -186,7 +186,7 @@ public class MapView extends Composite {
     if (lyr != null) {
 	      WMSParams params = new WMSParams();
 	      params.setParameter("cql_filter", cql);
-	      lyr.mergeNewParams(params);
+	      lyr.mergeNewParams(params);      
     }
     
   }

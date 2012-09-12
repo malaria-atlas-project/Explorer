@@ -3,11 +3,13 @@
   background-position: 5px 5px;
   width: 314px;
   padding: 5px 5px 5px 5px;
+  margin-left: 10px;
 }
 
 .perspective {
 	padding-top: 20px;
 	padding-left: 50px;
+	width: 130px;
 }
 
 .help {

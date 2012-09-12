@@ -5,7 +5,10 @@
     	padding: 10px;
     	background-color: #CCCCCC;
     }
-    
+    .infoText {
+    	font-size: 15px;
+
+    }
     .overflow {
     	overflow: auto;
     }
@@ -21,7 +24,19 @@
           <g:SimplePanel ui:field="keyPanel" styleName="{res.panelCss.decoratedPanel}"/>
         </g:layer>
         <g:layer right="0px" width="38%">
-          <g:SimplePanel ui:field="mapInfoPanel" styleName="{res.panelCss.decoratedPanel}"/>
+          <g:LayoutPanel>
+            <g:layer top="0px" height="50%">
+          	  <g:SimplePanel ui:field="mapInfoPanel" styleName="{res.panelCss.decoratedPanel}"/>
+            </g:layer>
+            <g:layer bottom="0px" height="50%">
+              <g:SimplePanel ui:field="infoTextPanel" styleName="{res.panelCss.decoratedPanel}">
+	            <g:VerticalPanel>
+          	      <g:Label styleName="{style.infoText}">The data provided here is available to all on a free and unrestricted basis.</g:Label>
+				  <g:Label styleName="{style.infoText}">To correctly attribute the data sources, the full citation(s) for each data point is provided in the data download.</g:Label>
+          	    </g:VerticalPanel>
+          	  </g:SimplePanel>
+            </g:layer>
+          </g:LayoutPanel>
         </g:layer>
       </g:LayoutPanel>
     </g:layer>

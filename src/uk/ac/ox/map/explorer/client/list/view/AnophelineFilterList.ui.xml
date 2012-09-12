@@ -6,10 +6,14 @@
     .paddedButton {
       margin: 10px;
     }
+    .vPanel {
+      table-layout: fixed;
+      width: 100%;
+    }
   </ui:style>
   <ui:with type="uk.ac.ox.map.explorer.client.resource.ResourceBundle" field="res"></ui:with>
 	<g:HTMLPanel>
-	 <g:VerticalPanel>
+	 <g:VerticalPanel styleName="{style.vPanel}">
 	   
      <g:Label styleName="{res.panelCss.panelHeader}">Filter species list</g:Label>
 	   <f:OptionFilter labelText="Region" propertyName="region" jsVar="AnoRegion" ui:field="region"/>

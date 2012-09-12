@@ -49,13 +49,14 @@ public class BooleanFilter extends AbstractFilter {
 
     initWidget(uiBinder.createAndBindUi(this));
     // FIXME: hack as can't put HTML in uibinder
-    labelText = labelText.replace("Pf", "<i>Pf</i>");
-    labelText = labelText.replace("Pv", "<i>Pv</i>");
+    labelText = labelText.replace("P.falciparum", "<i>P.falciparum</i>");
+    labelText = labelText.replace("P.vivax", "<i>P.vivax</i>");
     filterLabel.setHTML(labelText);
 
     for (int i = 0; i < opts.length; i++) {
 
       RadioButton rb = new RadioButton(rbGroupName, opts[i]);
+      rb.getElement().setAttribute("style", rb.getElement().getAttribute("style")+" display: inline-block;"); //FIXME: tmp hack
       radioButtons.add(rb);
       base.add(rb);
       if (i == 0) {

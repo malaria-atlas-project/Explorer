@@ -27,6 +27,7 @@ public class ChoiceField<T> extends Composite implements HasValueChangeHandlers<
 
   public ChoiceField(String labelText) {
     initWidget(lb);
+    lb.getElement().setAttribute("style", lb.getElement().getAttribute("style")+" max-width:100%;");
     setBlankValue();
   }
 

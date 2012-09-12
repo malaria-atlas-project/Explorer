@@ -10,6 +10,19 @@
     	width: 50px;
     }
     
+    .perspectiveWidth {
+    	width: 130px;
+    }
+    
+    .mainRegionIndent {
+    	margin-left: 10px;
+    }
+    
+    .footer {
+    	text-align: center;
+    	width: 100%;
+    }
+    
     .fadeIn { /* fallback/image non-cover color */
     	background-color: #e4e4e4;
     	/* fallback image */
@@ -30,26 +43,25 @@
   <g:DockLayoutPanel styleName="{style.fadeIn}">
     <g:north size='102'>
       <g:DockLayoutPanel>
-        <g:west size='320'>
-          <g:SimplePanel styleName="{res.baseCss.header}"> 
-          </g:SimplePanel>
+        <g:west size='520'>
+          <g:HorizontalPanel>
+            <g:SimplePanel styleName="{res.baseCss.header}" /> 
+            <g:VerticalPanel styleName="{res.baseCss.perspective}">
+              <g:Label>Change perspective:</g:Label>
+              <g:ListBox addStyleNames='{style.perspectiveWidth}' ui:field="perspectiveSelect"></g:ListBox>
+            </g:VerticalPanel>
+          </g:HorizontalPanel>
         </g:west>
         <g:center>
-          <g:FlowPanel styleName="{res.baseCss.perspective}">
-            <g:Label>Change perspective</g:Label>
-            <g:ListBox ui:field="perspectiveSelect"></g:ListBox>
-          </g:FlowPanel>
-        </g:center>
-        <g:east size='200'>
           <g:FlowPanel styleName="{res.baseCss.help}"> 
             <g:Anchor href="http://map.ox.ac.uk/client_media/medialibrary/2012/02/How_To_Use_the_Explorer.pdf" >How to use</g:Anchor>
             <g:Anchor href="http://map.ox.ac.uk/client_media/medialibrary/2012/02/About_the_Data.pdf">About the data</g:Anchor>
           </g:FlowPanel>
-        </g:east>
+        </g:center>
       </g:DockLayoutPanel>
     </g:north>
     <g:center>
-      <g:LayoutPanel>
+      <g:LayoutPanel styleName="{style.mainRegionIndent}">
         <g:layer left="0px" width="40%">
           <g:SimpleLayoutPanel ui:field="tablePanel" />
         </g:layer>

@@ -25,7 +25,7 @@ public class MapExplorer implements EntryPoint {
     ExplorerGinjector injector = GWT.create(ExplorerGinjector.class);
     
     RootLayoutPanel.get().add(injector.getBaseView());
-    RootLayoutPanel.get().getElement().setAttribute("style", RootLayoutPanel.get().getElement().getAttribute("style")+ "min-width: 792px; min-height: 700px;");
+    RootLayoutPanel.get().getElement().setAttribute("style", RootLayoutPanel.get().getElement().getAttribute("style")+ "min-width: 792px; min-height: 730px;");
 
     /*
      * Asking injector to create base presenter bootstraps app.

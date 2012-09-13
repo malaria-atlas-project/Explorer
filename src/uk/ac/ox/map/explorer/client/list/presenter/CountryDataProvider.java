@@ -54,7 +54,7 @@ public class CountryDataProvider extends AbstractDataProvider<CountryProxy> {
   @Override
   public void start(EntityPlace place) {
     if (place.getOrderBy().isEmpty()) {
-      // default to name order (EntityPlace is imutable so make a new one)
+      // default to name order (EntityPlace is immutable so make a new one)
       entityPlace = new EntityPlace(place.getEntityName(),
           place.getQueryString(), "col=name&asc=true", place.isNamedQuery());
     } else {

@@ -49,8 +49,7 @@ public class PrQuery {
      * Retrieve data
      */
     EntityManager em = EMF.get().createEntityManager();
-    Query q = em
-        .createNativeQuery("select * from explorer.pr_export where country_id in :countryList order by country_id, CASE missing_data WHEN 'Confidential location' THEN 3 WHEN 'No permission to release data' THEN 2 ELSE 1 END, id");
+    Query q = em.createNativeQuery("select * from explorer.pr_export where country_id in :countryList order by country_id, CASE missing_data WHEN 'Confidential location' THEN 3 WHEN 'No permission to release data' THEN 2 ELSE 1 END, id");
     
     q.setParameter("countryList", countryIds);
     

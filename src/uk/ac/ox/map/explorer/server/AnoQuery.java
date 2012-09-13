@@ -49,8 +49,7 @@ public class AnoQuery {
      * Retrieve data
      */
     EntityManager em = EMF.get().createEntityManager();
-    Query q = em
-        .createNativeQuery("select id, latitude, longitude, country_id, species, year_start, year_end, month_start, month_end, id_method1, id_method2, sample_method1, sample_method2, sample_method3, sample_method4, \"ASSI\", citation, is_present from explorer.anopheline_export where anopheline_id in :ano order by anopheline_id, id");
+    Query q = em.createNativeQuery("select id, latitude, longitude, country_id, species, year_start, year_end, month_start, month_end, id_method1, id_method2, sample_method1, sample_method2, sample_method3, sample_method4, \"ASSI\", citation, is_present from explorer.anopheline_export where anopheline_id in :ano order by anopheline_id, id");
     
     q.setParameter("ano", itemIds);
     

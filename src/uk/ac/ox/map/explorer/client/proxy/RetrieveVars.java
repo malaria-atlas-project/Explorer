@@ -23,6 +23,6 @@ public class RetrieveVars {
   }
   
   public native String getValue(String varName) /*-{
-                                                return $wnd[varName];
-                                                }-*/;
+    return $wnd[varName];
+  }-*/;
 }

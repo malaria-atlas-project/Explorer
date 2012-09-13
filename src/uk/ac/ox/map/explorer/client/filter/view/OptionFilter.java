@@ -70,10 +70,12 @@ public class OptionFilter extends AbstractFilter {
   }
   
   public native JsArrayString getValues(String varName) /*-{
-                                                        var vals = $wnd["seedJson"][varName];
-                                                        if (vals == null) return [];
-                                                        return vals;
-                                                        }-*/;
+    var vals = $wnd["seedJson"][varName];
+    if (vals == null) { 
+      return [];
+    }
+    return vals;
+  }-*/;
   
   @Override
   public void setValue(String value) {

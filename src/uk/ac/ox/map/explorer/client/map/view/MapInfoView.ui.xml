@@ -22,6 +22,5 @@
         <td>unique site-date combinations</td>
       </tr>
     </table>
-    <!-- <c:CellList ui:field=""> </c:CellList> -->
   </g:HTMLPanel>
 </ui:UiBinder>

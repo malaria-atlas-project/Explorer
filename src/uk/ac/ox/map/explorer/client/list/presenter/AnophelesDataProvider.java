@@ -31,7 +31,12 @@ public class AnophelesDataProvider extends AbstractDataProvider<AnophelineProxy>
   
 	public void start(EntityPlace place) {
 	  
-		this.entityPlace = place;
+      if (place.getOrderBy().isEmpty()) {
+		//default to name order (EntityPlace is imutable so make a new one)
+		this.entityPlace = new EntityPlace(place.getEntityName(), place.getQueryString(), "col=name&asc=true", place.isNamedQuery());
+      } else {
+	    this.entityPlace = place;
+	  }
     addDataDisplay(view.getCellTable());
 		
     service.searchCount(entityPlace.getQueryString(), new AsyncCallback<Long>() {

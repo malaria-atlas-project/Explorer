@@ -68,14 +68,18 @@ public abstract class BaseTablePresenter<T extends NamedProxy> extends AbstractA
     /*
      * Set ordering of table according to Place
      */
+    String sortName = "name";
+    boolean sortAscending = true;
     if (!place.getOrderBy().isEmpty()) {
       Order o = new Order(place.getOrderBy());
-      ColumnSortList csl = tableView.getCellTable().getColumnSortList();
-      Map<Column<?, ?>, String> cols = tableView.getSortableColumns();
-      for (Column<?, ?> col : cols.keySet()) {
-        if (cols.get(col).equals(o.getColName())) {
-          csl.push(new ColumnSortInfo(col, o.isAscending()));
-        }
+      sortName = o.getColName();
+      sortAscending = o.isAscending();
+    }
+    ColumnSortList csl = tableView.getCellTable().getColumnSortList();
+    Map<Column<?, ?>, String> cols = tableView.getSortableColumns();
+    for (Column<?, ?> col : cols.keySet()) {
+      if (cols.get(col).equals(sortName)) {
+        csl.push(new ColumnSortInfo(col, sortAscending));
       }
     }
     return this;
@@ -124,12 +128,15 @@ public abstract class BaseTablePresenter<T extends NamedProxy> extends AbstractA
    */
   public void fireColumnSort(ColumnSortEvent event) {
 
-    DataGrid<T> cellTable = tableView.getCellTable();
-
-    /*
+     /*
      * Field name comes from map of columns stored in view.
      */
     String fieldName = tableView.getSortableColumns().get(event.getColumn());
+    fireColumnSort(fieldName);
+  }
+  
+  public void fireColumnSort(String fieldName) {
+    DataGrid<T> cellTable = tableView.getCellTable();
     ColumnSortInfo colSortInfo = cellTable.getColumnSortList().get(0);
     Order o = new Order(fieldName, colSortInfo.isAscending());
 

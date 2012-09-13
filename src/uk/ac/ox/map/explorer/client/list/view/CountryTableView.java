@@ -36,7 +36,6 @@ public class CountryTableView extends TableView<CountryProxy> {
       }
     }, "Name", "name");
     
-    setSortedColumn(1);
 //    addSortableColumn(new TextColumn<CountryProxy>() {
 //
 //      public String getValue(CountryProxy object) {

@@ -42,23 +42,24 @@ public class GuiceServletModule extends ServletModule {
      */
     filter("/*").through(PersistFilter.class);
     
-    //Index
+    // Index
     serve("/").with(IndexServlet.class);
-   
-    //Servlets
+    
+    // Servlets
     serve("/gwtRequest").with(RequestFactoryServlet.class);
     serve("/dataDownload").with(ExcelServlet.class);
     
-    //Services
-    serve("/mapexplorer/mapInfo").with(MapInfoServiceImpl.class);  
+    // Services
+    serve("/mapexplorer/mapInfo").with(MapInfoServiceImpl.class);
     serve("/mapexplorer/entity").with(EntityServiceImpl.class);
     serve("/mapexplorer/ano").with(AnoServiceImpl.class);
-
+    
   }
   
   private Properties getProperties() {
     Properties props = new Properties();
-    InputStream stream = this.getClass().getClassLoader().getResourceAsStream("urls.properties");
+    InputStream stream = this.getClass().getClassLoader()
+        .getResourceAsStream("urls.properties");
     try {
       props.load(stream);
     } catch (IOException e) {
@@ -71,9 +72,10 @@ public class GuiceServletModule extends ServletModule {
   @Singleton
   Configuration templateConfiguration(ServletContext context) {
     Configuration configInstance = new Configuration();
-    configInstance.setServletContextForTemplateLoading(context, "WEB-INF/templates");
+    configInstance.setServletContextForTemplateLoading(context,
+        "WEB-INF/templates");
     configInstance.setObjectWrapper(new DefaultObjectWrapper());
     return configInstance;
   }
-
+  
 }

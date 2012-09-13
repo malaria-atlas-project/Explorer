@@ -20,42 +20,59 @@ import com.google.inject.Inject;
  * @author will
  */
 public abstract class BaseMapPresenter extends AbstractActivity {
-
+  
   protected final ResourceBundle resources;
-
+  
   protected final MapView mapView;
-
+  
   @Inject
   private KeyPresenter keyPresenter;
-
+  
   private boolean isIntialized = false;
-
+  
   private final CompositeMapView compositeMapView;
-
+  
   private final BaseMapInfoPresenter mapInfoPresenter;
-
-  public BaseMapPresenter(ResourceBundle resources, BaseMapInfoPresenter mapInfoPresenter) {
-
-    this.mapView = new MapView();
-
+  
+  public BaseMapPresenter(ResourceBundle resources,
+      BaseMapInfoPresenter mapInfoPresenter) {
+    
+    mapView = new MapView();
+    
     this.resources = resources;
-
-    this.compositeMapView = new CompositeMapView(mapView);
-
+    
+    compositeMapView = new CompositeMapView(mapView);
+    
     this.mapInfoPresenter = mapInfoPresenter;
   }
-
+  
+  /**
+   * Called by {@link MapView} when map has been clicked.
+   */
+  public void fireMapClicked(double lon, double lat) {
+    
+  }
+  
+  /**
+   * Called by {@link MapView} when map has moved.
+   */
+  public void fireMapMoveEnd() {
+    mapInfoPresenter.updateMapInfo(mapView.getExtent());
+  }
+  
+  public abstract List<MapLayer> getLayers();
+  
   @Override
   public void start(AcceptsOneWidget panel, EventBus eventBus) {
-
+    
     panel.setWidget(compositeMapView);
-
+    
     if (!isIntialized) {
-
+      
       compositeMapView.getMapPanel().setWidget(mapView);
-
+      
       mapView.setListener(this);
-
+      
       /*
        * Get layers (from subclass) and add to map and key
        */
@@ -63,38 +80,26 @@ public abstract class BaseMapPresenter extends AbstractActivity {
       for (MapLayer mapLayer : layers) {
         mapView.addWmsLayer(mapLayer, true);
       }
-
+      
       keyPresenter.setLayers(layers);
     }
-
+    
     keyPresenter.start(compositeMapView.getKeyPanel(), eventBus);
-
+    
     mapInfoPresenter.start(compositeMapView.getInfoPanel(), eventBus);
-
-
-    eventBus.addHandler(ToggleLayerRequestEvent.TYPE, new ToggleLayerRequestEvent.Handler() {
-      public void onLayerChangeRequest(ToggleLayerRequestEvent layerChangeEvent) {
-        mapView.toggleLayer(layerChangeEvent.getLayerName(), layerChangeEvent.isActive());
-        mapInfoPresenter.updateMapInfo(layerChangeEvent.getLayerName(), mapView.getExtent());
-      }
-    });
-
+    
+    eventBus.addHandler(ToggleLayerRequestEvent.TYPE,
+        new ToggleLayerRequestEvent.Handler() {
+          @Override
+          public void onLayerChangeRequest(
+              ToggleLayerRequestEvent layerChangeEvent) {
+            mapView.toggleLayer(layerChangeEvent.getLayerName(),
+                layerChangeEvent.isActive());
+            mapInfoPresenter.updateMapInfo(layerChangeEvent.getLayerName(),
+                mapView.getExtent());
+          }
+        });
+    
     isIntialized = true;
   }
-
-  /**
-   * Called by {@link MapView} when map has been clicked.
-   */
-  public void fireMapClicked(double lon, double lat) {
-
-  }
-
-  /**
-   * Called by {@link MapView} when map has moved.
-   */
-  public void fireMapMoveEnd() {
-    mapInfoPresenter.updateMapInfo(mapView.getExtent());
-  }
-
-  public abstract List<MapLayer> getLayers();
 }

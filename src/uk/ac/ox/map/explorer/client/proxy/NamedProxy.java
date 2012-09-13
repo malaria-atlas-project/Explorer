@@ -1,6 +1,5 @@
 package uk.ac.ox.map.explorer.client.proxy;
 
-
-public interface NamedProxy  {
+public interface NamedProxy {
   String getName();
 }

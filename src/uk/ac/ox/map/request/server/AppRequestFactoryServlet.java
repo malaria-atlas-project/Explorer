@@ -13,7 +13,7 @@ import com.google.web.bindery.requestfactory.server.RequestFactoryServlet;
 
 @Singleton
 public class AppRequestFactoryServlet extends RequestFactoryServlet {
-
+  
   private static final long serialVersionUID = 2360351980994046292L;
   
   @Inject
@@ -22,8 +22,9 @@ public class AppRequestFactoryServlet extends RequestFactoryServlet {
   }
   
   @Override
-  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+  protected void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws IOException, ServletException {
     super.doPost(request, response);
   }
-
+  
 }

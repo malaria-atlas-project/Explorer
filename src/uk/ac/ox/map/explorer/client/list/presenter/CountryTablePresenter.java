@@ -17,20 +17,22 @@ import com.google.inject.Inject;
 public class CountryTablePresenter extends BaseTablePresenter<CountryProxy> {
   
   @Inject
-  public CountryTablePresenter(PlaceController placeController, CountryTableView tableView, CountryFilterList filterList, CountryDataProvider dp, CountrySelectionPresenter selectionPresenter) {
+  public CountryTablePresenter(PlaceController placeController,
+      CountryTableView tableView, CountryFilterList filterList,
+      CountryDataProvider dp, CountrySelectionPresenter selectionPresenter) {
     
     super(placeController, tableView, filterList, selectionPresenter, dp);
     
   }
   
   @Override
-  public void fireObjectSelected(CountryProxy obj) {
-    eventBus.fireEvent(new CountrySelectedEvent(obj));
-  }
-
-  @Override
   public void fireObjectChecked(CountryProxy obj, boolean isChecked) {
     eventBus.fireEvent(new CountryCheckedEvent(obj, isChecked));
   }
-
+  
+  @Override
+  public void fireObjectSelected(CountryProxy obj) {
+    eventBus.fireEvent(new CountrySelectedEvent(obj));
+  }
+  
 }

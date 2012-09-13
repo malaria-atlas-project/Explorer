@@ -7,8 +7,8 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(ExplorerPerspective.class)
 public class ExplorerPerspective_ {
   
-	public static volatile SingularAttribute<ExplorerPerspective, String> id;
-	
-	public static volatile ListAttribute<ExplorerPerspective, ExplorerLayer> layers;
-	
+  public static volatile SingularAttribute<ExplorerPerspective, String> id;
+  
+  public static volatile ListAttribute<ExplorerPerspective, ExplorerLayer> layers;
+  
 }

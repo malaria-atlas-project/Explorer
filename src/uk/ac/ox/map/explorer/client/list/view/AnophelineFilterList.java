@@ -16,14 +16,15 @@ import com.google.inject.Singleton;
 
 @Singleton
 public class AnophelineFilterList extends BaseCompositeFilter {
-	
+  
+  interface FilterListUiBinder extends UiBinder<Widget, AnophelineFilterList> {
+  }
+  
   @Inject
   protected EventBus eventBus;
   
-  private static FilterListUiBinder uiBinder = GWT.create(FilterListUiBinder.class);
-
-  interface FilterListUiBinder extends UiBinder<Widget, AnophelineFilterList> {
-  }
+  private static FilterListUiBinder uiBinder = GWT
+      .create(FilterListUiBinder.class);
   
   @UiField
   Filter region;
@@ -41,6 +42,5 @@ public class AnophelineFilterList extends BaseCompositeFilter {
   void handleClick(ClickEvent e) {
     eventBus.fireEvent(new AnophelineSelectedEvent(null));
   }
-
   
 }

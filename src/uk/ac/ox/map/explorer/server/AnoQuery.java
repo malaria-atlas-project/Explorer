@@ -15,39 +15,23 @@ import org.apache.poi.ss.usermodel.Workbook;
 
 import uk.ac.ox.map.domain.EMF;
 
-public class AnoQuery  {
-
+public class AnoQuery {
+  
+  private enum Cols {
+    id, latitude, longitude, country_id, species, year_start, year_end, month_start, month_end, id_method1, id_method2, sample_method1, sample_method2, sample_method3, sample_method4, ASSI, citation, is_present
+  }
+  
   private Sheet sheet;
+  
   private CellStyle boldCellStyle;
   
   private int currRow = 0;
-
-  private enum Cols {
-    id,
-    latitude,
-    longitude,
-    country_id,
-    species,
-    year_start,
-    year_end,
-    month_start,
-    month_end,
-    id_method1,
-    id_method2,
-    sample_method1,
-    sample_method2,
-    sample_method3,
-    sample_method4,
-    ASSI,
-    citation,
-    is_present
-  }
   
   public AnoQuery(Workbook wb, List<Long> itemIds) {
     
-    this.sheet = wb.createSheet();
-      
-    this.boldCellStyle = wb.createCellStyle();
+    sheet = wb.createSheet();
+    
+    boldCellStyle = wb.createCellStyle();
     Font f = wb.createFont();
     f.setBoldweight(Font.BOLDWEIGHT_BOLD);
     boldCellStyle.setFont(f);
@@ -65,9 +49,8 @@ public class AnoQuery  {
      * Retrieve data
      */
     EntityManager em = EMF.get().createEntityManager();
-    Query q = em.createNativeQuery(
-      "select id, latitude, longitude, country_id, species, year_start, year_end, month_start, month_end, id_method1, id_method2, sample_method1, sample_method2, sample_method3, sample_method4, \"ASSI\", citation, is_present from explorer.anopheline_export where anopheline_id in :ano order by anopheline_id, id"
-    );
+    Query q = em
+        .createNativeQuery("select id, latitude, longitude, country_id, species, year_start, year_end, month_start, month_end, id_method1, id_method2, sample_method1, sample_method2, sample_method3, sample_method4, \"ASSI\", citation, is_present from explorer.anopheline_export where anopheline_id in :ano order by anopheline_id, id");
     
     q.setParameter("ano", itemIds);
     
@@ -81,7 +64,7 @@ public class AnoQuery  {
     /*
      * Hide id columns
      */
-//    sheet.setColumnHidden(Cols.surveyReplicateId.ordinal(), true);
+    // sheet.setColumnHidden(Cols.surveyReplicateId.ordinal(), true);
   }
   
   private void addHeaderRow() {
@@ -95,40 +78,34 @@ public class AnoQuery  {
     }
   }
   
-  private Row getNewRow() {
-    Row row = sheet.createRow(currRow);
-    currRow ++;
-    return row;
-  }
-
   private void appendRow(Object[] objects) {
     
     Row row = getNewRow();
     
     for (int i = 0; i < objects.length; i++) {
-	    Object obj = objects[i];
-	    
-	    if (obj != null) {
-	      if (obj instanceof String) {
-			    Cell cell = row.createCell(i, Cell.CELL_TYPE_STRING);
-			    cell.setCellValue((String) obj);
-	      } else if (obj instanceof Number) {
-			    Cell cell = row.createCell(i, Cell.CELL_TYPE_NUMERIC);
-	        if (obj instanceof Long) {
-		        cell.setCellValue((Long) obj);
-	        } else if (obj instanceof Double) {
-		        cell.setCellValue((Double) obj);
+      Object obj = objects[i];
+      
+      if (obj != null) {
+        if (obj instanceof String) {
+          Cell cell = row.createCell(i, Cell.CELL_TYPE_STRING);
+          cell.setCellValue((String) obj);
+        } else if (obj instanceof Number) {
+          Cell cell = row.createCell(i, Cell.CELL_TYPE_NUMERIC);
+          if (obj instanceof Long) {
+            cell.setCellValue((Long) obj);
+          } else if (obj instanceof Double) {
+            cell.setCellValue((Double) obj);
           } else if (obj instanceof Integer) {
-		        cell.setCellValue((Integer) obj);
+            cell.setCellValue((Integer) obj);
           } else if (obj instanceof BigDecimal) {
-		        cell.setCellValue(((BigDecimal) obj).doubleValue());
+            cell.setCellValue(((BigDecimal) obj).doubleValue());
           } else {
             System.out.println(obj.getClass().toString());
             throw new RuntimeException("Unknown numeric type.");
           }
         } else if (obj instanceof Boolean) {
-			    Cell cell = row.createCell(i, Cell.CELL_TYPE_BOOLEAN);
-			    cell.setCellValue((Boolean) obj);
+          Cell cell = row.createCell(i, Cell.CELL_TYPE_BOOLEAN);
+          cell.setCellValue((Boolean) obj);
         }
       } else {
         /*
@@ -137,8 +114,13 @@ public class AnoQuery  {
         row.createCell(i, Cell.CELL_TYPE_BLANK);
       }
     }
-      
+    
   }
-
-
+  
+  private Row getNewRow() {
+    Row row = sheet.createRow(currRow);
+    currRow++;
+    return row;
+  }
+  
 }

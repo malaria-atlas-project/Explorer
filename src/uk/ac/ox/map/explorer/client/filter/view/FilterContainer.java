@@ -13,7 +13,7 @@ import com.google.gwt.user.client.ui.IsWidget;
  * @author will
  */
 public interface FilterContainer extends IsWidget {
-
+  
   List<Filter> getFilters();
-
+  
 }

@@ -19,18 +19,21 @@ import com.google.inject.Provider;
  */
 @Singleton
 @SuppressWarnings("serial")
-public class EntityServiceImpl extends RemoteServiceServlet implements EntityService{
-
+public class EntityServiceImpl extends RemoteServiceServlet implements
+    EntityService {
+  
   private Provider<SimpleDao> daoProvider;
-
+  
   @Inject
   public EntityServiceImpl(Provider<SimpleDao> dao) {
-    this.daoProvider = dao;
+    daoProvider = dao;
   }
-
+  
   @Override
-  public ArrayList<CountryProxy> search(Integer firstResult, Integer maxResults, String searchParams) {
-    List<Country> countries = daoProvider.get().search(firstResult, maxResults, searchParams, Country.class);
+  public ArrayList<CountryProxy> search(Integer firstResult,
+      Integer maxResults, String searchParams) {
+    List<Country> countries = daoProvider.get().search(firstResult, maxResults,
+        searchParams, Country.class);
     ArrayList<CountryProxy> dtos = new ArrayList<CountryProxy>();
     
     for (Country country : countries) {
@@ -42,11 +45,10 @@ public class EntityServiceImpl extends RemoteServiceServlet implements EntitySer
     }
     return dtos;
   }
-
+  
   @Override
   public Long searchCount(String searchParams) {
     return daoProvider.get().searchCount(searchParams, Country.class);
   }
-
-
+  
 }

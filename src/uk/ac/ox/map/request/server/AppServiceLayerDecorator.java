@@ -15,46 +15,29 @@ import javax.validation.ValidationException;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
-
-
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
 import com.google.web.bindery.requestfactory.server.ServiceLayer;
 import com.google.web.bindery.requestfactory.server.ServiceLayerDecorator;
 
-
 /**
  * Implements all methods that interact with domain objects.
  */
 @Singleton
 public class AppServiceLayerDecorator extends ServiceLayerDecorator {
-
+  
   private static final Validator jsr303Validator;
-  private static final Logger log = Logger.getLogger(ServiceLayer.class.getName());
+  private static final Logger log = Logger.getLogger(ServiceLayer.class
+      .getName());
   private Provider<EntityManager> provider;
   private Provider<SimpleDao> daoProvider;
-	
-	@Inject
-	public AppServiceLayerDecorator(Provider<EntityManager> p, Provider<SimpleDao> sd) {
-	  provider = p;
-	  daoProvider = sd;
-  }
-	
-	private SimpleDao getDao() {
-	  SimpleDao x = daoProvider.get();
-	  return x;
-	}
-	
-	private EntityManager getEntityManager() {
-	  return provider.get();
-	}
-	
-
+  
   static {
     Validator found;
     try {
-      ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
+      ValidatorFactory validatorFactory = Validation
+          .buildDefaultValidatorFactory();
       found = validatorFactory.getValidator();
     } catch (ValidationException e) {
       log.log(Level.INFO, "Unable to initialize a JSR 303 Bean Validator", e);
@@ -62,12 +45,28 @@ public class AppServiceLayerDecorator extends ServiceLayerDecorator {
     }
     jsr303Validator = found;
   }
-
+  
+  @Inject
+  public AppServiceLayerDecorator(Provider<EntityManager> p,
+      Provider<SimpleDao> sd) {
+    provider = p;
+    daoProvider = sd;
+  }
+  
+  private SimpleDao getDao() {
+    SimpleDao x = daoProvider.get();
+    return x;
+  }
+  
+  private EntityManager getEntityManager() {
+    return provider.get();
+  }
+  
   @Override
   public Object getVersion(Object domainObject) {
     return getTop().getProperty(domainObject, "version");
   }
-
+  
   @Override
   public Object invoke(Method domainMethod, Object... args) {
     Throwable ex;
@@ -81,9 +80,11 @@ public class AppServiceLayerDecorator extends ServiceLayerDecorator {
         getDao().remove(domainMethod.getDeclaringClass(), args[0]);
         return null;
       } else if (domainMethod.getName().equals("search")) {
-        return getDao().search((Integer)args[0], (Integer)args[1], (String)args[2], domainMethod.getDeclaringClass());
+        return getDao().search((Integer) args[0], (Integer) args[1],
+            (String) args[2], domainMethod.getDeclaringClass());
       } else if (domainMethod.getName().equals("searchCount")) {
-        return getDao().searchCount((String)args[0], domainMethod.getDeclaringClass());
+        return getDao().searchCount((String) args[0],
+            domainMethod.getDeclaringClass());
       } else if (domainMethod.getName().equals("all")) {
         return getDao().all(domainMethod.getDeclaringClass());
       } else if (Modifier.isStatic(domainMethod.getModifiers())) {
@@ -102,7 +103,7 @@ public class AppServiceLayerDecorator extends ServiceLayerDecorator {
     }
     return die(ex, "Could not invoke method %s", domainMethod.getName());
   }
-
+  
   /**
    * This implementation attempts to re-load the object from the backing store.
    */
@@ -111,7 +112,7 @@ public class AppServiceLayerDecorator extends ServiceLayerDecorator {
     Object id = getId(domainObject);
     return getDao().find(domainObject.getClass(), id) != null;
   }
-
+  
   @Override
   public <T> T loadDomainObject(Class<T> clazz, Object id) {
     if (id == null) {
@@ -119,7 +120,7 @@ public class AppServiceLayerDecorator extends ServiceLayerDecorator {
     }
     return getEntityManager().find(clazz, id);
   }
-
+  
   @Override
   public <T> Set<ConstraintViolation<T>> validate(T domainObject) {
     if (jsr303Validator != null) {

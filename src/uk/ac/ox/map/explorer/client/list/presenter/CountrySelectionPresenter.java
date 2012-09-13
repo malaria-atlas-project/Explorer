@@ -17,30 +17,33 @@ import com.google.inject.Singleton;
  * @author will
  */
 @Singleton
-public class CountrySelectionPresenter extends BaseSelectionPresenter<CountryProxy> {
+public class CountrySelectionPresenter extends
+    BaseSelectionPresenter<CountryProxy> {
   
   @Inject
-  public CountrySelectionPresenter(SelectionView selectionView, EventBus eventBus) {
+  public CountrySelectionPresenter(SelectionView selectionView,
+      EventBus eventBus) {
     
     this.selectionView = selectionView;
     
   }
-
+  
   @Override
   public void start(AcceptsOneWidget panel, EventBus eventBus) {
     
     super.start(panel, eventBus);
     
-    eventBus.addHandler(CountryCheckedEvent.TYPE, new CountryCheckedEvent.Handler() {
-      @Override
-      public void onCountryChecked(CountryCheckedEvent requestEvent) {
-       
-        addObject(requestEvent.getCountry(), requestEvent.isChecked());
-      }
-    });
+    eventBus.addHandler(CountryCheckedEvent.TYPE,
+        new CountryCheckedEvent.Handler() {
+          @Override
+          public void onCountryChecked(CountryCheckedEvent requestEvent) {
+            
+            addObject(requestEvent.getCountry(), requestEvent.isChecked());
+          }
+        });
     
   }
-
+  
   @Override
   protected void startDownload() {
     QueryStringBuilder qsb = new QueryStringBuilder('&');
@@ -58,5 +61,5 @@ public class CountrySelectionPresenter extends BaseSelectionPresenter<CountryPro
     Window.Location.assign("dataDownload?" + s);
     
   }
-
+  
 }

@@ -16,39 +16,44 @@ import com.google.inject.Inject;
  * 
  * @author will
  */
-public class AnophelesTablePresenter extends BaseTablePresenter<AnophelineProxy> {
+public class AnophelesTablePresenter extends
+    BaseTablePresenter<AnophelineProxy> {
   
   @Inject
-  public AnophelesTablePresenter(PlaceController placeController, AnophelineTableView tableView, AnophelineFilterList filterList, AnophelesDataProvider dp, AnophelesSelectionPresenter selectionPresenter) {
+  public AnophelesTablePresenter(PlaceController placeController,
+      AnophelineTableView tableView, AnophelineFilterList filterList,
+      AnophelesDataProvider dp, AnophelesSelectionPresenter selectionPresenter) {
     
     super(placeController, tableView, filterList, selectionPresenter, dp);
     
   }
   
   @Override
-  public void start(AcceptsOneWidget panel, EventBus eventBus) {
-    super.start(panel, eventBus);
-    
-    eventBus.addHandler(AnophelineSelectedEvent.TYPE, new AnophelineSelectedEvent.Handler() {
-      
-      @Override
-      public void onAnophelineSelected(AnophelineSelectedEvent requestEvent) {
-        if (requestEvent.getAnopheline() == null) {
-        	//An AnophelineSelectedEvent with a null payload indicated the reset button has been pressed
-        	tableView.clearSelection();
-        }
-      }
-    });
+  public void fireObjectChecked(AnophelineProxy obj, boolean isChecked) {
+    eventBus.fireEvent(new AnophelineCheckedEvent(obj, isChecked));
   }
   
   @Override
   public void fireObjectSelected(AnophelineProxy obj) {
     eventBus.fireEvent(new AnophelineSelectedEvent(obj));
   }
-
+  
   @Override
-  public void fireObjectChecked(AnophelineProxy obj, boolean isChecked) {
-    eventBus.fireEvent(new AnophelineCheckedEvent(obj, isChecked));
+  public void start(AcceptsOneWidget panel, EventBus eventBus) {
+    super.start(panel, eventBus);
+    
+    eventBus.addHandler(AnophelineSelectedEvent.TYPE,
+        new AnophelineSelectedEvent.Handler() {
+          
+          @Override
+          public void onAnophelineSelected(AnophelineSelectedEvent requestEvent) {
+            if (requestEvent.getAnopheline() == null) {
+              // An AnophelineSelectedEvent with a null payload indicated the
+              // reset button has been pressed
+              tableView.clearSelection();
+            }
+          }
+        });
   }
-
+  
 }

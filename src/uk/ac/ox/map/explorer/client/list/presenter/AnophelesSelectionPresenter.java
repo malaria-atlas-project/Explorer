@@ -17,27 +17,30 @@ import com.google.inject.Singleton;
  * @author will
  */
 @Singleton
-public class AnophelesSelectionPresenter extends BaseSelectionPresenter<AnophelineProxy> {
+public class AnophelesSelectionPresenter extends
+    BaseSelectionPresenter<AnophelineProxy> {
   
   @Inject
-  public AnophelesSelectionPresenter(SelectionView selectionView, EventBus eventBus) {
+  public AnophelesSelectionPresenter(SelectionView selectionView,
+      EventBus eventBus) {
     this.selectionView = selectionView;
   }
-
+  
   @Override
   public void start(AcceptsOneWidget panel, EventBus eventBus) {
     
     super.start(panel, eventBus);
     
-    eventBus.addHandler(AnophelineCheckedEvent.TYPE, new AnophelineCheckedEvent.Handler() {
-      @Override
-      public void onObjectChecked(AnophelineCheckedEvent requestEvent) {
-       
-        addObject(requestEvent.getAnopheline(), requestEvent.isChecked());
-      }
-    });
+    eventBus.addHandler(AnophelineCheckedEvent.TYPE,
+        new AnophelineCheckedEvent.Handler() {
+          @Override
+          public void onObjectChecked(AnophelineCheckedEvent requestEvent) {
+            
+            addObject(requestEvent.getAnopheline(), requestEvent.isChecked());
+          }
+        });
   }
-
+  
   @Override
   protected void startDownload() {
     QueryStringBuilder qsb = new QueryStringBuilder('&');
@@ -55,6 +58,5 @@ public class AnophelesSelectionPresenter extends BaseSelectionPresenter<Anopheli
     Window.Location.assign("dataDownload?" + s);
     
   }
-
-
+  
 }

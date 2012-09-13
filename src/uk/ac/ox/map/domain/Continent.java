@@ -11,35 +11,43 @@ import javax.persistence.Transient;
 @Table(schema = "explorer", name = "continent")
 public class Continent implements StringType {
   
-  public static List<Continent> search(Integer firstResult, Integer maxResults, String searchParams) {
+  public static List<Continent> all() {
     return null;
   }
-
-  public static Long searchCount(String searchParams) {
-    return null;
-  }
-
+  
   public static Country findContinent(String id) {
     return null;
   }
   
-  public static List<Continent> all() {
+  public static List<Continent> search(Integer firstResult, Integer maxResults,
+      String searchParams) {
     return null;
   }
-
-  public void persist() {
-  }
-
-  public void remove() {
+  
+  public static Long searchCount(String searchParams) {
+    return null;
   }
   
   private String id;
-
+  
+  @Override
   @Id
   public String getId() {
     return id;
   }
-
+  
+  @Transient
+  public Integer getVersion() {
+    return 0;
+  }
+  
+  public void persist() {
+  }
+  
+  public void remove() {
+  }
+  
+  @Override
   public void setId(String id) {
     this.id = id;
   }
@@ -49,9 +57,4 @@ public class Continent implements StringType {
     return id;
   }
   
-  @Transient
-  public Integer getVersion() {
-    return 0;
-  }
-
 }

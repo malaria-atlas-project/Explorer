@@ -15,7 +15,7 @@ import com.google.inject.Singleton;
 import com.google.inject.name.Names;
 
 public class ExplorerClientModule extends AbstractGinModule {
-
+  
   @Override
   protected void configure() {
     
@@ -24,7 +24,8 @@ public class ExplorerClientModule extends AbstractGinModule {
      */
     bind(EventBus.class).to(SimpleEventBus.class).in(Singleton.class);
     
-    bind(PlaceHistoryMapper.class).to(AppPlaceHistoryMapper.class).in(Singleton.class);
+    bind(PlaceHistoryMapper.class).to(AppPlaceHistoryMapper.class).in(
+        Singleton.class);
     
     /*
      * Bind loosely coupled presenter displays to their implementations
@@ -38,17 +39,18 @@ public class ExplorerClientModule extends AbstractGinModule {
      */
     bindConstant().annotatedWith(Names.named("TABLE_SIZE")).to(100);
   }
-
-
+  
   @SuppressWarnings("deprecation")
   @Provides
   @Singleton
-  public PlaceHistoryHandler getHistoryHandler(PlaceController placeController, PlaceHistoryMapper historyMapper, EventBus eventBus) {
+  public PlaceHistoryHandler getHistoryHandler(PlaceController placeController,
+      PlaceHistoryMapper historyMapper, EventBus eventBus) {
     PlaceHistoryHandler historyHandler = new PlaceHistoryHandler(historyMapper);
-    historyHandler.register(placeController, eventBus, new EntityPlace("Country"));
+    historyHandler.register(placeController, eventBus, new EntityPlace(
+        "Country"));
     return historyHandler;
   }
-
+  
   @SuppressWarnings("deprecation")
   @Provides
   @Singleton
@@ -56,6 +58,5 @@ public class ExplorerClientModule extends AbstractGinModule {
     
     return new PlaceController(eventBus);
   }
-
-
+  
 }

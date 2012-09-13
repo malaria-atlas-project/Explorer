@@ -6,7 +6,6 @@ import javax.inject.Singleton;
 
 import uk.ac.ox.map.explorer.client.proxy.CountryProxy;
 
-
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
@@ -16,6 +15,8 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 @Singleton
 @RemoteServiceRelativePath("entity")
 public interface EntityService extends RemoteService {
-  ArrayList<CountryProxy> search(Integer firstResult, Integer maxResults, String searchParams);
+  ArrayList<CountryProxy> search(Integer firstResult, Integer maxResults,
+      String searchParams);
+  
   Long searchCount(String searchParams);
 }

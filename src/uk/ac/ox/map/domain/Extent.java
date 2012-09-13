@@ -8,61 +8,62 @@ import javax.persistence.Transient;
 
 import com.vividsolutions.jts.geom.Envelope;
 
-@Embeddable @Access(AccessType.FIELD)
+@Embeddable
+@Access(AccessType.FIELD)
 public class Extent {
   
   private Double minx;
-
-  @Column(name = "minx")
-  public Double getMinx() {
-    return minx;
-  }
-
-  public void setMinx(Double minx) {
-    this.minx = minx;
-  }
-
+  
   private Double miny;
-
-  @Column(name = "miny")
-  public Double getMiny() {
-    return miny;
-  }
-
-  public void setMiny(Double miny) {
-    this.miny = miny;
-  }
-
+  
   private Double maxx;
-
-  @Column(name = "maxx")
-  public Double getMaxx() {
-    return maxx;
-  }
-
-  public void setMaxx(Double maxx) {
-    this.maxx = maxx;
-  }
-
+  
   private Double maxy;
-
-  @Column(name = "maxy")
-  public Double getMaxy() {
-    return maxy;
-  }
-
-  public void setMaxy(Double maxy) {
-    this.maxy = maxy;
-  }
   
   @Transient
   public Envelope getEnvelope() {
     return new Envelope(minx, maxx, miny, maxy);
   }
   
+  @Column(name = "maxx")
+  public Double getMaxx() {
+    return maxx;
+  }
+  
+  @Column(name = "maxy")
+  public Double getMaxy() {
+    return maxy;
+  }
+  
+  @Column(name = "minx")
+  public Double getMinx() {
+    return minx;
+  }
+  
+  @Column(name = "miny")
+  public Double getMiny() {
+    return miny;
+  }
+  
   @Transient
   public Integer getVersion() {
     return 0;
+  }
+  
+  public void setMaxx(Double maxx) {
+    this.maxx = maxx;
+  }
+  
+  public void setMaxy(Double maxy) {
+    this.maxy = maxy;
+  }
+  
+  public void setMinx(Double minx) {
+    this.minx = minx;
+  }
+  
+  public void setMiny(Double miny) {
+    this.miny = miny;
   }
   
 }

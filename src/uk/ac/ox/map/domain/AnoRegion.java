@@ -9,12 +9,14 @@ import javax.persistence.Table;
 public class AnoRegion implements StringType {
   
   private String id;
-
+  
+  @Override
   @Id
   public String getId() {
     return id;
   }
-
+  
+  @Override
   public void setId(String id) {
     this.id = id;
   }
@@ -23,5 +25,5 @@ public class AnoRegion implements StringType {
   public String toString() {
     return id;
   }
-
+  
 }

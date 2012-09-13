@@ -13,11 +13,13 @@ import com.google.gwt.user.client.ui.Widget;
  * 
  */
 public class CompositeTableView extends Composite {
-
-  private static CompositeTableViewUiBinder uiBinder = GWT.create(CompositeTableViewUiBinder.class);
-
-  interface CompositeTableViewUiBinder extends UiBinder<Widget, CompositeTableView> {
+  
+  interface CompositeTableViewUiBinder extends
+      UiBinder<Widget, CompositeTableView> {
   }
+  
+  private static CompositeTableViewUiBinder uiBinder = GWT
+      .create(CompositeTableViewUiBinder.class);
   
   @UiField
   SimplePanel tablePanel;
@@ -27,21 +29,21 @@ public class CompositeTableView extends Composite {
   
   @UiField
   SimplePanel selectionPanel;
-
+  
   public CompositeTableView() {
     initWidget(uiBinder.createAndBindUi(this));
-  }
-
-  public AcceptsOneWidget getTablePanel() {
-    return tablePanel;
   }
   
   public AcceptsOneWidget getFilterPanel() {
     return filterPanel;
   }
-
+  
   public AcceptsOneWidget getSelectionPanel() {
     return selectionPanel;
   }
-
+  
+  public AcceptsOneWidget getTablePanel() {
+    return tablePanel;
+  }
+  
 }

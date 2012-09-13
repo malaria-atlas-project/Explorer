@@ -31,24 +31,25 @@ import freemarker.template.TemplateException;
 
 @Singleton
 public class IndexServlet extends HttpServlet {
-
+  
   private static final long serialVersionUID = 1L;
   private final Provider<SimpleDao> daoProvider;
   private List<Class<? extends StringType>> stringTypes;
   private Configuration conf;
   private LayerAutoBeanEncoder layerEncoder = new LayerAutoBeanEncoder();
   
-	@Inject
-	public IndexServlet(Provider<SimpleDao> daoProvider, Configuration conf) {
-	  this.daoProvider = daoProvider;
-	  this.conf = conf;
-    this.stringTypes = new ArrayList<Class<? extends StringType>>();
+  @Inject
+  public IndexServlet(Provider<SimpleDao> daoProvider, Configuration conf) {
+    this.daoProvider = daoProvider;
+    this.conf = conf;
+    stringTypes = new ArrayList<Class<? extends StringType>>();
     stringTypes.add(Continent.class);
     stringTypes.add(AnoRegion.class);
   }
-
+  
   @Override
-  protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+  protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+      throws ServletException, IOException {
     
     resp.setContentType("text/html");
     
@@ -59,7 +60,9 @@ public class IndexServlet extends HttpServlet {
     
     List<ExplorerPerspective> perspectives = dao.all(ExplorerPerspective.class);
     for (ExplorerPerspective explorerPerspective : perspectives) {
-      root.put(explorerPerspective.getId(), StringEscapeUtils.escapeJavaScript(layerEncoder.getLayerPayload(explorerPerspective.getLayers())));
+      root.put(explorerPerspective.getId(), StringEscapeUtils
+          .escapeJavaScript(layerEncoder.getLayerPayload(explorerPerspective
+              .getLayers())));
     }
     
     /*
@@ -69,31 +72,31 @@ public class IndexServlet extends HttpServlet {
     
     resp.setCharacterEncoding("UTF-8");
     PrintWriter out = resp.getWriter();
-
+    
     try {
       ftl.process(root, out);
       out.flush();
     } catch (TemplateException e) {
       e.printStackTrace(out);
     }
-
+    
   }
   
   private String getJson(SimpleDao dao) {
     Map<String, List<String>> vars = new HashMap<String, List<String>>();
-
+    
     for (Class<? extends StringType> clazz : stringTypes) {
       
       String key = clazz.getSimpleName();
-
+      
       List<? extends StringType> objList = dao.all(clazz);
-
+      
       List<String> var = new ArrayList<String>();
-
+      
       for (StringType st : objList) {
         var.add(st.getId());
       }
-
+      
       vars.put(key, var);
     }
     
@@ -101,5 +104,5 @@ public class IndexServlet extends HttpServlet {
     String json = gson.toJson(vars);
     return json;
   }
-
+  
 }

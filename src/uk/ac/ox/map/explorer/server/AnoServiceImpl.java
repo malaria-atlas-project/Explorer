@@ -19,18 +19,20 @@ import com.google.inject.Provider;
  */
 @Singleton
 @SuppressWarnings("serial")
-public class AnoServiceImpl extends RemoteServiceServlet implements AnoService{
-
+public class AnoServiceImpl extends RemoteServiceServlet implements AnoService {
+  
   private Provider<SimpleDao> daoProvider;
-
+  
   @Inject
   public AnoServiceImpl(Provider<SimpleDao> dao) {
-    this.daoProvider = dao;
+    daoProvider = dao;
   }
-
+  
   @Override
-  public ArrayList<AnophelineProxy> search(Integer firstResult, Integer maxResults, String searchParams) {
-    List<Anopheline> countries = daoProvider.get().search(firstResult, maxResults, searchParams, Anopheline.class);
+  public ArrayList<AnophelineProxy> search(Integer firstResult,
+      Integer maxResults, String searchParams) {
+    List<Anopheline> countries = daoProvider.get().search(firstResult,
+        maxResults, searchParams, Anopheline.class);
     ArrayList<AnophelineProxy> dtos = new ArrayList<AnophelineProxy>();
     
     for (Anopheline anopheline : countries) {
@@ -42,11 +44,10 @@ public class AnoServiceImpl extends RemoteServiceServlet implements AnoService{
     }
     return dtos;
   }
-
+  
   @Override
   public Long searchCount(String searchParams) {
     return daoProvider.get().searchCount(searchParams, Anopheline.class);
   }
-
-
+  
 }

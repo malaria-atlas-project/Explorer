@@ -19,11 +19,12 @@ import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class SelectionView extends Composite {
-
-  private static SelectionViewUiBinder uiBinder = GWT.create(SelectionViewUiBinder.class);
-
+  
   interface SelectionViewUiBinder extends UiBinder<Widget, SelectionView> {
   }
+  
+  private static SelectionViewUiBinder uiBinder = GWT
+      .create(SelectionViewUiBinder.class);
   
   @UiField
   SimplePanel cellListContainer;
@@ -32,7 +33,7 @@ public class SelectionView extends Composite {
   Button downloadButton;
   
   private CellList<NamedProxy> cellList;
-
+  
   public SelectionView() {
     initWidget(uiBinder.createAndBindUi(this));
     
@@ -44,15 +45,15 @@ public class SelectionView extends Composite {
     };
     
     cellList = new CellList<NamedProxy>(cell);
-    cellListContainer.add(cellList); 
+    cellListContainer.add(cellList);
+  }
+  
+  public HasClickHandlers getDownloadButton() {
+    return downloadButton;
   }
   
   public void setRowData(List<? extends NamedProxy> values) {
     cellList.setRowData(values);
   }
   
-  public HasClickHandlers getDownloadButton(){
-    return downloadButton;
-  }
-
 }

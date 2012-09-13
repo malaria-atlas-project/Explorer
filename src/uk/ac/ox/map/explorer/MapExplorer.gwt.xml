@@ -1,29 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module rename-to='mapexplorer'>
-  <!-- Inherit the core Web Toolkit stuff.                        -->
-  <inherits name='com.google.gwt.user.User'/>
-
-  <inherits name='com.google.gwt.user.theme.clean.Clean'/>
-  
+  <!-- Inherit the core Web Toolkit stuff. -->
+  <inherits name='com.google.gwt.user.User' />
+  <inherits name='com.google.gwt.user.theme.clean.Clean' />
   <!-- Inject openlayers -->
-  <script src="http://www.map.ox.ac.uk/client_media/openlayers/OpenLayers.js"/>
-
-  <!-- Other module inherits                                      -->
-  
-	<inherits name="com.google.gwt.activity.Activity" />
-	<inherits name="com.google.gwt.place.Place" />
-	<inherits name='com.google.web.bindery.requestfactory.RequestFactory' />
-	<inherits name="com.google.gwt.uibinder.UiBinder" />
-	<inherits name="com.google.gwt.resources.Resources" />
-  
-  <!-- Exernal projects                                      -->
-	<inherits name="com.google.gwt.inject.Inject" />
-  <inherits name='org.gwtopenmaps.openlayers.OpenLayers'/>
-
-  <!-- Specify the app entry point class.                         -->
-  <entry-point class='uk.ac.ox.map.explorer.client.MapExplorer'/>
-
-  <!-- Specify the paths for translatable code                    -->
-  <source path='client'/>
-
+  <script src="http://www.map.ox.ac.uk/client_media/openlayers/OpenLayers.js" />
+  <!-- Other module inherits -->
+  <inherits name="com.google.gwt.activity.Activity" />
+  <inherits name="com.google.gwt.place.Place" />
+  <inherits name='com.google.web.bindery.requestfactory.RequestFactory' />
+  <inherits name="com.google.gwt.uibinder.UiBinder" />
+  <inherits name="com.google.gwt.resources.Resources" />
+  <!-- Exernal projects -->
+  <inherits name="com.google.gwt.inject.Inject" />
+  <inherits name='org.gwtopenmaps.openlayers.OpenLayers' />
+  <!-- Specify the app entry point class. -->
+  <entry-point class='uk.ac.ox.map.explorer.client.MapExplorer' />
+  <!-- Specify the paths for translatable code -->
+  <source path='client' />
 </module>

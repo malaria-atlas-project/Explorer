@@ -29,94 +29,75 @@ import com.google.gwt.view.client.SingleSelectionModel;
  *          the proxy to display
  */
 public class TableView<T extends NamedProxy> extends Composite {
-
-  private static TableViewUiBinder uiBinder = GWT.create(TableViewUiBinder.class);
-
+  
   @SuppressWarnings("rawtypes")
   interface TableViewUiBinder extends UiBinder<Widget, TableView> {
   }
-
+  
+  private static TableViewUiBinder uiBinder = GWT
+      .create(TableViewUiBinder.class);
+  
   @UiField(provided = true)
   DataGrid<T> dataGrid;
-
+  
   protected BaseTablePresenter<T> presenter;
-
+  
   protected SingleSelectionModel<T> selectionModel;
-
+  
   private Map<Column<?, ?>, String> sortableColumns = new HashMap<Column<?, ?>, String>();
-
+  
   public TableView(int pageSize) {
     DataGridResource resource = GWT.create(DataGridResource.class);
     dataGrid = new DataGrid<T>(pageSize, resource);
-
+    
     initWidget(uiBinder.createAndBindUi(this));
-
+    
     selectionModel = new SingleSelectionModel<T>();
-    selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
-      @Override
-      public void onSelectionChange(SelectionChangeEvent event) {
-        if (selectionModel.getSelectedObject() != null) {
-          if (presenter != null) {
-            presenter.fireObjectSelected(selectionModel.getSelectedObject());
+    selectionModel
+        .addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+          @Override
+          public void onSelectionChange(SelectionChangeEvent event) {
+            if (selectionModel.getSelectedObject() != null) {
+              if (presenter != null) {
+                presenter.fireObjectSelected(selectionModel.getSelectedObject());
+              }
+            }
           }
-        }
-      }
-    });
-
+        });
+    
     // DefaultSelectionEventManager<T> a =
     // DefaultSelectionEventManager.createBlacklistManager(1);
     // dataGrid.setSelectionModel(selectionModel, a);
     dataGrid.setSelectionModel(selectionModel);
     dataGrid.setPageSize(pageSize);
-
+    
     dataGrid.addColumnSortHandler(new ColumnSortEvent.Handler() {
       @Override
       public void onColumnSort(ColumnSortEvent event) {
         presenter.fireColumnSort(event);
       }
     });
-
+    
   }
-
+  
   public void addColumn(Column<T, ?> col, String title) {
     dataGrid.addColumn(col, title);
   }
-
+  
   public void addSortableColumn(Column<T, ?> col, String title, String fieldName) {
     dataGrid.addColumn(col, title);
     col.setSortable(true);
     sortableColumns.put(col, fieldName);
   }
   
-  public void setSortedColumn(int i) {
-	dataGrid.getColumnSortList().clear();
-	dataGrid.getColumnSortList().push(dataGrid.getColumn(i));
-  }
-
-  public void setPresenter(BaseTablePresenter<T> presenter) {
-    this.presenter = presenter;
-  }
-
-  public void setRowData(int i, List<T> values) {
-    dataGrid.setRowData(i, values);
-  }
-
-  public void setResultCount(Long nResults) {
-    dataGrid.setRowCount(nResults.intValue(), true);
-  }
-
-  public DataGrid<T> getCellTable() {
-    return dataGrid;
-  }
-
   public void clearSelection() {
     selectionModel.setSelected(selectionModel.getSelectedObject(), false);
   }
-
-  public Map<Column<?, ?>, String> getSortableColumns() {
-    return sortableColumns;
+  
+  public DataGrid<T> getCellTable() {
+    return dataGrid;
   }
-
+  
   protected String getRepr(Object obj) {
     // Quick hack to avoid NPEs in cell columns
     if (obj == null) {
@@ -124,5 +105,26 @@ public class TableView<T extends NamedProxy> extends Composite {
     }
     return obj.toString();
   }
-
+  
+  public Map<Column<?, ?>, String> getSortableColumns() {
+    return sortableColumns;
+  }
+  
+  public void setPresenter(BaseTablePresenter<T> presenter) {
+    this.presenter = presenter;
+  }
+  
+  public void setResultCount(Long nResults) {
+    dataGrid.setRowCount(nResults.intValue(), true);
+  }
+  
+  public void setRowData(int i, List<T> values) {
+    dataGrid.setRowData(i, values);
+  }
+  
+  public void setSortedColumn(int i) {
+    dataGrid.getColumnSortList().clear();
+    dataGrid.getColumnSortList().push(dataGrid.getColumn(i));
+  }
+  
 }

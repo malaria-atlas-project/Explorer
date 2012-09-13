@@ -10,90 +10,57 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(schema="explorer", name="country")
-public class Country  {
+@Table(schema = "explorer", name = "country")
+public class Country {
   
   private String id;
-
-  @Id
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
-  }
   
   private Region region;
   
-  @ManyToOne
-  @JoinColumn(name="map_region_id")
-  public Region getRegion() {
-    return region;
-  }
-
-  public void setRegion(Region region) {
-    this.region = region;
-  }
-  
   private String name;
-
-  @Column(name = "name")
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
+  
   private Boolean pfEndemic;
-
-  @Column(name = "pf_endemic")
-  public Boolean getPfEndemic() {
-    return pfEndemic;
-  }
-
-  public void setPfEndemic(Boolean pfEndemic) {
-    this.pfEndemic = pfEndemic;
-  }
-
+  
   private Boolean pvEndemic;
-
-  @Column(name = "pv_endemic")
-  public Boolean getPvEndemic() {
-    return pvEndemic;
-  }
-
-  public void setPvEndemic(Boolean pvEndemic) {
-    this.pvEndemic = pvEndemic;
-  }
-
+  
   private String continent;
-
-  @Column(name="continent_id")
+  
+  private Extent extent;
+  
+  @Column(name = "continent_id")
   public String getContinent() {
     return continent;
   }
-
-  public void setContinent(String continent) {
-    this.continent = continent;
-  }
-
-  private Extent extent;
-
+  
   @Embedded
   public Extent getExtent() {
     return extent;
   }
-
-  public void setExtent(Extent extent) {
-    this.extent = extent;
+  
+  @Id
+  public String getId() {
+    return id;
   }
   
-  @Override
-  public String toString() {
+  @Column(name = "name")
+  public String getName() {
     return name;
+  }
+  
+  @Column(name = "pf_endemic")
+  public Boolean getPfEndemic() {
+    return pfEndemic;
+  }
+  
+  @Column(name = "pv_endemic")
+  public Boolean getPvEndemic() {
+    return pvEndemic;
+  }
+  
+  @ManyToOne
+  @JoinColumn(name = "map_region_id")
+  public Region getRegion() {
+    return region;
   }
   
   @Transient
@@ -105,5 +72,38 @@ public class Country  {
   public Integer getVersion() {
     return 0;
   }
-
+  
+  public void setContinent(String continent) {
+    this.continent = continent;
+  }
+  
+  public void setExtent(Extent extent) {
+    this.extent = extent;
+  }
+  
+  public void setId(String id) {
+    this.id = id;
+  }
+  
+  public void setName(String name) {
+    this.name = name;
+  }
+  
+  public void setPfEndemic(Boolean pfEndemic) {
+    this.pfEndemic = pfEndemic;
+  }
+  
+  public void setPvEndemic(Boolean pvEndemic) {
+    this.pvEndemic = pvEndemic;
+  }
+  
+  public void setRegion(Region region) {
+    this.region = region;
+  }
+  
+  @Override
+  public String toString() {
+    return name;
+  }
+  
 }

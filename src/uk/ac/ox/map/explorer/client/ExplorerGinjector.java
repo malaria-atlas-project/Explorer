@@ -9,10 +9,10 @@ import com.google.gwt.place.shared.PlaceHistoryHandler;
 @GinModules(ExplorerClientModule.class)
 public interface ExplorerGinjector extends Ginjector {
   
+  BasePresenter getBasePresenter();
+  
+  BaseView getBaseView();
+  
   PlaceHistoryHandler getPlaceHistoryHandler();
   
-  BasePresenter getBasePresenter();
-
-  BaseView getBaseView();
-
 }

@@ -24,13 +24,14 @@ public class FilterPresenter extends AbstractActivity implements FilterListener 
   private final List<Filter> filters;
   private EventBus eventBus;
   private FilterContainer filterContainer;
-
+  
   public FilterPresenter(EntityPlace place, FilterContainer filterListener) {
     
-    this.filterContainer = filterListener;
+    filterContainer = filterListener;
     filters = filterContainer.getFilters();
     
-    Map<String, String> filterParams = PlaceUtils.getMapFromParams2(place.getQueryString());
+    Map<String, String> filterParams = PlaceUtils.getMapFromParams2(place
+        .getQueryString());
     for (Filter filter : filters) {
       
       /*
@@ -50,13 +51,6 @@ public class FilterPresenter extends AbstractActivity implements FilterListener 
   }
   
   @Override
-  public void start(AcceptsOneWidget panel, EventBus eventBus) {
-    panel.setWidget(filterContainer);
-    this.eventBus = eventBus;
-  }
-
-    
-  @Override
   public void onFilterChange() {
     
     QueryStringBuilder qsb = new QueryStringBuilder('&');
@@ -66,5 +60,11 @@ public class FilterPresenter extends AbstractActivity implements FilterListener 
     eventBus.fireEvent(new FilterChangedEvent(qsb.finish()));
     
   }
-
+  
+  @Override
+  public void start(AcceptsOneWidget panel, EventBus eventBus) {
+    panel.setWidget(filterContainer);
+    this.eventBus = eventBus;
+  }
+  
 }

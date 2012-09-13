@@ -22,41 +22,45 @@ import com.google.gwt.user.client.ui.Widget;
  * @author will
  */
 public class BooleanFilter extends AbstractFilter {
-
-  private static BooleanFilterUiBinder uiBinder = GWT.create(BooleanFilterUiBinder.class);
-
+  
   interface BooleanFilterUiBinder extends UiBinder<Widget, BooleanFilter> {
   }
-
+  
+  private static BooleanFilterUiBinder uiBinder = GWT
+      .create(BooleanFilterUiBinder.class);
+  
   /*
    * Using a random but guaranteed unique group name for radio buttons is a
    * quick way of ensuring they're grouped properly.
    */
   private final String rbGroupName = DOM.createUniqueId();
-
+  
   private final String[] opts = { "all", "true", "false" };
-
+  
   private List<RadioButton> radioButtons = new ArrayList<RadioButton>();
-
+  
   private String currVal;
-
+  
   @UiField
   FlowPanel base;
-
+  
   @UiConstructor
   public BooleanFilter(String labelText, String propertyName) {
     super(propertyName);
-
+    
     initWidget(uiBinder.createAndBindUi(this));
     // FIXME: hack as can't put HTML in uibinder
     labelText = labelText.replace("P.falciparum", "<i>P.falciparum</i>");
     labelText = labelText.replace("P.vivax", "<i>P.vivax</i>");
     filterLabel.setHTML(labelText);
-
+    
     for (int i = 0; i < opts.length; i++) {
-
+      
       RadioButton rb = new RadioButton(rbGroupName, opts[i]);
-      rb.getElement().setAttribute("style", rb.getElement().getAttribute("style")+" display: inline-block;"); //FIXME: tmp hack
+      rb.getElement().setAttribute("style",
+          rb.getElement().getAttribute("style") + " display: inline-block;"); // FIXME:
+                                                                              // tmp
+                                                                              // hack
       radioButtons.add(rb);
       base.add(rb);
       if (i == 0) {
@@ -64,7 +68,7 @@ public class BooleanFilter extends AbstractFilter {
         rb.setValue(true);
       }
       rb.addClickHandler(new ClickHandler() {
-
+        
         @Override
         public void onClick(ClickEvent event) {
           String val = ((RadioButton) event.getSource()).getText();
@@ -74,7 +78,7 @@ public class BooleanFilter extends AbstractFilter {
       });
     }
   }
-
+  
   @Override
   public String getFilterString() {
     if (currVal.equals("all")) {
@@ -82,7 +86,7 @@ public class BooleanFilter extends AbstractFilter {
     }
     return FilterBuilder.getFilterString(filterProperty, Operator.eq, currVal);
   }
-
+  
   @Override
   public void setValue(String value) {
     for (int i = 0; i < opts.length; i++) {
@@ -93,5 +97,5 @@ public class BooleanFilter extends AbstractFilter {
       }
     }
   }
-
+  
 }

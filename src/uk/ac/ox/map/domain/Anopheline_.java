@@ -19,7 +19,7 @@ public class Anopheline_ {
   public static volatile SingularAttribute<Anopheline, Boolean> isDvs;
   
   public static volatile SingularAttribute<Anopheline, String> region;
-
+  
   public static volatile SingularAttribute<Anopheline, String> species;
   
   public static volatile SingularAttribute<Anopheline, String> abbreviation;

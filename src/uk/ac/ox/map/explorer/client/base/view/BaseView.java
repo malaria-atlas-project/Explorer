@@ -25,48 +25,48 @@ import com.google.inject.Singleton;
  */
 @Singleton
 public class BaseView extends Composite implements BasePresenter.Display {
-
-  private static BaseViewUiBinder uiBinder = GWT.create(BaseViewUiBinder.class);
-
-  interface BaseViewUiBinder extends UiBinder<Widget, BaseView> {
-  }
-
+  
   interface BaseStyle extends CssResource {
-
+    
     String inlineHyperlink();
-
+    
     String spacer();
   }
-
+  
+  interface BaseViewUiBinder extends UiBinder<Widget, BaseView> {
+  }
+  
+  private static BaseViewUiBinder uiBinder = GWT.create(BaseViewUiBinder.class);
+  
   @UiField
   BaseStyle style;
-
+  
   @UiField
   SimpleLayoutPanel tablePanel;
-
+  
   @UiField
   SimpleLayoutPanel mapPanel;
-
+  
   @UiField
   ListBox perspectiveSelect;
-
+  
   @Inject
   public BaseView() {
     initWidget(uiBinder.createAndBindUi(this));
   }
-
+  
   @Override
   public SimpleLayoutPanel getMapDisplay() {
     return mapPanel;
   }
-
+  
+  public ListBox getPerspectiveSelect() {
+    return perspectiveSelect;
+  }
+  
   @Override
   public SimpleLayoutPanel getTableDisplay() {
     return tablePanel;
   }
-
-  public ListBox getPerspectiveSelect() {
-    return perspectiveSelect;
-  }
-
+  
 }

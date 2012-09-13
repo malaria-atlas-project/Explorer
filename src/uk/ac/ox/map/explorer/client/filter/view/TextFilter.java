@@ -17,14 +17,15 @@ import com.google.gwt.user.client.ui.Widget;
  * Encapsulates a {@link TextBox} for use as a {@link Filter}
  * 
  * @author will
- *
+ * 
  */
 public class TextFilter extends AbstractFilter {
-
-  private static DiscreteOptionFilterUiBinder uiBinder = GWT.create(DiscreteOptionFilterUiBinder.class);
-
+  
   interface DiscreteOptionFilterUiBinder extends UiBinder<Widget, TextFilter> {
   }
+  
+  private static DiscreteOptionFilterUiBinder uiBinder = GWT
+      .create(DiscreteOptionFilterUiBinder.class);
   
   @UiField
   TextBox textBox;
@@ -34,11 +35,6 @@ public class TextFilter extends AbstractFilter {
   
   private Operator op;
   
-  @UiHandler("goButton")
-  void onClick(ClickEvent e) {
-    filterListener.onFilterChange();
-  }
-
   @UiConstructor
   public TextFilter(String labelText, String propertyName) {
     super(propertyName);
@@ -47,21 +43,27 @@ public class TextFilter extends AbstractFilter {
     op = Operator.contains;
   }
   
-  public void setOperator(Operator op) {
-    this.op = op;
-  }
-
   @Override
   public String getFilterString() {
     if (textBox.getValue().isEmpty()) {
       return "";
     }
-    return FilterBuilder.getFilterString(filterProperty, op, textBox.getValue());
+    return FilterBuilder
+        .getFilterString(filterProperty, op, textBox.getValue());
   }
-
+  
+  @UiHandler("goButton")
+  void onClick(ClickEvent e) {
+    filterListener.onFilterChange();
+  }
+  
+  public void setOperator(Operator op) {
+    this.op = op;
+  }
+  
   @Override
   public void setValue(String value) {
     textBox.setValue(value);
   }
-
+  
 }

@@ -10,11 +10,12 @@ import com.google.inject.Singleton;
 
 @Singleton
 public class CountryFilterList extends BaseCompositeFilter {
-
-  private static FilterListUiBinder uiBinder = GWT.create(FilterListUiBinder.class);
-
+  
   interface FilterListUiBinder extends UiBinder<Widget, CountryFilterList> {
   }
+  
+  private static FilterListUiBinder uiBinder = GWT
+      .create(FilterListUiBinder.class);
   
   @UiField
   Filter pfEndemic;

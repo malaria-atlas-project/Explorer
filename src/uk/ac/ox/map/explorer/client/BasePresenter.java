@@ -25,10 +25,7 @@ import com.google.inject.Inject;
  * @param mapMapper
  */
 public class BasePresenter {
-
-  private static final String ANOPHELES_DVS = "Anopheles DVS";
-  private static final String PARASITE_RATE = "Parasite rate";
-
+  
   /**
    * The display implemented by the associated view.
    * 
@@ -36,23 +33,30 @@ public class BasePresenter {
    * 
    */
   public interface Display extends IsWidget {
-
+    
     SimpleLayoutPanel getMapDisplay();
-
+    
     SimpleLayoutPanel getTableDisplay();
-
+    
   }
-
+  
+  private static final String ANOPHELES_DVS = "Anopheles DVS";
+  
+  private static final String PARASITE_RATE = "Parasite rate";
+  
   @Inject
-  public BasePresenter(final BaseView display, EventBus eventBus, MapActivityMapper appMapper, TableActivityMapper tableMapper) {
-
+  public BasePresenter(final BaseView display, EventBus eventBus,
+      MapActivityMapper appMapper, TableActivityMapper tableMapper) {
+    
     /*
      * Create two activity mappers, one for each area, providing them with the
      * appropriate widgets.
      */
-    new ActivityManager(appMapper, eventBus).setDisplay(display.getMapDisplay());
-    new ActivityManager(tableMapper, eventBus).setDisplay(display.getTableDisplay());
-
+    new ActivityManager(appMapper, eventBus)
+        .setDisplay(display.getMapDisplay());
+    new ActivityManager(tableMapper, eventBus).setDisplay(display
+        .getTableDisplay());
+    
     /*
      * Populate the perspective selector.
      * 
@@ -61,7 +65,7 @@ public class BasePresenter {
     final ListBox select = display.getPerspectiveSelect();
     select.addItem(PARASITE_RATE);
     select.addItem(ANOPHELES_DVS);
-
+    
     EntityPlace ep = new EntityPlace.Tokenizer().getPlace(History.getToken());
     if (ep != null) {
       String name = ep.getEntityName();
@@ -71,7 +75,7 @@ public class BasePresenter {
         select.setSelectedIndex(1);
       }
     }
-
+    
     select.addChangeHandler(new ChangeHandler() {
       @Override
       public void onChange(ChangeEvent event) {
@@ -83,6 +87,6 @@ public class BasePresenter {
         }
       }
     });
-
+    
   }
 }

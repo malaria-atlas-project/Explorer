@@ -17,11 +17,11 @@ import com.google.inject.Singleton;
  */
 @Singleton
 public class LayerInfoPopup extends PopupPanel {
-
+  
   private final Label title = new Label();
   private final HTML message = new HTML();
   private final VerticalPanel panel = new VerticalPanel();
-
+  
   @Inject
   public LayerInfoPopup(ResourceBundle resources) {
     super(true);
@@ -32,9 +32,9 @@ public class LayerInfoPopup extends PopupPanel {
     title.setText("Layer description");
     addStyleName(resources.popupCss().panel());
   }
-
+  
   public void setMessage(String message) {
     this.message.setHTML(SafeHtmlUtils.fromTrustedString(message));
   }
-
+  
 }

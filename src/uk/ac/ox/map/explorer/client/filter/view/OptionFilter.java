@@ -22,17 +22,18 @@ import com.google.gwt.user.client.ui.Widget;
  * @author will
  */
 public class OptionFilter extends AbstractFilter {
-
-  private static OptionFilterUiBinder uiBinder = GWT.create(OptionFilterUiBinder.class);
-
+  
   interface OptionFilterUiBinder extends UiBinder<Widget, OptionFilter> {
   }
-
+  
+  private static OptionFilterUiBinder uiBinder = GWT
+      .create(OptionFilterUiBinder.class);
+  
   @UiField
   FlowPanel base;
-
+  
   private ChoiceField<String> cf;
-
+  
   @UiConstructor
   public OptionFilter(String labelText, String propertyName, String jsVar) {
     super(propertyName);
@@ -43,7 +44,6 @@ public class OptionFilter extends AbstractFilter {
     cf = new ChoiceField<String>(labelText);
     base.add(cf);
     
-    
     cf.addValueChangeHandler(new ValueChangeHandler<String>() {
       @Override
       public void onValueChange(ValueChangeEvent<String> event) {
@@ -51,20 +51,14 @@ public class OptionFilter extends AbstractFilter {
       }
     });
     
-		JsArrayString vals = getValues(jsVar);
-		List<String> v = new ArrayList<String>();
-		for (int i = 0; i < vals.length(); i++) {
-		  v.add(vals.get(i));
-		}
-		cf.addItems(v);
-	}
-
-	public native JsArrayString getValues(String varName) /*-{
-	  var vals = $wnd["seedJson"][varName];
-	  if (vals == null) return [];
-	  return vals;
-	}-*/;
-    
+    JsArrayString vals = getValues(jsVar);
+    List<String> v = new ArrayList<String>();
+    for (int i = 0; i < vals.length(); i++) {
+      v.add(vals.get(i));
+    }
+    cf.addItems(v);
+  }
+  
   @Override
   public String getFilterString() {
     
@@ -74,7 +68,13 @@ public class OptionFilter extends AbstractFilter {
     }
     return FilterBuilder.getFilterString(filterProperty, Operator.eq, val);
   }
-
+  
+  public native JsArrayString getValues(String varName) /*-{
+                                                        var vals = $wnd["seedJson"][varName];
+                                                        if (vals == null) return [];
+                                                        return vals;
+                                                        }-*/;
+  
   @Override
   public void setValue(String value) {
     cf.setValue(value, false);

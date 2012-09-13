@@ -22,57 +22,59 @@ public class AnophelesMapInfoPresenter extends BaseMapInfoPresenter {
   private final String ABSENCE_LAYER = "Explorer:anopheline_display_absence";
   
   @Inject
-  public AnophelesMapInfoPresenter(MapInfoView mapInfoView, MapInfoServiceAsync rpcService, EventBus eventBus) {
+  public AnophelesMapInfoPresenter(MapInfoView mapInfoView,
+      MapInfoServiceAsync rpcService, EventBus eventBus) {
     super(mapInfoView, rpcService, eventBus);
   }
-
   
   @Override
   public void start(AcceptsOneWidget panel, EventBus eventBus) {
     super.start(panel, eventBus);
     
-    eventBus.addHandler(AnophelineSelectedEvent.TYPE, new AnophelineSelectedEvent.Handler() {
-      
-      @Override
-      public void onAnophelineSelected(AnophelineSelectedEvent requestEvent) {
-        anoProxy = requestEvent.getAnopheline();
-      }
-    });
+    eventBus.addHandler(AnophelineSelectedEvent.TYPE,
+        new AnophelineSelectedEvent.Handler() {
+          
+          @Override
+          public void onAnophelineSelected(AnophelineSelectedEvent requestEvent) {
+            anoProxy = requestEvent.getAnopheline();
+          }
+        });
   }
   
-
+  @Override
   public void updateMapInfo(Bounds bounds) {
-	
+    
     Long anoId = null;
     if (anoProxy != null) {
       anoId = anoProxy.getId();
     }
     
-    rpcService.getAnophelineExtentInfo(presenceProxy, absenceProxy, anoId, bounds.getLowerLeftX(), bounds.getLowerLeftY(), bounds.getUpperRightX(), bounds.getUpperRightY(), new AsyncCallback<String>() {
-
-      @Override
-      public void onFailure(Throwable caught) {
-        // TODO Application wide AsyncCallback
-      }
-
-      @Override
-      public void onSuccess(String result) {
-        MapInfo mi = MapInfo.fromJson(result);
-        display.showMapInfo(mi);
-      }
-    });
+    rpcService.getAnophelineExtentInfo(presenceProxy, absenceProxy, anoId,
+        bounds.getLowerLeftX(), bounds.getLowerLeftY(),
+        bounds.getUpperRightX(), bounds.getUpperRightY(),
+        new AsyncCallback<String>() {
+          
+          @Override
+          public void onFailure(Throwable caught) {
+            // TODO Application wide AsyncCallback
+          }
+          
+          @Override
+          public void onSuccess(String result) {
+            MapInfo mi = MapInfo.fromJson(result);
+            display.showMapInfo(mi);
+          }
+        });
   }
   
   @Override
   public void updateMapInfo(String toggledLayerName, Bounds extent) {
-      if (toggledLayerName.equals(PRESENCE_LAYER))
-      {
-    	  presenceProxy = !presenceProxy;
-      } else if (toggledLayerName.equals(ABSENCE_LAYER)) {
-    	  absenceProxy = !absenceProxy;
-      }
-      updateMapInfo(extent);
+    if (toggledLayerName.equals(PRESENCE_LAYER)) {
+      presenceProxy = !presenceProxy;
+    } else if (toggledLayerName.equals(ABSENCE_LAYER)) {
+      absenceProxy = !absenceProxy;
+    }
+    updateMapInfo(extent);
   }
-
-
+  
 }

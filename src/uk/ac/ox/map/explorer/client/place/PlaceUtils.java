@@ -5,13 +5,13 @@ import java.util.Map;
 
 public class PlaceUtils {
   public static Map<String, String> getMapFromParams(String paramString) {
-
+    
     String[] paramlist = paramString.split("&");
     Map<String, String> placeParams = new HashMap<String, String>();
-    if(paramString.isEmpty()) {
+    if (paramString.isEmpty()) {
       return placeParams;
     }
-
+    
     for (int i = 0; i < paramlist.length; i++) {
       String parts = paramlist[i];
       String[] headTail = parts.split("=");
@@ -20,15 +20,15 @@ public class PlaceUtils {
     return placeParams;
   }
   
-  //TODO: decide on a good way to do this!!!
+  // TODO: decide on a good way to do this!!!
   public static Map<String, String> getMapFromParams2(String paramString) {
-
+    
     String[] paramlist = paramString.split("&");
     Map<String, String> placeParams = new HashMap<String, String>();
-    if(paramString.isEmpty()) {
+    if (paramString.isEmpty()) {
       return placeParams;
     }
-
+    
     for (int i = 0; i < paramlist.length; i++) {
       String parts = paramlist[i];
       String[] headTail = parts.split("_");
@@ -36,11 +36,13 @@ public class PlaceUtils {
     }
     return placeParams;
   }
-
+  
   public static String getStringFromParamMap(Map<String, String> params) {
     
-    if (params == null) { return null; }
-
+    if (params == null) {
+      return null;
+    }
+    
     StringBuilder sb = new StringBuilder();
     int i = 0;
     for (String key : params.keySet()) {

@@ -17,37 +17,38 @@ import com.google.inject.Inject;
  * @author will
  */
 public class CompositeMapView extends Composite {
-
-  private static CompositeMapViewUiBinder uiBinder = GWT.create(CompositeMapViewUiBinder.class);
-
+  
   interface CompositeMapViewUiBinder extends UiBinder<Widget, CompositeMapView> {
   }
-
+  
+  private static CompositeMapViewUiBinder uiBinder = GWT
+      .create(CompositeMapViewUiBinder.class);
+  
   @UiField
   SimplePanel keyPanel;
-
+  
   @UiField
   SimplePanel mapInfoPanel;
-
+  
   @UiField
   SimplePanel mapPanel;
-
+  
   @Inject
   public CompositeMapView(MapView mapExample) {
     initWidget(uiBinder.createAndBindUi(this));
     mapPanel.add(mapExample);
   }
-
-  public SimplePanel getKeyPanel() {
-    return keyPanel;
-  }
-
+  
   public SimplePanel getInfoPanel() {
     return mapInfoPanel;
   }
-
+  
+  public SimplePanel getKeyPanel() {
+    return keyPanel;
+  }
+  
   public AcceptsOneWidget getMapPanel() {
     return mapPanel;
   }
-
+  
 }

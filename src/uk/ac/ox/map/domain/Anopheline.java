@@ -8,141 +8,97 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(schema="explorer", name="anopheline_dvs")
+@Table(schema = "explorer", name = "anopheline_dvs")
 public class Anopheline {
   
   private Long id;
+  
+  private String name;
+  
+  private String subGenus;
+  
+  private String scientificAbbr;
+  
+  private String scientificName;
+  
+  private Boolean isDvs;
+  
+  private String region;
+  
+  private String species;
+  
+  private String abbreviation;
+  
+  private String author;
+  
+  private String taxonomicLevel;
+  
+  private Extent extent;
+  
+  @Column
+  public String getAbbreviation() {
+    return abbreviation;
+  }
+  
+  @Column
+  public String getAuthor() {
+    return author;
+  }
+  
+  @Embedded
+  public Extent getExtent() {
+    return extent;
+  }
   
   @Id
   @Column
   public Long getId() {
     return id;
   }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
   
-
-  private String name;
+  @Column(name = "is_dvs")
+  public Boolean getIsDvs() {
+    return isDvs;
+  }
   
   @Column
   public String getName() {
     return name;
   }
-
-  public void setName(String name) {
-    this.name = name;
-  }
   
-  private String subGenus;
-  
-  @Column(name="sub_genus")
-  public String getSubGenus() {
-    return subGenus;
-  }
-
-  public void setSubGenus(String subGenus) {
-    this.subGenus = subGenus;
-  }
-  
-  private String scientificAbbr;
-  
-  @Column(name="scientific_abbr")
-  public String getScientificAbbr() {
-    return scientificAbbr;
-  }
-
-  public void setScientificAbbr(String scientificAbbr) {
-    this.scientificAbbr = scientificAbbr;
-  }
-
-  private String scientificName;
-  
-  @Column(name="scientific_name")
-  public String getScientificName() {
-    return scientificName;
-  }
-
-  public void setScientificName(String scientificName) {
-    this.scientificName = scientificName;
-  }
-  
-  private Boolean isDvs;
-
-  @Column(name = "is_dvs")
-  public Boolean getIsDvs() {
-    return isDvs;
-  }
-
-  public void setIsDvs(Boolean isDvs) {
-    this.isDvs = isDvs;
-  }
-
-  private String region;
-
-  @Column(name="region_id")
+  @Column(name = "region_id")
   public String getRegion() {
     return region;
   }
-
-  public void setRegion(String region) {
-    this.region = region;
+  
+  @Transient
+  public String getRepr() {
+    return name;
   }
-
-  private String species;
+  
+  @Column(name = "scientific_abbr")
+  public String getScientificAbbr() {
+    return scientificAbbr;
+  }
+  
+  @Column(name = "scientific_name")
+  public String getScientificName() {
+    return scientificName;
+  }
   
   @Column
   public String getSpecies() {
     return species;
   }
-
-  public void setSpecies(String species) {
-    this.species = species;
-  }
-
-  private String abbreviation;
-
-  @Column
-  public String getAbbreviation() {
-    return abbreviation;
-  }
-
-  public void setAbbreviation(String abbreviation) {
-    this.abbreviation = abbreviation;
+  
+  @Column(name = "sub_genus")
+  public String getSubGenus() {
+    return subGenus;
   }
   
-  private String author;
-
-  @Column
-  public String getAuthor() {
-    return author;
-  }
-
-  public void setAuthor(String author) {
-    this.author = author;
-  }
-  
-  private String taxonomicLevel;
-
-  @Column(name="taxonomic_level")
+  @Column(name = "taxonomic_level")
   public String getTaxonomicLevel() {
     return taxonomicLevel;
-  }
-
-  public void setTaxonomicLevel(String taxonomicLevel) {
-    this.taxonomicLevel = taxonomicLevel;
-  }
-  
-  private Extent extent;
-
-  @Embedded
-  public Extent getExtent() {
-    return extent;
-  }
-
-  public void setExtent(Extent extent) {
-    this.extent = extent;
   }
   
   @Transient
@@ -150,9 +106,52 @@ public class Anopheline {
     return 0;
   }
   
-  @Transient
-  public String getRepr() {
-    return name;
+  public void setAbbreviation(String abbreviation) {
+    this.abbreviation = abbreviation;
+  }
+  
+  public void setAuthor(String author) {
+    this.author = author;
+  }
+  
+  public void setExtent(Extent extent) {
+    this.extent = extent;
+  }
+  
+  public void setId(Long id) {
+    this.id = id;
+  }
+  
+  public void setIsDvs(Boolean isDvs) {
+    this.isDvs = isDvs;
+  }
+  
+  public void setName(String name) {
+    this.name = name;
+  }
+  
+  public void setRegion(String region) {
+    this.region = region;
+  }
+  
+  public void setScientificAbbr(String scientificAbbr) {
+    this.scientificAbbr = scientificAbbr;
+  }
+  
+  public void setScientificName(String scientificName) {
+    this.scientificName = scientificName;
+  }
+  
+  public void setSpecies(String species) {
+    this.species = species;
+  }
+  
+  public void setSubGenus(String subGenus) {
+    this.subGenus = subGenus;
+  }
+  
+  public void setTaxonomicLevel(String taxonomicLevel) {
+    this.taxonomicLevel = taxonomicLevel;
   }
   
 }

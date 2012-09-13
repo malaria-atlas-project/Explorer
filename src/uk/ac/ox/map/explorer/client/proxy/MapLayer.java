@@ -1,23 +1,29 @@
 package uk.ac.ox.map.explorer.client.proxy;
 
 public interface MapLayer {
-
-  String getName();
-  void setName(String name);
-  
-  String getWmsLayerName();
-  void setWmsLayerName(String string);
-
-  boolean getUseWebCache();
-  void setUseWebCache(boolean useWebCache);
-  
-  String getInfoText();
-  void setInfoText(String infoText);
-
-  boolean getUseResizeTransition();
-  void setUseResizeTransition(boolean useResizeTransition);
   
   String getImageUrl();
+  
+  String getInfoText();
+  
+  String getName();
+  
+  boolean getUseResizeTransition();
+  
+  boolean getUseWebCache();
+  
+  String getWmsLayerName();
+  
   void setImageUrl(String url);
+  
+  void setInfoText(String infoText);
+  
+  void setName(String name);
+  
+  void setUseResizeTransition(boolean useResizeTransition);
+  
+  void setUseWebCache(boolean useWebCache);
+  
+  void setWmsLayerName(String string);
   
 }

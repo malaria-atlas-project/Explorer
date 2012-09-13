@@ -8,7 +8,8 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTML;
 
 /**
- * Base class for filter views that provides most of the implementation of {@link Filter}
+ * Base class for filter views that provides most of the implementation of
+ * {@link Filter}
  * 
  * @author will
  */
@@ -18,19 +19,21 @@ public abstract class AbstractFilter extends Composite implements Filter {
   
   @UiField
   protected HTML filterLabel;
-
+  
   protected FilterListener filterListener;
   
   public AbstractFilter(String propertyName) {
-    this.filterProperty = propertyName;
+    filterProperty = propertyName;
   }
   
+  @Override
+  public String getParameterName() {
+    return filterProperty;
+  }
+  
+  @Override
   public void setListener(FilterListener filterListener) {
     this.filterListener = filterListener;
   }
   
-  public String getParameterName() {
-    return filterProperty;
-  }
-
 }

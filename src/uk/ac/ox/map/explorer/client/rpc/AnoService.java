@@ -6,7 +6,6 @@ import javax.inject.Singleton;
 
 import uk.ac.ox.map.explorer.client.proxy.AnophelineProxy;
 
-
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
@@ -16,6 +15,8 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 @Singleton
 @RemoteServiceRelativePath("ano")
 public interface AnoService extends RemoteService {
-  ArrayList<AnophelineProxy> search(Integer firstResult, Integer maxResults, String searchParams);
+  ArrayList<AnophelineProxy> search(Integer firstResult, Integer maxResults,
+      String searchParams);
+  
   Long searchCount(String searchParams);
 }

@@ -13,14 +13,15 @@ import com.google.gwt.event.shared.HandlerRegistration;
  * 
  * @author will
  */
-public class AnophelineCheckedEvent extends GwtEvent<AnophelineCheckedEvent.Handler> {
-
+public class AnophelineCheckedEvent extends
+    GwtEvent<AnophelineCheckedEvent.Handler> {
+  
   public interface Handler extends EventHandler {
     void onObjectChecked(AnophelineCheckedEvent requestEvent);
   }
-
+  
   public static final Type<Handler> TYPE = new Type<Handler>();
-
+  
   /**
    * Register a {@link AnophelineCheckedEvent.Handler} on an {@link EventBus}.
    * 
@@ -30,34 +31,35 @@ public class AnophelineCheckedEvent extends GwtEvent<AnophelineCheckedEvent.Hand
    *          a {@link AnophelineCheckedEvent.Handler}
    * @return a {@link HandlerRegistration} instance
    */
-  public static HandlerRegistration register(EventBus eventBus, AnophelineCheckedEvent.Handler handler) {
+  public static HandlerRegistration register(EventBus eventBus,
+      AnophelineCheckedEvent.Handler handler) {
     return eventBus.addHandler(TYPE, handler);
   }
-
+  
   private AnophelineProxy country;
   private boolean isChecked;
-
+  
   public AnophelineCheckedEvent(AnophelineProxy country, boolean isChecked) {
     this.isChecked = isChecked;
     this.country = country;
   }
-
-  @Override
-  public GwtEvent.Type<Handler> getAssociatedType() {
-    return TYPE;
-  }
-
-  public boolean isChecked() {
-    return isChecked;
-  }
-
-  public AnophelineProxy getAnopheline() {
-    return country;
-  }
-
+  
   @Override
   protected void dispatch(Handler handler) {
     handler.onObjectChecked(this);
   }
-
+  
+  public AnophelineProxy getAnopheline() {
+    return country;
+  }
+  
+  @Override
+  public GwtEvent.Type<Handler> getAssociatedType() {
+    return TYPE;
+  }
+  
+  public boolean isChecked() {
+    return isChecked;
+  }
+  
 }

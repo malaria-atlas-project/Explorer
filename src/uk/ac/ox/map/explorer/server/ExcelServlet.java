@@ -21,14 +21,17 @@ import com.google.inject.Singleton;
 
 @Singleton
 public class ExcelServlet extends HttpServlet {
-  private static final long serialVersionUID = -4658523092720318133L; //auto generated
+  private static final long serialVersionUID = -4658523092720318133L; // auto
+                                                                      // generated
   
   private static final String MIME_XLSX = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-  //private static final String MIME_XLS = "application/vnd.ms-excel";
-
+  
+  // private static final String MIME_XLS = "application/vnd.ms-excel";
+  
   @Override
-  protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+  protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+      throws ServletException, IOException {
+    
     String ids = req.getParameter(BaseSelectionPresenter.ID_PARAM);
     String resource = req.getParameter(BaseSelectionPresenter.RESOURCE_PARAM);
     System.out.println(resource);
@@ -40,31 +43,30 @@ public class ExcelServlet extends HttpServlet {
     if (resource.equals(BaseSelectionPresenter.COUNTRY_RESOURCE)) {
       
       fileName = String.format("pr_%s.xlsx", getDateStamp());
-      new PrQuery(outputWb, Arrays.asList(cIds)); //perform query
+      new PrQuery(outputWb, Arrays.asList(cIds)); // perform query
       
     } else if (resource.equals(BaseSelectionPresenter.ANO_RESOURCE)) {
       
       fileName = String.format("ano_%s.xlsx", getDateStamp());
       List<Long> anoIds = new ArrayList<Long>();
       for (int i = 0; i < cIds.length; i++) {
-    	if (!cIds[i].isEmpty())
-    	{
-    		anoIds.add(Long.parseLong(cIds[i]));
-    	}
+        if (!cIds[i].isEmpty()) {
+          anoIds.add(Long.parseLong(cIds[i]));
+        }
       }
-      new AnoQuery(outputWb, anoIds); //perform query
+      new AnoQuery(outputWb, anoIds); // perform query
       
     } else {
       throw new ServletException();
     }
     
-    
     resp.setContentType(MIME_XLSX);
-    resp.setHeader("Content-Disposition", String.format("attachment; filename=%s", fileName));
+    resp.setHeader("Content-Disposition",
+        String.format("attachment; filename=%s", fileName));
     outputWb.write(resp.getOutputStream());
-
+    
   }
-
+  
   public String getDateStamp() {
     return new SimpleDateFormat("yyyy-MM-dd").format(new Date());
   }

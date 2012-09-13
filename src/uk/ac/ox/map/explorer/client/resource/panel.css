@@ -1,26 +1,25 @@
 .decoratedPanel {
-	padding: 10px;
-	border: 1px solid #cccccc;
-	margin-right: 10px;
-	margin-bottom: 10px;
-	background-color: #ffffff;
-	
-	-moz-box-shadow: 3px 3px 3px #888;
-	-webkit-box-shadow: 3px 3px 3px #888;
-	box-shadow: 3px 3px 3px #888;
-	overflow: auto;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  background-color: #ffffff;
+  -moz-box-shadow: 3px 3px 3px #888;
+  -webkit-box-shadow: 3px 3px 3px #888;
+  box-shadow: 3px 3px 3px #888;
+  overflow: auto;
 }
 
 .panelHeader {
-	font-size: 15px;
-	font-weight: bold;
+  font-size: 15px;
+  font-weight: bold;
 }
 
 .largePanelHeader {
-	font-size: 20px;
-	margin-right: 10px;
+  font-size: 20px;
+  margin-right: 10px;
 }
 
 .scrollable {
-	overflow: auto;
+  overflow: auto;
 }

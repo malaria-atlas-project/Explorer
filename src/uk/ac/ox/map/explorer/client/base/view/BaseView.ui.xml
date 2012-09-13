@@ -1,51 +1,45 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:g="urn:import:com.google.gwt.user.client.ui">
   <ui:style type="uk.ac.ox.map.explorer.client.base.view.BaseView.BaseStyle">
-    .inlineHyperlink {
-    	display: inline;
-    }
-    
-    .spacer {
-    	display: block;
-    	width: 50px;
-    }
-    
-    .perspectiveWidth {
-    	width: 130px;
-    }
-    
-    .mainRegionIndent {
-    	margin-left: 10px;
-    }
-    
-    .footer {
-    	text-align: center;
-    	width: 100%;
-    }
-    
-    .fadeIn { /* fallback/image non-cover color */
-    	background-color: #e4e4e4;
-    	/* fallback image */
-    	background-image: url(images/fallback-gradient.png);
-    	/* Firefox 3.6+ */
-    	background-image: -moz-linear-gradient(#ffffff, #e8e8e8);
-    	/* Safari 4+, Chrome 1+ */
-    	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ffffff),
-    		to(#e8e8e8) );
-    	/* Safari 5.1+, Chrome 10+ */
-    	background-image: -webkit-linear-gradient(#ffffff, #e8e8e8);
-    	/* Opera 11.10+ */
-    	background-image: -o-linear-gradient(#ffffff, #e8e8e8);
-    }
+   .inlineHyperlink { 
+     display: inline; 
+   } 
+   .spacer {
+     display: block; 
+     width: 50px; 
+   } 
+   .perspectiveWidth { 
+     width: 130px; 
+   } 
+   .mainRegionIndent { 
+     margin-left: 10px; 
+   } 
+   .footer { 
+     text-align: center; 
+     width: 100%; 
+   } 
+   .fadeIn { 
+     /* fallback/image non-cover color */ 
+     background-color: #e4e4e4; 
+     /* fallback image */ 
+     background-image: url(images/fallback-gradient.png); 
+     /* Firefox 3.6+ */ 
+     background-image: -moz-linear-gradient(#ffffff, #e8e8e8); 
+     /* Safari 4+, Chrome 1+ */ 
+     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ffffff), to(#e8e8e8) ); 
+     /* Safari 5.1+, Chrome 10+ */ 
+     background-image: -webkit-linear-gradient(#ffffff, #e8e8e8); 
+     /* Opera 11.10+ */
+      background-image: -o-linear-gradient(#ffffff, #e8e8e8); 
+    } 
   </ui:style>
   <ui:with field='res' type='uk.ac.ox.map.explorer.client.resource.ResourceBundle' />
-  
   <g:DockLayoutPanel styleName="{style.fadeIn}">
     <g:north size='102'>
       <g:DockLayoutPanel>
         <g:west size='520'>
           <g:HorizontalPanel>
-            <g:SimplePanel styleName="{res.baseCss.header}" /> 
+            <g:SimplePanel styleName="{res.baseCss.header}" />
             <g:VerticalPanel styleName="{res.baseCss.perspective}">
               <g:Label>Change perspective:</g:Label>
               <g:ListBox addStyleNames='{style.perspectiveWidth}' ui:field="perspectiveSelect"></g:ListBox>
@@ -53,8 +47,8 @@
           </g:HorizontalPanel>
         </g:west>
         <g:center>
-          <g:FlowPanel styleName="{res.baseCss.help}"> 
-            <g:Anchor href="http://map.ox.ac.uk/client_media/medialibrary/2012/02/How_To_Use_the_Explorer.pdf" >How to use</g:Anchor>
+          <g:FlowPanel styleName="{res.baseCss.help}">
+            <g:Anchor href="http://map.ox.ac.uk/client_media/medialibrary/2012/02/How_To_Use_the_Explorer.pdf">How to use</g:Anchor>
             <g:Anchor href="http://map.ox.ac.uk/client_media/medialibrary/2012/02/About_the_Data.pdf">About the data</g:Anchor>
           </g:FlowPanel>
         </g:center>
@@ -71,4 +65,4 @@
       </g:LayoutPanel>
     </g:center>
   </g:DockLayoutPanel>
-</ui:UiBinder> 
+</ui:UiBinder>

@@ -15,44 +15,48 @@ import com.google.inject.name.Named;
 
 @Singleton
 public class CountryTableView extends TableView<CountryProxy> {
-
+  
   Set<String> selected = new HashSet<String>();
-
+  
   @Inject
   public CountryTableView(@Named("TABLE_SIZE") Integer pageSize) {
     super(pageSize);
-
+    
     addSortableColumn(new TextColumn<CountryProxy>() {
-
+      
+      @Override
       public String getValue(CountryProxy object) {
         return getRepr(object.getId());
       }
     }, "Id", "id");
-
+    
     addSortableColumn(new TextColumn<CountryProxy>() {
-
+      
+      @Override
       public String getValue(CountryProxy object) {
         return getRepr(object.getName());
       }
     }, "Name", "name");
     
-//    addSortableColumn(new TextColumn<CountryProxy>() {
-//
-//      public String getValue(CountryProxy object) {
-////        return getRepr(object.getContinent());
-//      }
-//    }, "Continent", "continent");
-
-    Column<CountryProxy, Boolean> checkColumn = new Column<CountryProxy, Boolean>(new CheckboxCell(false, false)) {
+    // addSortableColumn(new TextColumn<CountryProxy>() {
+    //
+    // public String getValue(CountryProxy object) {
+    // // return getRepr(object.getContinent());
+    // }
+    // }, "Continent", "continent");
+    
+    Column<CountryProxy, Boolean> checkColumn = new Column<CountryProxy, Boolean>(
+        new CheckboxCell(false, false)) {
       @Override
       public Boolean getValue(CountryProxy object) {
         return selected.contains(object.getId());
       }
     };
-
+    
     checkColumn.setFieldUpdater(new FieldUpdater<CountryProxy, Boolean>() {
       @Override
-      public void update(int index, CountryProxy object, Boolean selectForDownload) {
+      public void update(int index, CountryProxy object,
+          Boolean selectForDownload) {
         presenter.fireObjectChecked(object, selectForDownload);
         if (selectForDownload) {
           selected.add(object.getId());
@@ -63,6 +67,6 @@ public class CountryTableView extends TableView<CountryProxy> {
     });
     
     addColumn(checkColumn, "Select for download");
- 
+    
   }
 }

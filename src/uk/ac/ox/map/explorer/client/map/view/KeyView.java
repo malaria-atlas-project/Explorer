@@ -24,21 +24,21 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 
 public class KeyView extends Composite {
-
-  private static KeyViewUiBinder uiBinder = GWT.create(KeyViewUiBinder.class);
-
+  
   interface KeyViewUiBinder extends UiBinder<Widget, KeyView> {
   }
+  
+  private static KeyViewUiBinder uiBinder = GWT.create(KeyViewUiBinder.class);
   
   @UiField
   SimplePanel keyContainer;
   
   private KeyPresenter listener;
-
+  
   private final ResourceBundle resources;
   
   private final LayerInfoPopup popup;
-
+  
   @Inject
   public KeyView(ResourceBundle resources, LayerInfoPopup popup) {
     initWidget(uiBinder.createAndBindUi(this));
@@ -61,7 +61,8 @@ public class KeyView extends Composite {
       checkBox.addValueChangeHandler(new ValueChangeHandler<Boolean>() {
         @Override
         public void onValueChange(ValueChangeEvent<Boolean> event) {
-          listener.toggleLayerVisibility(lyr.getWmsLayerName(), event.getValue());
+          listener.toggleLayerVisibility(lyr.getWmsLayerName(),
+              event.getValue());
         }
       });
       grid.setWidget(i, 0, checkBox);
@@ -74,12 +75,14 @@ public class KeyView extends Composite {
       /*
        * Add key text
        */
-      grid.setWidget(i, 2, new HTML(SafeHtmlUtils.fromTrustedString(lyr.getName())));
+      grid.setWidget(i, 2,
+          new HTML(SafeHtmlUtils.fromTrustedString(lyr.getName())));
       
       /*
        * Info button
        */
-      final InfoButton infoButton = new InfoButton(resources.infoButtonUp(), resources.infoButtonDown());
+      final InfoButton infoButton = new InfoButton(resources.infoButtonUp(),
+          resources.infoButtonDown());
       
       infoButton.addClickHandler(new ClickHandler() {
         @Override
@@ -87,7 +90,7 @@ public class KeyView extends Composite {
           
           popup.setMessage(lyr.getInfoText());
           popup.showRelativeTo(infoButton);
-
+          
         }
       });
       
@@ -96,6 +99,6 @@ public class KeyView extends Composite {
   }
   
   public void setListener(KeyPresenter keyPresenter) {
-    this.listener = keyPresenter;
+    listener = keyPresenter;
   }
 }

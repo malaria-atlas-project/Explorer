@@ -1,17 +1,16 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:g="urn:import:com.google.gwt.user.client.ui">
-  <ui:style>
-    .filterPanel {
-    	padding: 10px;
-    	background-color: #CCCCCC;
-    }
-    .infoText {
-    	font-size: 15px;
-
-    }
-    .overflow {
-    	overflow: auto;
-    }
+  <ui:style> 
+    .filterPanel { 
+      padding: 10px; 
+      background-color: #CCCCCC; 
+    } 
+    .infoText { 
+      font-size: 15px;
+    } 
+    .overflow { 
+      overflow: auto;
+    } 
   </ui:style>
   <ui:with type="uk.ac.ox.map.explorer.client.resource.ResourceBundle" field="res"></ui:with>
   <g:LayoutPanel>
@@ -21,20 +20,20 @@
     <g:layer bottom="0px" height="40%">
       <g:LayoutPanel>
         <g:layer left="0px" width="62%">
-          <g:SimplePanel ui:field="keyPanel" styleName="{res.panelCss.decoratedPanel}"/>
+          <g:SimplePanel ui:field="keyPanel" styleName="{res.panelCss.decoratedPanel}" />
         </g:layer>
         <g:layer right="0px" width="38%">
           <g:LayoutPanel>
             <g:layer top="0px" height="50%">
-          	  <g:SimplePanel ui:field="mapInfoPanel" styleName="{res.panelCss.decoratedPanel}"/>
+              <g:SimplePanel ui:field="mapInfoPanel" styleName="{res.panelCss.decoratedPanel}" />
             </g:layer>
             <g:layer bottom="0px" height="50%">
               <g:SimplePanel ui:field="infoTextPanel" styleName="{res.panelCss.decoratedPanel}">
-	            <g:VerticalPanel>
-          	      <g:Label styleName="{style.infoText}">The data provided here is available to all on a free and unrestricted basis.</g:Label>
-				  <g:Label styleName="{style.infoText}">To correctly attribute the data sources, the full citation(s) for each data point is provided in the data download.</g:Label>
-          	    </g:VerticalPanel>
-          	  </g:SimplePanel>
+                <g:VerticalPanel>
+                  <g:Label styleName="{style.infoText}">The data provided here is available to all on a free and unrestricted basis.</g:Label>
+                  <g:Label styleName="{style.infoText}">To correctly attribute the data sources, the full citation(s) for each data point is provided in the data download.</g:Label>
+                </g:VerticalPanel>
+              </g:SimplePanel>
             </g:layer>
           </g:LayoutPanel>
         </g:layer>

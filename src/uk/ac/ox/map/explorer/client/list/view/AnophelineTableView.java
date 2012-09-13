@@ -17,34 +17,35 @@ import com.google.inject.name.Named;
 
 @Singleton
 public class AnophelineTableView extends TableView<AnophelineProxy> {
-
+  
   Set<Long> selected = new HashSet<Long>();
-
+  
   @Inject
   public AnophelineTableView(@Named("TABLE_SIZE") Integer pageSize) {
     super(pageSize);
     
-    Column<AnophelineProxy, SafeHtml> name = new Column<AnophelineProxy, SafeHtml>(new SafeHtmlCell()) {
+    Column<AnophelineProxy, SafeHtml> name = new Column<AnophelineProxy, SafeHtml>(
+        new SafeHtmlCell()) {
       @Override
       public SafeHtml getValue(AnophelineProxy object) {
         return SafeHtmlUtils.fromTrustedString(object.getName());
       }
     };
-
+    
     addSortableColumn(name, "Name", "name");
     
-    
-
-    Column<AnophelineProxy, Boolean> checkColumn = new Column<AnophelineProxy, Boolean>(new CheckboxCell(false, false)) {
+    Column<AnophelineProxy, Boolean> checkColumn = new Column<AnophelineProxy, Boolean>(
+        new CheckboxCell(false, false)) {
       @Override
       public Boolean getValue(AnophelineProxy object) {
         return selected.contains(object.getId());
       }
     };
-
+    
     checkColumn.setFieldUpdater(new FieldUpdater<AnophelineProxy, Boolean>() {
       @Override
-      public void update(int index, AnophelineProxy object, Boolean selectForDownload) {
+      public void update(int index, AnophelineProxy object,
+          Boolean selectForDownload) {
         presenter.fireObjectChecked(object, selectForDownload);
         if (selectForDownload) {
           selected.add(object.getId());
@@ -55,7 +56,7 @@ public class AnophelineTableView extends TableView<AnophelineProxy> {
     });
     
     addColumn(checkColumn, "Select for download");
-
+    
   }
   
 }

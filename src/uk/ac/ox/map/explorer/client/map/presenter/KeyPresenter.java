@@ -16,31 +16,32 @@ import com.google.inject.Inject;
  * Manages display of layer information and toggles layers.
  * 
  * @author will
- *
+ * 
  */
 public class KeyPresenter extends AbstractActivity {
   
   private KeyView display;
   private EventBus eventBus;
-
+  
   @Inject
-  public KeyPresenter(KeyView keyView, EventBus eventBus, ResourceBundle resources) {
-    this.display = keyView;
+  public KeyPresenter(KeyView keyView, EventBus eventBus,
+      ResourceBundle resources) {
+    display = keyView;
     keyView.setListener(this);
   }
-
+  
+  public void setLayers(List<MapLayer> layers) {
+    display.setLayers(layers);
+  }
+  
   @Override
   public void start(AcceptsOneWidget panel, EventBus eventBus) {
     this.eventBus = eventBus;
     panel.setWidget(display);
   }
-
-  public void setLayers(List<MapLayer> layers) {
-    display.setLayers(layers);
-  }
-
+  
   public void toggleLayerVisibility(String name, boolean checked) {
     eventBus.fireEvent(new ToggleLayerRequestEvent(name, checked));
   }
-
+  
 }

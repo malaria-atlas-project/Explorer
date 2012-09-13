@@ -6,9 +6,9 @@ package uk.ac.ox.map.domain;
  * @author will
  */
 public interface HasOrdinal {
-
+  
   public Integer getOrdinal();
-
+  
   public void setOrdinal(Integer ordinal);
-
+  
 }

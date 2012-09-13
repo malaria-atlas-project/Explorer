@@ -9,15 +9,15 @@ import com.google.gwt.user.client.ui.Hyperlink;
 /**
  * @author will
  * 
- * {@link Cell} that wraps a {@link Hyperlink} WARNING: make sure the contents
- * of your Hyperlink really are safe from XSS!
+ *         {@link Cell} that wraps a {@link Hyperlink} WARNING: make sure the
+ *         contents of your Hyperlink really are safe from XSS!
  * 
  */
 public class HyperlinkCell extends AbstractCell<Hyperlink> {
-
+  
   @Override
   public void render(Context context, Hyperlink h, SafeHtmlBuilder sb) {
     sb.append(SafeHtmlUtils.fromTrustedString(h.toString()));
   }
-
+  
 }

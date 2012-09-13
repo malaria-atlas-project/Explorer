@@ -7,14 +7,14 @@ package uk.ac.ox.map.explorer.client.place;
  * 
  */
 public class QueryStringBuilder {
-
+  
   private StringBuilder sb = new StringBuilder();
   private final char delimiter;
-
+  
   public QueryStringBuilder(char delimiter) {
     this.delimiter = delimiter;
   }
-
+  
   /**
    * Add a parameter to the querystring, returning self to allow chaining.
    * 
@@ -31,23 +31,9 @@ public class QueryStringBuilder {
     sb.append(param);
     return this;
   }
-
-  public QueryStringBuilder addParam(String paramIdentifier, String param, char separator) {
-    if (param == null) {
-      return this;
-    }
-    if (param.isEmpty()) {
-      return this;
-    }
-    if (sb.length() > 1) {
-      sb.append(delimiter);
-    }
-    sb.append(paramIdentifier).append(separator).append(param);
-    return this;
-  }
-
-  public QueryStringBuilder addParam(String paramIdentifier, String ... param) {
-
+  
+  public QueryStringBuilder addParam(String paramIdentifier, String... param) {
+    
     if (sb.length() > 1) {
       sb.append(delimiter);
     }
@@ -61,9 +47,24 @@ public class QueryStringBuilder {
     }
     return this;
   }
-
+  
+  public QueryStringBuilder addParam(String paramIdentifier, String param,
+      char separator) {
+    if (param == null) {
+      return this;
+    }
+    if (param.isEmpty()) {
+      return this;
+    }
+    if (sb.length() > 1) {
+      sb.append(delimiter);
+    }
+    sb.append(paramIdentifier).append(separator).append(param);
+    return this;
+  }
+  
   public String finish() {
     return sb.toString();
   }
-
+  
 }

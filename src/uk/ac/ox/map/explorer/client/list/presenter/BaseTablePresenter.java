@@ -24,37 +24,103 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 
 /**
- * Manages overall wiring of the table-based UI, including filtering, display and selection.
+ * Manages overall wiring of the table-based UI, including filtering, display
+ * and selection.
  * 
  * @author will
  */
-public abstract class BaseTablePresenter<T extends NamedProxy> extends AbstractActivity {
-
+public abstract class BaseTablePresenter<T extends NamedProxy> extends
+    AbstractActivity {
+  
   protected final TableView<T> tableView;
   private final PlaceController placeController;
   protected final AbstractDataProvider<T> dataProvider;
   protected EntityPlace place;
   protected final BaseCompositeFilter filterList;
-
+  
   @Inject
   protected EventBus eventBus;
-
+  
   protected BaseSelectionPresenter<T> selectionPresenter;
-
+  
   protected final CompositeTableView compositeTableView;
-
-  public BaseTablePresenter(PlaceController placeController, TableView<T> view, BaseCompositeFilter filterList, BaseSelectionPresenter<T> baseSelectionPresenter, AbstractDataProvider<T> dp) {
+  
+  public BaseTablePresenter(PlaceController placeController, TableView<T> view,
+      BaseCompositeFilter filterList,
+      BaseSelectionPresenter<T> baseSelectionPresenter,
+      AbstractDataProvider<T> dp) {
     this.placeController = placeController;
     this.tableView = view;
     this.compositeTableView = new CompositeTableView();
     this.selectionPresenter = baseSelectionPresenter;
     this.dataProvider = dp;
-
+    
     this.filterList = filterList;
     view.setPresenter(this);
-
+    
   }
-
+  
+  /**
+   * Column sorting is separate from filtering. Therefore the new place can use
+   * the previous query string.
+   */
+  public void fireColumnSort(ColumnSortEvent event) {
+    
+    /*
+     * Field name comes from map of columns stored in view.
+     */
+    String fieldName = tableView.getSortableColumns().get(event.getColumn());
+    fireColumnSort(fieldName);
+  }
+  
+  public void fireColumnSort(String fieldName) {
+    DataGrid<T> cellTable = tableView.getCellTable();
+    ColumnSortInfo colSortInfo = cellTable.getColumnSortList().get(0);
+    Order o = new Order(fieldName, colSortInfo.isAscending());
+    
+    placeController.goTo(new EntityPlace(place.getEntityName(), place
+        .getQueryString(), o.serialize(), false));
+  }
+  
+  public abstract void fireObjectChecked(T obj, boolean isChecked);
+  
+  public abstract void fireObjectSelected(T obj);
+  
+  @Override
+  public void onCancel() {
+    onStop();
+  }
+  
+  @Override
+  public void onStop() {
+    dataProvider.removeDataDisplay(tableView.getCellTable());
+    // handlerRegistration.removeHandler();
+  }
+  
+  @Override
+  public void start(AcceptsOneWidget panel, EventBus eventBus) {
+    
+    panel.setWidget(compositeTableView);
+    tableView.clearSelection();
+    compositeTableView.getTablePanel().setWidget(tableView);
+    
+    eventBus.addHandler(FilterChangedEvent.TYPE,
+        new FilterChangedEvent.Handler() {
+          @Override
+          public void onFilterChanged(FilterChangedEvent event) {
+            placeController.goTo(new EntityPlace(place.getEntityName(), event
+                .getFilterString(), place.getOrderBy(), false));
+          }
+        });
+    
+    FilterPresenter filterPresenter = new FilterPresenter(place, filterList);
+    filterPresenter.start(compositeTableView.getFilterPanel(), eventBus);
+    
+    selectionPresenter.start(compositeTableView.getSelectionPanel(), eventBus);
+    
+    this.eventBus = eventBus;
+  }
+  
   /**
    * Convenience method for providing the place as well as the view when calling
    * start on an {@link AbstractActivity}. This just makes it a one-liner.
@@ -84,63 +150,5 @@ public abstract class BaseTablePresenter<T extends NamedProxy> extends AbstractA
     }
     return this;
   }
-
-  @Override
-  public void start(AcceptsOneWidget panel, EventBus eventBus) {
-
-    panel.setWidget(compositeTableView);
-    tableView.clearSelection();
-    compositeTableView.getTablePanel().setWidget(tableView);
-
-    eventBus.addHandler(FilterChangedEvent.TYPE, new FilterChangedEvent.Handler() {
-      @Override
-      public void onFilterChanged(FilterChangedEvent event) {
-        placeController.goTo(new EntityPlace(place.getEntityName(), event.getFilterString(), place.getOrderBy(), false));
-      }
-    });
-
-    FilterPresenter filterPresenter = new FilterPresenter(place, filterList);
-    filterPresenter.start(compositeTableView.getFilterPanel(), eventBus);
-
-    selectionPresenter.start(compositeTableView.getSelectionPanel(), eventBus);
-
-    this.eventBus = eventBus;
-  }
-
-  @Override
-  public void onStop() {
-    dataProvider.removeDataDisplay(tableView.getCellTable());
-    // handlerRegistration.removeHandler();
-  }
-
-  @Override
-  public void onCancel() {
-    onStop();
-  }
-
-  public abstract void fireObjectSelected(T obj);
-
-  public abstract void fireObjectChecked(T obj, boolean isChecked);
-
-  /**
-   * Column sorting is separate from filtering. Therefore the new place can use
-   * the previous query string.
-   */
-  public void fireColumnSort(ColumnSortEvent event) {
-
-     /*
-     * Field name comes from map of columns stored in view.
-     */
-    String fieldName = tableView.getSortableColumns().get(event.getColumn());
-    fireColumnSort(fieldName);
-  }
   
-  public void fireColumnSort(String fieldName) {
-    DataGrid<T> cellTable = tableView.getCellTable();
-    ColumnSortInfo colSortInfo = cellTable.getColumnSortList().get(0);
-    Order o = new Order(fieldName, colSortInfo.isAscending());
-
-    placeController.goTo(new EntityPlace(place.getEntityName(), place.getQueryString(), o.serialize(), false));
-  }
-
 }

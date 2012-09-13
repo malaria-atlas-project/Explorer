@@ -7,27 +7,28 @@
 }
 
 .perspective {
-	padding-top: 20px;
-	padding-left: 50px;
-	width: 130px;
+  padding-top: 20px;
+  padding-left: 50px;
+  width: 130px;
 }
 
 .help {
-	text-align: right;
+  text-align: right;
 }
 
 .help a {
-    color: #B62D26;
-    margin-right: 10px;
-    text-decoration: underline;
+  color: #B62D26;
+  margin-right: 10px;
+  text-decoration: underline;
 }
 
 .help a:visited {
-    color: #B62D26;
-    text-decoration: underline;
+  color: #B62D26;
+  text-decoration: underline;
 }
+
 .help a:hover {
-    background: none repeat scroll 0 0 #B62D26;
-    color: white;
-    text-decoration: none;
+  background: none repeat scroll 0 0 #B62D26;
+  color: white;
+  text-decoration: none;
 }

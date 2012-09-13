@@ -13,7 +13,8 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 
-public abstract class BaseSelectionPresenter<T extends NamedProxy> extends AbstractActivity {
+public abstract class BaseSelectionPresenter<T extends NamedProxy> extends
+    AbstractActivity {
   
   public static String ID_PARAM = "ids";
   public static String RESOURCE_PARAM = "resource";
@@ -24,6 +25,17 @@ public abstract class BaseSelectionPresenter<T extends NamedProxy> extends Abstr
   
   @Inject
   protected SelectionView selectionView;
+  
+  protected void addObject(T obj, boolean add) {
+    
+    if (add) {
+      selectedObjects.add(obj);
+    } else {
+      selectedObjects.remove(selectedObjects.indexOf(obj));
+    }
+    
+    selectionView.setRowData(selectedObjects);
+  }
   
   @Override
   public void start(AcceptsOneWidget panel, EventBus eventBus) {
@@ -39,16 +51,5 @@ public abstract class BaseSelectionPresenter<T extends NamedProxy> extends Abstr
   }
   
   protected abstract void startDownload();
-  
-  protected void addObject(T obj, boolean add) {
-    
-    if (add) {
-      selectedObjects.add(obj);
-    } else {
-      selectedObjects.remove(selectedObjects.indexOf(obj));
-    }
-    
-    selectionView.setRowData(selectedObjects);
-  }
   
 }

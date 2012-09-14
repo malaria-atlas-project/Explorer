@@ -32,7 +32,7 @@ public class MapView extends Composite {
   
   private BaseMapPresenter listener;
   
-  private String gwcUrl = "http://localhost:8080/geoserver/gwc/service/wms";
+  //private String gwcUrl = "http://localhost:8080/geoserver/gwc/service/wms";
   private String wmsUrl = "http://localhost:8080/geoserver/wms";
   
   private java.util.Map<String, WMS> wmsLayerMap = new HashMap<String, WMS>();
@@ -49,7 +49,8 @@ public class MapView extends Composite {
       WMSParams params = new WMSParams();
       params.setLayers("Explorer:bluemarble");
       params.setTransparent(true);
-      WMS bm = new WMS("Blue marble", gwcUrl, params);
+      params.setParameter("TILED","true");//wms gwc intergration
+      WMS bm = new WMS("Blue marble", wmsUrl/*gwcUrl*/, params);
       LayerOptions options = new LayerOptions();
       options.setTransitionEffect(TransitionEffect.RESIZE);
       bm.addOptions(options);
@@ -86,12 +87,13 @@ public class MapView extends Composite {
   
   public void addWmsLayer(MapLayer mapLayer, boolean isTransparent) {
     
-    String url = mapLayer.getUseWebCache() ? gwcUrl : wmsUrl;
+    //All wms requests are now auto cached by geoserver (to disable remove the tiled=true parameter)
+    String url = /*mapLayer.getUseWebCache() ? gwcUrl :*/ wmsUrl;
     
     WMSParams params = new WMSParams();
     params.setLayers(mapLayer.getWmsLayerName());
     params.setTransparent(isTransparent);
-    
+    params.setParameter("TILED","true");//wms gwc intergration
     WMS wms = new WMS(mapLayer.getWmsLayerName(), url, params);
     wms.setIsBaseLayer(false);
     if (mapLayer.getUseResizeTransition()) {

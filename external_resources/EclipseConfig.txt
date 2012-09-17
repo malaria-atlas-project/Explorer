@@ -1,0 +1,56 @@
+=== How to setup MapExplorer development enviroment ===
+== Requirements == 
+Git (I recomend a cygwin install)
+Ant
+Ivy
+java 1.6
+Tomcat? - not nesserary in all configurations
+Postgres + postgis? - not nesserary in all configurations
+
+== Eclipse == 
+= Prerequisite =
+Eclipse J2EE
+GWT plugin
+Library Folder ClasspathContainer plugin
+
+= Setting up the project = 
+Create a new Eclipse Web Application (GWT) Project
+  - package: uk.ac.ox.zoo.map.explorer
+  - Use GWT, dont use GAE
+  - Dont include sample code
+ To a seperate (tempory) directory clone the MapExplorer repository
+  - git clone ssh://will@map1.zoo.ox.ac.uk/home/will/workspace/MapExplorer.git
+ Copy the ".git" into the new eclipse project (not via eclipse)
+ Remove tempory directory
+ From the MapExplorer project directory run a git checkout
+  - git checkout .
+ These steps make the project directory a clone of the map1 repository, while working around the "inital directory must be empty requirements of both eclipse and git"
+  - Verify with "git status", should be on master branch with a clean working directory
+Refresh the project in eclipse
+
+= Setting up the classpath =
+There is a known bug in the GWT eclipse plugin that it does not work correctly with Ivy classpaths (the gwt compile button will ignore ivy entries)
+As such I recomend avoiding the ivy plugin for eclipse. Instead ant can be used to run ivy.
+Ivy depends on the ivyconfig file in the MapCommon project
+- Git clone the MapCommon project into the parent folder of the Explorer project
+- git clone ssh://will@map1.zoo.ox.ac.uk/home/will/workspace/MapCommon.git
+Use ant/ivy to retrive the dependancies
+- Right click the build.xml ant file
+- Select run as, ant build ...
+- Select the eclipse-lib task only
+- Run
+- Refresh the project
+- Add the lib and war/WEB-INF/lib directories to the eclipse buildpath (Add library -> workspace library)
+Some of the dependancies are only availible for java6
+- Make sure the JRE library in eclipse matches JavaSE-1.6
+- Make sure that in the project facets configuration the java facet is set to version 1.6
+
+Additionally, the dynamic web module project facet could be enabled to ease deploy to tomcat & other war tasks. However I find use of the current ant tasks to be more effective.
+
+== Ant == 
+
+
+== Dependant systems ==
+= Database =
+
+= Geoserver =

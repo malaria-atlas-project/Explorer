@@ -33,7 +33,7 @@ public class MapView extends Composite {
   private BaseMapPresenter listener;
   
   //private String gwcUrl = "http://localhost:8080/geoserver/gwc/service/wms";
-  private String wmsUrl = "http://localhost:8080/geoserver/wms";
+  private String wmsUrl = "/explorer/wms";
   
   private java.util.Map<String, WMS> wmsLayerMap = new HashMap<String, WMS>();
   

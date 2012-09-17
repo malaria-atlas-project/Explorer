@@ -134,9 +134,13 @@
   <target name="-war" description="Create a war file." depends="-gwtc">
     <delete file="${war.file}/WEB-INF/classes/urls.properties" />
     <delete file="${war.file}/WEB-INF/classes/hibernate.properties" />
+  	<delete file="${war.file}/WEB-INF/classes/log4j.properties" />
+  	<delete file="${war.file}/WEB-INF/classes/logging.properties" />
     <copy todir="${war.file}/WEB-INF/classes">
       <fileset file="${resource.dir}/urls.properties" />
       <fileset file="${resource.dir}/hibernate.properties" />
+      <fileset file="${resource.dir}/log4j.properties" />
+      <fileset file="${resource.dir}/logging.properties" />
     </copy>
   	
     <zip destfile="explorer.war" basedir="war" />
@@ -144,14 +148,18 @@
     <!-- Hack to undo previous replace of property files -->
     <delete file="${war.file}/WEB-INF/classes/urls.properties" />
     <delete file="${war.file}/WEB-INF/classes/hibernate.properties" />
+  	<delete file="${war.file}/WEB-INF/classes/log4j.properties" />
+  	<delete file="${war.file}/WEB-INF/classes/logging.properties" />
     <copy todir="${war.file}/WEB-INF/classes">
       <fileset file="src/urls.properties" />
       <fileset file="src/hibernate.properties" />
+      <fileset file="src/log4j.properties" />
+      <fileset file="src/logging.properties" />
     </copy>
   </target>
 
   <target name="-deploy" description="Install web application" depends="-war">
-    <deploy url="${deploy.url}" username="${deploy.username}" password="${deploy.password}" path="${deploy.path}" war="${basedir}/Explorer.war" />
+    <deploy url="${deploy.url}" username="${deploy.username}" password="${deploy.password}" path="${deploy.path}" war="${basedir}/explorer.war" />
   </target>
 
   <target name="-undeploy" description="-Uninstall web application">
@@ -165,15 +173,7 @@
   <target name="devDeploy" depends="-dev-config,-deploy" />
   <target name="devUndeploy" depends="-dev-config,-undeploy" />
   <target name="devRedeploy" depends="-dev-config,-undeploy,-deploy" />
-
-  <target name="-qa-config">
-    <property file="resources/qa/build.properties" />
-  </target>
-  <target name="qaWar" depends="-qa-config,-war" />			
-  <target name="qaDeploy" depends="-qa-config,-deploy" />
-  <target name="qaUndeploy" depends="-qa-config,-undeploy" />
-  <target name="qaRedeploy" depends="-qa-config,-undeploy,-deploy" />
-  	
+	
   <target name="-prod-config">
     <property file="resources/prod/build.properties" />
   </target>

@@ -47,10 +47,28 @@ Some of the dependancies are only availible for java6
 
 Additionally, the dynamic web module project facet could be enabled to ease deploy to tomcat & other war tasks. However I find use of the current ant tasks to be more effective.
 
-== Ant == 
+= Adding the startup path = 
+As the project contains no html file the gwt plugin wont known what url to use. 
+To set one open the run/debug configurations dialog. 
+Select the gwt web application task & swap to the arguments tab.
+Add "-startupUrl /" after the port number argument
+Press apply.
 
+== Ant == 
+Ant must be configured with the ivy and tomcat libraries. I have the following lines in my .bashrc file
+= Windows (cygwin) =
+export JAVA_HOME=/cygdrive/c/Program\ Files/Java/jdk1.6.0_26/
+export ANT_HOME=/cygdrive/c/Users/Laurence/Documents/EclipseWorkspace/EclipseHeliosJEE/extra/apache-ant-1.8.4/
+export PATH=$PATH:$JAVA_HOME/bin:$ANT_HOME/bin
+alias antWithLibs='ant -lib "$(cygpath -pw /cygdrive/c/Users/Laurence/Documents/EclipseWorkspace/EclipseHeliosJEE/extra/apache-ivy-2.3.0-rc1-bin/apache-ivy-2.3.0-rc1/ivy-2.3.0-rc1.jar)" -lib "$(cygpath -pw /cygdrive/c/Users/Laurence/Documents/EclipseWorkspace/EclipseHeliosJEE/extra/apache-tomcat-6.0.35/lib/catalina-ant.jar)"'
+= Linux = 
+alias antWithLibs='ant -lib /usr/share/java/ivy.jar -lib /usr/share/java/catalina-ant.jar'
 
 == Dependant systems ==
+For development, I suggest installing a local database, geoserver and tomcat.
 = Database =
+To setup a local database follow the instructions in DatabaseConfig.sql.
 
 = Geoserver =
+I suggest installing adding a tomcat instance to eclipse, that way it can be easily started/stoped and the logs can be piped to the eclipse console.
+Once this is configured you can drop the geoserver-live.war into the webapps folder to deploy. Some file paths in geoservers web.xml may need updateing. Similarly the wms url in the explorer code will need updating.

@@ -11,6 +11,7 @@ import javax.persistence.Transient;
 @Table(schema = "explorer", name = "anopheline_dvs")
 public class Anopheline {
   
+	
   private Long id;
   
   private String name;

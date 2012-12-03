@@ -18,3 +18,4 @@ gwt-unitCache/**
 Explorer.war
 !war/web.xml
 external_resources/DatabaseConfig.sql
+src/hibernate.properties

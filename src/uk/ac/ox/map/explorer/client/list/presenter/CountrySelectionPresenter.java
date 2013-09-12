@@ -62,4 +62,18 @@ public class CountrySelectionPresenter extends
     
   }
   
+  @Override
+  protected void startDownloadAll() {
+	  
+	  QueryStringBuilder qsb = new QueryStringBuilder('&');
+//	  String cids = "*";
+	  qsb.addParam(RESOURCE_PARAM, COUNTRY_RESOURCE);
+//	  qsb.addParam(RESOURCE_PARAM);
+//	  qsb.addParam(ID_PARAM, cids);
+	    
+	  String s = qsb.finish();
+	    
+	  Window.Location.assign("dataDownloadAll?" + s);
+  }
+  
 }

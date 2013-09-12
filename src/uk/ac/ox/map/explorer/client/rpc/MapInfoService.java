@@ -18,4 +18,12 @@ public interface MapInfoService extends RemoteService {
   String getPrExtentInfo(Boolean availablePointsEnabled,
       Boolean unavailablePointsEnabled, Double minX, Double minY, Double maxX,
       Double maxY);
+
+String getG6PDExtentInfo(Boolean availablePointsEnabled,
+		Boolean unavailablePointsEnabled, Double minX, Double minY,
+		Double maxX, Double maxY);
+
+String getHbSExtentInfo(Boolean availablePointsEnabled,
+		Boolean unavailablePointsEnabled, Double minX, Double minY,
+		Double maxX, Double maxY);
 }

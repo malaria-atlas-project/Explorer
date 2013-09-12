@@ -13,6 +13,8 @@ public interface ResourceBundle extends ClientBundle {
     String help();
     
     String perspective();
+    
+    String anchor();
   }
   
   public interface FormCss extends CssResource {
@@ -27,6 +29,12 @@ public interface ResourceBundle extends ClientBundle {
     String panelHeader();
     
     String scrollable();
+    
+    String hpStyle();
+    
+    String gwtButton();
+   
+    
   }
   
   public interface PopupCss extends CssResource {

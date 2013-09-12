@@ -18,7 +18,7 @@ import uk.ac.ox.map.domain.EMF;
 public class PrQuery {
   
   private enum Cols {
-    id, missing_data, citation1, citation2, citation3, country, country_id, latitude, longitude, method, rdt_type, month_start, year_start, month_end, year_end, lower_age, upper_age, pf_pos, examined
+    id, missing_data, citation1, citation2, citation3, country, country_id, latitude, longitude, method, rdt_type, month_start, year_start, month_end, year_end, lower_age, upper_age, pf_pos, examined, dhs_id
   }
   
   private final Sheet sheet;
@@ -64,6 +64,28 @@ public class PrQuery {
      * Hide id columns
      */
     // sheet.setColumnHidden(Cols.surveyReplicateId.ordinal(), true);
+  }
+  
+  public PrQuery(Workbook wb) {
+	  
+		sheet = wb.createSheet();
+
+		boldCellStyle = wb.createCellStyle();
+		Font f = wb.createFont();
+		f.setBoldweight(Font.BOLDWEIGHT_BOLD);
+		boldCellStyle.setFont(f);
+		
+		addHeaderRow();
+		
+		EntityManager em = EMF.get().createEntityManager();
+	    Query q = em.createNativeQuery("select * from explorer.pr_export order by country_id, CASE missing_data WHEN 'Confidential location' THEN 3 WHEN 'No permission to release data' THEN 2 ELSE 1 END");
+	      
+	    @SuppressWarnings("unchecked")
+	    List<Object[]> l = q.getResultList();
+	    
+	    for (Object[] objects : l) {
+	      appendRow(objects);
+	}
   }
   
   private void addHeaderRow() {

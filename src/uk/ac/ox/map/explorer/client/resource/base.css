@@ -6,6 +6,13 @@
   margin-left: 10px;
 }
 
+.anchor {
+  background: none repeat;	
+  width: 314px;
+  padding: 5px 5px 5px 5px;
+  margin-left: 10px;
+}
+
 .perspective {
   padding-top: 20px;
   padding-left: 50px;
@@ -13,13 +20,20 @@
 }
 
 .help {
+  padding-top: 20px;
+  padding-right: 10px;
   text-align: right;
+  font-size: small;
+  text-decoration: underline;
+  font-weight: bold;
+  color: red;
 }
 
 .help a {
   color: #B62D26;
   margin-right: 10px;
-  text-decoration: underline;
+  
+ 
 }
 
 .help a:visited {
@@ -32,3 +46,4 @@
   color: white;
   text-decoration: none;
 }
+

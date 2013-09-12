@@ -23,3 +23,13 @@
 .scrollable {
   overflow: auto;
 }
+
+.hpStyle {
+	float: right;
+}
+
+.gwtButton {
+	font-size: small;
+	cursor: pointer;
+	cursor: hand;
+}

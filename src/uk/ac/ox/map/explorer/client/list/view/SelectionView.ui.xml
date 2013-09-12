@@ -2,8 +2,12 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:g="urn:import:com.google.gwt.user.client.ui">
   <ui:with type="uk.ac.ox.map.explorer.client.resource.ResourceBundle" field="res"></ui:with>
   <g:HTMLPanel>
-    <g:Label styleName="{res.panelCss.panelHeader}" text="Download selection" />
+<!--   <g:AbsolutePanel ui:field="containerPanel" > -->
+    <g:Label styleName="{res.panelCss.panelHeader}" text="Download list" />
     <g:SimplePanel ui:field="cellListContainer" />
-    <g:Button ui:field="downloadButton">Download</g:Button>
+    <g:Button styleName="{res.panelCss.gwtButton}" ui:field="downloadButton">Download Selected</g:Button>
+    <g:Button styleName="{res.panelCss.gwtButton}" ui:field="downloadAllButton">Download All</g:Button>
+<!--   </g:AbsolutePanel> -->
+<!--   <g:VerticalPanel ui:field="hp" styleName="{res.panelCss.hpStyle}"/> -->
   </g:HTMLPanel>
 </ui:UiBinder>

@@ -5,12 +5,26 @@ import uk.ac.ox.map.explorer.client.list.presenter.BaseTablePresenter;
 import uk.ac.ox.map.explorer.client.map.presenter.BaseMapPresenter;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.http.client.UrlBuilder;
 import com.google.gwt.resources.client.CssResource;
 import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiFactory;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Anchor;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.SimpleLayoutPanel;
+import com.google.gwt.user.client.ui.SimplePanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -38,6 +52,19 @@ public class BaseView extends Composite implements BasePresenter.Display {
   
   private static BaseViewUiBinder uiBinder = GWT.create(BaseViewUiBinder.class);
   
+//  @UiField
+//  Anchor header;
+
+  @UiField
+  FlowPanel simplePanel;
+  
+  
+//  @UiHandler({"header"})
+//  public void handleClick(ClickEvent event)
+//  {
+//	  Window.open("http://www.map.ox.ac.uk", "_self", "");
+//  }
+  
   @UiField
   BaseStyle style;
   
@@ -55,6 +82,7 @@ public class BaseView extends Composite implements BasePresenter.Display {
     initWidget(uiBinder.createAndBindUi(this));
   }
   
+ 
   @Override
   public SimpleLayoutPanel getMapDisplay() {
     return mapPanel;

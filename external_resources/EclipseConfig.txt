@@ -1,0 +1,77 @@
+=== How to setup MapExplorer development enviroment ===
+== Requirements == 
+Git (I recomend a cygwin install)
+Ant
+Ivy
+java 1.6
+Tomcat? - not nesserary in all configurations
+Postgres + postgis? - not nesserary in all configurations
+
+== Eclipse == 
+= Prerequisite =
+Eclipse J2EE
+GWT plugin
+Library Folder ClasspathContainer plugin
+
+= Setting up the project = 
+Create a new Eclipse Web Application (GWT) Project
+  - package: uk.ac.ox.zoo.map.explorer
+  - Use GWT, dont use GAE
+  - Dont include sample code
+ To a seperate (tempory) directory clone the MapExplorer repository
+  - git clone ssh://will@map1.zoo.ox.ac.uk/home/will/workspace/MapExplorer.git
+ Copy the ".git" into the new eclipse project (not via eclipse)
+ Remove tempory directory
+ From the MapExplorer project directory run a git checkout
+  - git checkout .
+ These steps make the project directory a clone of the map1 repository, while working around the "inital directory must be empty requirements of both eclipse and git"
+  - Verify with "git status", should be on master branch with a clean working directory
+Refresh the project in eclipse
+
+= Setting up the classpath =
+There is a known bug in the GWT eclipse plugin that it does not work correctly with Ivy classpaths (the gwt compile button will ignore ivy entries)
+As such I recomend avoiding the ivy plugin for eclipse. Instead ant can be used to run ivy.
+Ivy depends on the ivyconfig file in the MapCommon project
+- Git clone the MapCommon project into the parent folder of the Explorer project
+- git clone ssh://will@map1.zoo.ox.ac.uk/home/will/workspace/MapCommon.git
+Use ant/ivy to retrive the dependancies
+- Right click the build.xml ant file
+- Select run as, ant build ...
+- Select the eclipse-lib task only
+- Run
+OR -> ant -lib /usr/share/java/ivy.jar -lib /usr/share/java/catalina-ant.jar
+- Refresh the project
+- Add the lib and war/WEB-INF/lib directories to the eclipse buildpath (Add library -> workspace library)
+Some of the dependancies are only availible for java6
+- Make sure the JRE library in eclipse matches JavaSE-1.6
+- Make sure that in the project facets configuration the java facet is set to version 1.6
+
+Additionally, the dynamic web module project facet could be enabled to ease deploy to tomcat & other war tasks. However I find use of the current ant tasks to be more effective.
+
+= Adding the startup path = 
+As the project contains no html file the gwt plugin wont known what url to use. 
+To set one open the run/debug configurations dialog. 
+Select the gwt web application task & swap to the arguments tab.
+Add "-startupUrl /" after the port number argument
+Press apply.
+
+== Ant == 
+Ant must be configured with the ivy and tomcat libraries. I have the following lines in my .bashrc file
+= Windows (cygwin) =
+export JAVA_HOME=/cygdrive/c/Program\ Files/Java/jdk1.6.0_26/
+export ANT_HOME=/cygdrive/c/Users/Laurence/Documents/EclipseWorkspace/EclipseHeliosJEE/extra/apache-ant-1.8.4/
+export PATH=$PATH:$JAVA_HOME/bin:$ANT_HOME/bin
+alias antWithLibs='ant -lib "$(cygpath -pw /cygdrive/c/Users/Laurence/Documents/EclipseWorkspace/EclipseHeliosJEE/extra/apache-ivy-2.3.0-rc1-bin/apache-ivy-2.3.0-rc1/ivy-2.3.0-rc1.jar)" -lib "$(cygpath -pw /cygdrive/c/Users/Laurence/Documents/EclipseWorkspace/EclipseHeliosJEE/extra/apache-tomcat-6.0.35/lib/catalina-ant.jar)"'
+= Linux = 
+alias antWithLibs='ant -lib /usr/share/java/ivy.jar -lib /usr/share/java/catalina-ant.jar'
+Build war:
+ant -lib /usr/share/java/ivy.jar -lib /usr/share/java/catalina-ant.jar devWar
+
+== Dependant systems ==
+For development, I suggest installing a local database, geoserver and tomcat.
+= Database =
+To setup a local database follow the instructions in DatabaseConfig.sql.
+
+= Geoserver =
+I suggest installing adding a tomcat instance to eclipse, that way it can be easily started/stoped and the logs can be piped to the eclipse console.
+Once this is configured you can drop the geoserver-live.war into the webapps folder to deploy. Some file paths in geoservers web.xml may need updateing. Similarly the wms url in the explorer code will need updating.

@@ -15,4 +15,11 @@ public interface MapInfoServiceAsync {
       Boolean unavailablePointsEnabled, Double minX, Double minY, Double maxX,
       Double maxY, AsyncCallback<String> callback);
   
+  void getG6PDExtentInfo(Boolean availablePointsEnabled,
+	      Boolean unavailablePointsEnabled, Double minX, Double minY, Double maxX,
+	      Double maxY, AsyncCallback<String> callback);
+  
+  void getHbSExtentInfo(Boolean availablePointsEnabled,
+	      Boolean unavailablePointsEnabled, Double minX, Double minY, Double maxX,
+	      Double maxY, AsyncCallback<String> callback);
 }

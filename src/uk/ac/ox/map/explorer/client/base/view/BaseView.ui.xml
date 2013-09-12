@@ -39,7 +39,9 @@
       <g:DockLayoutPanel>
         <g:west size='520'>
           <g:HorizontalPanel>
-            <g:SimplePanel styleName="{res.baseCss.header}" />
+          <g:FlowPanel ui:field="simplePanel" styleName="{res.baseCss.header}">
+<!--            <g:Anchor styleName="{res.baseCss.anchor}" ui:field="header"/>  -->
+            </g:FlowPanel>
             <g:VerticalPanel styleName="{res.baseCss.perspective}">
               <g:Label>Change perspective:</g:Label>
               <g:ListBox addStyleNames='{style.perspectiveWidth}' ui:field="perspectiveSelect"></g:ListBox>
@@ -48,8 +50,9 @@
         </g:west>
         <g:center>
           <g:FlowPanel styleName="{res.baseCss.help}">
-            <g:Anchor href="http://map.ox.ac.uk/client_media/medialibrary/2012/02/How_To_Use_the_Explorer.pdf">How to use</g:Anchor>
-            <g:Anchor href="http://map.ox.ac.uk/client_media/medialibrary/2012/02/About_the_Data.pdf">About the data</g:Anchor>
+            <g:Anchor href="http://map.ox.ac.uk/client_media/medialibrary/2013/01/How_To_Use_the_Explorer.pdf">How to use</g:Anchor>
+            <g:Anchor href="http://map.ox.ac.uk/client_media/medialibrary/2013/01/About_the_Data.pdf">About the data</g:Anchor>
+            <g:Anchor href="http://map.ox.ac.uk/">Home</g:Anchor>
           </g:FlowPanel>
         </g:center>
       </g:DockLayoutPanel>

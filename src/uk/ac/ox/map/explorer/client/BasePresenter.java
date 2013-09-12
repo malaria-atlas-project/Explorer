@@ -44,6 +44,10 @@ public class BasePresenter {
   
   private static final String PARASITE_RATE = "Parasite rate";
   
+  private static final String G6PD_DEFICIENCY = "G6PD deficiency";
+  
+  private static final String HBS_FREQ = "Sickle Cell";
+  
   @Inject
   public BasePresenter(final BaseView display, EventBus eventBus,
       MapActivityMapper appMapper, TableActivityMapper tableMapper) {
@@ -65,6 +69,8 @@ public class BasePresenter {
     final ListBox select = display.getPerspectiveSelect();
     select.addItem(PARASITE_RATE);
     select.addItem(ANOPHELES_DVS);
+    select.addItem(G6PD_DEFICIENCY);
+    select.addItem(HBS_FREQ);
     
     EntityPlace ep = new EntityPlace.Tokenizer().getPlace(History.getToken());
     if (ep != null) {
@@ -73,6 +79,10 @@ public class BasePresenter {
         select.setSelectedIndex(0);
       } else if (name.equals("EntityPlace:Anopheline")) {
         select.setSelectedIndex(1);
+      } else if (name.equals("EntityPlace:G6PD")) {
+          select.setSelectedIndex(2);
+      } else if (name.equals("EntityPlace:HBS_FREQ")) {
+          select.setSelectedIndex(2);
       }
     }
     
@@ -84,6 +94,10 @@ public class BasePresenter {
           History.newItem("EntityPlace:Country");
         } else if (val.equals(ANOPHELES_DVS)) {
           History.newItem("EntityPlace:Anopheline");
+        } else if (val.equals(G6PD_DEFICIENCY)) {
+            History.newItem("EntityPlace:G6PD");
+        } else if (val.equals(HBS_FREQ)) {
+            History.newItem("EntityPlace:HbS");
         }
       }
     });

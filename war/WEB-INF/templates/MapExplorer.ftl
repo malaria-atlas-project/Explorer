@@ -12,6 +12,8 @@
       var seedJson = ${seedJson};
       var PR = '${PR}';
       var Anopheles = '${Anopheles}';
+      var G6PD = '${G6PD}';
+      var HbS = '${HbS}';
    		
     </script>
     

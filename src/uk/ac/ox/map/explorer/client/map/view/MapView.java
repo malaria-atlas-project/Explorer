@@ -12,6 +12,7 @@ import org.gwtopenmaps.openlayers.client.event.MapMoveEndListener;
 import org.gwtopenmaps.openlayers.client.layer.LayerOptions;
 import org.gwtopenmaps.openlayers.client.layer.TransitionEffect;
 import org.gwtopenmaps.openlayers.client.layer.WMS;
+import org.gwtopenmaps.openlayers.client.layer.WMSOptions;
 import org.gwtopenmaps.openlayers.client.layer.WMSParams;
 
 import uk.ac.ox.map.explorer.client.map.presenter.BaseMapPresenter;
@@ -33,7 +34,8 @@ public class MapView extends Composite {
   private BaseMapPresenter listener;
   
   //private String gwcUrl = "http://localhost:8080/geoserver/gwc/service/wms";
-  private String wmsUrl = "/explorer/wms";
+  //private String wmsUrl = "/explorer/wms";
+  private String wmsUrl = "http://map1.zoo.ox.ac.uk/geoserver/wms";
   
   private java.util.Map<String, WMS> wmsLayerMap = new HashMap<String, WMS>();
   
@@ -47,10 +49,12 @@ public class MapView extends Composite {
     
     {
       WMSParams params = new WMSParams();
+      WMSOptions wmsOptions = new WMSOptions();
+      wmsOptions.setWrapDateLine(true);
       params.setLayers("Explorer:bluemarble");
       params.setTransparent(true);
       params.setParameter("TILED","true");//wms gwc intergration
-      WMS bm = new WMS("Blue marble", wmsUrl/*gwcUrl*/, params);
+      WMS bm = new WMS("Blue marble", wmsUrl/*gwcUrl*/, params, wmsOptions);
       LayerOptions options = new LayerOptions();
       options.setTransitionEffect(TransitionEffect.RESIZE);
       bm.addOptions(options);
@@ -63,6 +67,7 @@ public class MapView extends Composite {
     // map.addControl(new LayerSwitcher());
     
     map.zoomTo(2);
+    map.setCenter(new LonLat(18.0, 0.0), 2);
     
     map.addMapClickListener(new MapClickListener() {
       

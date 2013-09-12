@@ -59,4 +59,17 @@ public class AnophelesSelectionPresenter extends
     
   }
   
+  @Override
+  protected void startDownloadAll() {
+	  
+	  QueryStringBuilder qsb = new QueryStringBuilder('&');
+	  String cids = "*";
+	  qsb.addParam(RESOURCE_PARAM, ANO_RESOURCE);
+	  //qsb.addParam(ID_PARAM, cids);
+	    
+	  String s = qsb.finish();
+	    
+	  Window.Location.assign("dataDownloadAll?" + s);
+  }
+  
 }

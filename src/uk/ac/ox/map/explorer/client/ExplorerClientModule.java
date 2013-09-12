@@ -37,7 +37,7 @@ public class ExplorerClientModule extends AbstractGinModule {
     /*
      * Constants
      */
-    bindConstant().annotatedWith(Names.named("TABLE_SIZE")).to(100);
+    bindConstant().annotatedWith(Names.named("TABLE_SIZE")).to(222);
   }
   
   @SuppressWarnings("deprecation")

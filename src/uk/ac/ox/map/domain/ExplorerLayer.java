@@ -30,8 +30,8 @@ public class ExplorerLayer implements HasOrdinal {
   private boolean useResizeTransition;
   
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO, generator = "seq")
-  @SequenceGenerator(allocationSize = 1, name = "seq", sequenceName = "carto.job_id_seq")
+//  @GeneratedValue(strategy = GenerationType.AUTO, generator = "seq")
+//  @SequenceGenerator(allocationSize = 1, name = "seq", sequenceName = "carto.job_id_seq")
   public Long getId() {
     return id;
   }

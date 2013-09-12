@@ -45,6 +45,14 @@ public class ExcelServlet extends HttpServlet {
       fileName = String.format("pr_%s.xlsx", getDateStamp());
       new PrQuery(outputWb, Arrays.asList(cIds)); // perform query
       
+    } else if (resource.equals(BaseSelectionPresenter.G6PD_RESOURCE)) {
+    	fileName = String.format("g6pd_%s.xlsx", getDateStamp());
+        new G6PDQuery(outputWb, Arrays.asList(cIds));
+    	
+    } else if (resource.equals(BaseSelectionPresenter.HBS_RESOURCE)) {
+    	fileName = String.format("hbs_%s.xlsx", getDateStamp());
+        new HbSQuery(outputWb, Arrays.asList(cIds));
+    	
     } else if (resource.equals(BaseSelectionPresenter.ANO_RESOURCE)) {
       
       fileName = String.format("ano_%s.xlsx", getDateStamp());

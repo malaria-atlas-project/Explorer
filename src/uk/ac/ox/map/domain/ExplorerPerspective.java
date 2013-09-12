@@ -38,7 +38,7 @@ public class ExplorerPerspective implements StringType {
   public void setLayers(List<ExplorerLayer> layers) {
     
     this.layers = layers;
-    
+  
   }
   
   @Override

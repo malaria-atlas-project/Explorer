@@ -20,6 +20,8 @@ public abstract class BaseSelectionPresenter<T extends NamedProxy> extends
   public static String RESOURCE_PARAM = "resource";
   public static String ANO_RESOURCE = "ano";
   public static String COUNTRY_RESOURCE = "country";
+  public static String G6PD_RESOURCE = "g6pd";
+  public static String HBS_RESOURCE = "hbs";
   
   protected List<T> selectedObjects = new ArrayList<T>();
   
@@ -48,8 +50,18 @@ public abstract class BaseSelectionPresenter<T extends NamedProxy> extends
         startDownload();
       }
     });
+    
+    selectionView.getDownloadAllButton().addClickHandler(new ClickHandler() {
+		@Override
+		public void onClick(ClickEvent event) {
+			startDownloadAll();
+			
+		}
+	});
   }
   
   protected abstract void startDownload();
+  
+  protected abstract void startDownloadAll();
   
 }

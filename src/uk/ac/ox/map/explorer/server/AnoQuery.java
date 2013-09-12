@@ -66,6 +66,40 @@ public class AnoQuery {
     // sheet.setColumnHidden(Cols.surveyReplicateId.ordinal(), true);
   }
   
+  public AnoQuery(Workbook wb) {
+	    
+	    sheet = wb.createSheet();
+	    
+	    boldCellStyle = wb.createCellStyle();
+	    Font f = wb.createFont();
+	    f.setBoldweight(Font.BOLDWEIGHT_BOLD);
+	    boldCellStyle.setFont(f);
+	    
+	    /*
+	     * Header row
+	     */
+	    addHeaderRow();
+	   
+	    /*
+	     * Retrieve data
+	     */
+	    EntityManager em = EMF.get().createEntityManager();
+	    Query q = em.createNativeQuery("select id, latitude, longitude, country_id, species, year_start, year_end, month_start, month_end, id_method1, id_method2, sample_method1, sample_method2, sample_method3, sample_method4, \"ASSI\", citation, is_present from explorer.anopheline_export");
+	    
+	   
+	    @SuppressWarnings("unchecked")
+	    List<Object[]> l = q.getResultList();
+	    
+	    for (Object[] objects : l) {
+	      appendRow(objects);
+	    }
+	    
+	    /*
+	     * Hide id columns
+	     */
+	    // sheet.setColumnHidden(Cols.surveyReplicateId.ordinal(), true);
+	  }
+  
   private void addHeaderRow() {
     Row row = getNewRow();
     

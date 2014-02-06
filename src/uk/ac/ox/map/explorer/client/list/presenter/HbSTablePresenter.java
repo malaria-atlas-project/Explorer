@@ -8,12 +8,13 @@ import uk.ac.ox.map.explorer.client.proxy.CountryAllProxy;
 
 import com.google.gwt.place.shared.PlaceController;
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 /**
  * Manages display of {@link CountryAllProxy} objects
  * 
  * @author andy
  */
-
+@Singleton
 public class HbSTablePresenter extends BaseTablePresenter<CountryAllProxy> {
 	  
 	  @Inject

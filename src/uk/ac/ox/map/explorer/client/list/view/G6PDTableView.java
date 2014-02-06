@@ -25,7 +25,7 @@ public class G6PDTableView extends TableView<CountryProxy>{
 	
 	Set<String> selected = new HashSet<String>();
 	  
-	  Column<CountryProxy, Boolean> checkColumn = null;
+	  //Column<CountryProxy, Boolean> checkColumn = null;
 	  
 	  @Inject
 	  public G6PDTableView(@Named("TABLE_SIZE") Integer pageSize) {
@@ -55,7 +55,7 @@ public class G6PDTableView extends TableView<CountryProxy>{
 	    }, "Name", "name");
 	    
 	        
-	    checkColumn = new Column<CountryProxy, Boolean>(
+	    Column<CountryProxy, Boolean> checkColumn = new Column<CountryProxy, Boolean>(
 	        new CheckboxCell(false, false)) {
 	      @Override
 	      public Boolean getValue(CountryProxy object) {
@@ -122,13 +122,6 @@ public class G6PDTableView extends TableView<CountryProxy>{
 	        
 	      }
 
-//		@Override
-//		public boolean equals(Object obj) {
-//			obj.
-//			return super.equals(obj);
-//		}
-
-		
 	    });
 	  
 	    
@@ -155,15 +148,15 @@ public class G6PDTableView extends TableView<CountryProxy>{
 		
 	  }
 	  
-	  public void setAllCheckBoxes(boolean selected) {
-		  List<CountryProxy> items = dataGrid.getVisibleItems();
-		  int i=0;
-		  for(CountryProxy cp : items) {
-			  //items.
-	          checkColumn.getFieldUpdater().update(i++, cp, selected);
-	          //checkColumn.getCell().setValue(context, , true)
-		  }
-	  }
+//	  public void setAllCheckBoxes(boolean selected) {
+//		  List<CountryProxy> items = dataGrid.getVisibleItems();
+//		  int i=0;
+//		  for(CountryProxy cp : items) {
+//			  //items.
+//	          checkColumn.getFieldUpdater().update(i++, cp, selected);
+//	          //checkColumn.getCell().setValue(context, , true)
+//		  }
+//	  }
 	  
 	  public int getRows() {
 	  	return dataGrid.getRowCount();

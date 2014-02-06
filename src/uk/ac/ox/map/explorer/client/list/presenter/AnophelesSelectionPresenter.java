@@ -30,7 +30,8 @@ public class AnophelesSelectionPresenter extends
   public void start(AcceptsOneWidget panel, EventBus eventBus) {
     
     super.start(panel, eventBus);
-    
+//    this.selectionView = new SelectionView();
+//    this.selectedObjects = null;
     eventBus.addHandler(AnophelineCheckedEvent.TYPE,
         new AnophelineCheckedEvent.Handler() {
           @Override
@@ -63,9 +64,7 @@ public class AnophelesSelectionPresenter extends
   protected void startDownloadAll() {
 	  
 	  QueryStringBuilder qsb = new QueryStringBuilder('&');
-	  String cids = "*";
 	  qsb.addParam(RESOURCE_PARAM, ANO_RESOURCE);
-	  //qsb.addParam(ID_PARAM, cids);
 	    
 	  String s = qsb.finish();
 	    

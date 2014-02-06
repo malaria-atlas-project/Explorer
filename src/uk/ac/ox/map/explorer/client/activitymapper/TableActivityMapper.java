@@ -4,6 +4,8 @@ import uk.ac.ox.map.explorer.client.list.presenter.AnophelesTablePresenter;
 import uk.ac.ox.map.explorer.client.list.presenter.CountryTablePresenter;
 import uk.ac.ox.map.explorer.client.list.presenter.G6PDTablePresenter;
 import uk.ac.ox.map.explorer.client.list.presenter.HbSTablePresenter;
+import uk.ac.ox.map.explorer.client.list.presenter.DuffyTablePresenter;
+import uk.ac.ox.map.explorer.client.list.presenter.PvPRTablePresenter;
 import uk.ac.ox.map.explorer.client.place.EntityPlace;
 
 import com.google.gwt.activity.shared.Activity;
@@ -28,6 +30,12 @@ public class TableActivityMapper implements ActivityMapper {
   @Inject
   Provider<HbSTablePresenter> hbSTableProvider;
   
+  @Inject
+  Provider<DuffyTablePresenter> duffyTableProvider;
+  
+  @Inject
+  Provider<PvPRTablePresenter> pvPRTableProvider;
+  
   @Override
   public Activity getActivity(Place place) {
     
@@ -40,9 +48,13 @@ public class TableActivityMapper implements ActivityMapper {
       return anophelineTableProvider.get().withPlace(p);
     } else if (entityName.equals("G6PD")) {
         return g6PDTableProvider.get().withPlace(p);
-      } else if (entityName.equals("HbS")) {
+    } else if (entityName.equals("HbS")) {
           return hbSTableProvider.get().withPlace(p);
-        }
+    } else if (entityName.equals("Duffy")) {
+    	return duffyTableProvider.get().withPlace(p);
+	} else if (entityName.equals("PvPR")) {
+		return pvPRTableProvider.get().withPlace(p);
+	}
     return null;
   }
   

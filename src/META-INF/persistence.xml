@@ -6,6 +6,8 @@
     <class>uk.ac.ox.map.domain.Continent</class>
     <class>uk.ac.ox.map.domain.AnoRegion</class>
     <class>uk.ac.ox.map.domain.G6PD</class>
+    <class>uk.ac.ox.map.domain.Duffy</class>
+<!--     <class>uk.ac.ox.map.domain.HBS</class> -->
     <properties>
       <property name="hibernate.id.new_generator_mappings" value="true" />
       <property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />

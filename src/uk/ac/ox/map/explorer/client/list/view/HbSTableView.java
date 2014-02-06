@@ -25,18 +25,13 @@ public class HbSTableView extends TableView<CountryAllProxy>{
 	
 	Set<String> selected = new HashSet<String>();
 	  
-	  Column<CountryAllProxy, Boolean> checkColumn = null;
+	  //Column<CountryAllProxy, Boolean> checkColumn = null;
 	  
 	  @Inject
 	  public HbSTableView(@Named("TABLE_SIZE") Integer pageSize) {
 	    super(pageSize);
-	//    
-//	    int rows;
-	//    
-//	    public int getRows() {
-//	    	return dataGrid.getRowCount();
-//	    }
-	    
+
+	    //selected = new HashSet<String>();
 	    
 	    addIDSortableColumn(new TextColumn<CountryAllProxy>() {
 	      
@@ -55,7 +50,7 @@ public class HbSTableView extends TableView<CountryAllProxy>{
 	    }, "Name", "name");
 	    
 	        
-	    checkColumn = new Column<CountryAllProxy, Boolean>(
+	    Column<CountryAllProxy, Boolean> checkColumn = new Column<CountryAllProxy, Boolean>(
 	        new CheckboxCell(false, false)) {
 	      @Override
 	      public Boolean getValue(CountryAllProxy object) {
@@ -115,9 +110,7 @@ public class HbSTableView extends TableView<CountryAllProxy>{
 	             selected.add(object.getId());
 	        	}
 	        } else {
-	        	if (selected.contains(object.getId())) {
 	             selected.remove(object.getId());
-	        }
 	        } 
 	        
 	      }
@@ -155,15 +148,15 @@ public class HbSTableView extends TableView<CountryAllProxy>{
 		
 	  }
 	  
-	  public void setAllCheckBoxes(boolean selected) {
-		  List<CountryAllProxy> items = dataGrid.getVisibleItems();
-		  int i=0;
-		  for(CountryAllProxy cp : items) {
-			  //items.
-	          checkColumn.getFieldUpdater().update(i++, cp, selected);
-	          //checkColumn.getCell().setValue(context, , true)
-		  }
-	  }
+//	  public void setAllCheckBoxes(boolean selected) {
+//		  List<CountryAllProxy> items = dataGrid.getVisibleItems();
+//		  int i=0;
+//		  for(CountryAllProxy cp : items) {
+//			  //items.
+//	          checkColumn.getFieldUpdater().update(i++, cp, selected);
+//	          //checkColumn.getCell().setValue(context, , true)
+//		  }
+//	  }
 	  
 	  public int getRows() {
 	  	return dataGrid.getRowCount();

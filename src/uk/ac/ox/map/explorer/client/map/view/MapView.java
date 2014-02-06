@@ -67,7 +67,7 @@ public class MapView extends Composite {
     // map.addControl(new LayerSwitcher());
     
     map.zoomTo(2);
-    map.setCenter(new LonLat(18.0, 0.0), 2);
+    map.setCenter(new LonLat(24.0, 0.0), 2);
     
     map.addMapClickListener(new MapClickListener() {
       

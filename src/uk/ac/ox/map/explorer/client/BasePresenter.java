@@ -42,11 +42,15 @@ public class BasePresenter {
   
   private static final String ANOPHELES_DVS = "Anopheles DVS";
   
-  private static final String PARASITE_RATE = "Parasite rate";
+  private static final String PARASITE_RATE = "Pf Parasite Rate";
   
-  private static final String G6PD_DEFICIENCY = "G6PD deficiency";
+  private static final String G6PD_DEFICIENCY = "G6PD Deficiency";
   
   private static final String HBS_FREQ = "Sickle Cell";
+  
+  private static final String DUFFY_NEG = "Duffy Negativity";
+  
+  private static final String PV_PARASITE_RATE = "Pv Parasite Rate";
   
   @Inject
   public BasePresenter(final BaseView display, EventBus eventBus,
@@ -71,6 +75,8 @@ public class BasePresenter {
     select.addItem(ANOPHELES_DVS);
     select.addItem(G6PD_DEFICIENCY);
     select.addItem(HBS_FREQ);
+    select.addItem(DUFFY_NEG);
+    select.addItem(PV_PARASITE_RATE);
     
     EntityPlace ep = new EntityPlace.Tokenizer().getPlace(History.getToken());
     if (ep != null) {
@@ -81,8 +87,12 @@ public class BasePresenter {
         select.setSelectedIndex(1);
       } else if (name.equals("EntityPlace:G6PD")) {
           select.setSelectedIndex(2);
-      } else if (name.equals("EntityPlace:HBS_FREQ")) {
-          select.setSelectedIndex(2);
+      } else if (name.equals("EntityPlace:HbS")) {
+          select.setSelectedIndex(3);
+      } else if (name.equals("EntityPlace:Duffy")) {
+    	  select.setSelectedIndex(4);
+      } else if (name.equals("EntityPlace:PvPR")) {
+    	  select.setSelectedIndex(5);
       }
     }
     
@@ -98,7 +108,12 @@ public class BasePresenter {
             History.newItem("EntityPlace:G6PD");
         } else if (val.equals(HBS_FREQ)) {
             History.newItem("EntityPlace:HbS");
-        }
+        } else if (val.equals(DUFFY_NEG)) {
+        	History.newItem("EntityPlace:Duffy");
+		} else if (val.equals(PV_PARASITE_RATE)) {
+			History.newItem("EntityPlace:PvPR");
+		}
+			
       }
     });
     

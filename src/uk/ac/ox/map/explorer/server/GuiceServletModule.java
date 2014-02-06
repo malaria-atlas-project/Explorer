@@ -56,6 +56,8 @@ public class GuiceServletModule extends ServletModule {
     serve("/mapexplorer/ano").with(AnoServiceImpl.class);
     serve("/mapexplorer/g6pd").with(G6PDServiceImpl.class);
     serve("/mapexplorer/hbs").with(HbSServiceImpl.class);
+    serve("/mapexplorer/duffy").with(DuffyServiceImpl.class);
+    serve("/mapexplorer/pvpr").with(PvPRServiceImpl.class);
     
   }
   

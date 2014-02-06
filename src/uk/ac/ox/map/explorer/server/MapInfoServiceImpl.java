@@ -108,6 +108,38 @@ public class MapInfoServiceImpl extends RemoteServiceServlet implements
 
 		return json;
 	}
+	
+	@Override
+	public String getPvPRExtentInfo(Boolean availablePointsEnabled,
+			Boolean unavailablePointsEnabled, Double minX, Double minY,
+			Double maxX, Double maxY) {
+
+		EntityManager em = emProvider.get();
+		String query_string = "select count(distinct(geom)) as siteCount, count(distinct(id)) as surveyReplicateCount from explorer.pvpr_display where pvpr_display.geom && ST_SetSRID(st_makebox2d(st_makepoint(?,?), st_makepoint(?,?)), 4326) ";
+		if (!availablePointsEnabled) {
+			query_string += "and NOT ( is_available = True ) ";
+		}
+		if (!unavailablePointsEnabled) {
+			query_string += "and NOT ( is_available = False ) ";
+		}
+		query_string += ";";
+
+		Query q = em.createNativeQuery(query_string);
+		q.setParameter(1, minX);
+		q.setParameter(2, minY);
+		q.setParameter(3, maxX);
+		q.setParameter(4, maxY);
+
+		Object[] res = (Object[]) q.getSingleResult();
+
+		Map<String, BigInteger> m = new HashMap<String, BigInteger>();
+		m.put("siteCount", (BigInteger) res[0]);
+		m.put("uniqueSiteDateCount", (BigInteger) res[1]);
+
+		String json = gson.toJson(m);
+
+		return json;
+	}
 
 	@Override
 	public String getG6PDExtentInfo(Boolean availablePointsEnabled,
@@ -118,11 +150,11 @@ public class MapInfoServiceImpl extends RemoteServiceServlet implements
 		String query_string = "select count(distinct(geom)) as siteCount, count(distinct(id)) as surveyReplicateCount from explorer.g6pd_data where g6pd_data.geom && ST_SetSRID(st_makebox2d(st_makepoint(?,?), st_makepoint(?,?)), 4326) ";
 		if (!availablePointsEnabled) {
 			//query_string += "and NOT ( is_available = True ) ";
-			query_string += "and sexes = null";
+			query_string += "and sexes is null ";
 		}
 		if (!unavailablePointsEnabled) {
 //			query_string += "and NOT ( is_available = False ) ";
-			query_string += "and sexes != null";
+			query_string += "and  sexes is not null ";
 		}
 		query_string += ";";
 
@@ -150,10 +182,41 @@ public class MapInfoServiceImpl extends RemoteServiceServlet implements
 		EntityManager em = emProvider.get();
 		String query_string = "select count(distinct(geom)) as siteCount, count(distinct(id)) as surveyReplicateCount from explorer.hbs_data where hbs_data.geom && ST_SetSRID(st_makebox2d(st_makepoint(?,?), st_makepoint(?,?)), 4326) ";
 		if (!availablePointsEnabled) {
-			query_string += "and sample_size = null";
+			query_string += "and sample_size is null ";
 		}
 		if (!unavailablePointsEnabled) {
-			query_string += "and sample_size != null";
+			query_string += "and sample_size is not null ";
+		}
+		query_string += ";";
+
+		Query q = em.createNativeQuery(query_string);
+		q.setParameter(1, minX);
+		q.setParameter(2, minY);
+		q.setParameter(3, maxX);
+		q.setParameter(4, maxY);
+
+		Object[] res = (Object[]) q.getSingleResult();
+
+		Map<String, BigInteger> m = new HashMap<String, BigInteger>();
+		m.put("siteCount", (BigInteger) res[0]);
+		m.put("uniqueSiteDateCount", (BigInteger) res[1]);
+
+		String json = gson.toJson(m);
+
+		return json;
+	}
+	
+	public String getDuffyExtentInfo(Boolean availablePointsEnabled,
+			Boolean unavailablePointsEnabled, Double minX, Double minY,
+			Double maxX, Double maxY) {
+
+		EntityManager em = emProvider.get();
+		String query_string = "select count(distinct(geom)) as siteCount, count(distinct(id)) as surveyReplicateCount from explorer.duffy_data where duffy_data.geom && ST_SetSRID(st_makebox2d(st_makepoint(?,?), st_makepoint(?,?)), 4326) ";
+		if (!availablePointsEnabled) {
+			query_string += "and no_examine is null ";
+		}
+		if (!unavailablePointsEnabled) {
+			query_string += "and no_examine is not null ";
 		}
 		query_string += ";";
 

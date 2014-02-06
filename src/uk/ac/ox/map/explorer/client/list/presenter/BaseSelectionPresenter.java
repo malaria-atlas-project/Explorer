@@ -22,6 +22,8 @@ public abstract class BaseSelectionPresenter<T extends NamedProxy> extends
   public static String COUNTRY_RESOURCE = "country";
   public static String G6PD_RESOURCE = "g6pd";
   public static String HBS_RESOURCE = "hbs";
+  public static String DUFFY_RESOURCE = "duffy";
+  public static String PVPR_RESOURCE = "pvpr";
   
   protected List<T> selectedObjects = new ArrayList<T>();
   

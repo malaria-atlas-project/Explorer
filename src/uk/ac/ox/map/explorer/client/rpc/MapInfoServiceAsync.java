@@ -22,4 +22,12 @@ public interface MapInfoServiceAsync {
   void getHbSExtentInfo(Boolean availablePointsEnabled,
 	      Boolean unavailablePointsEnabled, Double minX, Double minY, Double maxX,
 	      Double maxY, AsyncCallback<String> callback);
+  
+  void getDuffyExtentInfo(Boolean availablePointsEnabled,
+	      Boolean unavailablePointsEnabled, Double minX, Double minY, Double maxX,
+	      Double maxY, AsyncCallback<String> callback);
+  
+  void getPvPRExtentInfo(Boolean availablePointsEnabled,
+	      Boolean unavailablePointsEnabled, Double minX, Double minY, Double maxX,
+	      Double maxY, AsyncCallback<String> callback);
 }

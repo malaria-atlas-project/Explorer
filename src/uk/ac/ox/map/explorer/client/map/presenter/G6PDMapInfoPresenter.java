@@ -32,27 +32,10 @@ public class G6PDMapInfoPresenter extends BaseMapInfoPresenter {
 	    
 	  }
 	  
-//	  @Override
-//	  public void start(AcceptsOneWidget panel, EventBus eventBus) {
-//	    super.start(panel, eventBus);
-//	    
-//	    eventBus.addHandler(G6PDSelectedEvent.TYPE,
-//	        new G6PDSelectedEvent.Handler() {
-//	          
-//	          @Override
-//	          public void onCountrySelected(G6PDSelectedEvent requestEvent) {
-//	            countryProxy = requestEvent.getCountry();
-//	          }
-//	        });
-//	  }
 	  
 	  @Override
 	  public void updateMapInfo(Bounds bounds) {
 	    
-//	    Long countryId = null;
-//	    if (countryProxy != null) {
-//	      countryId = countryProxy.getId();
-//	    }
 	    
 	    rpcService.getG6PDExtentInfo(availableProxy, unavailableProxy,
 	        bounds.getLowerLeftX(), bounds.getLowerLeftY(),

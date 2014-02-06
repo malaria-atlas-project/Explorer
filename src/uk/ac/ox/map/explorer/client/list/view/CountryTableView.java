@@ -39,7 +39,7 @@ public class CountryTableView extends TableView<CountryProxy> {
   
   Set<String> selected = new HashSet<String>();
   
-  Column<CountryProxy, Boolean> checkColumn = null;
+  //Column<CountryProxy, Boolean> checkColumn = null;
   
   @Inject
   public CountryTableView(@Named("TABLE_SIZE") Integer pageSize) {
@@ -69,8 +69,8 @@ public class CountryTableView extends TableView<CountryProxy> {
     }, "Name", "name");
     
         
-    checkColumn = new Column<CountryProxy, Boolean>(
-        new CheckboxCell(false, false)) {
+    Column<CountryProxy, Boolean> checkColumn = new Column<CountryProxy, Boolean>(
+        new CheckboxCell()) {
       @Override
       public Boolean getValue(CountryProxy object) {
         return selected.contains(object.getId());
@@ -169,15 +169,6 @@ public class CountryTableView extends TableView<CountryProxy> {
 	
   }
   
-  public void setAllCheckBoxes(boolean selected) {
-	  List<CountryProxy> items = dataGrid.getVisibleItems();
-	  int i=0;
-	  for(CountryProxy cp : items) {
-		  //items.
-          checkColumn.getFieldUpdater().update(i++, cp, selected);
-          //checkColumn.getCell().setValue(context, , true)
-	  }
-  }
   
   public int getRows() {
   	return dataGrid.getRowCount();

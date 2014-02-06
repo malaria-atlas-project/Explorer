@@ -10,12 +10,14 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 
 /**
  * 
  * 
  * @author will
  */
+@Singleton
 public class AnophelesTablePresenter extends
     BaseTablePresenter<AnophelineProxy> {
   

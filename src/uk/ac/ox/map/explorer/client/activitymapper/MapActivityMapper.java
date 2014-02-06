@@ -4,6 +4,8 @@ import uk.ac.ox.map.explorer.client.map.presenter.AnophelesMapPresenter;
 import uk.ac.ox.map.explorer.client.map.presenter.CountryMapPresenter;
 import uk.ac.ox.map.explorer.client.map.presenter.G6PDMapPresenter;
 import uk.ac.ox.map.explorer.client.map.presenter.HbSMapPresenter;
+import uk.ac.ox.map.explorer.client.map.presenter.DuffyMapPresenter;
+import uk.ac.ox.map.explorer.client.map.presenter.PvPRMapPresenter;
 import uk.ac.ox.map.explorer.client.place.EntityPlace;
 
 import com.google.gwt.activity.shared.Activity;
@@ -34,6 +36,12 @@ public class MapActivityMapper implements ActivityMapper {
   @Inject
   HbSMapPresenter hbSMapPresenter;
   
+  @Inject
+  DuffyMapPresenter duffyMapPresenter;
+  
+  @Inject
+  PvPRMapPresenter pvPRMapPresenter;
+  
   
   @Override
   public Activity getActivity(Place place) {
@@ -47,9 +55,13 @@ public class MapActivityMapper implements ActivityMapper {
       return anoMapPresenter;
     } else if (entityName.equals("G6PD")) {
         return g6PDMapPresenter;
-      } else if (entityName.equals("HbS")) {
+    } else if (entityName.equals("HbS")) {
           return hbSMapPresenter;
-        }
+    } else if (entityName.equals("Duffy")) {
+		return duffyMapPresenter;
+	} else if (entityName.equals("PvPR")) {
+		return pvPRMapPresenter;
+	}
     return countryMapPresenter;
   }
   

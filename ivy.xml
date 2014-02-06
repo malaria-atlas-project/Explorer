@@ -44,8 +44,8 @@
 			<exclude name="aopalliance"></exclude>
 		</dependency>
 		
-		<dependency org="javax.inject" name="javax.inject" rev="1"  conf="eclipseruntime->default"/>
-		<dependency org="org.aopalliance" name="aopalliance" rev="1.0"  conf="eclipseruntime->default"/>
+		<!-- <dependency org="javax.inject" name="javax.inject" rev="1"  conf="eclipseruntime->default"/> -->
+		<!-- <dependency org="org.aopalliance" name="aopalliance" rev="1.0"  conf="eclipseruntime->default"/> -->
 
 		<!-- Database dependencies -->
 		<dependency org="org.postgis" name="postgis-jdbc" rev="1.3.3" conf="eclipseruntime->default">
@@ -70,8 +70,8 @@
 		
 		<!-- Spatial deps -->
 		<dependency org="com.vividsolutions" name="jts" rev="1.11"  conf="eclipseruntime->default"/>
-	    <dependency org="org.hibernatespatial" name="hibernate-spatial" rev="1.1"  conf="eclipseruntime->default"/>
-		<dependency org="org.hibernatespatial" name="hibernate-spatial-postgis" rev="1.1"  conf="eclipseruntime->default"/>
+	    <!-- <dependency org="org.hibernatespatial" name="hibernate-spatial" rev="1.1"  conf="eclipseruntime->default"/> -->
+		<!-- <dependency org="org.hibernatespatial" name="hibernate-spatial-postgis" rev="1.1"  conf="eclipseruntime->default"/> -->
 		
 		<!-- JSON -->
 		<dependency org="com.google.code.gson" name="gson" rev="1.6" conf="eclipseruntime->default"/>
@@ -85,7 +85,9 @@
 
 		<!-- Client side dependencies -->
 		<dependency org="xerces" name="xercesImpl" rev="2.9.1" conf="eclipsebuild->default"/>
-		<dependency org="com.google.gwt.inject" name="gin" rev="1.5" conf="eclipsebuild->default" />
+		<dependency org="com.google.gwt.inject" name="gin" rev="1.5.0" conf="eclipsebuild->default" >
+			<exclude name="gwt-servlet"></exclude>
+		</dependency>
 		<dependency org="org.gwtopenmaps.openlayers" name="gwt-openlayers-client" rev="0.7" conf="eclipsebuild->default"/>
 		
 		<!-- Tests -->

@@ -53,6 +53,14 @@ public class ExcelServlet extends HttpServlet {
     	fileName = String.format("hbs_%s.xlsx", getDateStamp());
         new HbSQuery(outputWb, Arrays.asList(cIds));
     	
+    } else if (resource.equals(BaseSelectionPresenter.DUFFY_RESOURCE)) {
+    	fileName = String.format("hbs_%s.xlsx", getDateStamp());
+        new DuffyQuery(outputWb, Arrays.asList(cIds));
+    	
+    } else if (resource.equals(BaseSelectionPresenter.PVPR_RESOURCE)) {
+    	fileName = String.format("pvpr_%s.xlsx", getDateStamp());
+        new PvPRQuery(outputWb, Arrays.asList(cIds));
+    	
     } else if (resource.equals(BaseSelectionPresenter.ANO_RESOURCE)) {
       
       fileName = String.format("ano_%s.xlsx", getDateStamp());

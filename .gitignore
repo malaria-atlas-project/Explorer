@@ -20,3 +20,5 @@ Explorer.war
 external_resources/DatabaseConfig.sql
 src/hibernate.properties
 resources/prod/hibernate.properties
+META-INF/hibernate.properties
+build.properties
